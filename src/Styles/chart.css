@@ -3,3 +3,10 @@
     height: 10rem;
     width: 100%;
 }
+
+/* TODO :: lineChartArea와 중복이다. */
+#gaugeChartArea {
+    position: relative;
+    height: 10rem;
+    width: 100%;
+}
