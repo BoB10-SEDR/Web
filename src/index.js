@@ -9,13 +9,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Card from '@Components/Card';
 import LineArea from '@Components/Charts/Line';
 import Radar from '@Components/Charts/Radar';
+import SparkLines from '@Components/Charts/Sparklines';
 
 const Home = () => {
     return (
         <div id='bodySection'>
-            <Card title='방사형 그래프'>
+            <Card title='차트'>
                 {/* <LineArea /> */}
-                <Radar />
+                {/* <Radar /> */}
+                <SparkLines />
             </Card>
         </div>
     );

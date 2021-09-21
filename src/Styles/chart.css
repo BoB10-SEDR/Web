@@ -10,3 +10,55 @@
     height: 10rem;
     width: 100%;
 }
+
+#sparkLineChartArea {
+    display: block;
+    position: relative !important;
+    /* vertical-align: middle; */
+
+    /* 이건 Table CSS */
+    caption-side: bottom;
+    border-collapse: collapse;
+
+    width: 100%;
+
+    font-family: 'Nunito', 'NanumSquare';
+}
+
+#sparkLineChartArea thead {
+    font-size: 20px;
+}
+
+#sparkLineChartArea thead tr th {
+    padding-bottom: 0.5rem;
+
+    padding-right: 1rem;
+}
+
+#sparkLineChartArea .oneSparkLineRow {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}
+
+#sparkLineChartArea .oneSparkLineRow td {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    padding-right: 1.5rem;
+    border-left: 0;
+    /* width: 100%; */
+}
+
+#sparkLineChartArea .oneSparkLineRow .description {
+    line-height: 40px;
+
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#sparkLineChartArea .oneSparkLineRow .totalValue {
+    line-height: 40px;
+
+    font-size: 18px;
+}

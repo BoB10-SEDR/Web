@@ -37,7 +37,7 @@ const LineArea = props => {
 
     // TODO :: id, className, 그 이외의 설정들에 대한 컴포넌트화가 진행중임.
     return (
-        <div className='lineChartArea'>
+        <div id='lineChartArea'>
             <canvas id={chartID} />
         </div>
     );
@@ -48,4 +48,5 @@ export default LineArea;
 const lineChartInit = (id, data, option) => {
     var ctx = document.getElementById(`${id}`);
     new Chart(ctx, { type: 'line', data: data, options: option });
+    Chart.defaults.global.defaultFontFamily = 'Nunito, NanumSquare';
 };
