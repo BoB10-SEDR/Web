@@ -4,12 +4,12 @@
     width: 100%;
 }
 
-/* TODO :: lineChartArea와 중복이다. */
-#gaugeChartArea {
+/* TODO_P :: lineChartArea와 중복이다. */
+/* #gaugeChartArea {
     position: relative;
     height: 10rem;
     width: 100%;
-}
+} */
 
 #sparkLineChartArea {
     display: block;
@@ -26,13 +26,13 @@
 }
 
 #sparkLineChartArea thead {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #sparkLineChartArea thead tr th {
-    padding-bottom: 0.5rem;
+    padding-right: 2rem;
 
-    padding-right: 1rem;
+    text-align: start;
 }
 
 #sparkLineChartArea .oneSparkLineRow {
@@ -43,22 +43,23 @@
 
 #sparkLineChartArea .oneSparkLineRow td {
     padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-
-    padding-right: 1.5rem;
+    padding-right: 3rem;
     border-left: 0;
-    /* width: 100%; */
 }
 
 #sparkLineChartArea .oneSparkLineRow .description {
-    line-height: 40px;
-
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 400;
 }
 
 #sparkLineChartArea .oneSparkLineRow .totalValue {
-    line-height: 40px;
+    font-size: 14px;
+}
 
-    font-size: 18px;
+#sparkLineChartArea .oneSparkLineRow .sparkline {
+    width: 200px;
+}
+
+#gaugeChart {
+    position: relative;
 }

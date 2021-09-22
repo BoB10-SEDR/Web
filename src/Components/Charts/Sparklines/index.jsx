@@ -1,7 +1,7 @@
 import OneSparkLineRow from './Item';
 
 const SparkLines = props => {
-    const dummy = ['화재경보기기', '에어컨', '테이블'];
+    const dummy = ['화재경보기기', '화재경보기기', '화재경보기기'];
 
     return (
         <table id='sparkLineChartArea'>
@@ -14,7 +14,7 @@ const SparkLines = props => {
             </thead>
 
             <tbody>
-                {/* TODO :: dummy 해제 */}
+                {/* TODO_P :: dummy 해제 */}
                 {dummy.map(e => (
                     <OneSparkLineRow name={e} />
                 ))}

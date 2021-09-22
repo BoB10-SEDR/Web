@@ -6,7 +6,7 @@ import { fixedChartData, getChartOptions } from './data';
 import { lineChartDummy } from '@Dummy/lineChartDummy.js';
 
 const LineArea = props => {
-    // TODO :: props 제거
+    // TODO_P :: props 제거
     const {
         labels = [],
         labelName = '',
@@ -27,7 +27,7 @@ const LineArea = props => {
         lineChartInit(chartID, chartData, chartOptions);
     }, []);
 
-    // TODO :: id, className, 그 이외의 설정들에 대한 컴포넌트화가 진행중임.
+    // TODO_P :: id, className, 그 이외의 설정들에 대한 컴포넌트화가 진행중임.
     return (
         <div id='lineChartArea'>
             <canvas id={chartID} />

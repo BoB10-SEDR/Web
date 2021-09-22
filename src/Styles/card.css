@@ -85,7 +85,7 @@
 }
 
 /* Card SIMPLE CSS */
-/* 주의! Card와 Card Body CSS가 중복됨 => TODO :: SCSS 전환시 중복내용 지우기 */
+/* 주의! Card와 Card Body CSS가 중복됨 => TODO_P :: SCSS 전환시 중복내용 지우기 */
 #bodySection .cardSimple {
     position: relative;
     display: flex;

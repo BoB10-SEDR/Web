@@ -6,7 +6,7 @@ import { fixedRadarData, getRadarOptions } from './data';
 import radarChartDummy from '@Dummy/radarChartDummy.json';
 
 const Radar = props => {
-    // TODO :: props 템플릿화 & 명세에 적기 & dummy 해제
+    // TODO_P :: props 템플릿화 & 명세에 적기 & dummy 해제
     const { chartID = 'radarChart', labelName = '', labels = [], data = [], labelCallback } = radarChartDummy;
 
     const radarData = {
@@ -30,7 +30,7 @@ const Radar = props => {
 export default Radar;
 
 const radarChartInit = (id = 'radarChart', data = {}, options = {}) => {
-    // TODO :: data가 없다면 예외처리.
+    // TODO_P :: data가 없다면 예외처리.
     var ctx = document.getElementById(`${id}`);
     new Chart(ctx, { type: 'radar', data: data, options: options });
     Chart.defaults.global.defaultFontFamily = 'Nunito, NanumSquare';
