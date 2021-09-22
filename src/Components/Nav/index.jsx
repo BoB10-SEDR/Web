@@ -1,33 +1,21 @@
-import { useState } from 'react';
-import Brand from '@Components/Nav/Brand';
-import Divider from '@Components/Nav/Divider';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import Item from '@Components/Nav/Item';
 import NavData from '@Components/Nav/NavData';
 
-const Nav = props => {
-    const [active, setActive] = useState(false);
+const Nav = () => {
     const brand = NavData.brand;
     const items = NavData.items;
 
     return (
         <ul className='nav'>
-            <a className='nav-brand' href={brand.path}>
+            <Link className='navBrand' to={brand.path}>
                 {brand.icon}
-                <span className='nav-brand-text'>{brand.title}</span>
-            </a>
-            <hr className='nav-divider' />
-            <div className='nav-items'>
-                {items.map((item, index) => {
-                    return (
-                        <li key={index} className={item.cName}>
-                            <a href={item.path} className='nav-item'>
-                                {item.icon}
-                                {item.title}
-                            </a>
-                        </li>
-                    );
-                })}
-            </div>
+                <span>{brand.title}</span>
+            </Link>
+            <hr className='navDivider navXmargin' />
+            {items.map(item => {
+                return <Item item={item} />;
+            })}
         </ul>
     );
 };

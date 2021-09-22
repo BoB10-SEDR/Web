@@ -4,55 +4,66 @@ import * as MdIcons from 'react-icons/md';
 
 const NavData = {
     brand: {
-        title: 'HurryUp',
+        title: 'Hurry Up',
         path: 'index.html',
-        icon: <MdIcons.MdSecurity size='24' />,
+        icon: <MdIcons.MdSecurity className='navIcon' size='24' color='#fff' />,
+        path: '/',
     },
     items: [
         {
+            type: 'link',
             isCollapsed: false,
             title: 'Dashboard',
-            path: '',
-            icon: <AiIcons.AiFillDashboard color='#fff' />,
-            cName: 'nav-item',
+            path: '/Dashboard',
+            icon: <AiIcons.AiFillDashboard className='navIcon' />,
         },
         {
+            type: 'divider',
+        },
+        {
+            type: 'heading',
+            text: 'About :',
+        },
+        {
+            type: 'link',
             isCollapsed: true,
             title: 'Logs',
-            path: '',
-            icon: <AiIcons.AiOutlineDatabase color='#fff' />,
-            cName: 'nav-item collapsed',
+            path: '/Logs',
+            icon: <AiIcons.AiOutlineDatabase className='navIcon' />,
             children: [
                 {
                     title: 'Deivces',
-                    path: '',
+                    path: '/Devices',
                     cName: 'nav-collapse-item',
                 },
                 {
                     title: 'Networks',
-                    path: '',
+                    path: '/Networks',
                     cName: 'nav-collapse-item',
                 },
                 {
                     title: 'Detected',
-                    path: '',
+                    path: '/Detected',
                     cName: 'nav-collapse-item',
                 },
             ],
         },
         {
+            type: 'link',
             isCollapsed: false,
             title: 'Solutions',
-            path: '',
-            icon: <IoIcons.IoToggle color='#fff' />,
-            cName: 'nav-item',
+            path: '/Solutions',
+            icon: <IoIcons.IoToggle className='navIcon' />,
         },
         {
+            type: 'link',
             isCollapsed: false,
             title: 'Pen-testing',
-            path: '',
-            icon: <AiIcons.AiFillFire color='#fff' />,
-            cName: 'nav-item',
+            path: '/PenTesting',
+            icon: <AiIcons.AiFillFire className='navIcon' />,
+        },
+        {
+            type: 'divider',
         },
     ],
 };
