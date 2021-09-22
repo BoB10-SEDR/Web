@@ -14,7 +14,7 @@ const NavData = {
             isMain: true,
             isCollapsed: false,
             title: 'Dashboard',
-            path: '',
+            path: '/',
             icon: <AiIcons.AiFillDashboard className='nav-icon' />,
         },
         {
@@ -29,7 +29,7 @@ const NavData = {
             isMain: false,
             isCollapsed: true,
             title: 'Logs',
-            path: '',
+            path: '/Logs',
             icon: <AiIcons.AiOutlineDatabase className='nav-icon' />,
             children: [
                 {
@@ -54,7 +54,7 @@ const NavData = {
             isMain: true,
             isCollapsed: false,
             title: 'Solutions',
-            path: '',
+            path: '/Solutions',
             icon: <IoIcons.IoToggle className='nav-icon' />,
         },
         {
@@ -62,7 +62,7 @@ const NavData = {
             isMain: true,
             isCollapsed: false,
             title: 'Pen-testing',
-            path: '',
+            path: '/PenTesting',
             icon: <AiIcons.AiFillFire className='nav-icon' />,
         },
         {

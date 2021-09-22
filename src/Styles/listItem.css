@@ -1,0 +1,40 @@
+#listItem {
+    display: flex;
+    flex-direction: row;
+
+    align-items: flex-start;
+    padding: 1rem 0rem;
+    font-size: 0.875rem;
+}
+
+#listItem:first-child {
+    padding-top: 0;
+}
+
+#listItem:last-child {
+    padding-bottom: 0;
+}
+
+#listItem .detailWrap {
+    flex-grow: 1;
+}
+
+#listItem .detailWrap h3,
+#listItem .detailWrap p {
+    margin: 0;
+}
+
+#listItem .toggleWrap {
+    margin: auto;
+}
+
+/* TODO :: detailWrap과 중복처리 */
+#listItem .otherWrap {
+    margin: auto;
+}
+
+#listItem .otherWrap h3,
+#listItem .otherWrap p {
+    margin: 0;
+    text-align: end;
+}
