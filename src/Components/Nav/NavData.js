@@ -4,18 +4,18 @@ import * as MdIcons from 'react-icons/md';
 
 const NavData = {
     brand: {
-        title: 'HurryUp',
+        title: 'Hurry Up',
         path: 'index.html',
-        icon: <MdIcons.MdSecurity className='nav-icon' size='24' color='#fff' />,
+        icon: <MdIcons.MdSecurity className='navIcon' size='24' color='#fff' />,
+        path: '/',
     },
     items: [
         {
             type: 'link',
-            isMain: true,
             isCollapsed: false,
             title: 'Dashboard',
-            path: '/',
-            icon: <AiIcons.AiFillDashboard className='nav-icon' />,
+            path: '/Dashboard',
+            icon: <AiIcons.AiFillDashboard className='navIcon' />,
         },
         {
             type: 'divider',
@@ -26,44 +26,41 @@ const NavData = {
         },
         {
             type: 'link',
-            isMain: false,
             isCollapsed: true,
             title: 'Logs',
             path: '/Logs',
-            icon: <AiIcons.AiOutlineDatabase className='nav-icon' />,
+            icon: <AiIcons.AiOutlineDatabase className='navIcon' />,
             children: [
                 {
                     title: 'Deivces',
-                    path: '',
+                    path: '/Devices',
                     cName: 'nav-collapse-item',
                 },
                 {
                     title: 'Networks',
-                    path: '',
+                    path: '/Networks',
                     cName: 'nav-collapse-item',
                 },
                 {
                     title: 'Detected',
-                    path: '',
+                    path: '/Detected',
                     cName: 'nav-collapse-item',
                 },
             ],
         },
         {
             type: 'link',
-            isMain: true,
             isCollapsed: false,
             title: 'Solutions',
             path: '/Solutions',
-            icon: <IoIcons.IoToggle className='nav-icon' />,
+            icon: <IoIcons.IoToggle className='navIcon' />,
         },
         {
             type: 'link',
-            isMain: true,
             isCollapsed: false,
             title: 'Pen-testing',
             path: '/PenTesting',
-            icon: <AiIcons.AiFillFire className='nav-icon' />,
+            icon: <AiIcons.AiFillFire className='navIcon' />,
         },
         {
             type: 'divider',
