@@ -10,7 +10,7 @@ import Dashboard from '@Pages/Dashboard';
 import Logs from '@Pages/Logs';
 import Devices from '@Pages/Logs/Devices';
 import Networks from '@Pages/Logs/Networks';
-import Devices from '@Pages/Logs/Detected';
+import Detected from '@Pages/Logs/Detected';
 import Solutions from '@Pages/Solutions';
 import PenTesting from '@Pages/PenTesting';
 import Card from '@Components/Card';
