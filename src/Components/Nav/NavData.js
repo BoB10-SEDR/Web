@@ -6,22 +6,31 @@ const NavData = {
     brand: {
         title: 'HurryUp',
         path: 'index.html',
-        icon: <MdIcons.MdSecurity size='24' />,
+        icon: <MdIcons.MdSecurity className='nav-icon' size='24' color='#fff' />,
     },
     items: [
         {
+            type: 'link',
+            isMain: true,
             isCollapsed: false,
             title: 'Dashboard',
             path: '',
-            icon: <AiIcons.AiFillDashboard color='#fff' />,
-            cName: 'nav-item',
+            icon: <AiIcons.AiFillDashboard className='nav-icon' />,
         },
         {
+            type: 'divider',
+        },
+        {
+            type: 'heading',
+            text: 'About :',
+        },
+        {
+            type: 'link',
+            isMain: false,
             isCollapsed: true,
             title: 'Logs',
             path: '',
-            icon: <AiIcons.AiOutlineDatabase color='#fff' />,
-            cName: 'nav-item collapsed',
+            icon: <AiIcons.AiOutlineDatabase className='nav-icon' />,
             children: [
                 {
                     title: 'Deivces',
@@ -41,18 +50,23 @@ const NavData = {
             ],
         },
         {
+            type: 'link',
+            isMain: true,
             isCollapsed: false,
             title: 'Solutions',
             path: '',
-            icon: <IoIcons.IoToggle color='#fff' />,
-            cName: 'nav-item',
+            icon: <IoIcons.IoToggle className='nav-icon' />,
         },
         {
+            type: 'link',
+            isMain: true,
             isCollapsed: false,
             title: 'Pen-testing',
             path: '',
-            icon: <AiIcons.AiFillFire color='#fff' />,
-            cName: 'nav-item',
+            icon: <AiIcons.AiFillFire className='nav-icon' />,
+        },
+        {
+            type: 'divider',
         },
     ],
 };
