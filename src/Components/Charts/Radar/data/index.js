@@ -23,8 +23,10 @@ export const getRadarOptions = labelCallback => {
             angleLines: {
                 // display: false,
             },
+            pointLabels: {
+                fontSize: 16,
+            },
         },
-
         tooltips: {
             backgroundColor: 'rgb(255,255,255)',
             bodyFontColor: '#858796',

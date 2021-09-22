@@ -3,18 +3,11 @@ import '@Styles/chart.css';
 import { Chart } from 'chart.js';
 import { useEffect } from 'react';
 import { fixedRadarData, getRadarOptions } from './data';
+import radarChartDummy from '@Dummy/radarChartDummy.json';
 
-const Radar = () => {
-    // TODO :: props 템플릿화 & 명세에 적기
-    const propData = {
-        chartID: 'radarChart',
-
-        labelName: 'Dataset 1',
-        labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding'],
-        data: [65, 59, 90, 81, 25],
-    };
-
-    const { chartID = 'radarChart', labelName = '', labels = [], data = [], labelCallback } = propData;
+const Radar = props => {
+    // TODO :: props 템플릿화 & 명세에 적기 & dummy 해제
+    const { chartID = 'radarChart', labelName = '', labels = [], data = [], labelCallback } = radarChartDummy;
 
     const radarData = {
         labels: labels,

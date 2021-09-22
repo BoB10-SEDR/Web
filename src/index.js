@@ -17,7 +17,7 @@ const Home = () => {
             <Card title='차트'>
                 {/* <LineArea /> */}
                 {/* <Radar /> */}
-                <SparkLines />
+                {/* <SparkLines /> */}
             </Card>
         </div>
     );

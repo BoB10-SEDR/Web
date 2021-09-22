@@ -3,26 +3,18 @@ import '@Styles/chart.css';
 import { Chart } from 'chart.js';
 import { useEffect } from 'react';
 import { fixedChartData, getChartOptions } from './data';
+import { lineChartDummy } from '@Dummy/lineChartDummy.js';
 
 const LineArea = props => {
-    const propData = {
-        labelName: 'Earnings',
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-
-        data: [0, 50000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-
-        unitCallback: (value, index, values) => {
-            return '$' + value.toLocaleString();
-        },
-        labelCallback: (tooltipItem, chart) => {
-            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-            return datasetLabel + ': $' + tooltipItem.yLabel.toLocaleString();
-        },
-
-        chartID: 'lineChart',
-    };
-
-    const { labels = [], labelName = '', data = [], unitCallback, labelCallback, chartID = 'lineChart' } = propData;
+    // TODO :: props 제거
+    const {
+        labels = [],
+        labelName = '',
+        data = [],
+        unitCallback,
+        labelCallback,
+        chartID = 'lineChart',
+    } = lineChartDummy;
 
     const chartData = {
         labels: labels,
