@@ -15,6 +15,9 @@ import Solutions from '@Pages/Solutions';
 import PenTesting from '@Pages/PenTesting';
 import Card from '@Components/Card';
 import LineArea from '@Components/Charts/Line';
+import Radar from '@Components/Charts/Radar';
+import SparkLines from '@Components/Charts/Sparklines';
+import Table from '@Components/Table';
 
 const Home = () => {
     return (
