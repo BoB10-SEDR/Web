@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Chart from 'chart.js';
 
 const Bar = props => {
-    const { data, options, width, height } = props;
+    const { id, data, options } = props;
     const chartRef = React.createRef();
 
     const config = {
@@ -18,7 +18,7 @@ const Bar = props => {
 
     return (
         <div id='barChartArea'>
-            <canvas id='myBarChart' ref={chartRef} width={width} height={height} />
+            <canvas id={id} ref={chartRef} />
         </div>
     );
 };

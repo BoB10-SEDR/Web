@@ -109,14 +109,10 @@ const options = {
     },
 };
 
-const width = '400px';
-const height = '400px';
-
 const result = {
+    id: 'myBarChart',
     data: data,
     options: options,
-    width: width,
-    height: height,
 };
 
 export default result;

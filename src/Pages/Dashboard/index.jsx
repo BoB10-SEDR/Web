@@ -3,10 +3,10 @@ import Bar from '@Components/Charts/Bar';
 import BarDummy from '@Dummy/barChartDummy';
 
 const Dashboard = () => {
-    const { data, options, width, height } = BarDummy;
+    const { id, data, options } = BarDummy;
     return (
         <Card title='바 차트'>
-            <Bar data={data} options={options} width={width} height={height}></Bar>
+            <Bar id={id} data={data} options={options}></Bar>
         </Card>
     );
 };
