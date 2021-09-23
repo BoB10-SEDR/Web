@@ -3,7 +3,7 @@ import Item from '@Components/List/Item';
 import '@Styles/list.css';
 
 const List = props => {
-    // TODO :: listType 기준 명세에 적어야함.
+    // TODO_P :: listType 기준 명세에 적어야함.
     const { title = 'ListTitle', content = [], itemType = 'toggle' } = props;
 
     return (

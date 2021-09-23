@@ -1,7 +1,7 @@
 import '@Styles/listItem.css';
 
 const Item = props => {
-    // TODO :: ID값을 받아야하고, 나중에 그 값을 통해 요청을 보낼 수 있어야함.
+    // TODO_P :: ID값을 받아야하고, 나중에 그 값을 통해 요청을 보낼 수 있어야함.
     const { itemType = 'toggle', name = 'itemName', desc = 'description' } = props;
 
     let isToggle;
@@ -38,7 +38,7 @@ const Item = props => {
     );
 };
 
-// TODO :: Toggle 구현 후 갈기
+// TODO_P :: Toggle 구현 후 갈기
 const Toggle = () => {
     return (
         <>

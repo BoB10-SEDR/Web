@@ -3,3 +3,63 @@
     height: 10rem;
     width: 100%;
 }
+
+/* TODO_P :: lineChartArea와 중복이다. */
+/* #gaugeChartArea {
+    position: relative;
+    height: 10rem;
+    width: 100%;
+} */
+
+#sparkLineChartArea {
+    display: block;
+    position: relative !important;
+    /* vertical-align: middle; */
+
+    /* 이건 Table CSS */
+    caption-side: bottom;
+    border-collapse: collapse;
+
+    width: 100%;
+
+    font-family: 'Nunito', 'NanumSquare';
+}
+
+#sparkLineChartArea thead {
+    font-size: 16px;
+}
+
+#sparkLineChartArea thead tr th {
+    padding-right: 2rem;
+
+    text-align: start;
+}
+
+#sparkLineChartArea .oneSparkLineRow {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}
+
+#sparkLineChartArea .oneSparkLineRow td {
+    padding-top: 0.5rem;
+    padding-right: 3rem;
+    border-left: 0;
+}
+
+#sparkLineChartArea .oneSparkLineRow .description {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#sparkLineChartArea .oneSparkLineRow .totalValue {
+    font-size: 14px;
+}
+
+#sparkLineChartArea .oneSparkLineRow .sparkline {
+    width: 200px;
+}
+
+#gaugeChart {
+    position: relative;
+}

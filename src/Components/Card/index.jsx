@@ -37,7 +37,7 @@ const Body = props => {
     return <div className={bodyClassName}>{children}</div>;
 };
 
-// TODO :: 아래 Assets 그리고 UI Component 각 알맞는 디렉토리에 분리
+// TODO_P :: 아래 Assets 그리고 UI Component 각 알맞는 디렉토리에 분리
 
 const DropDownIcon = () => {
     return (
