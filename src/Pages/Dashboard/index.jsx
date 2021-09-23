@@ -1,14 +1,15 @@
 import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
-import Table from '@Components/Table';
+import Pie from '@Components/Charts/Pie';
 import BarDummy from '@Dummy/barChartDummy';
+import PieDummy from '@Dummy/pieChartDummy';
+import { Status } from '@Components/UI';
 
 const Dashboard = () => {
-    const { id, data, options } = BarDummy;
     return (
-        <Card title='테이블'>
-            <Table />
-        </Card>
+        <div id='dashboard'>
+            <Card title='Status 테스트'></Card>
+        </div>
     );
 };
 

@@ -1,0 +1,16 @@
+#status {
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    line-height: 1;
+    padding: 0.5rem 0.7rem;
+    font-weight: 700;
+
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+
+    color: #ffffff;
+}
