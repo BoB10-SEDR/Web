@@ -1,0 +1,21 @@
+footer.stickyFooter {
+    width: 100%;
+    padding: 2rem 0;
+    flex-shrink: 0;
+}
+
+footer.stickyFooter .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    margin: auto;
+    width: 100%;
+}
+
+footer.stickyFooter .container .copyright {
+    line-height: 1;
+    font-size: 14px;
+
+    text-align: center;
+    margin: auto;
+}

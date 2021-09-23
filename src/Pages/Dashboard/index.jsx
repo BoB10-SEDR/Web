@@ -4,11 +4,7 @@ import BarDummy from '@Dummy/barChartDummy';
 
 const Dashboard = () => {
     const { id, data, options } = BarDummy;
-    return (
-        <Card title='바 차트'>
-            <Bar id={id} data={data} options={options}></Bar>
-        </Card>
-    );
+    return <Card title='테이블'></Card>;
 };
 
 export default Dashboard;
