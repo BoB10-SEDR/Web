@@ -1,10 +1,8 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import Item from '@Components/Nav/Item';
-import NavData from '@Components/Nav/NavData';
 
-const Nav = () => {
-    const brand = NavData.brand;
-    const items = NavData.items;
+const Nav = props => {
+    const { brand, items } = props;
 
     return (
         <ul className='nav'>

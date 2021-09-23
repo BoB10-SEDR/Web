@@ -63,3 +63,15 @@
 #gaugeChart {
     position: relative;
 }
+
+#barChartArea {
+    position: relative;
+    height: 10rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    #barChartArea {
+        height: 20rem;
+    }
+}
