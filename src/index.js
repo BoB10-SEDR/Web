@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import '@Styles/index.css';
 import '@Styles/nav.css';
+import '@Styles/grid.css';
 
 // Components
 import Nav from '@Components/Nav';
@@ -21,6 +22,7 @@ import Table from '@Components/Table';
 
 // Datas
 import NavData from '@Components/Nav/Data/NavData';
+
 const Home = () => {
     const { brand, items } = NavData;
 
