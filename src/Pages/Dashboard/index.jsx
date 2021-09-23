@@ -1,5 +1,4 @@
-import Row from '@Components/Grid/Row';
-import Col from '@Components/Grid/Col';
+import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
 import Pie from '@Components/Charts/Pie';
