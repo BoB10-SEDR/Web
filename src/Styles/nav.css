@@ -1,7 +1,3 @@
-.nav * {
-    box-sizing: border-box;
-}
-
 .nav {
     display: flex;
     width: 6.5em;
