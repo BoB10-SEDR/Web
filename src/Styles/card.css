@@ -18,15 +18,7 @@
     content: '\f142';
 }
 
-#bodySection {
-    /* display: flex;
-    justify-content: center; */
-    padding: 1.25rem;
-
-    /* width: 1000px; */
-}
-
-#bodySection .card {
+.card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -41,7 +33,7 @@
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
 }
 
-#bodySection .card .cardHeader {
+.card .cardHeader {
     border-radius: calc(0.35rem - 1px) calc(0.35rem - 1px) 0 0;
 
     display: flex;
@@ -54,7 +46,7 @@
     border-bottom: 1px solid #e3e6f0;
 }
 
-#bodySection .card .cardHeader h6 {
+.card .cardHeader h6 {
     margin: 0;
     line-height: 1.2;
     color: #4e73df;
@@ -62,14 +54,14 @@
     font-weight: 700;
 }
 
-#bodySection .card .cardHeader .dropdown {
+.card .cardHeader .dropdown {
     line-height: 1;
 
     position: relative;
 }
 
 /* 아마 a tag 일반설정으로 이동할 수 있음. */
-#bodySection .card .cardHeader .dropdown .dropdownToggle {
+.card .cardHeader .dropdown .dropdownToggle {
     color: #4e73df;
     text-decoration: none;
     background-color: transparent;
@@ -78,7 +70,7 @@
     white-space: nowrap;
 }
 
-#bodySection .card .cardBody {
+.card .cardBody {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
@@ -86,7 +78,7 @@
 
 /* Card SIMPLE CSS */
 /* 주의! Card와 Card Body CSS가 중복됨 => TODO_P :: SCSS 전환시 중복내용 지우기 */
-#bodySection .cardSimple {
+.cardSimple {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -102,7 +94,7 @@
     border-left: 0.25rem solid #4e73df;
 }
 
-#bodySection .cardSimple .cardBodySimple {
+.cardSimple .cardBodySimple {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
