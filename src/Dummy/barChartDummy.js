@@ -110,9 +110,9 @@ const options = {
 };
 
 const result = {
-    id: 'myBarChart',
-    data: data,
-    options: options,
+    barId: 'myBarChart',
+    barData: data,
+    barOptions: options,
 };
 
 export default result;
