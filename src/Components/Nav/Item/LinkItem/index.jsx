@@ -36,7 +36,7 @@ const LinkItem = props => {
                         <span>{item.title}</span>
                     </div>
                 </NavLink>
-                {expanded && <CollapseLinks items={item.children}></CollapseLinks>}
+                {expanded && <CollapseLinks setClose={setExpanded} items={item.children}></CollapseLinks>}
             </li>
         );
     }

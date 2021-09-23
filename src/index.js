@@ -22,6 +22,7 @@ import Table from '@Components/Table';
 
 // Datas
 import NavData from '@Components/Nav/Data/NavData';
+import Footer from '@Components/Footer';
 
 const Home = () => {
     const { brand, items } = NavData;
@@ -42,6 +43,7 @@ const Home = () => {
                             <Route path='/Solutions' component={Solutions} />
                             <Route path='/PenTesting' component={PenTesting} />
                         </Switch>
+                        <Footer />
                     </div>
                 </div>
             </div>
