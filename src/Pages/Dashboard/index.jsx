@@ -17,25 +17,25 @@ const Dashboard = () => {
             <PageHeading title='Dashboard' />
 
             <Row>
-                <Col md={3}>
+                <Col xl={3} md={6}>
                     <Card>
                         {/* 보안레벨 관련 Content가 들어가야 합니다. */}
                         <DummyCardSimple />
                     </Card>
                 </Col>
-                <Col md={3}>
+                <Col xl={3} md={6}>
                     <Card>
                         {/* 24시간 내 전체 Traffic관련 Content가 들어가야 합니다. */}
                         <DummyCardSimple />
                     </Card>
                 </Col>
-                <Col md={3}>
+                <Col xl={3} md={6}>
                     <Card>
                         {/* 24시간 내 공격/공격로그수 관련 Content가 들어가야 합니다. */}
                         <DummyCardSimple />
                     </Card>
                 </Col>
-                <Col md={3}>
+                <Col xl={3} md={6}>
                     <Card>
                         {/* 등록된 장치/센서수 관련 Content가 들어가야 합니다. */}
                         <DummyCardSimple />
