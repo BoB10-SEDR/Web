@@ -44,12 +44,12 @@ const Dashboard = () => {
             </Row>
 
             <Row>
-                <Col md={8}>
+                <Col xl={8} lg={7}>
                     <Card title='시간별 전체 로그 수'>
                         <Bar id={barId} data={barData} options={barOptions} />
                     </Card>
                 </Col>
-                <Col md={4}>
+                <Col xl={4} lg={5}>
                     <Card title='장비별 로그비율'>
                         <Pie id={pieId} data={pieData} options={pieOptions} />
                     </Card>
@@ -57,18 +57,17 @@ const Dashboard = () => {
             </Row>
 
             <Row>
-                <Col md={6}>
+                <Col lg={6}>
+                    <Card title='대응정책 적용/해제'>
+                        <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
+                        <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
+                    </Card>
+                </Col>
+                <Col lg={6}>
                     <Card title='공격 유형별 로그 개수'>
                         <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
                     </Card>
                     <Card title='공격 유형별 로그 비율?'>
-                        <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
-                    </Card>
-                </Col>
-
-                <Col md={6}>
-                    <Card title='대응정책 적용/해제'>
-                        <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
                         <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
                     </Card>
                 </Col>
