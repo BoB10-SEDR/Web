@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import Chart from 'chart.js';
 
 const Bar = props => {
+    const isHorizontal = props.isHorizontal;
     const { id, data, options } = props;
     const chartRef = React.createRef();
 
     const config = {
-        type: 'bar',
+        type: isHorizontal ? 'horizontalBar' : 'bar',
         data: data,
         options: options,
     };
