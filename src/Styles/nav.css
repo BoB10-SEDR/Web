@@ -63,6 +63,7 @@
 }
 
 .navLink {
+    cursor: pointer;
     display: block;
     position: relative;
     text-align: center;
