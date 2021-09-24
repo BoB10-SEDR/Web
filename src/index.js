@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import '@Styles/index.css';
+import '@Styles/ui.css';
 
 // Components
 import Nav from '@Components/Nav';

@@ -14,3 +14,44 @@
 
     color: #ffffff;
 }
+
+.toggleSwitch {
+    display: inline-block;
+}
+
+.toggleSwitch input[type='checkbox'] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.toggleSwitch label {
+    cursor: pointer;
+    width: 4rem;
+    height: 2rem;
+    background: grey;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+}
+
+.toggleSwitch label:after {
+    content: '';
+    position: absolute;
+    top: 12%;
+    left: 8%;
+    width: 37%;
+    height: 75%;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+.toggleSwitch input:checked + label {
+    background: #4e73df;
+}
+
+.toggleSwitch input:checked + label:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
