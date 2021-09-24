@@ -21,6 +21,7 @@ const Dashboard = () => {
                 <Col md={4}>
                     <Card title='파이 차트'>
                         <Pie id={pieId} data={pieData} options={pieOptions} />
+                        <ToggleSwitch id={2} onToggle={null} />
                     </Card>
                 </Col>
             </Row>
