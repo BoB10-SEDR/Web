@@ -25,6 +25,13 @@ const Dashboard = () => {
                     </Card>
                 </Col>
             </Row>
+            <Row>
+                <Col md={8}>
+                    <Card title='수평 바 차트'>
+                        <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
+                    </Card>
+                </Col>
+            </Row>
         </div>
     );
 };
