@@ -2,7 +2,6 @@ import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
 import Pie from '@Components/Charts/Pie';
-import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 import '@Styles/dashboard.css';
@@ -48,13 +47,11 @@ const Dashboard = () => {
                 <Col md={8}>
                     <Card title='시간별 전체 로그 수'>
                         <Bar id={barId} data={barData} options={barOptions} />
-                        <ToggleSwitch id={1} onToggle={null} />
                     </Card>
                 </Col>
                 <Col md={4}>
                     <Card title='장비별 로그비율'>
                         <Pie id={pieId} data={pieData} options={pieOptions} />
-                        <ToggleSwitch id={2} onToggle={null} />
                     </Card>
                 </Col>
             </Row>
