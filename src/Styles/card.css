@@ -78,12 +78,14 @@
 
 /* Card SIMPLE CSS */
 /* 주의! Card와 Card Body CSS가 중복됨 => TODO_P :: SCSS 전환시 중복내용 지우기 */
+/* TODO :: 모든 Component에서 margin-bottom 중복  */
 .cardSimple {
     position: relative;
     display: flex;
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
+    margin-bottom: 1.5rem;
 
     background-color: #fff;
     background-clip: border-box;
