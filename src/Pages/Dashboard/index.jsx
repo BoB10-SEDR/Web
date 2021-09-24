@@ -2,6 +2,7 @@ import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
 import Pie from '@Components/Charts/Pie';
+import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 import '@Styles/dashboard.css';
@@ -15,7 +16,6 @@ const Dashboard = () => {
     return (
         <div id='dashboard'>
             <PageHeading title='Dashboard' />
-
             <Row>
                 <Col xl={3} md={6}>
                     <Card>
@@ -49,6 +49,7 @@ const Dashboard = () => {
                         <Bar id={barId} data={barData} options={barOptions} />
                     </Card>
                 </Col>
+
                 <Col xl={4} lg={5}>
                     <Card title='장비별 로그비율'>
                         <Pie id={pieId} data={pieData} options={pieOptions} />
