@@ -1,11 +1,19 @@
 import '@Styles/ui.css';
+import { GoKebabVertical } from 'react-icons/go';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const DropDownMenu = props => {
+    const [dropped, setDropped] = useState(false);
+    let result;
+
+    const handleDropped = () => {
+        setDropped(!dropped);
+    };
+
     return (
-        <div class='dropdown'>
-            <a className='dropdownToggle'>
-                <SVG name='threeDotsButton' height='16px' width='16px' />
-            </a>
+        <div className='dropDownMenu' onClick={handleDropped}>
+            <GoKebabVertical />
         </div>
     );
 };
