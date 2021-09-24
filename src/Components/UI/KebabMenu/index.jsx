@@ -3,7 +3,7 @@ import { GoKebabVertical } from 'react-icons/go';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const DropDownMenu = props => {
+const KebabMenu = props => {
     const [dropped, setDropped] = useState(false);
     let result;
 
@@ -12,10 +12,12 @@ const DropDownMenu = props => {
     };
 
     return (
-        <div className='dropDownMenu' onClick={handleDropped}>
-            <GoKebabVertical />
+        <div className='kebab'>
+            <div className='kebabToggle' onClick={handleDropped}>
+                <GoKebabVertical color='#4e73df' />
+            </div>
         </div>
     );
 };
 
-export default DropDownMenu;
+export default KebabMenu;

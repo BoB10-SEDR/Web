@@ -56,25 +56,11 @@
     transform: translateX(-100%);
 }
 
-.dropDownMenu {
-}
-
-.dropDownMenuButton {
-    color: #d1d3e2;
-    font-size: 0.875rem;
-    font-weight: 900;
-
-    text-align: center;
-    width: 1.25rem;
-
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
+.kebab {
+    position: relative;
     line-height: 1;
 }
 
-.dropDownMenuButton::before {
-    content: '\f142';
+.kebabToggle {
+    white-space: nowrap;
 }
