@@ -1,4 +1,4 @@
-.dropDownMenuButton {
+/* .dropDownMenuButton {
     color: #d1d3e2;
     font-size: 0.875rem;
     font-weight: 900;
@@ -16,7 +16,7 @@
 
 .dropDownMenuButton::before {
     content: '\f142';
-}
+} */
 
 .card {
     position: relative;
