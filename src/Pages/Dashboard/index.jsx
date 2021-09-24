@@ -1,8 +1,8 @@
-import Row from '@Components/Grid/Row';
-import Col from '@Components/Grid/Col';
+import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
 import Pie from '@Components/Charts/Pie';
+import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 
@@ -16,6 +16,7 @@ const Dashboard = () => {
                 <Col md={8}>
                     <Card title='바 차트'>
                         <Bar id={barId} data={barData} options={barOptions} />
+                        <ToggleSwitch onToggle={null} />
                     </Card>
                 </Col>
                 <Col md={4}>

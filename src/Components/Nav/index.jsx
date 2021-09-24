@@ -1,3 +1,4 @@
+import '@Styles/nav.css';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import Item from '@Components/Nav/Item';
 
