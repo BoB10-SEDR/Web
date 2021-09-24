@@ -4,16 +4,16 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const KebabMenu = props => {
-    const [dropped, setDropped] = useState(false);
+    const [expanded, setExpanded] = useState(false);
     let result;
 
-    const handleDropped = () => {
-        setDropped(!dropped);
+    const handleExpanded = () => {
+        setExpanded(!expanded);
     };
 
     return (
         <div className='kebab'>
-            <div className='kebabToggle' onClick={handleDropped}>
+            <div className='kebabToggle' onClick={handleExpanded}>
                 <GoKebabVertical color='#4e73df' />
             </div>
         </div>
