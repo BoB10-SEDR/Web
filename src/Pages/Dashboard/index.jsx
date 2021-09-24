@@ -16,7 +16,7 @@ const Dashboard = () => {
                 <Col md={8}>
                     <Card title='바 차트'>
                         <Bar id={barId} data={barData} options={barOptions} />
-                        <ToggleSwitch onToggle={null} />
+                        <ToggleSwitch id={1} onToggle={null} />
                     </Card>
                 </Col>
                 <Col md={4}>

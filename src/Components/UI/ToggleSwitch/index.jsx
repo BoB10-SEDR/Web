@@ -1,7 +1,7 @@
 const ToggleSwitch = props => {
     return (
         <div className='toggleSwitch'>
-            <input type='checkbox' id='switch' onChange={props.onToggle} />
+            <input type='checkbox' id={props.id} onChange={props.onToggle} />
             <label for='switch'></label>
         </div>
     );
