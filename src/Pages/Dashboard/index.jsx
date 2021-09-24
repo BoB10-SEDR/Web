@@ -1,5 +1,4 @@
-import Row from '@Components/Grid/Row';
-import Col from '@Components/Grid/Col';
+import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
 import Pie from '@Components/Charts/Pie';
@@ -21,6 +20,13 @@ const Dashboard = () => {
                 <Col md={4}>
                     <Card title='파이 차트'>
                         <Pie id={pieId} data={pieData} options={pieOptions} />
+                    </Card>
+                </Col>
+            </Row>
+            <Row>
+                <Col md={8}>
+                    <Card title='수평 바 차트'>
+                        <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
                     </Card>
                 </Col>
             </Row>
