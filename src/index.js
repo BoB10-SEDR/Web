@@ -7,7 +7,6 @@ import '@Styles/ui.css';
 // Components
 import Nav from '@Components/Nav';
 import Dashboard from '@Pages/Dashboard';
-import Logs from '@Pages/Logs';
 import Devices from '@Pages/Logs/Devices';
 import Networks from '@Pages/Logs/Networks';
 import Detected from '@Pages/Logs/Detected';
@@ -37,7 +36,6 @@ const Home = () => {
                         <Switch>
                             <Route path='/' exact component={Dashboard} />
                             <Route path='/Dashboard' component={Dashboard} />
-                            <Route path='/Logs' component={Logs} />
                             <Route path='/Logs/Devices' component={Devices} />
                             <Route path='/Logs/Networks' component={Networks} />
                             <Route path='/Logs/Detected' component={Detected} />
