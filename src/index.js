@@ -22,6 +22,7 @@ import Table from '@Components/Table';
 // Datas
 import NavData from '@Components/Nav/Data/NavData';
 import Footer from '@Components/Footer';
+import Header from '@Components/Header';
 
 const Home = () => {
     const { brand, items } = NavData;
@@ -32,6 +33,7 @@ const Home = () => {
                 <Nav brand={brand} items={items}></Nav>
                 <div id='contentWrapper'>
                     <div id='content'>
+                        <Header />
                         <Switch>
                             <Route path='/' exact component={Dashboard} />
                             <Route path='/Dashboard' component={Dashboard} />
