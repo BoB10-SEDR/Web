@@ -33,17 +33,17 @@ const NavData = {
             children: [
                 {
                     title: 'Deivces',
-                    path: '/Devices',
+                    path: '/Logs/Devices',
                     cName: 'nav-collapse-item',
                 },
                 {
                     title: 'Networks',
-                    path: '/Networks',
+                    path: '/Logs/Networks',
                     cName: 'nav-collapse-item',
                 },
                 {
                     title: 'Detected',
-                    path: '/Detected',
+                    path: '/Logs/Detected',
                     cName: 'nav-collapse-item',
                 },
             ],

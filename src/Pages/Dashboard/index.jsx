@@ -2,7 +2,6 @@ import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
 import Pie from '@Components/Charts/Pie';
-import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 import '@Styles/dashboard.css';

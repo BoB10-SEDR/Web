@@ -25,6 +25,10 @@ a {
     text-decoration: none;
 }
 
+.mb {
+    margin-bottom: 1.5rem;
+}
+
 #wrapper {
     display: flex;
 }
