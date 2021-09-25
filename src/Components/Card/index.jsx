@@ -25,7 +25,7 @@ const Header = props => {
     return (
         <header className='cardHeader'>
             <h6>{title}</h6>
-            <KebabMenu />
+            <KebabMenu items={null} />
         </header>
     );
 };
