@@ -97,6 +97,7 @@
 }
 
 .navCollapse {
+    display: none;
     position: absolute;
     left: calc(6.5rem + 1.5rem / 2);
     z-index: 1;
@@ -104,6 +105,10 @@
     animation-name: growIn;
     animation-duration: 0.2s;
     animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
+}
+
+.navCollapse.open {
+    display: block;
 }
 
 .navCollapseInner {
