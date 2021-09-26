@@ -26,16 +26,10 @@ const LinkItem = props => {
     } else {
         result = (
             <li className='navItem'>
-                <NavLink to={item.path}>
-                    <div
-                        className={'navLink ' + (expanded ? 'expanded' : '')}
-                        isCollapsed='true'
-                        onClick={handleCollapsed}
-                    >
-                        {item.icon}
-                        <span>{item.title}</span>
-                    </div>
-                </NavLink>
+                <div className={'navLink ' + (expanded ? 'expanded' : '')} isCollapsed='true' onClick={handleCollapsed}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                </div>
                 <CollapseLinks isOpened={expanded} setClose={setExpanded} items={item.children}></CollapseLinks>
             </li>
         );
