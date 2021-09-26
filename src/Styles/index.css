@@ -24,3 +24,21 @@ code {
 a {
     text-decoration: none;
 }
+
+.mb {
+    margin-bottom: 1.5rem;
+}
+
+#wrapper {
+    display: flex;
+}
+
+#contentWrapper {
+    background-color: #f8f9fc;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#content {
+    flex: 1 0 auto;
+}

@@ -1,4 +1,5 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import '@Styles/nav.css';
+import { Link } from 'react-router-dom';
 import Item from '@Components/Nav/Item';
 
 const Nav = props => {
@@ -12,7 +13,7 @@ const Nav = props => {
             </Link>
             <hr className='navDivider navXmargin' />
             {items.map(item => {
-                return <Item item={item} />;
+                return <Item type={item.type} item={item} />;
             })}
         </ul>
     );

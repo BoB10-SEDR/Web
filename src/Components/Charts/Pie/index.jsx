@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import Chart from 'chart.js';
 
-const Bar = props => {
-    const isHorizontal = props.isHorizontal;
+const Pie = props => {
     const { id, data, options } = props;
     const chartRef = React.createRef();
 
     const config = {
-        type: isHorizontal ? 'horizontalBar' : 'bar',
+        type: 'doughnut',
         data: data,
         options: options,
     };
@@ -18,10 +17,10 @@ const Bar = props => {
     }, []);
 
     return (
-        <div id='barChartArea'>
+        <div id='pieChartArea'>
             <canvas id={id} ref={chartRef} />
         </div>
     );
 };
 
-export default Bar;
+export default Pie;

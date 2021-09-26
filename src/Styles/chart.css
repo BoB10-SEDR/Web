@@ -63,3 +63,26 @@
 #gaugeChart {
     position: relative;
 }
+
+#barChartArea {
+    position: relative;
+    height: 10rem;
+    width: 100%;
+}
+
+#pieChartArea {
+    position: relative;
+    height: 15rem;
+    width: 100%;
+    padding-top: 1.5rem !important;
+}
+
+@media (min-width: 768px) {
+    #barChartArea {
+        height: 20rem;
+    }
+
+    #pieChartArea {
+        height: calc(20rem - 43px) !important;
+    }
+}

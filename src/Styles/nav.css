@@ -1,7 +1,3 @@
-.nav * {
-    box-sizing: border-box;
-}
-
 .nav {
     display: flex;
     width: 6.5em;
@@ -67,6 +63,7 @@
 }
 
 .navLink {
+    cursor: pointer;
     display: block;
     position: relative;
     text-align: center;
