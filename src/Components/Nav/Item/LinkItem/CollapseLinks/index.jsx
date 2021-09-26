@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 
 const CollapseLinks = props => {
-    const { items = [], setClose } = props;
+    const { isOpened, items = [], setClose } = props;
 
     return (
-        <div className='navCollapse'>
+        <div className={'navCollapse ' + (isOpened ? 'open' : '')}>
             <div className='navCollapseInner' onClick={() => setClose(p => !p)}>
                 {items.map((item, index) => {
                     return (

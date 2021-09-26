@@ -97,16 +97,18 @@
 }
 
 .navCollapse {
+    display: none;
     position: absolute;
     left: calc(6.5rem + 1.5rem / 2);
     z-index: 1;
     top: 2px;
-    -webkit-animation-name: growIn;
     animation-name: growIn;
-    -webkit-animation-duration: 0.2s;
     animation-duration: 0.2s;
-    -webkit-animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
     animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
+}
+
+.navCollapse.open {
+    display: block;
 }
 
 .navCollapseInner {
@@ -139,6 +141,27 @@
 .active * {
     color: #fff !important;
     font-weight: 700 !important;
+}
+
+@keyframes growIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes expand {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
 }
 
 @media (min-width: 768px) {
@@ -181,8 +204,7 @@
         left: 0;
         z-index: 1;
         top: 0;
-        -webkit-animation: none;
-        animation: none;
+        animation-name: expand 0.2s forwards linear;
         margin: 0 1rem;
     }
     .navCollapseInner {
