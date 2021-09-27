@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import '@Styles/card.css';
 import KebabMenu from '@Components/UI/KebabMenu';
+import KebabDummy from '@Dummy/KebabDummy';
 
 const Card = props => {
     const { title = '', children = [] } = props;
@@ -25,7 +26,7 @@ const Header = props => {
     return (
         <header className='cardHeader'>
             <h6>{title}</h6>
-            <KebabMenu items={null} />
+            <KebabMenu items={KebabDummy} />
         </header>
     );
 };
