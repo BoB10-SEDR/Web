@@ -1,7 +1,7 @@
 import '@Styles/ui.css';
 import { GoKebabVertical } from 'react-icons/go';
 import { useState } from 'react';
-import CollapseLinks from '@Components/Nav/Item/CollapseLinks';
+import CollapseLinks from '@Components/CollapseLinks';
 
 const KebabMenu = props => {
     const items = props.items;

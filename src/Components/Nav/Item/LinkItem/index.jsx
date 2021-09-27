@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import CollapseLinks from '@Components/Nav/Item/CollapseLinks';
+import CollapseLinks from '@Components/CollapseLinks';
 
 const LinkItem = props => {
     const item = props.item;
