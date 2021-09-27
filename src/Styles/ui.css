@@ -56,13 +56,10 @@
     transform: translateX(-100%);
 }
 
-.kebab {
+.kebabMenu {
     position: relative;
     line-height: 1;
-}
-
-.kebabToggle {
-    white-space: nowrap;
+    cursor: pointer;
 }
 
 #kebab .collapse {

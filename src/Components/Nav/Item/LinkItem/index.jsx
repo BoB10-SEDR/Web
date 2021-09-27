@@ -30,12 +30,7 @@ const LinkItem = props => {
                     {item.icon}
                     <span>{item.title}</span>
                 </div>
-                <CollapseLinks
-                    id='nav'
-                    isOpened={expanded}
-                    setClose={setExpanded}
-                    items={item.children}
-                ></CollapseLinks>
+                <CollapseLinks id='nav' isOpened={expanded} setClose={setExpanded} items={item.children} />
             </li>
         );
     }
