@@ -1,0 +1,72 @@
+.collapse {
+    display: none;
+    position: absolute;
+    left: calc(6.5rem + 1.5rem / 2);
+    z-index: 1;
+    top: 2px;
+    animation-name: growIn;
+    animation-duration: 0.2s;
+    animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
+}
+
+.collapse.open {
+    display: block;
+}
+
+.collapseInner {
+    background-color: #fff !important;
+    border-radius: 0.35rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(58 59 69 / 15%);
+    padding: 0.5rem 0;
+    min-width: 10rem;
+    font-size: 0.85rem;
+    margin: 0 0 1rem 0;
+}
+
+.collapseItem {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    display: block;
+    color: #3a3b45;
+    text-decoration: none;
+    border-radius: 0.35rem;
+    white-space: nowrap;
+}
+
+.collapseItem.active {
+    color: #4e73df;
+    font-weight: 700;
+}
+
+@keyframes growIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes expand {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}

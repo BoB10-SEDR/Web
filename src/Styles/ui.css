@@ -64,3 +64,31 @@
 .kebabToggle {
     white-space: nowrap;
 }
+
+#kebab .collapse {
+    line-height: 1.5;
+    font-size: 0.85rem;
+    animation-name: fadeIn;
+    animation-duration: 0.2s;
+    right: 0;
+    left: auto;
+    z-index: 1000;
+    float: left;
+    text-align: left;
+    list-style: none;
+}
+
+#kebab .collapse.open {
+    display: block;
+}
+
+#kebab .collapseInner {
+    position: absolute;
+    line-height: 1.5;
+    transform: translate3d(-158px, 18px, 0px);
+    top: 0px;
+    left: 0px;
+    will-change: transform;
+    background-clip: padding-box;
+    border: 1px solid #e3e6f0;
+}
