@@ -1,7 +1,7 @@
 import '@Styles/ui.css';
 import { GoKebabVertical } from 'react-icons/go';
 import { useState } from 'react';
-import CollapseLinks from '@Components/Nav/Item/LinkItem/CollapseLinks';
+import CollapseLinks from '@Components/Nav/Item/CollapseLinks';
 
 const KebabMenu = props => {
     const items = props.items;
@@ -16,7 +16,7 @@ const KebabMenu = props => {
             <div className='kebabToggle' onClick={handleExpanded}>
                 <GoKebabVertical color='#4e73df' />
             </div>
-            {expanded && <CollapseLinks setClose={setExpanded} items={items}></CollapseLinks>}
+            <CollapseLinks id='kebab' isOpened={expanded} setClose={setExpanded} items={items}></CollapseLinks>
         </div>
     );
 };
