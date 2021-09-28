@@ -1,4 +1,3 @@
-import '@Styles/devices.css';
 import { Row, Col } from '@Components/Grid';
 
 import PageHeading from '@Components/UI/PageHeading';
@@ -13,7 +12,7 @@ const Devices = () => {
     const { pieId, pieData, pieOptions } = PieDummy;
 
     return (
-        <div id='detected' className='logDetail'>
+        <div id='detected' className='page'>
             <PageHeading title='Devices' />
             <Row>
                 <Col xl={3} md={3} mb>
