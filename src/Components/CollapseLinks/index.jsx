@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const CollapseLinks = props => {
-    const { id = '', isOpened, isKebabMenu, items = [], closeTask } = props;
+    const { id = '', isOpened, items = [], closeTask } = props;
     const ref = useRef();
 
     const close = () => {
