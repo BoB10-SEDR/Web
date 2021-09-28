@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import CollapseLinks from '@Components/Nav/Item/LinkItem/CollapseLinks';
+import CollapseLinks from '@Components/CollapseLinks';
 
 const LinkItem = props => {
     const item = props.item;
@@ -30,7 +30,7 @@ const LinkItem = props => {
                     {item.icon}
                     <span>{item.title}</span>
                 </div>
-                {expanded && <CollapseLinks setClose={setExpanded} items={item.children}></CollapseLinks>}
+                <CollapseLinks id='nav' isOpened={expanded} closeTask={setExpanded} items={item.children} />
             </li>
         );
     }

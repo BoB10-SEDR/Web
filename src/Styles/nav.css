@@ -96,20 +96,22 @@
     line-height: 1;
 }
 
-.navCollapse {
+#nav .collapse {
+    display: none;
     position: absolute;
     left: calc(6.5rem + 1.5rem / 2);
     z-index: 1;
     top: 2px;
-    -webkit-animation-name: growIn;
     animation-name: growIn;
-    -webkit-animation-duration: 0.2s;
     animation-duration: 0.2s;
-    -webkit-animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
     animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
 }
 
-.navCollapseInner {
+#nav .collapse.open {
+    display: block;
+}
+
+#nav .collapseInner {
     background-color: #fff !important;
     border-radius: 0.35rem !important;
     padding-top: 0.5rem !important;
@@ -121,7 +123,7 @@
     margin: 0 0 1rem 0;
 }
 
-.navCollapseItem {
+#nav .collapseItem {
     padding: 0.5rem 1rem;
     margin: 0 0.5rem;
     display: block;
@@ -131,7 +133,7 @@
     white-space: nowrap;
 }
 
-.navCollapseItem.active {
+#nav .collapseItem.active {
     color: #4e73df;
     font-weight: 700;
 }
@@ -139,6 +141,16 @@
 .active * {
     color: #fff !important;
     font-weight: 700 !important;
+}
+
+@keyframes expand {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
 }
 
 @media (min-width: 768px) {
@@ -176,16 +188,15 @@
     .navHeading {
         text-align: left;
     }
-    .navCollapse {
+    #nav .collapse {
         position: relative;
         left: 0;
         z-index: 1;
         top: 0;
-        -webkit-animation: none;
-        animation: none;
+        animation-name: expand 0.2s forwards linear;
         margin: 0 1rem;
     }
-    .navCollapseInner {
+    #nav .collapseInner {
         border-radius: 0;
         box-shadow: none;
     }
