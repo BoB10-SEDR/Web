@@ -33,11 +33,7 @@ const Devices = () => {
                     </Card>
                 </Col>
             </Row>
-            <Row>
-                <Card>
-                    <DeviceInfo />
-                </Card>
-            </Row>
+            <DeviceInfo />
         </div>
     );
 };
