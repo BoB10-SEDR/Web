@@ -35,7 +35,7 @@ const Header = () => {
 const Body = props => {
     const { viewType = 'card' } = props;
 
-    return <Card>{viewType == 'table' ? <TableView /> : <CardView />}</Card>;
+    return <Card>{viewType === 'table' ? <TableView /> : <CardView />}</Card>;
 };
 
 const CardView = () => {
