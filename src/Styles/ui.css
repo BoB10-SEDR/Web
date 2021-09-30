@@ -89,3 +89,44 @@
     background-clip: padding-box;
     border: 1px solid #e3e6f0;
 }
+
+.buttonList {
+    display: inline-block;
+}
+
+.buttonList button {
+    margin-bottom: 12px;
+    margin-right: 8px;
+}
+
+.searchBar {
+    display: inline-block;
+}
+
+.reactIcons {
+    vertical-align: middle;
+}
+
+.iconButton {
+    display: inline-block;
+    font-weight: 400;
+    color: #858796;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.35rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+}
+
+.iconButton:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
