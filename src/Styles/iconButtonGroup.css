@@ -1,0 +1,29 @@
+.iconButtonGroup {
+    display: inline-block;
+}
+
+.iconButtonGroup.vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.iconButtonGroup.vertical button {
+    margin-right: 0px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+.iconButtonGroup button {
+    margin-bottom: 12px;
+    margin-right: 8px;
+}
+
+.iconButtonGroup .iconButton:not(.active) {
+    filter: brightness(150%);
+}
+
+.iconButtonGroup .iconButton:hover,
+.iconButtonGroup .iconButton.active {
+    filter: none;
+}
