@@ -3,6 +3,7 @@ import { Row, Col } from '@Components/Grid';
 import PageHeading from '@Components/UI/PageHeading';
 import Card from '@Components/Card';
 import DeviceInfo from '@Components/DeviceInfo';
+import DeviceNav from '@Components/DeviceNav';
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 import DummyCardSimple from '@Dummy/DummyCardSimple';
@@ -28,9 +29,9 @@ const Devices = () => {
                     </Card>
                 </Col>
                 <Col md={9} mb>
-                    <Card>
-                        <DummyCardEx height='500px'></DummyCardEx>
-                    </Card>
+                    <DummyCardEx height='500px'>
+                        <DeviceNav />
+                    </DummyCardEx>
                 </Col>
             </Row>
             <DeviceInfo />
