@@ -4,8 +4,7 @@ import { IoGrid } from 'react-icons/io5';
 import { BsListUl } from 'react-icons/bs';
 
 import { Row, Col } from '@Components/Grid';
-import IconButtonGroup from '@Components/IconButtonGroup';
-import IconButton from '@Components/UI/IconButton';
+import ButtonGroup from '@Components/ButtonGroup';
 import SearchBar from '@Components/UI/SearchBar';
 import Card from '@Components/Card';
 
@@ -14,14 +13,14 @@ const DeviceInfo = () => {
 
     const buttons = [
         {
-            Icon: IoGrid,
+            children: <IoGrid />,
             backgroundColor: '#727cf5',
             onClick: () => {
                 setViewType('card');
             },
         },
         {
-            Icon: BsListUl,
+            children: <BsListUl />,
             backgroundColor: '#727cf5',
             onClick: () => {
                 setViewType('table');
@@ -32,7 +31,7 @@ const DeviceInfo = () => {
     return (
         <div id='deviceInfo'>
             <div id='deviceHeader'>
-                <IconButtonGroup buttons={buttons} />
+                <ButtonGroup buttons={buttons} />
                 <SearchBar />
             </div>
             <InfoView viewType={viewType} />
