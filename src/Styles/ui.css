@@ -94,7 +94,7 @@
     display: inline-block;
 }
 
-.iconButton {
+.button {
     display: inline-block;
     font-weight: 400;
     color: #858796;
@@ -114,10 +114,15 @@
         box-shadow 0.15s ease-in-out;
 }
 
-.iconButton.circle {
+.button.circle {
     border-radius: 50%;
 }
 
-.iconButton:not(:disabled):not(.disabled) {
+.button:not(:disabled):not(.disabled) {
     cursor: pointer;
+}
+
+.tableHeading {
+    display: flex;
+    justify-content: space-between;
 }
