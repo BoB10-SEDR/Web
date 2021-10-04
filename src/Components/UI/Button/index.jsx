@@ -4,7 +4,7 @@ const Button = props => {
     const {
         isCircle,
         backgroundColor = '#727cf5',
-        borderColor = '#727cf5',
+        borderColor = backgroundColor,
         color = 'white',
         onClick,
         isActive,
