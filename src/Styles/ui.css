@@ -90,21 +90,8 @@
     border: 1px solid #e3e6f0;
 }
 
-.buttonList {
-    display: inline-block;
-}
-
-.buttonList button {
-    margin-bottom: 12px;
-    margin-right: 8px;
-}
-
 .searchBar {
     display: inline-block;
-}
-
-.reactIcons {
-    vertical-align: middle;
 }
 
 .iconButton {
@@ -125,6 +112,10 @@
     border-radius: 0.35rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
         box-shadow 0.15s ease-in-out;
+}
+
+.iconButton.circle {
+    border-radius: 50%;
 }
 
 .iconButton:not(:disabled):not(.disabled) {
