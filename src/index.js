@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { IconContext } from 'react-icons';
 import '@Styles/index.css';
 import '@Styles/ui.css';
 
@@ -27,26 +28,28 @@ const Home = () => {
     const { brand, items } = NavData;
 
     return (
-        <BrowserRouter>
-            <div id='wrapper'>
-                <Nav brand={brand} items={items}></Nav>
-                <div id='contentWrapper'>
-                    <div id='content'>
-                        <Header />
-                        <Switch>
-                            <Route path='/' exact component={Dashboard} />
-                            <Route path='/Dashboard' component={Dashboard} />
-                            <Route path='/Logs/Devices' component={Devices} />
-                            <Route path='/Logs/Networks' component={Networks} />
-                            <Route path='/Logs/Detected' component={Detected} />
-                            <Route path='/Solutions' component={Solutions} />
-                            <Route path='/PenTesting' component={PenTesting} />
-                        </Switch>
-                        <Footer />
+        <IconContext.Provider value={{ className: 'reactIcons', color: '#fff' }}>
+            <BrowserRouter>
+                <div id='wrapper'>
+                    <Nav brand={brand} items={items}></Nav>
+                    <div id='contentWrapper'>
+                        <div id='content'>
+                            <Header />
+                            <Switch>
+                                <Route path='/' exact component={Dashboard} />
+                                <Route path='/Dashboard' component={Dashboard} />
+                                <Route path='/Logs/Devices' component={Devices} />
+                                <Route path='/Logs/Networks' component={Networks} />
+                                <Route path='/Logs/Detected' component={Detected} />
+                                <Route path='/Solutions' component={Solutions} />
+                                <Route path='/PenTesting' component={PenTesting} />
+                            </Switch>
+                            <Footer />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </BrowserRouter>
+            </BrowserRouter>
+        </IconContext.Provider>
     );
 };
 ReactDOM.render(<Home />, document.getElementById('root'));
