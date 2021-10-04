@@ -6,19 +6,19 @@ const foo = index => {
 
 const buttons = [
     {
-        Icon: FaCashRegister,
+        children: <FaCashRegister />,
         onClick: () => foo(0),
     },
     {
-        Icon: FaCashRegister,
+        children: <FaCashRegister />,
         onClick: () => foo(1),
     },
     {
-        Icon: FaCashRegister,
+        children: <FaCashRegister />,
         onClick: () => foo(2),
     },
     {
-        Icon: FaCashRegister,
+        children: <FaCashRegister />,
         onClick: () => foo(3),
     },
 ];
