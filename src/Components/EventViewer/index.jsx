@@ -21,9 +21,9 @@ const EventViewer = props => {
         <div className='eventViewer card'>
             <CardHeader title='이벤트뷰어' />
             <div className='eventViewerContentWrapper'>
-                <SplitterLayout vertical={true} primaryMinSize={200} secondaryInitialSize={800}>
+                <SplitterLayout vertical={true} primaryMinSize={480} secondaryInitialSize={400}>
                     <div className='cardBody'>
-                        <Table onRowClick={handleRowClick} />
+                        <Table onRowClick={handleRowClick} nowSelected={rowId} />
                     </div>
                     <div>
                         <LogDetail id={rowId} />

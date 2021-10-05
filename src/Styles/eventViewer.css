@@ -9,7 +9,7 @@
     /* min-width: calc(100% + 40px); */
     /* margin-left: -20px;
     margin-bottom: -20px; */
-    min-height: 800px;
+    min-height: 100%;
     z-index: 1;
     overflow: hidden;
 
