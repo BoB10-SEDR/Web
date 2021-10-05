@@ -1,24 +1,16 @@
 import { useState } from 'react';
-import Resizable from 'react-resizable-box';
+// import Resizable from 'react-resizable-box';
 import '@Styles/eventViewer.css';
 import Card from '@Components/Card';
 import DummyCardEx from '@Dummy/DummyCardEx';
 import Table from '@Components/Table';
 import TableHeading from '@Components/Table/TableHeading';
 import logDummy from '@Dummy/logDetailDummy';
+import CardHeader from '@Components/UI/CardHeader';
+import SplitterLayout from 'react-splitter-layout';
+import 'react-splitter-layout/lib/index.css';
 
 const EventViewer = props => {
-    return (
-        <div className='eventViewer'>
-            <TableHeading>
-                <span>이벤트 뷰어</span>
-            </TableHeading>
-            <ViewerContent />
-        </div>
-    );
-};
-
-const ViewerContent = () => {
     const [rowId, setRowId] = useState(0);
 
     const handleRowClick = id => {
@@ -26,12 +18,19 @@ const ViewerContent = () => {
     };
 
     return (
-        <>
-            <div className='viewerContent'>
-                <Table onRowClick={handleRowClick} />
+        <div className='eventViewer card'>
+            <CardHeader title='이벤트뷰어' />
+            <div className='eventViewerContentWrapper'>
+                <SplitterLayout vertical primaryMinSize='100%'>
+                    <div className='viewerContent cardBody'>
+                        <Table onRowClick={handleRowClick} />
+                    </div>
+                    <div>
+                        <LogDetail id={rowId} />
+                    </div>
+                </SplitterLayout>
             </div>
-            <LogDetail id={rowId} />
-        </>
+        </div>
     );
 };
 
@@ -45,7 +44,7 @@ const LogDetail = props => {
 
     return (
         <div className='logDetail'>
-            <DragHandle />
+            {/* <DragHandle /> */}
             <div className='logDetailContent'>
                 <Header />
                 <Body detail={detail} description={description} />
