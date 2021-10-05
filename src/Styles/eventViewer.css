@@ -1,0 +1,60 @@
+.detailContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.logDetail {
+    background-color: #727cf5;
+    min-width: 100%;
+    z-index: 1;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border-top: 3px solid transparent;
+    overflow: hidden;
+}
+
+.logDetailContent {
+    padding: 35px;
+    color: white;
+}
+
+.detailHeader {
+    font-size: 1.5rem;
+}
+
+.detailBody {
+    padding-top: 20px;
+}
+
+.detailBox {
+    display: inline-block;
+    width: 50%;
+    padding-bottom: 30px;
+}
+
+.logDetail .head {
+    filter: brightness(90%);
+}
+
+.logDetail .description {
+    padding-top: 20px;
+    width: 100%;
+}
+
+.dragHandleWrapper:hover {
+    filter: brightness(80%);
+}
+
+.dragHandle {
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 20px;
+    width: 10%;
+    height: 10px;
+}
+
+.logDetail::before {
+    border: 3px solid #727cf5;
+}

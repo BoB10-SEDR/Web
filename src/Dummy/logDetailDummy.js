@@ -1,0 +1,108 @@
+const dummy = {
+    0: {
+        detail: {
+            'Detail 1': 'Linux',
+            'Detail 2': '이러이러한 데이터를 담고 있음',
+            'Detail 3': 'Linux',
+            'Detail 4': '이러이러한 데이터를 담고 있음',
+            'Detail 5': '중복 방지를 위해 다른 글 적을거임',
+            'Detail 6': '123456',
+            'Detail 7': '2021-09-30 01:20:34',
+            'Detail 8': '가스탐지 모듈',
+        },
+        description: '첫번째지롱',
+    },
+    1: {
+        detail: {
+            'Detail 1': 'Windows',
+            'Detail 2': '이러이러한 데이터를 담고 있음',
+            'Detail 3': 'Linux',
+            'Detail 4': '이러이러한 데이터를 담고 있음',
+            'Detail 5': '중복 방지를 위해 다른 글 적을거임',
+            'Deatil 6': '123456',
+            'Detail 7': '2021-09-30 01:20:34',
+            'Detail 8': '가스탐지 모듈',
+        },
+        description: '두번째지롱',
+    },
+    2: {
+        detail: {
+            'Detail 1': 'Windows',
+            'Detail 2': '이러이러한 데이터를 담고 있음',
+            'Detail 3': 'Linux',
+            'Detail 4': '이러이러한 데이터를 담고 있음',
+            'Detail 5': '중복 방지를 위해 다른 글 적을거임',
+            'Deatil 6': '123456',
+            'Detail 7': '2021-09-30 01:20:34',
+            'Detail 8': '가스탐지 모듈',
+        },
+        description: '두번째지롱',
+    },
+    3: {
+        detail: {
+            'Detail 1': 'Windows',
+            'Detail 2': '이러이러한 데이터를 담고 있음',
+            'Detail 3': 'Linux',
+            'Detail 4': '이러이러한 데이터를 담고 있음',
+            'Detail 5': '중복 방지를 위해 다른 글 적을거임',
+            'Deatil 6': '123456',
+            'Detail 7': '2021-09-30 01:20:34',
+            'Detail 8': '가스탐지 모듈',
+        },
+        description: '두번째지롱',
+    },
+    4: {
+        detail: {
+            'Detail 1': 'Windows',
+            'Detail 2': '이러이러한 데이터를 담고 있음',
+            'Detail 3': 'Linux',
+            'Detail 4': '이러이러한 데이터를 담고 있음',
+            'Detail 5': '중복 방지를 위해 다른 글 적을거임',
+            'Deatil 6': '123456',
+            'Detail 7': '2021-09-30 01:20:34',
+            'Detail 8': '가스탐지 모듈',
+        },
+        description: '두번째지롱',
+    },
+    5: {
+        detail: {
+            'Detail 1': 'Windows',
+            'Detail 2': '이러이러한 데이터를 담고 있음',
+            'Detail 3': 'Linux',
+            'Detail 4': '이러이러한 데이터를 담고 있음',
+            'Detail 5': '중복 방지를 위해 다른 글 적을거임',
+            'Deatil 6': '123456',
+            'Detail 7': '2021-09-30 01:20:34',
+            'Detail 8': '가스탐지 모듈',
+        },
+        description: '두번째지롱',
+    },
+    6: {
+        detail: {
+            'Detail 1': 'Windows',
+            'Detail 2': '이러이러한 데이터를 담고 있음',
+            'Detail 3': 'Linux',
+            'Detail 4': '이러이러한 데이터를 담고 있음',
+            'Detail 5': '중복 방지를 위해 다른 글 적을거임',
+            'Deatil 6': '123456',
+            'Detail 7': '2021-09-30 01:20:34',
+            'Detail 8': '가스탐지 모듈',
+        },
+        description: '두번째지롱',
+    },
+    7: {
+        detail: {
+            'Detail 1': 'Windows',
+            'Detail 2': '이러이러한 데이터를 담고 있음',
+            'Detail 3': 'Linux',
+            'Detail 4': '이러이러한 데이터를 담고 있음',
+            'Detail 5': '중복 방지를 위해 다른 글 적을거임',
+            'Deatil 6': '123456',
+            'Detail 7': '2021-09-30 01:20:34',
+            'Detail 8': '가스탐지 모듈',
+        },
+        description: '두번째지롱',
+    },
+};
+
+export default dummy;

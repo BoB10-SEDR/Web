@@ -121,8 +121,3 @@
 .button:not(:disabled):not(.disabled) {
     cursor: pointer;
 }
-
-.tableHeading {
-    display: flex;
-    justify-content: space-between;
-}

@@ -1,4 +1,3 @@
-import '@Styles/logs.css';
 import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
@@ -12,7 +11,7 @@ const Detected = () => {
     const { pieId, pieData, pieOptions } = PieDummy;
 
     return (
-        <div id='detected' className='logDetail'>
+        <div id='detected' className='page'>
             <Row>
                 <Col>
                     <Card title='바 차트'>
