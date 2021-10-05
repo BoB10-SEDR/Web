@@ -1,0 +1,46 @@
+{
+    "nowPageIndex": 1,
+    "count": 5,
+    "modulePreviewList": [
+        {
+            "moduleName": "모듈 1",
+            "moduleDetail": "모듈 상세설명 1",
+            "moduleIcon": "link"
+        },
+        {
+            "moduleName": "모듈 2",
+            "moduleDetail": "모듈 상세설명 2",
+            "moduleIcon": "link"
+        },
+        {
+            "moduleName": "모듈 3",
+            "moduleDetail": "모듈 상세설명 3",
+            "moduleIcon": "link"
+        },
+        {
+            "moduleName": "모듈 4",
+            "moduleDetail": "모듈 상세설명 4",
+            "moduleIcon": "link"
+        },
+        {
+            "moduleName": "모듈 5",
+            "moduleDetail": "모듈 상세설명 5",
+            "moduleIcon": "link"
+        },
+        {
+            "moduleName": "모듈 6",
+            "moduleDetail": "모듈 상세설명 6",
+            "moduleIcon": "link"
+        },
+        {
+            "moduleName": "모듈 5",
+            "moduleDetail": "모듈 상세설명 5",
+            "moduleIcon": "link"
+        },
+        {
+            "moduleName": "모듈 6",
+            "moduleDetail": "모듈 상세설명 6",
+            "moduleIcon": "link"
+        }
+    ]
+}
