@@ -6,7 +6,7 @@
     position: absolute;
 
     top: 6px;
-    right: 0px;
+    right: 15px;
 
     font-size: 12px;
 }
@@ -58,4 +58,10 @@
     margin-block-end: 0px;
 
     font-size: 14px;
+}
+
+/* Override */
+
+.BrainhubCarousel__dots .BrainhubCarousel__dot:before {
+    background: white !important;
 }

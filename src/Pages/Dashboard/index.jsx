@@ -13,30 +13,35 @@ const Dashboard = () => {
     const { barId, barData, barOptions } = BarDummy;
     const { pieId, pieData, pieOptions } = PieDummy;
 
+    const red = '#F02632';
+    const blue = '#727CF5';
+    const pink = '#F66C6C';
+    const green = '#61CA68';
+
     return (
         <div id='dashboard'>
-            <PageHeading title='Dashboard' />
+            {/* <PageHeading title='Dashboard' /> */}
             <Row>
                 <Col xl={3} md={6}>
-                    <Card>
+                    <Card border={`1px solid ${red}`}>
                         {/* 보안레벨 관련 Content가 들어가야 합니다. */}
                         <DummyCardSimple />
                     </Card>
                 </Col>
                 <Col xl={3} md={6}>
-                    <Card>
+                    <Card border={`1px solid ${blue}`}>
                         {/* 24시간 내 전체 Traffic관련 Content가 들어가야 합니다. */}
                         <DummyCardSimple />
                     </Card>
                 </Col>
                 <Col xl={3} md={6}>
-                    <Card>
+                    <Card border={`1px solid ${pink}`}>
                         {/* 24시간 내 공격/공격로그수 관련 Content가 들어가야 합니다. */}
                         <DummyCardSimple />
                     </Card>
                 </Col>
                 <Col xl={3} md={6}>
-                    <Card>
+                    <Card border={`1px solid ${green}`}>
                         {/* 등록된 장치/센서수 관련 Content가 들어가야 합니다. */}
                         <DummyCardSimple />
                     </Card>
