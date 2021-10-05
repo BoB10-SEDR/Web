@@ -2,6 +2,7 @@ import { Row, Col } from '@Components/Grid';
 
 import PageHeading from '@Components/UI/PageHeading';
 import Card from '@Components/Card';
+import EventViewer from '@Components/EventViewer';
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 import DummyCardSimple from '@Dummy/DummyCardSimple';
@@ -12,13 +13,10 @@ const Networks = () => {
     const { pieId, pieData, pieOptions } = PieDummy;
 
     return (
-        <div id='detected' className='page'>
+        <div id='networks' className='page'>
             <PageHeading title='Networks' />
             <Row>
                 <Col xl={3} md={3} mb>
-                    <Card>
-                        <DummyCardSimple></DummyCardSimple>
-                    </Card>
                     <Card>
                         <DummyCardSimple></DummyCardSimple>
                     </Card>
@@ -33,26 +31,24 @@ const Networks = () => {
                 </Col>
             </Row>
             <Row>
-                <Col md={6} mb>
-                    <Row>
-                        <Col md={6} mb>
-                            <Card>
-                                <DummyCardEx height='200px'></DummyCardEx>
-                            </Card>
-                        </Col>
-                        <Col md={6} mb>
-                            <Card>
-                                <DummyCardEx height='200px'></DummyCardEx>
-                            </Card>
-                        </Col>
-                    </Row>
+                <Col md={3} mb>
                     <Card>
-                        <DummyCardEx height='234px'></DummyCardEx>
+                        <DummyCardEx height='200px'></DummyCardEx>
+                    </Card>
+                </Col>
+                <Col md={3} mb>
+                    <Card>
+                        <DummyCardEx height='200px'></DummyCardEx>
                     </Card>
                 </Col>
                 <Col md={6} mb>
                     <Card>
-                        <DummyCardEx height='500px' />
+                        <DummyCardEx height='200px' />
+                    </Card>
+                </Col>
+                <Col md={12} mb>
+                    <Card>
+                        <EventViewer />
                     </Card>
                 </Col>
             </Row>
