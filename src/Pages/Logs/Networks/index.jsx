@@ -47,9 +47,7 @@ const Networks = () => {
                     </Card>
                 </Col>
                 <Col md={12} mb>
-                    <Card>
-                        <EventViewer />
-                    </Card>
+                    <EventViewer />
                 </Col>
             </Row>
         </div>

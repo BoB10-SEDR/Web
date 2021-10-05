@@ -26,22 +26,29 @@ const dummyColumns = () => [
 const dummyData = () => [
     { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
     { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
+    { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
+    { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
+    { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
+    { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
+    { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
+    { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
 ];
 
 const Table = props => {
     // TODO_P :: namor => 이거 패키지 삭제해야함 (랜덤명 생성 패키지)
+    const { onRowClick = null } = props;
     const columns = useMemo(dummyColumns, []);
 
     const data = useMemo(dummyData, []);
 
     console.table(data);
 
-    return <TableContent columns={columns} data={data} />;
+    return <TableContent columns={columns} data={data} onRowClick={onRowClick} />;
 };
 
 export default Table;
 
-const TableContent = ({ columns, data }) => {
+const TableContent = ({ columns, data, onRowClick }) => {
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
         columns,
         data,
@@ -62,7 +69,11 @@ const TableContent = ({ columns, data }) => {
                 {rows.map((row, i) => {
                     prepareRow(row);
                     return (
-                        <tr {...row.getRowProps()}>
+                        <tr
+                            {...row.getRowProps({
+                                onClick: () => onRowClick(i),
+                            })}
+                        >
                             {row.cells.map(cell => {
                                 return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
                             })}
