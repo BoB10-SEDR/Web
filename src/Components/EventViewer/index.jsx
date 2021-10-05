@@ -21,8 +21,8 @@ const EventViewer = props => {
         <div className='eventViewer card'>
             <CardHeader title='이벤트뷰어' />
             <div className='eventViewerContentWrapper'>
-                <SplitterLayout vertical primaryMinSize='100%'>
-                    <div className='viewerContent cardBody'>
+                <SplitterLayout vertical={true} primaryMinSize={200} secondaryInitialSize={800}>
+                    <div className='cardBody'>
                         <Table onRowClick={handleRowClick} />
                     </div>
                     <div>
@@ -44,7 +44,7 @@ const LogDetail = props => {
 
     return (
         <div className='logDetail'>
-            {/* <DragHandle /> */}
+            <DragHandle />
             <div className='logDetailContent'>
                 <Header />
                 <Body detail={detail} description={description} />
