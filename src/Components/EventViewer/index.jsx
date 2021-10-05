@@ -38,25 +38,13 @@ const LogDetail = props => {
     const { id } = props;
     // detail 데이터 불러오는 코드 필요
     const { detail, description } = logDummy[id];
-    const style = {
-        position: 'absolute',
-    };
 
     return (
         <div className='logDetail'>
-            <DragHandle />
             <div className='logDetailContent'>
                 <Header />
                 <Body detail={detail} description={description} />
             </div>
-        </div>
-    );
-};
-
-const DragHandle = () => {
-    return (
-        <div className='dragHandleWrapper'>
-            <div className='dragHandle'></div>
         </div>
     );
 };
