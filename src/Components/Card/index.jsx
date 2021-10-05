@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import '@Styles/card.css';
-import KebabMenu from '@Components/UI/KebabMenu';
-import KebabDummy from '@Dummy/KebabDummy';
+import Header from '@Components/UI/CardHeader';
 
 const Card = props => {
-    const { title = '', children = [] } = props;
+    const { title = '', children = [], border = '' } = props;
 
     const hasTitle = title !== '';
 
@@ -14,20 +13,9 @@ const Card = props => {
             <Body>{children}</Body>
         </div>
     ) : (
-        <div className='cardSimple'>
+        <div className='cardSimple' style={{ border: border ?? '1px solid rgba(154, 161, 171, 0.2)' }}>
             <Body isSimple>{children}</Body>
         </div>
-    );
-};
-
-const Header = props => {
-    const { title = '' } = props;
-
-    return (
-        <header className='cardHeader'>
-            <h6>{title}</h6>
-            <KebabMenu items={KebabDummy} />
-        </header>
     );
 };
 
