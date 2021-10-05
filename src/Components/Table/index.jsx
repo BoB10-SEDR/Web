@@ -36,19 +36,19 @@ const dummyData = () => [
 
 const Table = props => {
     // TODO_P :: namor => 이거 패키지 삭제해야함 (랜덤명 생성 패키지)
-    const { onRowClick = null } = props;
+    const { onRowClick = null, nowSelected } = props;
     const columns = useMemo(dummyColumns, []);
 
     const data = useMemo(dummyData, []);
 
     console.table(data);
 
-    return <TableContent columns={columns} data={data} onRowClick={onRowClick} />;
+    return <TableContent columns={columns} data={data} onRowClick={onRowClick} nowSelected={nowSelected} />;
 };
 
 export default Table;
 
-const TableContent = ({ columns, data, onRowClick }) => {
+const TableContent = ({ columns, data, onRowClick, nowSelected }) => {
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
         columns,
         data,
@@ -66,12 +66,13 @@ const TableContent = ({ columns, data, onRowClick }) => {
                 ))}
             </thead>
             <tbody {...getTableBodyProps()}>
-                {rows.map((row, i) => {
+                {rows.map((row, idx) => {
                     prepareRow(row);
                     return (
                         <tr
+                            style={{ backgroundColor: idx === nowSelected ? '#35383d' : 'transparent' }}
                             {...row.getRowProps({
-                                onClick: () => onRowClick(i),
+                                onClick: () => onRowClick(idx),
                             })}
                         >
                             {row.cells.map(cell => {
