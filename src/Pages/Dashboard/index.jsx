@@ -7,6 +7,7 @@ import PieDummy from '@Dummy/pieChartDummy';
 import '@Styles/dashboard.css';
 import PageHeading from '@Components/UI/PageHeading';
 import DummyCardSimple from '@Dummy/DummyCardSimple';
+import Slider from '@Components/Slider';
 
 const Dashboard = () => {
     const { barId, barData, barOptions } = BarDummy;
@@ -45,7 +46,8 @@ const Dashboard = () => {
             <Row>
                 <Col xl={8} lg={7}>
                     <Card title='시간별 전체 로그 수'>
-                        <Bar id={barId} data={barData} options={barOptions} />
+                        {/* <Bar id={barId} data={barData} options={barOptions} /> */}
+                        <Slider />
                     </Card>
                 </Col>
 
