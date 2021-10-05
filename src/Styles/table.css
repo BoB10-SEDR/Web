@@ -24,3 +24,9 @@
     padding: 0.9375rem;
     /* border-top: 1px solid #2c2e33; */
 }
+
+.tableHeading {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
