@@ -33,7 +33,7 @@ const Slider = props => {
             <Carousel
                 value={nowTabIndex}
                 onChange={handleChange}
-                plugins={['arrows']}
+                // plugins={['arrows']}
                 draggable={false}
                 animationSpeed={200}
             >
@@ -43,7 +43,7 @@ const Slider = props => {
             </Carousel>
 
             <div className='dotsWrapper'>
-                <Dots value={nowTabIndex} onChange={handleChange} number={dummyList.length} />
+                <Dots value={nowTabIndex} onChange={handleChange} number={dummyList.length} className='dots' />
                 <div className='searchResult'>모듈 총 {40}개</div>
             </div>
         </>
