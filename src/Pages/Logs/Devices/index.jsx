@@ -4,7 +4,7 @@ import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import DeviceNav from '@Components/DeviceNav';
-import Filter from '@Components/Filter';
+import FilterButton from '@Components/FilterButton';
 import SearchBar from '@Components/SearchBar';
 
 import BarDummy from '@Dummy/barChartDummy';
@@ -67,7 +67,7 @@ const DeviceTable = () => {
 const TableUtils = () => {
     return (
         <div id='tableUtils'>
-            <Filter />
+            <FilterButton />
             <SearchBar />
         </div>
     );
