@@ -1,9 +1,6 @@
 import '@Styles/nav.css';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IoIosArrowBack } from 'react-icons/io';
 import Item from '@Components/Nav/Item';
-import Button from '@Components/UI/Button';
 
 const Nav = props => {
     const { brand, items } = props;
