@@ -34,11 +34,22 @@ a {
 }
 
 #contentWrapper {
-    background-color: #f8f9fc;
+    background-color: #23262b;
     width: 100%;
     overflow-x: hidden;
+
+    color: #fff;
 }
 
 #content {
     flex: 1 0 auto;
+}
+
+.page {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.reactIcons {
+    vertical-align: middle;
 }

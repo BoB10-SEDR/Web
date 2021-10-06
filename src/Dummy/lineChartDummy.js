@@ -1,3 +1,5 @@
+import DummyCardSimple from './DummyCardSimple';
+
 export const lineChartDummy = {
     labelName: 'Earnings',
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],

@@ -8,13 +8,13 @@ import PieDummy from '@Dummy/pieChartDummy';
 import DummyCardSimple from '@Dummy/DummyCardSimple';
 import DummyCardEx from '@Dummy/DummyCardEx';
 
-const Networks = () => {
+const Details = () => {
     const { barId, barData, barOptions } = BarDummy;
     const { pieId, pieData, pieOptions } = PieDummy;
 
     return (
-        <div id='networks' className='page'>
-            <PageHeading title='Networks' />
+        <div className='page'>
+            <PageHeading title='Details' />
             <Row>
                 <Col xl={3} md={3} mb>
                     <Card>
@@ -47,11 +47,13 @@ const Networks = () => {
                     </Card>
                 </Col>
                 <Col md={12} mb>
-                    <EventViewer />
+                    <Card>
+                        <EventViewer />
+                    </Card>
                 </Col>
             </Row>
         </div>
     );
 };
 
-export default Networks;
+export default Details;

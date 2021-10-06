@@ -1,0 +1,67 @@
+.dotsWrapper {
+    position: relative;
+}
+
+.searchResult {
+    position: absolute;
+
+    top: 6px;
+    right: 15px;
+
+    font-size: 12px;
+}
+
+#carouselList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+
+#carouselListItem {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 40%;
+    margin: 5px;
+    width: 40%;
+
+    padding: 10px;
+    border-radius: 6px;
+    justify-content: space-between;
+}
+
+#carouselListItem .content {
+    display: flex;
+    flex: 1;
+}
+
+#carouselListItem .content .moduleIcon {
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+
+    margin: auto 0;
+    margin-right: 20px;
+    border-radius: 100%;
+}
+
+#carouselListItem .content .description {
+    margin: auto 0;
+}
+
+#carouselListItem .content .description h4.title {
+    margin: 0;
+}
+
+#carouselListItem .content .description p.detail {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+
+    font-size: 14px;
+}
+
+/* Override */
+
+.BrainhubCarousel__dots .BrainhubCarousel__dot:before {
+    background: white !important;
+}
