@@ -1,8 +1,9 @@
-import { Row, Col } from '@Components/Grid';
+import '@Styles/devices.css';
 
+import { Row, Col } from '@Components/Grid';
 import PageHeading from '@Components/UI/PageHeading';
 import Card from '@Components/Card';
-import DeviceInfo from '@Components/DeviceInfo';
+import Table from '@Components/Table';
 import DeviceNav from '@Components/DeviceNav';
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
@@ -34,8 +35,20 @@ const Devices = () => {
                     </DummyCardEx>
                 </Col>
             </Row>
-            <DeviceInfo />
+            <DeviceTable />
         </div>
+    );
+};
+
+const DeviceTable = () => {
+    return (
+        <Card>
+            <div className='deviceTable'>
+                <DummyCardEx height='500px'>
+                    <Table />
+                </DummyCardEx>
+            </div>
+        </Card>
     );
 };
 
