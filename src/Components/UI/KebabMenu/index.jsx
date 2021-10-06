@@ -14,7 +14,7 @@ const KebabMenu = props => {
     return (
         <div className='kebabMenu' onClick={handleExpanded}>
             <GoKebabVertical color='white' />
-            <CollapseLinks id='kebab' isOpened={expanded} closeTask={setExpanded} items={items}></CollapseLinks>
+            <CollapseLinks id='kebab' isOpened={expanded} closeTask={setExpanded} items={items} />
         </div>
     );
 };
