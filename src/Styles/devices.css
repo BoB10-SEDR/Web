@@ -1,0 +1,9 @@
+#deviceTable .tableContent {
+    overflow: scroll;
+}
+
+#deviceInfo #tableUtils {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}

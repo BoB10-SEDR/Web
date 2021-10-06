@@ -1,9 +1,12 @@
-import { Row, Col } from '@Components/Grid';
+import '@Styles/devices.css';
 
-import PageHeading from '@Components/UI/PageHeading';
+import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
-import DeviceInfo from '@Components/DeviceInfo';
+import Table from '@Components/Table';
 import DeviceNav from '@Components/DeviceNav';
+import FilterButton from '@Components/FilterButton';
+import SearchBar from '@Components/SearchBar';
+
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 import DummyCardSimple from '@Dummy/DummyCardSimple';
@@ -15,13 +18,12 @@ const Devices = () => {
 
     return (
         <div id='detected' className='page'>
-            <PageHeading title='Devices' />
             <Row>
                 <Col md={3} mb>
-                    <Card>
+                    <Card border='1px solid red'>
                         <DummyCardSimple></DummyCardSimple>
                     </Card>
-                    <Card>
+                    <Card border='1px solid red'>
                         <DummyCardSimple></DummyCardSimple>
                     </Card>
                     <Card title='공격 유형별 로그 현황'>
@@ -35,6 +37,38 @@ const Devices = () => {
                 </Col>
             </Row>
             <DeviceInfo />
+        </div>
+    );
+};
+
+const DeviceInfo = () => {
+    return (
+        <div id='deviceInfo'>
+            <TableUtils />
+            <DeviceTable />
+        </div>
+    );
+};
+
+const DeviceTable = () => {
+    return (
+        <div id='deviceTable'>
+            <Card>
+                <div className='tableContent'>
+                    <DummyCardEx height='500px'>
+                        <Table />
+                    </DummyCardEx>
+                </div>
+            </Card>
+        </div>
+    );
+};
+
+const TableUtils = () => {
+    return (
+        <div id='tableUtils'>
+            <FilterButton />
+            <SearchBar />
         </div>
     );
 };
