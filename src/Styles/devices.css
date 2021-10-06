@@ -2,13 +2,13 @@
     overflow: scroll;
 }
 
-#deviceInfo .tableUtils {
+#deviceTable .tableUtils {
     display: flex;
     justify-content: flex-end;
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
 
-#deviceInfo .tableUtils > * {
+#deviceTable .tableUtils > * {
     margin-left: 0.5rem;
 }

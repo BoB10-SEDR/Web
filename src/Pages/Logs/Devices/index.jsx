@@ -38,14 +38,6 @@ const Devices = () => {
                     </DummyCardEx>
                 </Col>
             </Row>
-            <DeviceInfo />
-        </div>
-    );
-};
-
-const DeviceInfo = () => {
-    return (
-        <div id='deviceInfo'>
             <DeviceTable />
         </div>
     );
