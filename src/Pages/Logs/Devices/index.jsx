@@ -1,5 +1,6 @@
 import '@Styles/devices.css';
 
+import { useState } from 'react';
 import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
@@ -11,6 +12,7 @@ import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 import DummyCardSimple from '@Dummy/DummyCardSimple';
 import DummyCardEx from '@Dummy/DummyCardEx';
+import { dummyColumns, dummyData } from '@Dummy/deviceTableDummy';
 
 const Devices = () => {
     const { barId, barData, barOptions } = BarDummy;
@@ -44,31 +46,37 @@ const Devices = () => {
 const DeviceInfo = () => {
     return (
         <div id='deviceInfo'>
-            <TableUtils />
             <DeviceTable />
         </div>
     );
 };
 
 const DeviceTable = () => {
+    const [columns, totalData] = [dummyColumns, dummyData];
+    const [filteredData, setFilteredData] = useState(totalData);
+
+    const handleSearch = input => {
+        const filtered = totalData.filter(device => {
+            return Object.keys(device).some(key => {
+                return device[key].toLowerCase().includes(input.toLowerCase());
+            });
+        });
+        setFilteredData(filtered);
+    };
+
     return (
         <div id='deviceTable'>
+            <div className='tableUtils'>
+                <FilterButton />
+                <SearchBar onClick={handleSearch} />
+            </div>
             <Card>
                 <div className='tableContent'>
                     <DummyCardEx height='500px'>
-                        <Table />
+                        <Table columns={columns} data={filteredData} />
                     </DummyCardEx>
                 </div>
             </Card>
-        </div>
-    );
-};
-
-const TableUtils = () => {
-    return (
-        <div id='tableUtils'>
-            <FilterButton />
-            <SearchBar />
         </div>
     );
 };
