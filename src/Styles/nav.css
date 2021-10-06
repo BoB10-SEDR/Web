@@ -1,123 +1,203 @@
-#status {
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    line-height: 1;
-    padding: 0.5rem 0.7rem;
-    font-weight: 700;
-
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-        box-shadow 0.15s ease-in-out;
-
-    color: #ffffff;
-}
-
-.toggleSwitch {
-    display: inline-block;
-}
-
-.toggleSwitch input[type='checkbox'] {
-    height: 0;
-    width: 0;
-    visibility: hidden;
-}
-
-.toggleSwitch label {
-    cursor: pointer;
-    width: 4rem;
-    height: 2rem;
-    background: grey;
-    display: block;
-    border-radius: 100px;
-    position: relative;
-}
-
-.toggleSwitch label:after {
-    content: '';
-    position: absolute;
-    top: 12%;
-    left: 8%;
-    width: 37%;
-    height: 75%;
-    background: #fff;
-    border-radius: 90px;
-    transition: 0.3s;
-}
-
-.toggleSwitch input:checked + label {
-    background: #4e73df;
-}
-
-.toggleSwitch input:checked + label:after {
-    left: calc(100% - 5px);
-    transform: translateX(-100%);
-}
-
-.kebabMenu {
-    position: relative;
-    line-height: 1;
-    cursor: pointer;
-}
-
-#kebab .collapse {
-    line-height: 1.5;
-    font-size: 0.85rem;
-    animation-name: fadeIn;
-    animation-duration: 0.2s;
-    right: 0;
-    left: auto;
-    z-index: 1000;
-    float: left;
-    text-align: left;
+.nav {
+    display: flex;
+    width: 6.5em;
+    min-height: 100vh;
+    margin-top: 0;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
     list-style: none;
+    background-color: #23262b;
+    /* background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%); */
+    /* background-size: cover; */
+    overflow-anchor: none;
 }
 
-#kebab .collapse.open {
+.navBrand {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: 1rem !important;
+    color: #fff;
+    height: 4.375rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    z-index: 1;
+}
+
+.navBrand span {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+}
+
+.navItem {
+    position: relative;
+}
+
+.navHeading {
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    padding: 0 1rem;
+    font-weight: 800;
+    font-size: 0.65rem;
+    text-transform: uppercase !important;
+}
+
+.navDivider {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 0 1rem 1rem;
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
+
+.navXmargin {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.navLink {
+    cursor: pointer;
+    display: block;
+    position: relative;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    padding-right: 0;
+    padding-left: 0;
+    width: 6.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.navLink span {
+    font-size: 0.65rem;
     display: block;
 }
 
-#kebab .collapseInner {
-    position: absolute;
-    line-height: 1.5;
-    transform: translate3d(-158px, 18px, 0px);
-    top: 0px;
-    left: 0px;
-    will-change: transform;
-    background-clip: padding-box;
-    border: 1px solid #e3e6f0;
+.navLink[isCollapsed='true']::after {
+    color: rgba(255, 255, 255, 0.5);
 }
 
-.searchBar {
+.navIcon {
     display: inline-block;
-}
-
-.button {
-    display: inline-block;
-    font-weight: 400;
-    color: #858796;
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 900;
     text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
+    width: 1.25rem;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+#nav .collapse {
+    display: none;
+    position: absolute;
+    left: calc(6.5rem + 1.5rem / 2);
+    z-index: 1;
+    top: 2px;
+    animation-name: growIn;
+    animation-duration: 0.2s;
+    animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1), opacity cubic-bezier(0, 1, 0.4, 1);
+}
+
+#nav .collapse.open {
+    display: block;
+}
+
+#nav .collapseInner {
+    background-color: #fff !important;
+    border-radius: 0.35rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(58 59 69 / 15%);
+    padding: 0.5rem 0;
+    min-width: 10rem;
+    font-size: 0.85rem;
+    margin: 0 0 1rem 0;
+}
+
+#nav .collapseItem {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    display: block;
+    color: #3a3b45;
+    text-decoration: none;
     border-radius: 0.35rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-        box-shadow 0.15s ease-in-out;
+    white-space: nowrap;
 }
 
-.button.circle {
-    border-radius: 50%;
+#nav .collapseItem.active {
+    color: #4e73df;
+    font-weight: 700;
 }
 
-.button:not(:disabled):not(.disabled) {
-    cursor: pointer;
+.active * {
+    color: #fff !important;
+    font-weight: 700 !important;
+}
+
+@keyframes expand {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@media (min-width: 768px) {
+    .nav {
+        width: 14rem !important;
+    }
+    .navLink {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 1rem;
+        width: 14rem;
+    }
+    .navLink span {
+        font-size: 0.85rem;
+        display: inline;
+    }
+    .navLink[isCollapsed='true']::after {
+        width: 1rem;
+        text-align: center;
+        float: right;
+        vertical-align: 0;
+        border: 0;
+        font-weight: 900;
+        content: '\f105';
+        font-family: 'Font Awesome 5 Free';
+    }
+    .navLink[isCollapsed='true'].expanded::after {
+        content: '\f107';
+    }
+    .navIcon {
+        font-size: 0.85rem;
+        margin-right: 0.25rem;
+    }
+    .navHeading {
+        text-align: left;
+    }
+    #nav .collapse {
+        position: relative;
+        left: 0;
+        z-index: 1;
+        top: 0;
+        animation-name: expand 0.2s forwards linear;
+        margin: 0 1rem;
+    }
+    #nav .collapseInner {
+        border-radius: 0;
+        box-shadow: none;
+    }
 }
