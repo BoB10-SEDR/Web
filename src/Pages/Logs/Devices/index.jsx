@@ -1,10 +1,12 @@
 import '@Styles/devices.css';
 
 import { Row, Col } from '@Components/Grid';
-import PageHeading from '@Components/UI/PageHeading';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import DeviceNav from '@Components/DeviceNav';
+import Filter from '@Components/Filter';
+import SearchBar from '@Components/SearchBar';
+
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 import DummyCardSimple from '@Dummy/DummyCardSimple';
@@ -16,13 +18,12 @@ const Devices = () => {
 
     return (
         <div id='detected' className='page'>
-            <PageHeading title='Devices' />
             <Row>
                 <Col md={3} mb>
-                    <Card>
+                    <Card border='1px solid red'>
                         <DummyCardSimple></DummyCardSimple>
                     </Card>
-                    <Card>
+                    <Card border='1px solid red'>
                         <DummyCardSimple></DummyCardSimple>
                     </Card>
                     <Card title='공격 유형별 로그 현황'>
@@ -35,6 +36,15 @@ const Devices = () => {
                     </DummyCardEx>
                 </Col>
             </Row>
+            <DeviceInfo />
+        </div>
+    );
+};
+
+const DeviceInfo = () => {
+    return (
+        <div id='deviceInfo'>
+            <TableUtils />
             <DeviceTable />
         </div>
     );
@@ -42,13 +52,24 @@ const Devices = () => {
 
 const DeviceTable = () => {
     return (
-        <Card>
-            <div className='deviceTable'>
-                <DummyCardEx height='500px'>
-                    <Table />
-                </DummyCardEx>
-            </div>
-        </Card>
+        <div id='deviceTable'>
+            <Card>
+                <div className='tableContent'>
+                    <DummyCardEx height='500px'>
+                        <Table />
+                    </DummyCardEx>
+                </div>
+            </Card>
+        </div>
+    );
+};
+
+const TableUtils = () => {
+    return (
+        <div id='tableUtils'>
+            <Filter />
+            <SearchBar />
+        </div>
     );
 };
 
