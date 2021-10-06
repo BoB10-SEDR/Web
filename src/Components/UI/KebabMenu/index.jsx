@@ -9,7 +9,7 @@ const KebabMenu = props => {
     const items = props.items;
     const [expanded, setExpanded] = useState(false);
 
-    const handleExpanded = () => {
+    const handleClick = () => {
         setExpanded(!expanded);
     };
 
@@ -29,7 +29,7 @@ const KebabMenu = props => {
     }, [expanded]);
 
     return (
-        <div ref={ref} className='kebabMenu' onClick={handleExpanded}>
+        <div ref={ref} className='kebabMenu' onClick={handleClick}>
             <GoKebabVertical color='white' />
             <CollapseLinks id='kebab' isOpened={expanded} items={items} />
         </div>
