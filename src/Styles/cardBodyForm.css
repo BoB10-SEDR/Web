@@ -1,0 +1,35 @@
+/* TODO_P :: carouselListItem css 설정과 중복임. */
+.defaultCardBody {
+    display: flex;
+    flex: 1;
+
+    font-family: 'NanumSquare', sans-serif;
+}
+
+.defaultCardBody .description {
+    margin: auto 0;
+}
+
+.defaultCardBody .description h4.title {
+    margin: 0;
+
+    font-size: 16px;
+}
+
+.defaultCardBody .description p.content {
+    margin-block-start: 5px;
+    margin-block-end: 0px;
+
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.defaultCardBody .cardIcon {
+    width: 64px;
+    height: 64px;
+    background-color: gray;
+
+    margin: auto;
+    margin-right: 0px;
+    border-radius: 100%;
+}
