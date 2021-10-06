@@ -12,8 +12,8 @@ const Nav = props => {
                 <span>{brand.title}</span>
             </Link>
             <hr className='navDivider navXmargin' />
-            {items.map(item => {
-                return <Item type={item.type} item={item} />;
+            {items.map((item, index) => {
+                return <Item key={index} type={item.type} item={item} />;
             })}
         </ul>
     );
