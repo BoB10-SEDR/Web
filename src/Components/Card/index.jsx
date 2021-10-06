@@ -3,28 +3,37 @@ import '@Styles/card.css';
 import Header from '@Components/UI/CardHeader';
 
 const Card = props => {
-    const { title = '', children = [], border = '' } = props;
+    const { title = '', children = [], border = '', borderRadius = '6px', padding = '20px' } = props;
 
     const hasTitle = title !== '';
 
     return hasTitle ? (
         <div className='card'>
             <Header title={title} />
-            <Body>{children}</Body>
+            <Body padding={padding}>{children}</Body>
         </div>
     ) : (
-        <div className='cardSimple' style={{ border: border ?? '1px solid rgba(154, 161, 171, 0.2)' }}>
-            <Body isSimple>{children}</Body>
+        <div
+            className='cardSimple'
+            style={{ border: border ?? '1px solid rgba(154, 161, 171, 0.2)', borderRadius: borderRadius }}
+        >
+            <Body isSimple padding={padding}>
+                {children}
+            </Body>
         </div>
     );
 };
 
 const Body = props => {
-    const { children = [], isSimple } = props;
+    const { children = [], isSimple, padding } = props;
 
     const bodyClassName = isSimple ? 'cardBodySimple' : 'cardBody';
 
-    return <div className={bodyClassName}>{children}</div>;
+    return (
+        <div className={bodyClassName} style={{ padding: padding }}>
+            {children}
+        </div>
+    );
 };
 
 export default Card;
