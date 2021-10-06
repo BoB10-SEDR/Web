@@ -3,7 +3,7 @@ import '@Styles/ui.css';
 const Button = props => {
     const {
         isCircle,
-        backgroundColor = '#727cf5',
+        backgroundColor = 'red',
         borderColor = backgroundColor,
         color = 'white',
         onClick,

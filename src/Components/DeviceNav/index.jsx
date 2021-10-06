@@ -14,7 +14,7 @@ const DeviceNav = () => {
                     <ButtonGroup isVertical={true} buttons={IconButtonListDummy} />
                 </div>
                 <div className='deviceNavToggle'>
-                    <Button isCircle={true} backgroundColor='#ABB2FC' onClick={handleArrowClick}>
+                    <Button isCircle={true} onClick={handleArrowClick}>
                         <IoIosArrowBack color='#fff' />
                     </Button>
                 </div>
