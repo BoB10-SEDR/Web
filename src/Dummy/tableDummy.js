@@ -1,4 +1,4 @@
-const dummyColumns = () => [
+const dummyColumns = [
     {
         Header: 'Col1',
         accessor: 'Col1',
@@ -18,7 +18,7 @@ const dummyColumns = () => [
     },
 ];
 
-const dummyData = () => [
+const dummyData = [
     { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
     { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
     { Col1: '안녕', Col2: '안녕', Col3: '안녕', Col4: '안녕' },
