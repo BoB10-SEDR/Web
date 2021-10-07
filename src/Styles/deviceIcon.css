@@ -1,0 +1,27 @@
+.deviceIcon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    background-color: #999a9c;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.statusDot {
+    position: absolute;
+    width: 12%;
+    height: 12%;
+    border-radius: 50%;
+    border: 2px solid #1b1e22;
+    background-color: #404040;
+    z-index: 1;
+    left: 78%;
+    right: 0;
+    bottom: 6%;
+}
+
+.statusDot.active {
+    background-color: #00ff00;
+}
