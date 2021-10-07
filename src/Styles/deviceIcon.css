@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     font-weight: 400;
-    background-color: gray;
+    background-color: #999a9c;
     text-align: center;
     border-radius: 50%;
 }
@@ -15,7 +15,7 @@
     height: 12%;
     border-radius: 50%;
     border: 2px solid #1b1e22;
-    background-color: red;
+    background-color: #404040;
     z-index: 1;
     left: 78%;
     right: 0;

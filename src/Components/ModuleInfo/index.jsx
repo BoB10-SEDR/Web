@@ -53,7 +53,7 @@ const ProfileBody = () => {
 const ProfileName = () => {
     return (
         <div className='profileName'>
-            <DeviceIcon size={80} isActive={true} />
+            <DeviceIcon size={100} isActive />
         </div>
     );
 };

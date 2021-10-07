@@ -13,7 +13,7 @@ const DeviceIcon = props => {
     return (
         <div className='deviceIcon' style={style}>
             <Icon size={size * 0.7} />
-            <div className={'statusDot' + (isActive && ' active')}></div>
+            <div className={'statusDot' + (isActive ? ' active' : '')}></div>
         </div>
     );
 };
