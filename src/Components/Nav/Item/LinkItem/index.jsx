@@ -26,7 +26,7 @@ const LinkItem = props => {
     } else {
         result = (
             <li className='navItem'>
-                <div className={'navLink ' + (expanded ? 'expanded' : '')} isCollapsed='true' onClick={handleCollapsed}>
+                <div className={'navLink ' + (expanded ? 'expanded' : '') + ' collapsed'} onClick={handleCollapsed}>
                     {item.icon}
                     <span>{item.title}</span>
                 </div>

@@ -8,6 +8,7 @@ const Button = props => {
         color = 'white',
         onClick,
         isActive,
+        className = '',
         children,
     } = props;
 
@@ -20,7 +21,7 @@ const Button = props => {
     return (
         <button
             type='button'
-            className={'button' + (isCircle ? ' circle' : '') + (isActive ? ' active' : '')}
+            className={'button' + (isCircle ? ' circle' : '') + (isActive ? ' active' : '') + ` ${className}`}
             onClick={onClick}
             style={style}
         >

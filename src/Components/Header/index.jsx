@@ -4,7 +4,7 @@ import '@Styles/header.css';
 const Header = () => {
     return (
         <header id='topbar'>
-            <ul class='topbarNav'>
+            <ul className='topbarNav'>
                 {/* <li class='topbarNavItem'>
                     <a
                         class='nav-link dropdown-toggle'
