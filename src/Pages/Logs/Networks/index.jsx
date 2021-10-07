@@ -16,7 +16,6 @@ const Networks = () => {
 
     return (
         <div id='networks' className='page'>
-            <PageHeading title='Networks' />
             <Row>
                 <Col xl={3} md={3} mb>
                     <Card>
