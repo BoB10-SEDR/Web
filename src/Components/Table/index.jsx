@@ -6,14 +6,13 @@ import { dummyColumns, dummyData } from '@Dummy/tableDummy';
 
 const Table = props => {
     // TODO_P :: namor => 이거 패키지 삭제해야함 (랜덤명 생성 패키지)
-    const { onRowClick = () => {}, nowSelected } = props;
-    const columns = useMemo(dummyColumns, []);
+    const { onRowClick = () => {}, nowSelected, columns = dummyColumns, data = dummyData } = props;
+    const cols = useMemo(() => columns, [columns]);
+    const rows = useMemo(() => data, [data]);
 
-    const data = useMemo(dummyData, []);
+    console.table(rows);
 
-    console.table(data);
-
-    return <TableContent columns={columns} data={data} onRowClick={onRowClick} nowSelected={nowSelected} />;
+    return <TableContent columns={cols} data={rows} onRowClick={onRowClick} nowSelected={nowSelected} />;
 };
 
 export default Table;

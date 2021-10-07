@@ -79,7 +79,7 @@
     display: block;
 }
 
-.navLink[isCollapsed='true']::after {
+.navLink.collapsed::after {
     color: rgba(255, 255, 255, 0.5);
 }
 
@@ -168,7 +168,7 @@
         font-size: 0.85rem;
         display: inline;
     }
-    .navLink[isCollapsed='true']::after {
+    .navLink.collapsed::after {
         width: 1rem;
         text-align: center;
         float: right;
@@ -178,7 +178,7 @@
         content: '\f105';
         font-family: 'Font Awesome 5 Free';
     }
-    .navLink[isCollapsed='true'].expanded::after {
+    .navLink.collapsed.expanded::after {
         content: '\f107';
     }
     .navIcon {
