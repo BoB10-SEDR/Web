@@ -7,16 +7,29 @@ const Nav = props => {
 
     return (
         <ul className='nav'>
-            <Link className='navBrand' to={brand.path}>
-                {brand.icon}
-                <span>{brand.title}</span>
-            </Link>
+            <NavHeader brand={brand} />
             <hr className='navDivider navXmargin' />
-            {items.map((item, index) => {
-                return <Item key={index} type={item.type} item={item} />;
-            })}
+            <NavBody items={items} />
         </ul>
     );
+};
+
+const NavHeader = props => {
+    const { brand } = props;
+
+    return (
+        <Link id='navHeader' to={brand.path}>
+            {brand.icon}
+            <span>{brand.title}</span>
+        </Link>
+    );
+};
+
+const NavBody = props => {
+    const { items } = props;
+    return items.map(item => {
+        return <Item type={item.type} item={item} />;
+    });
 };
 
 export default Nav;

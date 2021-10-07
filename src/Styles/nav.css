@@ -13,7 +13,7 @@
     overflow-anchor: none;
 }
 
-.navBrand {
+#navHeader {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -30,7 +30,7 @@
     z-index: 1;
 }
 
-.navBrand span {
+#navHeader span {
     margin-left: 1rem !important;
     margin-right: 1rem !important;
 }
