@@ -7,6 +7,7 @@ import Table from '@Components/Table';
 import DeviceNav from '@Components/DeviceNav';
 import FilterButton from '@Components/FilterButton';
 import SearchBar from '@Components/SearchBar';
+import DeviceTable from '@Components/DeviceTable';
 
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
@@ -39,36 +40,6 @@ const Devices = () => {
                 </Col>
             </Row>
             <DeviceTable />
-        </div>
-    );
-};
-
-const DeviceTable = () => {
-    const [columns, totalData] = [dummyColumns, dummyData];
-    const [filteredData, setFilteredData] = useState(totalData);
-
-    const handleSearch = input => {
-        const filtered = totalData.filter(device => {
-            return Object.keys(device).some(key => {
-                return device[key].toLowerCase().includes(input.toLowerCase());
-            });
-        });
-        setFilteredData(filtered);
-    };
-
-    return (
-        <div id='deviceTable'>
-            <div className='tableUtils'>
-                <FilterButton />
-                <SearchBar onClick={handleSearch} />
-            </div>
-            <Card>
-                <div className='tableContent'>
-                    <DummyCardEx height='500px'>
-                        <Table columns={columns} data={filteredData} />
-                    </DummyCardEx>
-                </div>
-            </Card>
         </div>
     );
 };
