@@ -9,6 +9,8 @@
 .moduleProfile {
     width: 100%;
     background-color: #383d3f;
+    margin: -20px;
+    margin-left: 0px;
 }
 
 .profileHeader {
