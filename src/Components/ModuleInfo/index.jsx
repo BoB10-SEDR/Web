@@ -4,6 +4,7 @@ import Profile from '@Components/ModuleInfo/Profile';
 
 const ModuleInfo = props => {
     const { modules = [] } = props;
+    //TODO_S :: dummy 데이터 제작 후 연동
 
     return (
         <div className='moduleInfo'>
