@@ -10,7 +10,7 @@
     width: 100%;
     background-color: #383d3f;
     margin: -20px;
-    margin-left: ;
+    margin-left: 0px;
 }
 
 .profileHeader {
@@ -31,4 +31,13 @@
 }
 
 .profileDetail {
+}
+
+.moduleName {
+    margin-top: 10px;
+}
+
+.moduleId {
+    font-size: 0.8rem;
+    color: #97989b;
 }
