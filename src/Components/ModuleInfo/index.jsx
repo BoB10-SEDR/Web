@@ -70,7 +70,58 @@ const ModuleId = props => {
 };
 
 const ProfileDetail = () => {
-    return <div className='profileDetail'></div>;
+    return (
+        <div className='profileDetail'>
+            <div className='info'>
+                <div className='normal'>
+                    <DataBox head={'운영체제'} data={'Linux'} />
+                    <DataBox head={'IN/OUT'} data={'Only In'} />
+                    <DataBox head={'장애비율'} data={'10%'} />
+                </div>
+                <Description data={'Lnux 기반으로 돌아가는 라즈베리파이 모듈'} />
+            </div>
+            <Stat totalLogs={'210,926'} attackRate={'10%'} />
+        </div>
+    );
+};
+
+const DataBox = props => {
+    const { head, data } = props;
+
+    return (
+        <div className='dataBox'>
+            <div className='head'>{head}</div>
+            <div className='data'>{data}</div>
+        </div>
+    );
+};
+
+const Description = props => {
+    const { data } = props;
+
+    return (
+        <div className='description'>
+            <div className='head'>모듈 상세 설명</div>
+            <div className='data'>{data}</div>
+        </div>
+    );
+};
+
+const Stat = props => {
+    const { totalLogs, attackRate } = props;
+
+    return (
+        <div className='stat'>
+            <div className='totalLogs'>
+                <div className='head'>전체 로그 수</div>
+                <div className='data'>{totalLogs}</div>
+            </div>
+            <div className='attackRate'>
+                <div className='head'>공격 로그 비율</div>
+                <div className='data'>{attackRate}</div>
+            </div>
+        </div>
+    );
 };
 
 export default ModuleInfo;
