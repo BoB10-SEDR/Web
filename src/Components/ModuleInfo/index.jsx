@@ -35,7 +35,7 @@ const ProfileHeader = () => {
     return (
         <div className='profileHeader'>
             <div className='profileMenu'>
-                <KebabMenu items={KebabDummy} />
+                <KebabMenu color='#97989b' items={KebabDummy} />
             </div>
         </div>
     );
