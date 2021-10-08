@@ -3,6 +3,8 @@ import { Row, Col } from '@Components/Grid';
 import PageHeading from '@Components/UI/PageHeading';
 import Card from '@Components/Card';
 import EventViewer from '@Components/EventViewer';
+import ModuleInfo from '@Components/ModuleInfo';
+
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 import DummyCardSimple from '@Dummy/DummyCardSimple';
@@ -26,7 +28,7 @@ const Networks = () => {
                 </Col>
                 <Col xl={9} md={9} mb>
                     <Card>
-                        <DummyCardEx height='300px'></DummyCardEx>
+                        <ModuleInfo />
                     </Card>
                 </Col>
             </Row>

@@ -1,0 +1,34 @@
+.moduleInfo {
+    display: flex;
+}
+
+.moduleSlider {
+    width: 70%;
+}
+
+.moduleProfile {
+    width: 100%;
+    background-color: #383d3f;
+    margin: -20px;
+    margin-left: 0px;
+}
+
+.profileHeader {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profileMenu {
+    margin-top: 5%;
+    margin-right: 5%;
+}
+
+.profileName {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileDetail {
+}
