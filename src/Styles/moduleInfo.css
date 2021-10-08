@@ -34,7 +34,7 @@
     margin: 10%;
 }
 
-.profileDetail .info {
+.profileDetail .dataInfo {
     display: flex;
     justify-content: space-between;
 }
