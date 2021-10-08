@@ -23,7 +23,7 @@ const EventViewer = props => {
             <div className='eventViewerContentWrapper'>
                 <SplitterLayout vertical={true} primaryMinSize={480} secondaryInitialSize={400}>
                     <div className='cardBody'>
-                        <Table onRowClick={handleRowClick} nowSelected={rowId} />
+                        <Table onRowClick={handleRowClick} nowSelected={rowId} columnColor='#FFF' />
                     </div>
                     <div>
                         <LogDetail id={rowId} />

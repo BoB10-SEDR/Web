@@ -3,7 +3,7 @@ import '@Styles/card.css';
 import Header from '@Components/UI/CardHeader';
 
 const Card = props => {
-    const { title = '', children = [], border = '', borderRadius = '6px', padding = '20px' } = props;
+    const { title = '', children = [], border = '', borderRadius = '6px', padding = '1.25rem' } = props;
 
     const hasTitle = title !== '';
 

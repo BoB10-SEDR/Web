@@ -9,6 +9,7 @@ import PageHeading from '@Components/UI/PageHeading';
 import DummyCardSimple from '@Dummy/DummyCardSimple';
 import Slider from '@Components/Slider';
 import CardBodyForm from '../../Components/Card/Form';
+import Table from '@Components/Table';
 
 const Dashboard = () => {
     const { barId, barData, barOptions } = BarDummy;
@@ -21,7 +22,7 @@ const Dashboard = () => {
 
     const cardDefaultConfig = {
         borderRadius: '18px',
-        padding: '24px 30px 24px 30px',
+        padding: '20px ​25px 20px 25px',
     };
 
     return (
@@ -50,14 +51,21 @@ const Dashboard = () => {
             </Row>
 
             <Row>
-                <Col xl={8} lg={7}>
+                <Col lg={6}>
                     <Card title='시간별 전체 로그 수'>
-                        {/* <Bar id={barId} data={barData} options={barOptions} /> */}
-                        <Slider />
+                        <Bar id={barId} data={barData} options={barOptions} />
+                        {/* <Slider /> */}
+                        {/* <Table /> */}
                     </Card>
                 </Col>
 
-                <Col xl={4} lg={5}>
+                <Col lg={3}>
+                    <Card title='공격 유형별 로그 비율'>
+                        <Pie id={pieId} data={pieData} options={pieOptions} />
+                    </Card>
+                </Col>
+
+                <Col lg={3}>
                     <Card title='장비별 로그비율'>
                         <Pie id={pieId} data={pieData} options={pieOptions} />
                     </Card>
@@ -68,14 +76,18 @@ const Dashboard = () => {
                 <Col lg={6}>
                     <Card title='대응정책 적용/해제'>
                         <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
-                        <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
                     </Card>
                 </Col>
                 <Col lg={6}>
                     <Card title='공격 유형별 로그 개수'>
                         <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
                     </Card>
-                    <Card title='공격 유형별 로그 비율?'>
+                </Col>
+            </Row>
+
+            <Row>
+                <Col lg={12}>
+                    <Card title='어떤 심오한 테이블이 들어설 예정'>
                         <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
                     </Card>
                 </Col>

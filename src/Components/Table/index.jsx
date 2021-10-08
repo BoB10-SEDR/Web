@@ -6,18 +6,32 @@ import { dummyColumns, dummyData } from '@Dummy/tableDummy';
 
 const Table = props => {
     // TODO_P :: namor => 이거 패키지 삭제해야함 (랜덤명 생성 패키지)
-    const { onRowClick = () => {}, nowSelected, columns = dummyColumns, data = dummyData } = props;
+    const {
+        onRowClick = () => {},
+        nowSelected,
+        columns = dummyColumns,
+        data = dummyData,
+        columnColor = '#FFF',
+    } = props;
     const cols = useMemo(() => columns, [columns]);
     const rows = useMemo(() => data, [data]);
 
     console.table(rows);
 
-    return <TableContent columns={cols} data={rows} onRowClick={onRowClick} nowSelected={nowSelected} />;
+    return (
+        <TableContent
+            columns={cols}
+            data={rows}
+            onRowClick={onRowClick}
+            nowSelected={nowSelected}
+            columnColor={columnColor}
+        />
+    );
 };
 
 export default Table;
 
-const TableContent = ({ columns, data, onRowClick, nowSelected }) => {
+const TableContent = ({ columns, data, onRowClick, nowSelected, columnColor }) => {
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
         columns,
         data,
@@ -29,7 +43,9 @@ const TableContent = ({ columns, data, onRowClick, nowSelected }) => {
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
-                            <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                            <th style={{ color: columnColor }} {...column.getHeaderProps()}>
+                                {column.render('Header')}
+                            </th>
                         ))}
                     </tr>
                 ))}

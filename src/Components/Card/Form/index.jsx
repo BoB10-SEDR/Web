@@ -8,6 +8,8 @@ const CardBodyForm = props => {
         icon = '',
         titleFontColor = '#FFF',
         contentFontColor = '#FFF',
+        titleFontSize = '14px',
+        contentFontSize = '18px',
     } = props;
 
     switch (mode.toLocaleLowerCase()) {
@@ -15,10 +17,10 @@ const CardBodyForm = props => {
             return (
                 <div className='defaultCardBody'>
                     <article className='description'>
-                        <h4 className='title' style={{ color: titleFontColor }}>
+                        <h4 className='title' style={{ color: titleFontColor, fontSize: titleFontSize }}>
                             {title}
                         </h4>
-                        <p className='content' style={{ color: contentFontColor }}>
+                        <p className='content' style={{ color: contentFontColor, fontSize: contentFontSize }}>
                             {content}
                         </p>
                     </article>
