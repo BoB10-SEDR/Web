@@ -76,11 +76,13 @@
 
 .profileDetail .stat .totalLogs {
     width: 50%;
+    border-right: 1px solid #73716f;
 }
 
 .profileDetail .stat .attackRate {
     width: 50%;
     text-align: right;
+    border-left: 1px solid #73716f;
 }
 
 .profileDetail .stat .data {
