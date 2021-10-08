@@ -1,5 +1,6 @@
 import '@Styles/moduleInfo.css';
-import Header from './Header';
+import KebabMenu from '@Components/UI/KebabMenu';
+import KebabDummy from '@Dummy/KebabDummy';
 import Body from './Body';
 
 const Profile = props => {
@@ -9,6 +10,16 @@ const Profile = props => {
         <div className='moduleProfile'>
             <Header />
             <Body data={data} />
+        </div>
+    );
+};
+
+const Header = () => {
+    return (
+        <div className='profileHeader'>
+            <div className='profileMenu'>
+                <KebabMenu color='#97989b' items={KebabDummy} />
+            </div>
         </div>
     );
 };
