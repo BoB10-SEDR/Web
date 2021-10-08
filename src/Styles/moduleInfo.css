@@ -10,7 +10,7 @@
     width: 100%;
     background-color: #383d3f;
     margin: -20px;
-    margin-left: 0px;
+    margin-left: ;
 }
 
 .profileHeader {
@@ -23,7 +23,7 @@
     margin-right: 5%;
 }
 
-.profileName {
+.profileStamp {
     height: 40%;
     display: flex;
     flex-direction: column;

@@ -44,15 +44,15 @@ const ProfileHeader = () => {
 const ProfileBody = () => {
     return (
         <div className='profileBody'>
-            <ProfileName />
+            <ProfileStamp />
             <ProfileDetail />
         </div>
     );
 };
 
-const ProfileName = () => {
+const ProfileStamp = () => {
     return (
-        <div className='profileName'>
+        <div className='profileStamp'>
             <DeviceIcon size={100} isActive />
         </div>
     );
