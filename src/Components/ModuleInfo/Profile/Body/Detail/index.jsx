@@ -2,10 +2,12 @@ import Info from './Info';
 import Stat from './Stat';
 
 const Detail = props => {
+    const { info, stat } = props;
+
     return (
         <div className='profileDetail'>
-            <Info />
-            <Stat totalLogs={'210,926'} attackRate={'10%'} />
+            <Info info={info} />
+            <Stat stat={stat} />
         </div>
     );
 };

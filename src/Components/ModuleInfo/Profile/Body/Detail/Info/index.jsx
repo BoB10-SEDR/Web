@@ -1,12 +1,15 @@
 const Info = props => {
+    const { info } = props;
+    const { os, inout, abnormalRate, description } = info;
+
     return (
         <div className='dataInfo'>
             <div className='normal'>
-                <DataBox head={'운영체제'} data={'Linux'} />
-                <DataBox head={'IN/OUT'} data={'Only In'} />
-                <DataBox head={'장애비율'} data={'10%'} />
+                <DataBox head={'운영체제'} data={os} />
+                <DataBox head={'IN/OUT'} data={inout} />
+                <DataBox head={'장애비율'} data={abnormalRate} />
             </div>
-            <Description data={'Lnux 기반으로 돌아가는 라즈베리파이 모듈'} />
+            <Description data={description} />
         </div>
     );
 };

@@ -2,11 +2,13 @@ import '@Styles/moduleInfo.css';
 import Header from './Header';
 import Body from './Body';
 
-const Profile = () => {
+const Profile = props => {
+    const { data } = props;
+
     return (
         <div className='moduleProfile'>
             <Header />
-            <Body />
+            <Body data={data} />
         </div>
     );
 };

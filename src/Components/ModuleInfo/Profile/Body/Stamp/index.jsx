@@ -1,17 +1,20 @@
 import DeviceIcon from '@Components/DeviceIcon';
 
-const Stamp = () => {
+const Stamp = props => {
+    const { type, state, name, id } = props;
+
     return (
         <div className='profileStamp'>
-            <DeviceIcon size={100} isActive />
-            <ModuleName />
-            <ModuleId id={'2019003709'} />
+            <DeviceIcon size={100} type={type} state={state} />
+            <ModuleName name={name} />
+            <ModuleId id={id} />
         </div>
     );
 };
 
-const ModuleName = () => {
-    return <div className='moduleName'>모듈 이름</div>;
+const ModuleName = props => {
+    const { name } = props;
+    return <div className='moduleName'>{name}</div>;
 };
 
 const ModuleId = props => {
