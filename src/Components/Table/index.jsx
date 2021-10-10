@@ -71,10 +71,13 @@ const TableContent = ({ columns, data, onRowClick, nowSelected, isCheckable }) =
             </thead>
             <tbody {...getTableBodyProps()}>
                 {rows.map((row, idx) => {
+                    const styleCondition = isCheckable ? row.isSelected : nowSelected === idx;
                     prepareRow(row);
                     return (
                         <tr
-                            style={{ backgroundColor: idx === nowSelected ? '#35383d' : 'transparent' }}
+                            style={{
+                                backgroundColor: styleCondition ? '#35383d' : 'transparent',
+                            }}
                             {...row.getRowProps({
                                 onClick: () => onRowClick(idx),
                             })}
