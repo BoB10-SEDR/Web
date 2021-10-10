@@ -48,7 +48,7 @@
 }
 
 .toggleSwitch input:checked + label {
-    background: #4e73df;
+    background: #db7470;
 }
 
 .toggleSwitch input:checked + label:after {
