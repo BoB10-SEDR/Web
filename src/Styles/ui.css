@@ -124,11 +124,12 @@
 
 .checkBox {
     display: inline-block;
+}
+
+.checkBox label {
     position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
+    display: inline-block;
     cursor: pointer;
-    font-size: 22px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -136,7 +137,6 @@
 }
 
 .checkBox input {
-    position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
@@ -144,9 +144,8 @@
 }
 
 .checkMark {
-    position: absolute;
-    top: -2px;
-    left: 0;
+    display: inline-block;
+    vertical-align: middle;
     height: 20px;
     width: 20px;
     background-color: #eee;
@@ -162,8 +161,8 @@
 }
 
 .checkMark:after {
-    content: '';
     position: absolute;
+    content: '';
     display: none;
 }
 
@@ -172,10 +171,10 @@
 }
 
 .checkBox .checkMark:after {
-    left: 6px;
-    bottom: 6px;
-    width: 4px;
-    height: 8px;
+    left: 50%;
+    bottom: 30%;
+    width: 20%;
+    height: 50%;
     border: solid white;
     border-width: 0 2.5px 2.5px 0;
     -webkit-transform: rotate(45deg);
