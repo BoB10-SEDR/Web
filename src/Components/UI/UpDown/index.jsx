@@ -2,7 +2,7 @@ import '@Styles/ui.css';
 import { HiArrowNarrowUp, HiArrowNarrowDown } from 'react-icons/hi';
 
 const UpDown = props => {
-    const { isDecreasing, amount, isRate } = props;
+    const { isDecreasing, amount } = props;
 
     let color = '#727CF5';
     let Icon = HiArrowNarrowUp;
@@ -15,7 +15,7 @@ const UpDown = props => {
     return (
         <div className='upDown'>
             <Icon color={color} />
-            <span style={{ color }}>{isRate ? `${amount}%` : amount.toLocaleString()}</span>
+            <span style={{ color }}>{amount}</span>
         </div>
     );
 };
