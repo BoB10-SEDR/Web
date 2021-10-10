@@ -11,7 +11,7 @@ const Table = props => {
     const cols = useMemo(() => columns, [columns]);
     const rows = useMemo(() => data, [data]);
 
-    console.table(rows);
+    // console.table(rows);
 
     return (
         <TableContent

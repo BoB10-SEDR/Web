@@ -21,7 +21,7 @@ const Dashboard = () => {
 
     const cardDefaultConfig = {
         borderRadius: '18px',
-        padding: '24px 30px 24px 30px',
+        padding: '25px 20px',
     };
 
     return (
@@ -52,7 +52,6 @@ const Dashboard = () => {
             <Row>
                 <Col xl={8} lg={7}>
                     <Card title='시간별 전체 로그 수'>
-                        {/* <Bar id={barId} data={barData} options={barOptions} /> */}
                         <Slider />
                     </Card>
                 </Col>
