@@ -53,7 +53,7 @@
 }
 
 .toggleSwitch input:checked + label:after {
-    left: calc(100% - 4px);
+    left: 92%;
     transform: translateX(-100%);
 }
 
