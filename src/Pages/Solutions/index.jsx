@@ -7,13 +7,12 @@ import Button from '@Components/UI/Button';
 const Solutions = () => {
     return (
         <div id='solutions' className='page'>
-            <PageHeading title='Solutions' />
             <Card>
                 <TableHeading>
                     <span>대응 정책</span>
                     <Button>Apply</Button>
                 </TableHeading>
-                <Table />
+                <Table isCheckable />
             </Card>
         </div>
     );
