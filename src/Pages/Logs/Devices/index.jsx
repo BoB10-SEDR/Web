@@ -26,6 +26,7 @@ const Devices = () => {
 
     return (
         <div id='detected' className='page'>
+            <Tabs />
             <Row>
                 <Col md={3} mb>
                     <Card border='1px solid red'>
@@ -47,6 +48,24 @@ const Devices = () => {
                 </Col>
             </Row>
             <DeviceTable />
+        </div>
+    );
+};
+
+const Tabs = () => {
+    return (
+        <div id='tabs'>
+            <Tab />
+            <Tab />
+        </div>
+    );
+};
+
+const Tab = props => {
+    return (
+        <div className='tab'>
+            <div className='icon'></div>
+            <div className='index'></div>
         </div>
     );
 };
