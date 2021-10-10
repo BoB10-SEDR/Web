@@ -1,7 +1,8 @@
 import '@Styles/ui.css';
 import { forwardRef, useEffect, useRef } from 'react';
 
-const CheckBox = forwardRef(({ indeterminate, ...rest }, ref) => {
+const CheckBox = forwardRef((props, ref) => {
+    const { indeterminate, ...rest } = props;
     const defaultRef = useRef();
     const resolvedRef = ref || defaultRef;
 
