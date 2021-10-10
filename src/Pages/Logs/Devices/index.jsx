@@ -1,6 +1,8 @@
 import '@Styles/devices.css';
 
 import { useState } from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
 import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
@@ -18,6 +20,7 @@ import DummyCardEx from '@Dummy/DummyCardEx';
 import { dummyColumns, dummyData } from '@Dummy/deviceTableDummy';
 
 const Devices = () => {
+    const [tabIndex, setTabIndex] = useState(0);
     const { barId, barData, barOptions } = BarDummy;
     const { pieId, pieData, pieOptions } = PieDummy;
 
@@ -26,7 +29,12 @@ const Devices = () => {
 
     return (
         <div id='detected' className='page'>
-            <Tabs />
+            <Tabs className='tabs' selected={tabIndex} onSelect={index => setTabIndex(index)}>
+                <TabList className='tabList'>
+                    <Tab className='tab'>test 1</Tab>
+                    <Tab className='tab'>test 2</Tab>
+                </TabList>
+            </Tabs>
             <Row>
                 <Col md={3} mb>
                     <Card border='1px solid red'>
@@ -48,24 +56,6 @@ const Devices = () => {
                 </Col>
             </Row>
             <DeviceTable />
-        </div>
-    );
-};
-
-const Tabs = () => {
-    return (
-        <div id='tabs'>
-            <Tab />
-            <Tab />
-        </div>
-    );
-};
-
-const Tab = props => {
-    return (
-        <div className='tab'>
-            <div className='icon'></div>
-            <div className='index'></div>
         </div>
     );
 };

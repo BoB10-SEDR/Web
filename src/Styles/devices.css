@@ -13,14 +13,20 @@
     margin-left: 0.5rem;
 }
 
-#tabs {
+.tabs {
     position: absolute;
-    display: flex;
-    flex-direction: column;
+    z-index: 1;
     right: 0;
 }
 
+.tabList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .tab {
+    cursor: pointer;
     width: 50px;
     height: 50px;
     background-color: #1c1e22;
