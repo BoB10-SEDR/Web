@@ -121,3 +121,64 @@
 .button:not(:disabled):not(.disabled) {
     cursor: pointer;
 }
+
+.checkBox {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkBox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkMark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 30%;
+}
+
+.checkBox:hover input ~ .checkMark {
+    background-color: #ff9999;
+}
+
+.checkBox input:checked ~ .checkMark {
+    background-color: red;
+}
+
+.checkMark:after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.checkBox input:checked ~ .checkMark:after {
+    display: block;
+}
+
+.checkBox .checkMark:after {
+    left: 5px;
+    top: 1px;
+    width: 3px;
+    height: 7px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
