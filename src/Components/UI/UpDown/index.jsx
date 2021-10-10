@@ -15,7 +15,7 @@ const UpDown = props => {
     return (
         <div className='upDown'>
             <Icon color={color} />
-            <span style={{ color }}>{`${amount}%`}</span>
+            <span style={{ color }}>{isRate ? `${amount}%` : amount.toLocaleString()}</span>
         </div>
     );
 };
