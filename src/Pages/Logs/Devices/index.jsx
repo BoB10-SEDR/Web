@@ -29,7 +29,12 @@ const Devices = () => {
 
     return (
         <div id='detected' className='page'>
-            <Tabs className='tabs' selected={tabIndex} onSelect={index => setTabIndex(index)}>
+            <Tabs
+                className='tabs'
+                selected={tabIndex}
+                selectedTabClassName='active'
+                onSelect={index => setTabIndex(index)}
+            >
                 <TabList className='tabList'>
                     <Tab className='tab'>test 1</Tab>
                     <Tab className='tab'>test 2</Tab>

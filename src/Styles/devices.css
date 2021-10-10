@@ -35,6 +35,10 @@
     border-end-start-radius: 10%;
 }
 
+.tab.active {
+    background-color: red;
+}
+
 .tab .icon {
     width: 60%;
     height: 60%;
