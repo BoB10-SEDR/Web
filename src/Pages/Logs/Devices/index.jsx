@@ -1,5 +1,5 @@
 import '@Styles/devices.css';
-
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
@@ -20,7 +20,6 @@ import DummyCardEx from '@Dummy/DummyCardEx';
 import { dummyColumns, dummyData } from '@Dummy/deviceTableDummy';
 
 const Devices = () => {
-    const [tabIndex, setTabIndex] = useState(0);
     const { barId, barData, barOptions } = BarDummy;
     const { pieId, pieData, pieOptions } = PieDummy;
 
@@ -29,17 +28,7 @@ const Devices = () => {
 
     return (
         <div id='detected' className='page'>
-            <Tabs
-                className='tabs'
-                selected={tabIndex}
-                selectedTabClassName='active'
-                onSelect={index => setTabIndex(index)}
-            >
-                <TabList className='tabList'>
-                    <Tab className='tab'>test 1</Tab>
-                    <Tab className='tab'>test 2</Tab>
-                </TabList>
-            </Tabs>
+            <DeviceTabs />
             <Row>
                 <Col md={3} mb>
                     <Card border='1px solid red'>
@@ -62,6 +51,35 @@ const Devices = () => {
             </Row>
             <DeviceTable />
         </div>
+    );
+};
+
+const CustomTab = props => {
+    const { path = '/Logs/Details', title = 'detail' } = props;
+
+    return (
+        <Link to={path}>
+            <Tab className='tab'>{title}</Tab>
+        </Link>
+    );
+};
+
+CustomTab.tabsRole = 'Tab';
+
+const DeviceTabs = () => {
+    const [tabIndex, setTabIndex] = useState(0);
+
+    return (
+        <Tabs className='tabs' selected={tabIndex} selectedTabClassName='active' onSelect={index => setTabIndex(index)}>
+            <TabList className='tabList'>
+                <Link to='/Logs/Details'>
+                    <Tab className='tab'>detail</Tab>
+                </Link>
+                <Link to='/Logs/Details'>
+                    <Tab className='tab'>detail</Tab>
+                </Link>
+            </TabList>
+        </Tabs>
     );
 };
 

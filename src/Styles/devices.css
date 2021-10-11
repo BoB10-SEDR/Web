@@ -33,6 +33,7 @@
     border: 1px solid #24262a;
     border-top-left-radius: 10%;
     border-end-start-radius: 10%;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .tab.active {

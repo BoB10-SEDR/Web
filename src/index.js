@@ -9,6 +9,7 @@ import '@Styles/ui.css';
 import Nav from '@Components/Nav';
 import Dashboard from '@Pages/Dashboard';
 import Devices from '@Pages/Logs/Devices';
+import Details from '@Pages/Logs/Details';
 import Networks from '@Pages/Logs/Networks';
 import Detected from '@Pages/Logs/Detected';
 import Solutions from '@Pages/Solutions';
@@ -43,6 +44,7 @@ const Home = () => {
                                 <Route path='/Logs/Detected' component={Detected} />
                                 <Route path='/Solutions' component={Solutions} />
                                 <Route path='/PenTesting' component={PenTesting} />
+                                <Route path='/Logs/Details' component={Details} />
                             </Switch>
                             <Footer />
                         </div>
