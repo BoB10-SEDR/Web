@@ -17,7 +17,7 @@ const Networks = () => {
 
     return (
         <div id='networks' className='page'>
-            <PageHeading title='Details' />
+            {/* <PageHeading title='Details' /> */}
             <Row>
                 <Col xl={1} md={1}>
                     <DeviceNav />
