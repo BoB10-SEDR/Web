@@ -13,7 +13,7 @@ import Details from '@Pages/Logs/Details';
 import Networks from '@Pages/Logs/Networks';
 import Detected from '@Pages/Logs/Detected';
 import Solutions from '@Pages/Solutions';
-import PenTesting from '@Pages/PenTesting';
+import Inspection from '@Pages/Inspection';
 import Card from '@Components/Card';
 import LineArea from '@Components/Charts/Line';
 import Radar from '@Components/Charts/Radar';
@@ -43,7 +43,7 @@ const Home = () => {
                                 <Route path='/Logs/Networks' component={Networks} />
                                 <Route path='/Logs/Detected' component={Detected} />
                                 <Route path='/Solutions' component={Solutions} />
-                                <Route path='/PenTesting' component={PenTesting} />
+                                <Route path='/Inspection' component={Inspection} />
                                 <Route path='/Logs/Details' component={Details} />
                             </Switch>
                             <Footer />

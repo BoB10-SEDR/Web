@@ -5,7 +5,12 @@ import PageHeading from '@Components/UI/PageHeading';
 import '@Styles/inspection.css';
 import { DummyMockTest, DummyHistory } from '@Dummy/DummyImgs.jsx';
 
+import store from '@Stores/deviceDetail.js';
+import { observer } from 'mobx-react';
+
 const Inspection = () => {
+    const { openedTabList } = store;
+
     return (
         <div id='inspection'>
             {/* <PageHeading title='Pen-testing' noToggle /> */}
@@ -31,4 +36,4 @@ const Inspection = () => {
     );
 };
 
-export default Inspection;
+export default observer(Inspection);
