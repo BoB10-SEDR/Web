@@ -2,7 +2,7 @@ import '@Styles/deviceIcon.css';
 import iconMap from './Data/deviceIconMap';
 
 const DeviceIcon = props => {
-    const { type = 'computer', size = 50, isActive } = props;
+    const { type = 'computer', size = 50, state = 'active' } = props;
     const Icon = iconMap[type];
 
     const style = {
@@ -13,7 +13,7 @@ const DeviceIcon = props => {
     return (
         <div className='deviceIcon' style={style}>
             <Icon size={size * 0.7} />
-            <div className={'statusDot' + (isActive ? ' active' : '')}></div>
+            <div className={`statusDot ${state}`}></div>
         </div>
     );
 };
