@@ -54,18 +54,6 @@ const Devices = () => {
     );
 };
 
-const CustomTab = props => {
-    const { path = '/Logs/Details', title = 'detail' } = props;
-
-    return (
-        <Link to={path}>
-            <Tab className='tab'>{title}</Tab>
-        </Link>
-    );
-};
-
-CustomTab.tabsRole = 'Tab';
-
 const DeviceTabs = () => {
     const [tabIndex, setTabIndex] = useState(0);
 
