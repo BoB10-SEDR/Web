@@ -36,7 +36,7 @@ const Devices = () => {
                         <UpDown isDecreasing amount={changeNumber.toLocaleString()} />
                     </Card>
                     <Card border='1px solid red'>
-                        <CardBodyForm titleFontColor='red' title='전체 대비 공격 로그 비율' content='15%' />
+                        <CardBodyForm titleFontColor='red' title='전체 공격 로그 비율' content='15%' />
                         <UpDown isRate amount={`${changeRate}%`} />
                     </Card>
                     <Card title='공격 유형별 로그 현황'>
