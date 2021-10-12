@@ -18,12 +18,6 @@ const Slider = props => {
 
     const [nowItemIndex, setItemIndex] = useState(0);
 
-    // const getModuleData = () => {
-    //     // TODO_P :: useSWR사용해서 데이터 받아오기
-
-    //     return sliderModuleListDummy;
-    // };
-
     const makePagenation = (moduleList = [], count = 0, threshold = 8) => {
         let returnList = [];
 
@@ -59,8 +53,6 @@ const Slider = props => {
     };
 
     const handleListIdxChange = (pageIdx, elemIdx) => {
-        console.log({ pageIdx, threshold, elemIdx, calc: pageIdx * threshold + elemIdx });
-
         handleChange(pageIdx * threshold + elemIdx);
     };
 
