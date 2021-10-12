@@ -24,7 +24,7 @@ const Devices = () => {
     const { pieId, pieData, pieOptions } = PieDummy;
 
     const changeNumber = 1339523;
-    const changeRate = '4%';
+    const changeRate = 4;
 
     return (
         <div id='detected' className='page'>
@@ -33,11 +33,11 @@ const Devices = () => {
                 <Col md={3} mb>
                     <Card border='1px solid red'>
                         <CardBodyForm titleFontColor='red' title='전체 로그 개수' content='19,991,006개' />
-                        <UpDown isDecreasing={true} amount={changeNumber.toLocaleString()} />
+                        <UpDown isDecreasing amount={changeNumber.toLocaleString()} />
                     </Card>
                     <Card border='1px solid red'>
                         <CardBodyForm titleFontColor='red' title='전체 대비 공격 로그 비율' content='15%' />
-                        <UpDown amount={changeRate} />
+                        <UpDown isRate amount={`${changeRate}%`} />
                     </Card>
                     <Card title='공격 유형별 로그 현황'>
                         <DummyCardEx height='215px'></DummyCardEx>
