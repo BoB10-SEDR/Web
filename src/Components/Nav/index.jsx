@@ -27,8 +27,8 @@ const NavHeader = props => {
 
 const NavBody = props => {
     const { items } = props;
-    return items.map(item => {
-        return <Item type={item.type} item={item} />;
+    return items.map((item, index) => {
+        return <Item key={index} type={item.type} item={item} />;
     });
 };
 

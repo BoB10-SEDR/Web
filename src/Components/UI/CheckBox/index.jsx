@@ -11,10 +11,12 @@ const CheckBox = forwardRef((props, ref) => {
     }, [resolvedRef, indeterminate]);
 
     return (
-        <label className='checkBox'>
-            <input type='checkbox' ref={resolvedRef} {...rest} />
-            <span className='checkMark'></span>
-        </label>
+        <div className='checkBox'>
+            <label>
+                <input type='checkbox' ref={resolvedRef} {...rest} />
+                <span className='checkMark'></span>
+            </label>
+        </div>
     );
 });
 

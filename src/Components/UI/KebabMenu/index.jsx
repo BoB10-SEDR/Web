@@ -6,7 +6,7 @@ import CollapseLinks from '@Components/CollapseLinks';
 
 const KebabMenu = props => {
     const ref = useRef();
-    const items = props.items;
+    const { color = 'white', items } = props;
     const [expanded, setExpanded] = useState(false);
 
     const handleClick = () => {
@@ -30,7 +30,7 @@ const KebabMenu = props => {
 
     return (
         <div ref={ref} className='kebabMenu' onClick={handleClick}>
-            <GoKebabVertical color='white' />
+            <GoKebabVertical color={color} />
             <CollapseLinks id='kebab' isOpened={expanded} items={items} />
         </div>
     );

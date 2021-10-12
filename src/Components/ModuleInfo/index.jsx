@@ -1,65 +1,27 @@
 import '@Styles/moduleInfo.css';
 import Slider from '@Components/Slider';
-import DeviceIcon from '@Components/DeviceIcon';
-import KebabMenu from '@Components/UI/KebabMenu';
+import Profile from '@Components/ModuleInfo/Profile';
+import dummyModuleInfo from '@Dummy/dummyModuleInfo';
 
-import KebabDummy from '@Dummy/KebabDummy';
+const ModuleInfo = props => {
+    const { moduleData = [], profileData = dummyModuleInfo } = props;
+    //TODO_S :: dummy 데이터 제작 후 연동
 
-const ModuleInfo = () => {
     return (
         <div className='moduleInfo'>
-            <ModuleSlider />
-            <ModuleProfile />
+            <ModuleSlider data={moduleData} />
+            <Profile data={profileData} />
         </div>
     );
 };
 
-const ModuleSlider = () => {
+const ModuleSlider = props => {
+    const { data = [] } = props;
     return (
         <div className='moduleSlider'>
-            <Slider />
+            <Slider data={data} />
         </div>
     );
-};
-
-const ModuleProfile = () => {
-    return (
-        <div className='moduleProfile'>
-            <ProfileHeader />
-            <ProfileBody />
-        </div>
-    );
-};
-
-const ProfileHeader = () => {
-    return (
-        <div className='profileHeader'>
-            <div className='profileMenu'>
-                <KebabMenu items={KebabDummy} />
-            </div>
-        </div>
-    );
-};
-
-const ProfileBody = () => {
-    return (
-        <div className='profileBody'>
-            <ProfileName />
-            <ProfileDetail />
-        </div>
-    );
-};
-
-const ProfileName = () => {
-    return (
-        <div className='profileName'>
-            <DeviceIcon size={100} isActive />
-        </div>
-    );
-};
-
-const ProfileDetail = () => {
-    return <div className='profileDetail'></div>;
 };
 
 export default ModuleInfo;
