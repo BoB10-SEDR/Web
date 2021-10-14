@@ -18,70 +18,56 @@ import DummyCardEx from '@Dummy/DummyCardEx';
 import { dummyColumns, dummyData } from '@Dummy/solutionTableDummy';
 import d from '@Dummy/dummyDetails';
 
-const Networks = () => {
+const Details = props => {
+    const { title } = props;
     const { pieId, pieData, pieOptions } = PieDummy;
 
     return (
-        <div id='networks' className='page'>
+        <div id='details'>
+            <PageHeading title={title} />
             <Row>
-                <Col xl={1} md={1}>
-                    <DeviceNav />
-                </Col>
-                <Col xl={11} md={11}>
-                    <Card>
-                        <Row>
-                            <Col xl={3} md={3} mb>
-                                <Card border='1px solid red'>
-                                    <CardBodyForm titleFontColor='red' title='전체 로그 개수' content='19,991,006개' />
-                                    <UpDown isDecreasing={true} amount={d.totalLogs.toLocaleString()} />
-                                </Card>
-                                <Card border='1px solid red'>
-                                    <CardBodyForm
-                                        titleFontColor='red'
-                                        title='공격 유형 / 공격 로그 개수'
-                                        content='19,991,006개'
-                                    />
-                                    <UpDown
-                                        isDecreasing={true}
-                                        amount={`${d.attacks} / ${d.totalLogs.toLocaleString()}`}
-                                    />
-                                </Card>
-                            </Col>
-                            <Col xl={9} md={9} mb>
-                                <Card>
-                                    <ModuleInfo />
-                                </Card>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md={3} mb>
-                                <Card title='공격 유형별 로그 개수'>
-                                    <DummyCardEx height='277px'>
-                                        <Gauge />
-                                    </DummyCardEx>
-                                </Card>
-                            </Col>
-                            <Col md={3} mb>
-                                <Card title='공격 유형별 로그 비율'>
-                                    <Pie id={pieId} data={pieData} options={pieOptions} />
-                                </Card>
-                            </Col>
-                            <Col md={6} mb>
-                                <Card title='적용된 대응 정책 리스트'>
-                                    <DummyCardEx height='277px'>
-                                        <Table columns={dummyColumns} data={dummyData} />
-                                    </DummyCardEx>
-                                </Card>
-                            </Col>
-                            <Col md={12} mb>
-                                <EventViewer />
-                            </Col>
-                        </Row>
+                <Col xl={3} md={3} mb>
+                    <Card border='1px solid red'>
+                        <CardBodyForm titleFontColor='red' title='전체 로그 개수' content='19,991,006개' />
+                        <UpDown isDecreasing={true} amount={d.totalLogs.toLocaleString()} />
                     </Card>
+                    <Card border='1px solid red'>
+                        <CardBodyForm titleFontColor='red' title='공격 유형/로그 개수' content='19,991,006개' />
+                        <UpDown isDecreasing={true} amount={`${d.attacks} / ${d.totalLogs.toLocaleString()}`} />
+                    </Card>
+                </Col>
+                <Col xl={9} md={9} mb>
+                    <Card>
+                        <ModuleInfo />
+                    </Card>
+                </Col>
+            </Row>
+            <Row>
+                <Col md={3} mb>
+                    <Card title='공격 유형별 로그 개수'>
+                        <DummyCardEx height='277px'>
+                            <Gauge />
+                        </DummyCardEx>
+                    </Card>
+                </Col>
+                <Col md={3} mb>
+                    <Card title='공격 유형별 로그 비율'>
+                        <Pie id={pieId} data={pieData} options={pieOptions} />
+                    </Card>
+                </Col>
+                <Col md={6} mb>
+                    <Card title='적용된 대응 정책 리스트'>
+                        <DummyCardEx height='277px'>
+                            <Table columns={dummyColumns} data={dummyData} />
+                        </DummyCardEx>
+                    </Card>
+                </Col>
+                <Col md={12} mb>
+                    <EventViewer />
                 </Col>
             </Row>
         </div>
     );
 };
 
-export default Networks;
+export default Details;

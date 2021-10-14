@@ -27,7 +27,7 @@ const Devices = () => {
     const changeRate = 4;
 
     return (
-        <div id='detected' className='page'>
+        <div id='devices' className='page'>
             <DeviceTabs />
             <Row>
                 <Col md={3} mb>
@@ -60,10 +60,10 @@ const DeviceTabs = () => {
     return (
         <Tabs className='tabs' selected={tabIndex} selectedTabClassName='active' onSelect={index => setTabIndex(index)}>
             <TabList className='tabList'>
-                <Link to='/Logs/Details'>
+                <Link to='/Logs/Devices/Tabs'>
                     <Tab className='tab'>detail</Tab>
                 </Link>
-                <Link to='/Logs/Details'>
+                <Link to='/Logs/Devices/Tabs'>
                     <Tab className='tab'>detail</Tab>
                 </Link>
             </TabList>
