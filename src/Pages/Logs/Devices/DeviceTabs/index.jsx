@@ -7,6 +7,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { AiFillRedditCircle, AiFillTwitterCircle } from 'react-icons/ai';
 import { BiCircle } from 'react-icons/bi';
 import { IoIosClose } from 'react-icons/io';
+import store from '@Stores/deviceDetail';
 
 const DeviceTabs = () => {
     const [tabIndex, setTabIndex] = useState(0);

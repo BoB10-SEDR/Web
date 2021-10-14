@@ -8,6 +8,7 @@ import '@Styles/ui.css';
 // Components
 import Nav from '@Components/Nav';
 import Dashboard from '@Pages/Dashboard';
+import Details from '@Pages/Logs/Details';
 import Devices from '@Pages/Logs/Devices';
 import DeviceTabs from '@Pages/Logs/Devices/DeviceTabs';
 import Networks from '@Pages/Logs/Networks';
@@ -44,12 +45,8 @@ const Home = () => {
                                 <Route path='/Logs/Networks' component={Networks} />
                                 <Route path='/Logs/Detected' component={Detected} />
                                 <Route path='/Solutions' component={Solutions} />
-<<<<<<< HEAD
-                                <Route path='/PenTesting' component={PenTesting} />
-=======
                                 <Route path='/Inspection' component={Inspection} />
                                 <Route path='/Logs/Details' component={Details} />
->>>>>>> 0a8828ebb62a0aa0cab0e7aec4ebcca077404a29
                             </Switch>
                             <Footer />
                         </div>
