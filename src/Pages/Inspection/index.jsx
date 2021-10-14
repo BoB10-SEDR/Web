@@ -2,17 +2,17 @@ import Card from '@Components/Card';
 import { Row, Col } from '@Components/Grid';
 import Table from '@Components/Table';
 import PageHeading from '@Components/UI/PageHeading';
-import '@Styles/pentesting.css';
+import '@Styles/inspection.css';
 import { DummyMockTest, DummyHistory } from '@Dummy/DummyImgs.jsx';
 
-const PenTesting = () => {
+const Inspection = () => {
     return (
-        <div id='penTesting'>
-            <PageHeading title='Pen-testing' noToggle />
+        <div id='inspection'>
+            {/* <PageHeading title='Pen-testing' noToggle /> */}
 
             <Row>
                 <Col lg={12}>
-                    <Card title='Mock-Test'>
+                    <Card title='Checklist'>
                         {/* TODO_P :: MockTest 관련 Table */}
                         <DummyMockTest />
                     </Card>
@@ -31,4 +31,5 @@ const PenTesting = () => {
     );
 };
 
-export default PenTesting;
+export default Inspection;
+
