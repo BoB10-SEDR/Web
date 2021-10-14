@@ -1,12 +1,13 @@
 import { observable } from 'mobx';
 
 const deviceDetail = {
-    openedTabList: [],
-    openTab(tabName) {
-        this.openedTabList.push(tabName);
+    tabs: [],
+    openTab(tab) {
+        this.tabs.push(tab);
+        console.log(this.tabs.length);
     },
     closeTab(idx) {
-        this.openedTabList.splice(idx, 1);
+        this.tabs.splice(idx, 1);
     },
 };
 
