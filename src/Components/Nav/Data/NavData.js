@@ -57,8 +57,8 @@ const NavData = {
         {
             type: 'link',
             isCollapsed: false,
-            title: 'Pen-testing',
-            path: '/PenTesting',
+            title: 'Inspection',
+            path: '/Inspection',
             icon: <AiIcons.AiFillFire className='navIcon' />,
         },
         {
