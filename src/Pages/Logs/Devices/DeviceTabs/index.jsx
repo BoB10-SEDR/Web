@@ -1,3 +1,4 @@
+import '@Styles/deviceTabs.css';
 import { useState } from 'react';
 import { observer } from 'mobx-react';
 import { Tabs } from 'react-tabs';

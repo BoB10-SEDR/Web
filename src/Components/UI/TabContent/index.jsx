@@ -11,7 +11,7 @@ const TabContent = props => {
             </div>
             <div className='title'>{name}</div>
             <div className='cancelButton' onClick={() => store.closeTab(tabIndex)}>
-                <IoIosClose size='25' />
+                <IoIosClose size='20' />
             </div>
         </>
     );

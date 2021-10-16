@@ -47,36 +47,3 @@
     border-radius: 50%;
     margin: 20% auto;
 }
-
-#deviceTabs .tabList {
-    display: flex;
-    justify-content: flex-start;
-}
-
-#deviceTabs .tab {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    cursor: pointer;
-    width: 200px;
-    height: 30px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background-color: #3c3d42;
-}
-
-#deviceTabs .tab.active {
-    background-color: red;
-}
-
-#deviceTabs .tab .icon {
-    margin-left: 5%;
-}
-
-#deviceTabs .tab .title {
-    margin-left: 5%;
-}
-
-#deviceTabs .tab .cancelButton {
-    margin-left: auto;
-}
