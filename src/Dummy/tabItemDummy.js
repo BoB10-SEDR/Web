@@ -8,8 +8,9 @@ const buttons = [
         children: <AiFillRedditCircle />,
         onClick: () =>
             store.openTab({
+                Icon: AiFillRedditCircle,
                 type: 'computer',
-                title: 'dummy1',
+                text: 'dummy1',
                 path: '/sdfs',
             }),
     },
@@ -17,8 +18,9 @@ const buttons = [
         children: <AiFillTwitterCircle />,
         onClick: () =>
             store.openTab({
+                Icon: AiFillTwitterCircle,
                 type: 'computer',
-                title: 'dummy2',
+                text: 'dummy2',
                 path: '/sdfs',
             }),
     },
@@ -26,8 +28,9 @@ const buttons = [
         children: <SiApple />,
         onClick: () =>
             store.openTab({
+                Icon: SiApple,
                 type: 'computer',
-                title: 'dummy3',
+                text: 'dummy3',
                 path: '/sdfs',
             }),
     },

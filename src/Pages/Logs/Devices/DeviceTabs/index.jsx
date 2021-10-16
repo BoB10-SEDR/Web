@@ -25,7 +25,7 @@ const DeviceTabs = () => {
                     >
                         <TabList className='tabList'>
                             {store.tabs.map((tab, index) => {
-                                return <CustomTab key={index}>{tab.title}</CustomTab>;
+                                return <CustomTab key={index} tabIndex={index} {...tab} />;
                             })}
                         </TabList>
                         {store.tabs.map((tab, index) => {

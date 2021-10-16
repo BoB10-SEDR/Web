@@ -5,14 +5,14 @@ import store from '@Stores/deviceDetail';
 import { observer } from 'mobx-react';
 
 const CustomTab = props => {
-    const { Icon = BiCircle, children, tabIndex, ...tabProps } = props;
+    const { Icon = BiCircle, text = 'dummy', tabIndex, ...tabProps } = props;
 
     return (
         <Tab className='tab' tabIndex={tabIndex} {...tabProps}>
             <div className='icon'>
                 <Icon size='25' />
             </div>
-            <div className='title'>{children}</div>
+            <div className='title'>{text}</div>
             <div className='cancelButton' onClick={() => store.closeTab(tabIndex)}>
                 <IoIosClose size='25' />
             </div>

@@ -3,8 +3,11 @@ import { observable } from 'mobx';
 const deviceDetail = {
     tabs: [],
     openTab(tab) {
+        if (this.tabs.length > 6) {
+            alert('too many tabs');
+            return;
+        }
         this.tabs.push(tab);
-        console.log(this.tabs.length);
     },
     closeTab(idx) {
         this.tabs.splice(idx, 1);
