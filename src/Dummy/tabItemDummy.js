@@ -1,5 +1,4 @@
 import store from '@Stores/deviceDetail';
-import { CustomTab, CustomTabPanel } from '@Components/CustomTabs';
 import { AiFillRedditCircle, AiFillTwitterCircle } from 'react-icons/ai';
 import { SiApple } from 'react-icons/si';
 
@@ -9,8 +8,9 @@ const buttons = [
         onClick: () =>
             store.openTab({
                 Icon: AiFillRedditCircle,
-                type: 'computer',
-                text: 'dummy1',
+                deviceType: 'computer',
+                deviceName: '화재경보기기',
+                deviceId: '20190003709',
                 path: '/sdfs',
             }),
     },
@@ -19,8 +19,9 @@ const buttons = [
         onClick: () =>
             store.openTab({
                 Icon: AiFillTwitterCircle,
-                type: 'computer',
-                text: 'dummy2',
+                deviceType: 'camera',
+                deviceName: 'IP 카메라',
+                deviceId: '20190003709',
                 path: '/sdfs',
             }),
     },
@@ -29,8 +30,9 @@ const buttons = [
         onClick: () =>
             store.openTab({
                 Icon: SiApple,
-                type: 'computer',
-                text: 'dummy3',
+                deviceType: 'computer',
+                deviceName: '공유기',
+                deviceId: '20190003709',
                 path: '/sdfs',
             }),
     },
