@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { observer } from 'mobx-react';
 import { Tabs } from 'react-tabs';
+import Details from '@Pages/Logs/Details';
 import { Row, Col } from '@Components/Grid';
 import DeviceNav from '@Components/DeviceNav';
 import { CustomTabList, CustomTab, CustomTabPanel } from '@Components/CustomTabs';
+import TabContent from '@Components/UI/TabContent';
+import TabPanelHeader from '@Components/UI/TabPanelHeader';
 import tabItemDummy from '@Dummy/tabItemDummy';
 import store from '@Stores/deviceDetail';
 
@@ -25,11 +28,16 @@ const DeviceTabs = () => {
                     >
                         <CustomTabList>
                             {store.tabs.map((tab, index) => (
-                                <CustomTab key={index} tabIndex={index} {...tab} />
+                                <CustomTab key={index} tabIndex={index}>
+                                    <TabContent tabIndex={index} Icon={tab.Icon} name={tab.deviceName} />
+                                </CustomTab>
                             ))}
                         </CustomTabList>
                         {store.tabs.map((tab, index) => (
-                            <CustomTabPanel key={index} title={tab.title} />
+                            <CustomTabPanel key={index}>
+                                <TabPanelHeader name={tab.deviceName} id={tab.deviceId} />
+                                <Details path={tab.path} />
+                            </CustomTabPanel>
                         ))}
                     </Tabs>
                 </Col>
