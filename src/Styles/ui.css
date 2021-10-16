@@ -188,3 +188,14 @@
 
     margin-top: 10px;
 }
+
+.tabPanelHeader {
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-bottom: 3%;
+}
+
+.tabPanelHeader .id {
+    font-size: 0.9rem;
+    color: #606163;
+}
