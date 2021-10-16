@@ -24,13 +24,13 @@ const DeviceTabs = () => {
                         onSelect={index => setTabIndex(index)}
                     >
                         <TabList className='tabList'>
-                            {store.tabs.map((tab, index) => {
-                                return <CustomTab key={index} tabIndex={index} {...tab} />;
-                            })}
+                            {store.tabs.map((tab, index) => (
+                                <CustomTab key={index} tabIndex={index} {...tab} />
+                            ))}
                         </TabList>
-                        {store.tabs.map((tab, index) => {
-                            return <CustomTabPanel key={index} title={tab.title} />;
-                        })}
+                        {store.tabs.map((tab, index) => (
+                            <CustomTabPanel key={index} title={tab.title} />
+                        ))}
                     </Tabs>
                 </Col>
             </Row>
