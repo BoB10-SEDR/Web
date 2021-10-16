@@ -4,7 +4,7 @@ import { SiApple } from 'react-icons/si';
 
 const buttons = [
     {
-        children: <AiFillRedditCircle />,
+        children: <AiFillRedditCircle size='20' />,
         onClick: () =>
             store.openTab({
                 Icon: AiFillRedditCircle,
@@ -15,7 +15,7 @@ const buttons = [
             }),
     },
     {
-        children: <AiFillTwitterCircle />,
+        children: <AiFillTwitterCircle size='20' />,
         onClick: () =>
             store.openTab({
                 Icon: AiFillTwitterCircle,
@@ -26,7 +26,7 @@ const buttons = [
             }),
     },
     {
-        children: <SiApple />,
+        children: <SiApple size='20' />,
         onClick: () =>
             store.openTab({
                 Icon: SiApple,

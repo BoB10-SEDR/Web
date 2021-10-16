@@ -7,7 +7,7 @@ const TabContent = props => {
     return (
         <>
             <div className='icon'>
-                <Icon size='25' />
+                <Icon size='20' />
             </div>
             <div className='title'>{name}</div>
             <div className='cancelButton' onClick={() => store.closeTab(tabIndex)}>
