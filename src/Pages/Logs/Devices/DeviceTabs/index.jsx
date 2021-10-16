@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { observer } from 'mobx-react';
+import { Tabs } from 'react-tabs';
 import { Row, Col } from '@Components/Grid';
 import DeviceNav from '@Components/DeviceNav';
-import { CustomTab, CustomTabPanel } from '@Components/CustomTabs';
-import { Tabs, TabList } from 'react-tabs';
+import { CustomTabList, CustomTab, CustomTabPanel } from '@Components/CustomTabs';
 import tabItemDummy from '@Dummy/tabItemDummy';
 import store from '@Stores/deviceDetail';
 
@@ -23,11 +23,11 @@ const DeviceTabs = () => {
                         selectedTabClassName='active'
                         onSelect={index => setTabIndex(index)}
                     >
-                        <TabList className='tabList'>
+                        <CustomTabList>
                             {store.tabs.map((tab, index) => (
                                 <CustomTab key={index} tabIndex={index} {...tab} />
                             ))}
-                        </TabList>
+                        </CustomTabList>
                         {store.tabs.map((tab, index) => (
                             <CustomTabPanel key={index} title={tab.title} />
                         ))}
