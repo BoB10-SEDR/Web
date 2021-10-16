@@ -1,4 +1,4 @@
-import store from '@Stores/deviceDetail';
+import store from '@Stores/deviceTabs';
 import { BiCircle } from 'react-icons/bi';
 import { IoIosClose } from 'react-icons/io';
 

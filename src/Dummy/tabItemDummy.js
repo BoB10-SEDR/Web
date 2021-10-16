@@ -1,4 +1,4 @@
-import store from '@Stores/deviceDetail';
+import store from '@Stores/deviceTabs';
 import { AiFillRedditCircle, AiFillTwitterCircle } from 'react-icons/ai';
 import { SiApple } from 'react-icons/si';
 

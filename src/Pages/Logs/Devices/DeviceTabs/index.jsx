@@ -8,7 +8,7 @@ import { CustomTabList, CustomTab, CustomTabPanel } from '@Components/CustomTabs
 import TabContent from '@Components/UI/TabContent';
 import TabPanelHeader from '@Components/UI/TabPanelHeader';
 import tabItemDummy from '@Dummy/tabItemDummy';
-import store from '@Stores/deviceDetail';
+import store from '@Stores/deviceTabs';
 
 const DeviceTabs = () => {
     const [tabIndex, setTabIndex] = useState(0);

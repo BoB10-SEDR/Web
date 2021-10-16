@@ -1,10 +1,10 @@
 import { observable } from 'mobx';
 
-const deviceDetail = {
+const deviceTabs = {
     tabs: [],
     openTab(tab) {
         if (this.tabs.length > 6) {
-            alert('too many tabs');
+            alert('Too many tabs');
             return;
         }
         this.tabs.push(tab);
@@ -14,4 +14,4 @@ const deviceDetail = {
     },
 };
 
-export default observable(deviceDetail);
+export default observable(deviceTabs);
