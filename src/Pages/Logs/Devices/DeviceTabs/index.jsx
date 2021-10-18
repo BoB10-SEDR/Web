@@ -1,13 +1,7 @@
 import '@Styles/deviceTabs.css';
-<<<<<<< HEAD
 import { observer } from 'mobx-react';
 import { Tabs } from 'react-tabs';
 import { useHistory } from 'react-router-dom';
-=======
-import { useState } from 'react';
-import { observer } from 'mobx-react';
-import { Tabs } from 'react-tabs';
->>>>>>> a6bb4486d99a419a6f1a8f86fef306765761f4ea
 import Details from '@Pages/Logs/Details';
 import { Row, Col } from '@Components/Grid';
 import DeviceNav from '@Components/DeviceNav';
