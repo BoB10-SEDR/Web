@@ -6,7 +6,7 @@ const ButtonGroup = props => {
     const { isVertical, buttons } = props;
     const [activeButton, setActiveButton] = useState(0);
 
-    const handleClick = (event, key, onClick) => {
+    const handleClick = (key, onClick) => {
         setActiveButton(key);
         onClick();
     };
@@ -19,7 +19,7 @@ const ButtonGroup = props => {
                     <Button
                         key={index}
                         isActive={activeButton === index ? true : false}
-                        onClick={event => handleClick(event, index, onClick)}
+                        onClick={() => handleClick(index, onClick)}
                         {...buttonProps}
                     >
                         {children}
