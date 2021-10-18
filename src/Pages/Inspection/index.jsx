@@ -1,9 +1,9 @@
 import Card from '@Components/Card';
 import { Row, Col } from '@Components/Grid';
 import Table from '@Components/Table';
-import PageHeading from '@Components/UI/PageHeading';
 import '@Styles/inspection.css';
-import { DummyMockTest, DummyHistory } from '@Dummy/DummyImgs.jsx';
+import { DummyMockTest } from '@Dummy/DummyImgs.jsx';
+import TestDashboard from '@Components/TestDashboard';
 
 const Inspection = () => {
     return (
@@ -12,7 +12,7 @@ const Inspection = () => {
 
             <Row>
                 <Col lg={12}>
-                    <Card title='Checklist'>
+                    <Card title='점검 항목 리스트'>
                         {/* TODO_P :: MockTest 관련 Table */}
                         <DummyMockTest />
                     </Card>
@@ -21,10 +21,8 @@ const Inspection = () => {
 
             <Row>
                 <Col lg={12}>
-                    <Card title='History'>
-                        {/* TODO_P :: History 관련 Table */}
-                        <DummyHistory />
-                    </Card>
+                    {/* <Card title='hello'></Card> */}
+                    <TestDashboard />
                 </Col>
             </Row>
         </div>
