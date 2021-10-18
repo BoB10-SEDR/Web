@@ -8,14 +8,10 @@ import { DummyCircle } from '@Dummy/DummyComponents';
 import ProgressBar from '@Components/ProgressBar';
 import TaskInformation from './TaskInformation';
 
+import { dummyTasks } from '@Dummy/dummyTask.js';
+
 const TestDashboard = () => {
     const [nowIndex, setIndex] = useState(0);
-
-    const dummyTasks = [
-        { taskTitle: '작업 명 1', taskDescription: 'task 상세설명 혹은 시간 1', status: 'pending' },
-        { taskTitle: '작업 명 2', taskDescription: 'task 상세설명 혹은 시간 2', status: 'blocked' },
-        { taskTitle: '작업 명 3', taskDescription: 'task 상세설명 혹은 시간 3', status: 'unblocked' },
-    ];
 
     return (
         <div id='testDashboard' className='card'>
@@ -30,7 +26,7 @@ const TestDashboard = () => {
             </div>
             <div className='taskDetail'>
                 <Header title={dummyTasks[nowIndex]['taskTitle']} timestamp={dummyTasks[nowIndex]['taskDescription']} />
-                <ProgressBar />
+                <ProgressBar steps={dummyTasks[nowIndex]['progress']} />
                 <TaskInformation />
                 {/* 적용 가능한 정책 list => 새로운 form */}
             </div>

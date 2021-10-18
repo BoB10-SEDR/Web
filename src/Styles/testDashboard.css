@@ -8,6 +8,8 @@
     flex: 0 0 33.3333%;
 
     padding: 25px 20px 0;
+
+    background-color: #35383d;
 }
 
 #testDashboard .taskListWrapper h6 {
@@ -39,6 +41,10 @@
     background-color: transparent;
 }
 
+#testDashboard .taskListWrapper ul.taskList .taskItem .taskInfo {
+    margin: auto 0;
+}
+
 #testDashboard .taskListWrapper ul.taskList .taskItem[mode='1'] {
     background-color: rgba(128, 128, 128, 0.185);
 }
@@ -47,14 +53,11 @@
     display: block;
 }
 
-/* #testDashboard .taskListWrapper ul.taskList .taskItem .taskInfo span.taskName {
-    
-} */
-
 #testDashboard .taskListWrapper ul.taskList .taskItem .taskInfo span.taskDescription {
     display: block;
 
     color: rgba(128, 128, 128);
+    font-size: 14px;
 }
 
 #testDashboard .taskListWrapper ul.taskList .taskItem .status {
@@ -79,7 +82,7 @@
 
 #testDashboard .taskDetail .taskDetailHeader .taskDetailInfoWrapper {
     margin: auto 0;
-    height: 50px;
+    /* height: 50px; */
 }
 
 #testDashboard .taskDetail .taskDetailHeader .taskDetailInfoWrapper span {

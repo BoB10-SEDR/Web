@@ -1,11 +1,239 @@
-#progressBar {
-    display: flex;
+.hidden {
+    display: none;
+}
 
-    margin-top: 10px;
-    padding: 15px 30px;
+.opaque {
+    opacity: 0;
+    transition: 0.3s ease;
+}
 
+.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+#checkout-progress {
+    width: 90%;
+    margin: 10px auto 0;
+    font-size: 2.5em;
+    font-weight: 900;
+    position: relative;
+}
+
+#checkout-progress:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 20px;
     width: 100%;
-    height: 80px;
+    background-color: #ccc;
+    transform: translateY(-50%) perspective(1000px);
+}
 
-    background-color: rgb(128, 128, 128);
+#checkout-progress:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 20px;
+    width: 100%;
+    background-color: #f02632;
+    transform: scaleX(0) translateY(-50%) perspective(1000px);
+    transform-origin: left center;
+    transition: transform 0.5s ease;
+}
+
+/* 4-Steps */
+
+#checkout-progress.step-2-of-4:after {
+    transform: scaleX(0.333) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-3-of-4:after {
+    transform: scaleX(0.666) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-4-of-4:after {
+    transform: scaleX(1) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-5-of-4:after {
+    transform: scaleX(1) translateY(-50%) perspective(1000px);
+}
+
+/* 5-Steps */
+
+#checkout-progress.step-2-of-5:after {
+    transform: scaleX(0.25) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-3-of-5:after {
+    transform: scaleX(0.5) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-4-of-5:after {
+    transform: scaleX(0.75) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-5-of-5:after {
+    transform: scaleX(1) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-6-of-5:after {
+    transform: scaleX(1) translateY(-50%) perspective(1000px);
+}
+
+/* 6-Steps */
+
+#checkout-progress.step-2-of-6:after {
+    transform: scaleX(0.2) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-3-of-6:after {
+    transform: scaleX(0.4) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-4-of-6:after {
+    transform: scaleX(0.6) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-5-of-6:after {
+    transform: scaleX(0.8) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-6-of-6:after {
+    transform: scaleX(1) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress.step-7-of-6:after {
+    transform: scaleX(1) translateY(-50%) perspective(1000px);
+}
+
+#checkout-progress .progress-bar {
+    width: 100%;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#checkout-progress .progress-bar .step {
+    z-index: 2;
+    position: relative;
+
+    width: 34px;
+    height: 40px;
+}
+
+#checkout-progress .progress-bar .step span {
+    font-size: 20px;
+}
+
+#checkout-progress .progress-bar .step .step-label {
+    position: absolute;
+    top: calc(100% + 25px);
+    left: 50%;
+    transform: translateX(-50%) perspective(1000px);
+    white-space: nowrap;
+    font-size: 0.4em;
+    font-weight: 600;
+    color: #ccc;
+    transition: 0.3s ease;
+}
+
+#checkout-progress .progress-bar .step span {
+    color: #ccc;
+    transition: 0.3s ease;
+    /* display: block; */
+    transform: translate3d(0, 0, 0) scale(1) perspective(1000px);
+}
+
+#checkout-progress .progress-bar .step .fa-check {
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transition: transform 0.3s ease;
+    transform: translate3d(-50%, -50%, 0) scale(0) perspective(1000px);
+}
+
+#checkout-progress .progress-bar .step.active span,
+#checkout-progress .progress-bar .step.active .step-label {
+    color: #f02632;
+}
+
+#checkout-progress .progress-bar .step.valid {
+    width: 34px;
+}
+
+#checkout-progress .progress-bar .step.valid .fa-check {
+    transform: translate3d(-50%, -50%, 0) scale(1) perspective(1000px);
+}
+
+#checkout-progress .progress-bar .step.valid span {
+    color: #f02632;
+    transform: translate3d(0, 0, 0) scale(2) perspective(1000px);
+
+    display: block;
+}
+
+#checkout-progress .progress-bar .step.valid .step-label {
+    color: #fff !important;
+}
+
+#checkout-progress .progress-bar .step:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) perspective(1000px);
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 5px solid #ccc;
+    transition: 0.3s ease;
+}
+
+#checkout-progress .progress-bar .step.active:after {
+    border: 5px solid #f09826;
+}
+
+#checkout-progress .progress-bar .step.valid:after {
+    background-color: #f02632;
+    border: 5px solid #f02632;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin: 100px auto 0px;
+}
+
+.button-container .btn {
+    display: inline-block;
+    background-color: #f02632;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 900;
+    border: 3px solid #f02632;
+    transition: 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button-container .btn:hover {
+    background-color: transparent;
+    color: #f02632;
+    transform: scale(1.02) perspective(1000px);
+}
+
+.fa-check:before {
+    font-size: 25px;
 }
