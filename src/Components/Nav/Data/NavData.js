@@ -31,7 +31,7 @@ const NavData = {
             icon: <AiIcons.AiOutlineDatabase className='navIcon' />,
             children: [
                 {
-                    title: 'Deivces',
+                    title: 'Devices',
                     path: '/Logs/Devices',
                     cName: 'nav-collapse-item',
                 },

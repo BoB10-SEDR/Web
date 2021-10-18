@@ -24,9 +24,9 @@ const CardBodyForm = props => {
                             {content}
                         </p>
                     </article>
-                    <div className='cardIcon'>
+                    {/* <div className='cardIcon'>
                         <img src={icon} alt='' />
-                    </div>
+                    </div> */}
                 </div>
             );
         default:

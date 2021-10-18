@@ -4,17 +4,16 @@ import ButtonGroup from '@Components/ButtonGroup';
 import Button from '@Components/UI/Button';
 import IconButtonListDummy from '@Dummy/IconButtonListDummy';
 
-const DeviceNav = () => {
-    const handleArrowClick = () => {};
-
+const DeviceNav = props => {
+    const { items = IconButtonListDummy, onArrowClick = () => {} } = props;
     return (
         <div id='deviceNav'>
             <div className='deviceNavItems'>
                 <div className='deviceNavGroup'>
-                    <ButtonGroup isVertical={true} buttons={IconButtonListDummy} />
+                    <ButtonGroup isVertical={true} buttons={items} />
                 </div>
                 <div className='deviceNavToggle'>
-                    <Button isCircle={true} onClick={handleArrowClick}>
+                    <Button isCircle={true} onClick={onArrowClick}>
                         <IoIosArrowBack color='#fff' />
                     </Button>
                 </div>
