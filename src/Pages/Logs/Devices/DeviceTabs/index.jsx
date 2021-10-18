@@ -24,7 +24,7 @@ const DeviceTabs = () => {
                 <Col xl={11} md={11}>
                     <Tabs
                         className='tabs'
-                        selectedIndex={store.activeTab}
+                        selectedIndex={store.getActiveTab()}
                         selectedTabClassName='active'
                         onSelect={handleSelect}
                     >

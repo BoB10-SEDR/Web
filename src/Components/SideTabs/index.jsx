@@ -6,7 +6,7 @@ import store from '@Stores/deviceTabs';
 
 const SideTabs = () => {
     return (
-        <Tabs className='sideTabs' selectedIndex={store.activeTab} selectedTabClassName='active'>
+        <Tabs className='sideTabs' selectedIndex={store.getActiveTab()} selectedTabClassName='active'>
             <TabList className='sideTabList'>
                 {store.tabs.map((tab, index) => {
                     const Icon = tab.Icon;
