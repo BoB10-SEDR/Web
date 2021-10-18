@@ -1,0 +1,49 @@
+#deviceTabs .tabList {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#deviceTabs .tab {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 200px;
+    height: 30px;
+    border-right: 2px solid #24262b;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #3c3d42;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
+}
+
+#deviceTabs .tab:not(.active):hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#deviceTabs .tab.active {
+    background-color: red;
+}
+
+#deviceTabs .tab .icon {
+    margin-left: 5%;
+}
+
+#deviceTabs .tab .title {
+    margin-left: 5%;
+}
+
+#deviceTabs .tab .cancelButton {
+    margin-left: auto;
+    border-radius: 50%;
+    -webkit-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
+}
+
+#deviceTabs .tab .cancelButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
