@@ -10,16 +10,20 @@ import TabPanelHeader from '@Components/UI/TabPanelHeader';
 import tabItemDummy from '@Dummy/tabItemDummy';
 import store from '@Stores/deviceTabs';
 
-const DeviceTabs = () => {
+const DeviceTabs = ({ history }) => {
     const handleSelect = index => {
         store.setActiveTab(index);
+    };
+
+    const handleArrowClick = () => {
+        history.push('/Logs/Devices');
     };
 
     return (
         <div id='deviceTabs' className='page'>
             <Row>
                 <Col xl={1} md={1}>
-                    <DeviceNav items={tabItemDummy} />
+                    <DeviceNav items={tabItemDummy} onArrowClick={handleArrowClick} />
                 </Col>
                 <Col xl={11} md={11}>
                     <Tabs
