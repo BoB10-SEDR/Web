@@ -5,24 +5,20 @@ import SideTab from '@Components/SideTabs/SideTab';
 import store from '@Stores/deviceTabs';
 
 const SideTabs = () => {
-    const handleSelect = index => {
-        store.setActiveTab(index);
-    };
-
     return (
-        <Tabs className='sideTabs' selected={store.activeTab} selectedTabClassName='active' onSelect={handleSelect}>
+        <Tabs className='sideTabs' selectedIndex={store.activeTab} selectedTabClassName='active'>
             <TabList className='sideTabList'>
                 {store.tabs.map((tab, index) => {
                     const Icon = tab.Icon;
                     return (
-                        <SideTab key={index} tabIndex={index}>
+                        <SideTab key={index} tabIndex={index} onClick={() => store.setActiveTab(index)}>
                             <Icon size='20' />
                         </SideTab>
                     );
                 })}
             </TabList>
-            {store.tabs.map(() => (
-                <TabPanel></TabPanel>
+            {store.tabs.map((tab, index) => (
+                <TabPanel key={index}></TabPanel>
             ))}
         </Tabs>
     );

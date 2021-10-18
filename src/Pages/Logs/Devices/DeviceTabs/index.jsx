@@ -1,5 +1,4 @@
 import '@Styles/deviceTabs.css';
-import { useState } from 'react';
 import { observer } from 'mobx-react';
 import { Tabs } from 'react-tabs';
 import Details from '@Pages/Logs/Details';
@@ -12,7 +11,9 @@ import tabItemDummy from '@Dummy/tabItemDummy';
 import store from '@Stores/deviceTabs';
 
 const DeviceTabs = () => {
-    const [tabIndex, setTabIndex] = useState(0);
+    const handleSelect = index => {
+        store.setActiveTab(index);
+    };
 
     return (
         <div id='deviceTabs' className='page'>
@@ -23,23 +24,27 @@ const DeviceTabs = () => {
                 <Col xl={11} md={11}>
                     <Tabs
                         className='tabs'
-                        selected={tabIndex}
+                        selectedIndex={store.activeTab}
                         selectedTabClassName='active'
-                        onSelect={index => setTabIndex(index)}
+                        onSelect={handleSelect}
                     >
                         <CustomTabList>
-                            {store.tabs.map((tab, index) => (
-                                <CustomTab key={index} tabIndex={index}>
-                                    <TabContent tabIndex={index} Icon={tab.Icon} name={tab.deviceName} />
-                                </CustomTab>
-                            ))}
+                            {store.tabs.map((tab, index) => {
+                                return (
+                                    <CustomTab key={index} tabIndex={index}>
+                                        <TabContent tabIndex={index} Icon={tab.Icon} name={tab.deviceName} />
+                                    </CustomTab>
+                                );
+                            })}
                         </CustomTabList>
-                        {store.tabs.map((tab, index) => (
-                            <CustomTabPanel key={index}>
-                                <TabPanelHeader name={tab.deviceName} id={tab.deviceId} />
-                                <Details path={tab.path} />
-                            </CustomTabPanel>
-                        ))}
+                        {store.tabs.map((tab, index) => {
+                            return (
+                                <CustomTabPanel key={index}>
+                                    <TabPanelHeader name={tab.deviceName} id={tab.deviceId} />
+                                    <Details path={tab.path} />
+                                </CustomTabPanel>
+                            );
+                        })}
                     </Tabs>
                 </Col>
             </Row>

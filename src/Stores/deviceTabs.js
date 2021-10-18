@@ -5,6 +5,7 @@ const deviceTabs = {
     activeTab: 0,
     setActiveTab(idx) {
         this.activeTab = idx;
+        console.log(this.activeTab);
     },
     openTab(tab) {
         if (this.tabs.length > 6) {
