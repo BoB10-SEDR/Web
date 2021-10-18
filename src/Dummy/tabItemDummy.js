@@ -5,6 +5,7 @@ import { SiApple } from 'react-icons/si';
 const buttons = [
     {
         children: <AiFillRedditCircle size='20' />,
+        title: '화재경보기기',
         onClick: () =>
             store.openTab({
                 Icon: AiFillRedditCircle,
@@ -16,6 +17,7 @@ const buttons = [
     },
     {
         children: <AiFillTwitterCircle size='20' />,
+        title: 'IP 카메라',
         onClick: () =>
             store.openTab({
                 Icon: AiFillTwitterCircle,
@@ -27,6 +29,7 @@ const buttons = [
     },
     {
         children: <SiApple size='20' />,
+        title: '공유기',
         onClick: () =>
             store.openTab({
                 Icon: SiApple,

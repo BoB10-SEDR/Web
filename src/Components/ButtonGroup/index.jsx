@@ -18,7 +18,7 @@ const ButtonGroup = props => {
                 return (
                     <Button
                         key={index}
-                        isActive={activeButton === index ? true : false}
+                        isActive={activeButton === index}
                         onClick={() => handleClick(index, onClick)}
                         {...buttonProps}
                     >

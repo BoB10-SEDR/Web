@@ -1,16 +1,19 @@
 import '@Styles/deviceTabs.css';
 import { observer } from 'mobx-react';
 import { Tabs } from 'react-tabs';
+import { useHistory } from 'react-router-dom';
 import Details from '@Pages/Logs/Details';
 import { Row, Col } from '@Components/Grid';
 import DeviceNav from '@Components/DeviceNav';
 import { CustomTabList, CustomTab, CustomTabPanel } from '@Components/CustomTabs';
-import TabContent from '@Components/UI/TabContent';
+import TabContent from '@Components/CustomTabs/TabContent';
 import TabPanelHeader from '@Components/UI/TabPanelHeader';
 import tabItemDummy from '@Dummy/tabItemDummy';
 import store from '@Stores/deviceTabs';
 
-const DeviceTabs = ({ history }) => {
+const DeviceTabs = () => {
+    const history = useHistory();
+
     const handleSelect = index => {
         store.setActiveTab(index);
     };
@@ -36,7 +39,7 @@ const DeviceTabs = ({ history }) => {
                             {store.tabs.map((tab, index) => {
                                 return (
                                     <CustomTab key={index} tabIndex={index}>
-                                        <TabContent tabIndex={index} Icon={tab.Icon} name={tab.deviceName} />
+                                        <TabContent tabIndex={index} Icon={tab.Icon} title={tab.deviceName} />
                                     </CustomTab>
                                 );
                             })}
