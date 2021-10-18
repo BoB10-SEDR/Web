@@ -5,19 +5,15 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
-import Table from '@Components/Table';
 import DeviceNav from '@Components/DeviceNav';
-import FilterButton from '@Components/FilterButton';
-import SearchBar from '@Components/SearchBar';
 import CardBodyForm from '@Components/Card/Form';
 import UpDown from '@Components/UI/UpDown';
 import DeviceTable from '@Components/DeviceTable';
+import SideTabs from '@Components/SideTabs';
 
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
-import DummyCardSimple from '@Dummy/DummyCardSimple';
 import DummyCardEx from '@Dummy/DummyCardEx';
-import { dummyColumns, dummyData } from '@Dummy/deviceTableDummy';
 
 const Devices = () => {
     const { barId, barData, barOptions } = BarDummy;
@@ -28,7 +24,7 @@ const Devices = () => {
 
     return (
         <div id='devices' className='page'>
-            <DeviceTabs />
+            <SideTabs />
             <Row>
                 <Col md={3} mb>
                     <Card border='1px solid red'>
@@ -51,23 +47,6 @@ const Devices = () => {
             </Row>
             <DeviceTable />
         </div>
-    );
-};
-
-const DeviceTabs = () => {
-    const [tabIndex, setTabIndex] = useState(0);
-
-    return (
-        <Tabs className='tabs' selected={tabIndex} selectedTabClassName='active' onSelect={index => setTabIndex(index)}>
-            <TabList className='tabList'>
-                <Link to='/Logs/Devices/Tabs'>
-                    <Tab className='tab'>detail</Tab>
-                </Link>
-                <Link to='/Logs/Devices/Tabs'>
-                    <Tab className='tab'>detail</Tab>
-                </Link>
-            </TabList>
-        </Tabs>
     );
 };
 

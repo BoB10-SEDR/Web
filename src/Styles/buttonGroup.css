@@ -17,13 +17,17 @@
 .buttonGroup button {
     margin-bottom: 12px;
     margin-right: 8px;
+    -webkit-transition: -webkit-filter 0.2s ease;
+    transition: filter 0.2s ease;
 }
 
 .buttonGroup .button:not(.active) {
+    -webkit-filter: brightness(30%);
     filter: brightness(30%);
 }
 
 .buttonGroup .button:hover,
 .buttonGroup .button.active {
+    -webkit-filter: none;
     filter: none;
 }
