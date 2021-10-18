@@ -22,6 +22,9 @@ const ProgressBar = props => {
                     const isActive = idx === selectedIdx;
                     const isValid = idx < selectedIdx;
 
+                    // TODO_P :: fail 그리고 Success 로직
+                    const isFailed = false;
+
                     const elementClassName = `step step-${nowIdx} ${isActive ? 'active' : isValid ? 'valid' : ''}`;
 
                     const handleClick = e => {
@@ -39,7 +42,7 @@ const ProgressBar = props => {
                             ) : (
                                 <Circle />
                             )}
-                            <div className={`fa fa-check ${!isValid ? 'opaque' : ''}`}></div>
+                            <div className={`fa fa-${isFailed ? 'times' : 'check'} ${!isValid ? 'opaque' : ''}`}></div>
                             <div className='step-label'> {label}</div>
                         </div>
                     );
@@ -58,7 +61,7 @@ const Circle = () => {
                 width: '30px',
                 height: '30px',
                 borderRadius: '100%',
-                backgroundColor: '#ccc',
+                backgroundColor: '#33363B',
                 margin: '5px auto 0',
             }}
         />

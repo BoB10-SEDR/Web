@@ -1,3 +1,5 @@
+import { Status } from '@Components/UI';
+
 const TaskItem = props => {
     const {
         taskTitle = '작업 명',
@@ -26,8 +28,7 @@ const TaskItem = props => {
             </div>
 
             <div className='status'>
-                {status}
-                {/* Status UI */}
+                <Status status={status} />
             </div>
         </li>
     );

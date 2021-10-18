@@ -27,7 +27,7 @@
     top: 50%;
     height: 20px;
     width: 100%;
-    background-color: #ccc;
+    background-color: #33363b;
     transform: translateY(-50%) perspective(1000px);
 }
 
@@ -132,24 +132,25 @@
 
 #checkout-progress .progress-bar .step .step-label {
     position: absolute;
-    top: calc(100% + 25px);
+    top: calc(100% + 20px);
     left: 50%;
     transform: translateX(-50%) perspective(1000px);
     white-space: nowrap;
-    font-size: 0.4em;
+    font-size: 14px;
     font-weight: 600;
-    color: #ccc;
+    color: #33363b;
     transition: 0.3s ease;
 }
 
 #checkout-progress .progress-bar .step span {
-    color: #ccc;
+    color: #33363b;
     transition: 0.3s ease;
     /* display: block; */
     transform: translate3d(0, 0, 0) scale(1) perspective(1000px);
 }
 
-#checkout-progress .progress-bar .step .fa-check {
+#checkout-progress .progress-bar .step .fa-check,
+#checkout-progress .progress-bar .step .fa-times {
     color: #fff;
     position: absolute;
     left: 50%;
@@ -167,7 +168,8 @@
     width: 34px;
 }
 
-#checkout-progress .progress-bar .step.valid .fa-check {
+#checkout-progress .progress-bar .step.valid .fa-check,
+#checkout-progress .progress-bar .step.valid .fa-times {
     transform: translate3d(-50%, -50%, 0) scale(1) perspective(1000px);
 }
 
@@ -191,14 +193,14 @@
     transform: translate(-50%, -50%) perspective(1000px);
     width: 45px;
     height: 45px;
-    background-color: #fff;
+    background-color: #1b1e22;
     border-radius: 50%;
-    border: 5px solid #ccc;
+    border: 5px solid #33363b;
     transition: 0.3s ease;
 }
 
 #checkout-progress .progress-bar .step.active:after {
-    border: 5px solid #f09826;
+    border: 5px solid #f02632;
 }
 
 #checkout-progress .progress-bar .step.valid:after {
@@ -234,6 +236,7 @@
     transform: scale(1.02) perspective(1000px);
 }
 
-.fa-check:before {
+.fa-check:before,
+.fa-times:before {
     font-size: 25px;
 }

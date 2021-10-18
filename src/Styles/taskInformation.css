@@ -1,0 +1,18 @@
+#taskInformation {
+    margin-top: 50px;
+}
+
+#taskInformation .title {
+    font-size: 16px;
+
+    margin-bottom: 10px;
+}
+
+#taskInformation .process {
+    width: 100%;
+    height: 200px;
+
+    background-color: rgba(154, 161, 171, 0.2);
+
+    border-radius: 6px;
+}

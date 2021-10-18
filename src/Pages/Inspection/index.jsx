@@ -3,6 +3,7 @@ import { Row, Col } from '@Components/Grid';
 import '@Styles/inspection.css';
 import { DummyMockTest } from '@Dummy/DummyImgs.jsx';
 import TestDashboard from '@Components/TestDashboard';
+import { Status } from '@Components/UI';
 
 const Inspection = () => {
     return (
@@ -20,6 +21,10 @@ const Inspection = () => {
                 <Col lg={12}>
                     <TestDashboard />
                 </Col>
+            </Row>
+
+            <Row>
+                <Col lg={12}>{/* <Status status='PENDING' /> */}</Col>
             </Row>
         </div>
     );
