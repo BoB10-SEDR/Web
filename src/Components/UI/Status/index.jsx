@@ -1,10 +1,12 @@
 const Status = props => {
-    const { status = 'PENDING' } = props;
+    const { status = 'PENDING', isMin = false } = props;
 
     const color = getColor(status);
 
+    const statusMode = isMin ? 'statusMini' : 'status';
+
     return (
-        <div id='status' status={status} style={{ background: color }}>
+        <div id={statusMode} status={status} style={{ background: color }}>
             {status}
         </div>
     );
@@ -14,14 +16,20 @@ export default Status;
 
 const getColor = (status = '') => {
     switch (status.toLocaleLowerCase()) {
-        case 'processing':
-            return '#8A63E0';
+        case '불안정':
+        case '오류':
+            return '#F66C6C';
+        case '약함':
+        case '경고':
         case 'pending':
-            return '#EBAE3F';
+            return '#F2B133';
         case 'unblocked':
-            return '#DC5251';
+            return '#F02632';
         case 'blocked':
-            return '#6ECE6A';
+        case '양호':
+            return '#61CA68';
+        case '정보':
+            return '#727CF5';
         default:
             return '#6ECE6A';
     }

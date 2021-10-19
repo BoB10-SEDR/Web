@@ -1,0 +1,105 @@
+#testDashboard {
+    flex-direction: row;
+
+    font-family: 'NanumSquare';
+}
+
+#testDashboard .taskListWrapper {
+    flex: 0 0 33.3333%;
+
+    padding: 25px 20px 0;
+
+    background-color: #35383d;
+}
+
+#testDashboard .taskListWrapper h6 {
+    margin: 0;
+    line-height: 1.2;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+#testDashboard .taskListWrapper .hr {
+    height: 1px;
+    width: 100%;
+
+    margin: 10px 0 0;
+
+    background-color: #9aa1ab25;
+}
+
+#testDashboard .taskListWrapper ul.taskList .taskItem {
+    margin: 0 -20px;
+    padding: 15px 20px;
+    height: 70px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    background-color: transparent;
+}
+
+#testDashboard .taskListWrapper ul.taskList .taskItem .taskInfo {
+    margin: auto 0;
+}
+
+#testDashboard .taskListWrapper ul.taskList .taskItem[mode='1'] {
+    background-color: rgba(128, 128, 128, 0.185);
+}
+
+#testDashboard .taskListWrapper ul.taskList .taskItem .taskInfo span {
+    display: block;
+}
+
+#testDashboard .taskListWrapper ul.taskList .taskItem .taskInfo span.taskDescription {
+    display: block;
+
+    color: rgba(128, 128, 128);
+    font-size: 14px;
+}
+
+#testDashboard .taskListWrapper ul.taskList .taskItem .status {
+    margin: auto 0;
+}
+
+#testDashboard .taskDetail {
+    flex: 0 0 66.6666%;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#testDashboard .taskDetail .taskDetailHeader {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+}
+
+#testDashboard .taskDetail .taskDetailHeader .taskDetailInfoWrapper {
+    margin: auto 0;
+    /* height: 50px; */
+}
+
+#testDashboard .taskDetail .taskDetailHeader .taskDetailInfoWrapper span {
+    display: block;
+    margin: auto 0;
+}
+
+#testDashboard .taskDetail .taskDetailHeader .taskDetailInfoWrapper span.title {
+    font-size: 20px;
+}
+#testDashboard .taskDetail .taskDetailHeader .taskDetailInfoWrapper span.time {
+    font-size: 14px;
+
+    color: rgba(128, 128, 128);
+}
+
+#testDashboard .taskDetail .taskDetailHeader .functions {
+    display: flex;
+    flex-direction: row;
+}
