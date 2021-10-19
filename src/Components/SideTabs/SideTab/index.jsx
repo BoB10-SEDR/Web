@@ -5,11 +5,9 @@ const SideTab = props => {
     const { children, ...tabProps } = props;
 
     return (
-        <Link to='/Logs/Devices/Tabs'>
-            <Tab className='sideTab' {...tabProps}>
-                {children}
-            </Tab>
-        </Link>
+        <Tab className='sideTab' {...tabProps}>
+            {children}
+        </Tab>
     );
 };
 
