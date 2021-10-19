@@ -199,3 +199,9 @@
     font-size: 0.9rem;
     color: #606163;
 }
+
+.detail {
+    display: inline-block;
+    background-color: #414346;
+    border-radius: 50%;
+}

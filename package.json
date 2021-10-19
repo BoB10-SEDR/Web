@@ -11,6 +11,8 @@
         "apexcharts": "^3.28.3",
         "bootstrap": "^5.1.1",
         "chart.js": "^2.9.4",
+        "cross-env": "^7.0.3",
+        "gh-pages": "^3.2.3",
         "history": "^5.0.1",
         "mobx": "^6.3.3",
         "mobx-react": "^7.2.0",
@@ -30,9 +32,11 @@
     },
     "scripts": {
         "start": "craco start",
-        "build": "GENERATE_SOURCEMAP=false craco build",
+        "build": "cross-env GENERATE_SOURCEMAP=false craco build",
         "test": "craco test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "predeploy": "cross-env GENERATE_SOURCEMAP=false craco build",
+        "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
         "extends": [
@@ -54,5 +58,6 @@
     },
     "devDependencies": {
         "craco-alias": "^3.0.1"
-    }
+    },
+    "homepage": "http://BoB10-SEDR.github.io"
 }

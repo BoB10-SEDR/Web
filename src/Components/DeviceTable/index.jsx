@@ -13,7 +13,7 @@ const DeviceTable = () => {
     const handleSearch = input => {
         const filtered = totalData.filter(device => {
             return Object.keys(device).some(key => {
-                return device[key].toLowerCase().includes(input.toLowerCase());
+                return String(device[key]).toLowerCase().includes(input.toLowerCase());
             });
         });
         setFilteredData(filtered);
