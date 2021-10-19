@@ -8,6 +8,7 @@ const Button = props => {
         color = 'white',
         onClick,
         isActive,
+        title,
         className = '',
         children,
     } = props;
@@ -24,6 +25,7 @@ const Button = props => {
             className={'button' + (isCircle ? ' circle' : '') + (isActive ? ' active' : '') + ` ${className}`}
             onClick={onClick}
             style={style}
+            title={title}
         >
             {children}
         </button>

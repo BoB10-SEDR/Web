@@ -26,7 +26,11 @@
     filter: brightness(30%);
 }
 
-.buttonGroup .button:hover,
+.buttonGroup .button:hover {
+    -webkit-filter: brightness(60%);
+    filter: brightness(60%);
+}
+
 .buttonGroup .button.active {
     -webkit-filter: none;
     filter: none;
