@@ -12,7 +12,6 @@
 
 .defaultCardBody .description h4.title {
     margin: 0;
-
     font-size: 16px;
 }
 
@@ -25,8 +24,8 @@
 }
 
 .defaultCardBody .cardIcon {
-    width: 64px;
-    height: 64px;
+    width: 50px;
+    height: 50px;
     background-color: gray;
 
     margin: auto;

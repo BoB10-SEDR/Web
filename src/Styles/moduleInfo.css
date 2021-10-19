@@ -1,0 +1,92 @@
+.moduleInfo {
+    display: flex;
+}
+
+.moduleSlider {
+    width: 65%;
+
+    margin-right: 20px;
+}
+
+.moduleProfile {
+    width: 100%;
+    background-color: #383d3f;
+    margin: -20px;
+    margin-left: 0px;
+}
+
+.profileHeader {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profileMenu {
+    margin-top: 5%;
+    margin-right: 5%;
+}
+
+.profileStamp {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileDetail {
+    margin: 10%;
+}
+
+.profileDetail .dataInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.moduleName {
+    margin-top: 10px;
+}
+
+.moduleId {
+    font-size: 0.8rem;
+    color: #97989b;
+}
+
+.profileDetail .normal {
+    width: 50%;
+}
+
+.profileDetail .dataBox {
+    margin-bottom: 5%;
+}
+
+.profileDetail > * {
+    font-size: 0.8rem;
+}
+
+.profileDetail .head {
+    color: #c7c9cb;
+}
+
+.profileDetail .description {
+    width: 50%;
+    text-align: right;
+}
+
+.profileDetail .stat {
+    display: flex;
+    margin-top: 10%;
+}
+
+.profileDetail .stat .totalLogs {
+    width: 50%;
+    border-right: 1px solid #73716f;
+}
+
+.profileDetail .stat .attackRate {
+    width: 50%;
+    text-align: right;
+    border-left: 1px solid #73716f;
+}
+
+.profileDetail .stat .data {
+    font-size: 1rem;
+}

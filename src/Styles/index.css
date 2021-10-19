@@ -23,6 +23,7 @@ code {
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 .mb {
@@ -46,6 +47,7 @@ a {
 }
 
 .page {
+    position: relative;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
 }

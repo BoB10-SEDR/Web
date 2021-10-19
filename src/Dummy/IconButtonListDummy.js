@@ -1,7 +1,7 @@
 import { FaCashRegister } from 'react-icons/fa';
 
 const foo = index => {
-    alert(`dummy ${index}`);
+    console.log(`dummy ${index}`);
 };
 
 const buttons = [
