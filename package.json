@@ -33,7 +33,10 @@
     "scripts": {
         "start": "craco start",
         "build": "cross-env GENERATE_SOURCEMAP=false craco build",
-        "test": "craco test"
+        "test": "craco test",
+        "eject": "react-scripts eject",
+        "predeploy": "GENERATE_SOURCEMAP=false craco build",
+        "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
         "extends": [
@@ -55,5 +58,6 @@
     },
     "devDependencies": {
         "craco-alias": "^3.0.1"
-    }
+    },
+    "homepage": "http://BoB10-SEDR.github.io"
 }
