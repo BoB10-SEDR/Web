@@ -5,7 +5,7 @@ import { SiApple } from 'react-icons/si';
 const buttons = [
     {
         children: <AiFillRedditCircle size='20' />,
-        title: '화재경보기기',
+        title: '화재경보기',
         onClick: () =>
             store.openTab({
                 Icon: AiFillRedditCircle,
