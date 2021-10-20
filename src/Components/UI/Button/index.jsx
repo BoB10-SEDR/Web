@@ -10,6 +10,7 @@ const Button = props => {
         isActive,
         className = '',
         children,
+        title,
         ...buttonProps
     } = props;
 

@@ -2,7 +2,7 @@ import '@Styles/ui.css';
 import Button from '@Components/UI/Button';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
-const HamBurgerMenu = props => {
+const HamburgerMenu = props => {
     return (
         <Button className='hamBurgerMenu' backgroundColor='#24262a'>
             <GiHamburgerMenu color='red' size='20' />
@@ -10,4 +10,4 @@ const HamBurgerMenu = props => {
     );
 };
 
-export default HamBurgerMenu;
+export default HamburgerMenu;
