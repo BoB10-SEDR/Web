@@ -1,10 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import '@Styles/header.css';
+import HamBurgerMenu from '@Components/UI/HamBurgerMenu';
 
 const Header = () => {
     return (
         <header id='topbar'>
             <ul className='topbarNav'>
+                <li className='topbarNavItem'>
+                    <HamBurgerMenu />
+                </li>
                 {/* <li class='topbarNavItem'>
                     <a
                         class='nav-link dropdown-toggle'

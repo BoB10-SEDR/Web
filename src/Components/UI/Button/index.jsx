@@ -10,6 +10,7 @@ const Button = props => {
         isActive,
         className = '',
         children,
+        ...buttonProps
     } = props;
 
     const style = {
@@ -24,6 +25,8 @@ const Button = props => {
             className={'button' + (isCircle ? ' circle' : '') + (isActive ? ' active' : '') + ` ${className}`}
             onClick={onClick}
             style={style}
+            title={title}
+            {...buttonProps}
         >
             {children}
         </button>
