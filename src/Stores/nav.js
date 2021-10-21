@@ -4,7 +4,6 @@ const nav = {
     open: true,
     setOpen(value) {
         this.open = value;
-        console.log(value);
     },
 };
 
