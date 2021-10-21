@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const ToggleSwitch = props => {
-    const { id, onToggle = () => {}, isToggled } = props;
+    const { id = 'switch', onToggle = () => {}, isToggled } = props;
     const [toggle, setToggle] = useState(isToggled);
 
     const handleChange = () => {

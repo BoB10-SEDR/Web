@@ -1,5 +1,4 @@
 import { Row, Col } from '@Components/Grid';
-
 import '@Styles/debug.css';
 
 const Debug = () => {
