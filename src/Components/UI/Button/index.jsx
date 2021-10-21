@@ -11,7 +11,6 @@ const Button = props => {
         title,
         className = '',
         children,
-        title,
         ...buttonProps
     } = props;
 
