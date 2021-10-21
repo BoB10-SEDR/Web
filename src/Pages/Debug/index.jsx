@@ -8,11 +8,10 @@ import '@Styles/debug.css';
 
 const Debug = () => {
     const dummyItems = [
-        { itemType: 'toggle', name: 'itemName', desc: 'description' },
-        { itemType: 'toggle', name: 'itemName', desc: 'description' },
-        { itemType: 'toggle', name: 'itemName', desc: 'description' },
-        { itemType: 'toggle', name: 'itemName', desc: 'description' },
-        { itemType: 'toggle', name: 'itemName', desc: 'description' },
+        { itemType: 'toggle', name: 'SQL Injection', desc: 'A, B, C, D에 적용 됨' },
+        { itemType: 'toggle', name: '이러이러한 공격', desc: 'A, B, C, D에 적용 됨' },
+        { itemType: 'toggle', name: '짧', desc: 'A, B, C, D에 적용 됨' },
+        { itemType: 'toggle', name: '그 외 나머지', desc: 'A, B, C, D에 적용 됨' },
     ];
 
     return (
@@ -21,7 +20,7 @@ const Debug = () => {
             <Card title='안녕'>
                 <Row>
                     <Col lg={3}>
-                        <List content={dummyItems} />
+                        <List title='공격 유형 별 로그 비율' titleFontColor='#F02632' content={dummyItems} />
                     </Col>
                 </Row>
             </Card>
