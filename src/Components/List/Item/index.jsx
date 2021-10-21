@@ -1,3 +1,4 @@
+import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import '@Styles/listItem.css';
 
 const Item = props => {
@@ -26,7 +27,7 @@ const Item = props => {
             </div>
             {isToggle ? (
                 <div className='toggleWrap'>
-                    <Toggle />
+                    <ToggleSwitch />
                 </div>
             ) : (
                 <div className='otherWrap'>
@@ -35,19 +36,6 @@ const Item = props => {
                 </div>
             )}
         </li>
-    );
-};
-
-// TODO_P :: Toggle 구현 후 갈기
-const Toggle = () => {
-    return (
-        <>
-            <img
-                width='20px'
-                src='https://media.discordapp.net/attachments/802076592825827332/876655513687953408/clip.png'
-                alt=''
-            />
-        </>
     );
 };
 
