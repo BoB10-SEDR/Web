@@ -8,6 +8,7 @@ const Button = props => {
         color = 'white',
         onClick,
         isActive,
+        title,
         className = '',
         children,
         title,

@@ -1,16 +1,25 @@
 import '@Styles/sideTabs.css';
 import { observer } from 'mobx-react';
+import { useHistory } from 'react-router-dom';
 import { Tabs, TabList, TabPanel } from 'react-tabs';
 import SideTab from '@Components/SideTabs/SideTab';
 import store from '@Stores/deviceTabs';
 
 const SideTabs = () => {
+    const history = useHistory();
+
     const handleSelect = index => {
         store.setActiveTab(index);
+        history.push('/Logs/Devices/Tabs');
     };
 
     return (
-        <Tabs className='sideTabs' selected={store.activeTab} selectedTabClassName='active' onSelect={handleSelect}>
+        <Tabs
+            className='sideTabs'
+            selectedIndex={store.getActiveTab()}
+            selectedTabClassName='active'
+            onSelect={index => handleSelect(index)}
+        >
             <TabList className='sideTabList'>
                 {store.tabs.map((tab, index) => {
                     const Icon = tab.Icon;
@@ -21,8 +30,8 @@ const SideTabs = () => {
                     );
                 })}
             </TabList>
-            {store.tabs.map(() => (
-                <TabPanel></TabPanel>
+            {store.tabs.map((tab, index) => (
+                <TabPanel key={index}></TabPanel>
             ))}
         </Tabs>
     );

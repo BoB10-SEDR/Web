@@ -12,7 +12,7 @@
     border-right: 2px solid #24262b;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: #3c3d42;
+    background-color: #1c1e22;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -22,7 +22,7 @@
 }
 
 #deviceTabs .tab:not(.active):hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 #deviceTabs .tab.active {
@@ -35,6 +35,10 @@
 
 #deviceTabs .tab .title {
     margin-left: 5%;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #deviceTabs .tab .cancelButton {
