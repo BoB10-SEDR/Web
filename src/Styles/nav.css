@@ -1,6 +1,7 @@
 .nav {
     display: flex;
-    width: 6.5em;
+    width: 0;
+    z-index: 1;
     min-height: 100vh;
     margin-top: 0;
     flex-direction: column;
@@ -8,16 +9,20 @@
     margin-bottom: 0;
     list-style: none;
     background-color: #23262b;
-    /* background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%); */
-    /* background-size: cover; */
     overflow-anchor: none;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.nav.opened {
+    width: 6.5em;
 }
 
 #navHeader {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin-left: 1rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
     color: #fff;
     height: 4.375rem;
     text-decoration: none;
@@ -31,8 +36,8 @@
 }
 
 #navHeader span {
-    margin-left: 1rem !important;
-    margin-right: 1rem !important;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .navItem {
@@ -45,7 +50,7 @@
     padding: 0 1rem;
     font-weight: 800;
     font-size: 0.65rem;
-    text-transform: uppercase !important;
+    text-transform: uppercase;
 }
 
 .navDivider {
@@ -154,9 +159,10 @@
 }
 
 @media (min-width: 768px) {
-    .nav {
-        width: 14rem !important;
+    .nav.opened {
+        width: 14rem;
     }
+
     .navLink {
         display: block;
         width: 100%;

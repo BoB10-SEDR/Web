@@ -1,10 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import '@Styles/header.css';
+import NavToggle from '@Components/Header/NavToggle';
 
 const Header = () => {
     return (
         <header id='topbar'>
-            <ul className='topbarNav'>
+            <TopbarNav>
+                <TopbarNavItem>
+                    <NavToggle />
+                </TopbarNavItem>
                 {/* <li class='topbarNavItem'>
                     <a
                         class='nav-link dropdown-toggle'
@@ -65,9 +69,17 @@ const Header = () => {
                         <img class='img-profile rounded-circle' src='img/undraw_profile.svg' />
                     </a>
                 </li> */}
-            </ul>
+            </TopbarNav>
         </header>
     );
+};
+
+const TopbarNav = ({ children }) => {
+    return <ul className='topbarNav'>{children}</ul>;
+};
+
+const TopbarNavItem = ({ children }) => {
+    return <li className='topbarNavItem'>{children}</li>;
 };
 
 export default Header;
