@@ -11,6 +11,7 @@ const Button = props => {
         title,
         className = '',
         children,
+        ...buttonProps
     } = props;
 
     const style = {
@@ -26,6 +27,7 @@ const Button = props => {
             onClick={onClick}
             style={style}
             title={title}
+            {...buttonProps}
         >
             {children}
         </button>

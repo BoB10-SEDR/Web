@@ -19,24 +19,33 @@ const Item = props => {
             break;
     }
 
+    const value = '80%';
+
     return (
-        <li id='listItem'>
-            <div className='detailWrap'>
-                <h3 className='itemName'>{name}</h3>
-                <p className='description'>{desc}</p>
-            </div>
-            {isToggle ? (
-                <div className='toggleWrap'>
-                    <ToggleSwitch />
-                </div>
-            ) : (
-                <div className='otherWrap'>
+        <>
+            <li id='listItem'>
+                <div className='detailWrap'>
                     <h3 className='itemName'>{name}</h3>
                     <p className='description'>{desc}</p>
                 </div>
-            )}
-        </li>
+                {!isToggle ? (
+                    <div className='toggleWrap'>
+                        <ToggleSwitch />
+                    </div>
+                ) : (
+                    <div className='otherWrap'>
+                        <span className='value'>{value}</span>
+                        {/* <h3 className='itemName'>{name}</h3>
+                        <p className='description'>{desc}</p> */}
+                    </div>
+                )}
+            </li>
+
+            <hr style={{ margin: 0, border: '.1px solid #303236' }} />
+        </>
     );
 };
 
 export default Item;
+
+// 3가지로 분화되어야 한다 X => 나머지 알고보니 전부 Table임.

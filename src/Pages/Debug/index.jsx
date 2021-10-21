@@ -1,9 +1,5 @@
 import Card from '@Components/Card';
 import { Row, Col } from '@Components/Grid';
-import List from '@Components/List';
-import Table from '@Components/Table';
-import { Status } from '@Components/UI';
-
 import '@Styles/debug.css';
 
 const Debug = () => {

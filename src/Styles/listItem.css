@@ -4,7 +4,9 @@
 
     align-items: flex-start;
     padding: 1rem 0rem;
+
     font-size: 0.875rem;
+    font-family: 'NanumSquare';
 }
 
 #listItem:first-child {
@@ -24,6 +26,15 @@
     margin: 0;
 }
 
+#listItem .detailWrap .itemName {
+    font-size: 14px;
+}
+
+#listItem .detailWrap .description {
+    font-size: 11px;
+    color: #6c757d;
+}
+
 #listItem .toggleWrap {
     margin: auto;
 }
@@ -37,4 +48,9 @@
 #listItem .otherWrap p {
     margin: 0;
     text-align: end;
+}
+
+#listItem .otherWrap .value {
+    font-size: 18px;
+    font-weight: 700;
 }
