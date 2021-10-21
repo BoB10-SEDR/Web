@@ -1,12 +1,14 @@
 import '@Styles/nav.css';
 import { Link } from 'react-router-dom';
+import { observer } from 'mobx-react';
+import store from '@Stores/nav';
 import Item from '@Components/Nav/Item';
 
 const Nav = props => {
     const { brand, items } = props;
 
     return (
-        <ul className='nav'>
+        <ul className={'nav' + (store.open ? ' opened' : '')}>
             <NavHeader brand={brand} />
             <hr className='navDivider navXmargin' />
             <NavBody items={items} />
@@ -32,4 +34,4 @@ const NavBody = props => {
     });
 };
 
-export default Nav;
+export default observer(Nav);
