@@ -1,9 +1,43 @@
 .deviceBubble {
-    display: inline-block;
-    transition: filter 0.2s ease;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.deviceBubble:hover {
+.deviceBubble .bubble {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: #202226;
+    transition: all 0.2s ease;
+}
+
+.deviceBubble .bubble .inside {
+    position: absolute;
+    width: 38%;
+    height: 38%;
+    background-color: #4c4c4c;
+    border-radius: 100%;
+    z-index: 1;
+}
+
+.deviceBubble .bubble.active {
+    border: 1px solid red;
+}
+
+.deviceBubble .bubble.active > .inside {
+    background-color: red;
+}
+
+.deviceBubble .bubble:hover {
     cursor: pointer;
-    filter: brightness(150%);
+    filter: brightness(200%);
+}
+
+.deviceBubble span {
+    margin-top: 5%;
 }

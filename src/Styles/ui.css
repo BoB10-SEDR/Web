@@ -115,10 +115,6 @@
         box-shadow 0.15s ease-in-out;
 }
 
-.button.reset {
-    all: unset;
-}
-
 .button.circle {
     border-radius: 50%;
 }
