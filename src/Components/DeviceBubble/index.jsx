@@ -1,13 +1,17 @@
-import Button from '@Components/UI/Button';
+import '@Styles/deviceBubble.css';
 import { RiRadioButtonLine } from 'react-icons/ri';
 
 const DeviceBubble = props => {
     const { isActive } = props;
 
+    const handleClick = () => {
+        return null;
+    };
+
     return (
-        <Button>
+        <div className='deviceBubble' onClick={handleClick}>
             <RiRadioButtonLine size='20' color={isActive ? 'red' : 'gray'} />
-        </Button>
+        </div>
     );
 };
 

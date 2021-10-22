@@ -1,0 +1,9 @@
+.deviceBubble {
+    display: inline-block;
+    transition: filter 0.2s ease;
+}
+
+.deviceBubble:hover {
+    cursor: pointer;
+    filter: brightness(150%);
+}
