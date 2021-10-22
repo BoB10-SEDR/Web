@@ -3,13 +3,20 @@ import '@Styles/card.css';
 import Header from '@Components/UI/CardHeader';
 
 const Card = props => {
-    const { title = '', children = [], border = '', borderRadius = '6px', padding = '20px' } = props;
+    const {
+        title = '',
+        titleFontColor = '#FFF',
+        children = [],
+        border = '',
+        borderRadius = '6px',
+        padding = '20px',
+    } = props;
 
     const hasTitle = title !== '';
 
     return hasTitle ? (
         <div className='card'>
-            <Header title={title} />
+            <Header title={title} titleFontColor={titleFontColor} />
             <Body padding={padding}>{children}</Body>
         </div>
     ) : (

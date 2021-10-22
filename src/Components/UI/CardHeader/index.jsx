@@ -2,11 +2,11 @@ import KebabMenu from '@Components/UI/KebabMenu';
 import KebabDummy from '@Dummy/KebabDummy';
 
 const CardHeader = props => {
-    const { title = '' } = props;
+    const { title = '', titleFontColor } = props;
 
     return (
         <header className='cardHeader'>
-            <h6>{title}</h6>
+            <h6 style={{ color: titleFontColor }}>{title}</h6>
             <KebabMenu items={KebabDummy} />
         </header>
     );
