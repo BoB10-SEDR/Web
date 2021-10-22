@@ -23,7 +23,7 @@ const Button = props => {
     return (
         <button
             type='button'
-            className={'button' + (isCircle ? ' circle' : '') + (isActive ? ' active' : '') + ` ${className}`}
+            className={`button ${isCircle ? 'circle' : ''} ${isActive ? 'active' : ''} ${className}`}
             onClick={onClick}
             style={style}
             title={title}
