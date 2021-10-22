@@ -17,7 +17,7 @@ const DeviceBubble = props => {
             <div className={`bubble ${active ? 'active' : ''}`} onClick={handleClick}>
                 <div className='inside'></div>
             </div>
-            <span>{tabInfo.deviceName}</span>
+            <div className='name'>{tabInfo.deviceName}</div>
         </div>
     );
 };

@@ -38,6 +38,6 @@
     filter: brightness(200%);
 }
 
-.deviceBubble span {
+.deviceBubble .name {
     margin-top: 5%;
 }

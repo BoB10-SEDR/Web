@@ -7,6 +7,7 @@ const Debug = () => {
     return (
         <div id='debug' className='page'>
             <DeviceBubble />
+            <DeviceBubble active />
         </div>
     );
 };
