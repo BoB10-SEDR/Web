@@ -19,8 +19,8 @@
     display: flex;
     align-items: center;
     border-radius: 10px;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 7%;
+    padding-bottom: 7%;
     padding-left: 3%;
     cursor: pointer;
     transition: background-color 0.2s ease;
