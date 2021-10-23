@@ -4,7 +4,7 @@ import store from '@Stores/deviceTabs';
 import dummyBubble from '@Dummy/deviceBubble';
 
 const DeviceBubble = props => {
-    const { active, tabInfo = dummyBubble } = props;
+    const { active, tabInfo = dummyBubble, styles = {} } = props;
     const history = useHistory();
 
     const handleClick = () => {
@@ -13,7 +13,7 @@ const DeviceBubble = props => {
     };
 
     return (
-        <div className='deviceBubble'>
+        <div className='deviceBubble' style={styles}>
             <div className={`bubble ${active ? 'active' : ''}`} onClick={handleClick}>
                 <div className='inside'></div>
             </div>
