@@ -10,6 +10,7 @@ import CardBodyForm from '@Components/Card/Form';
 import UpDown from '@Components/UI/UpDown';
 import DeviceTable from '@Components/DeviceTable';
 import SideTabs from '@Components/SideTabs';
+import Circle from '@Components/Circle';
 
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
@@ -40,9 +41,8 @@ const Devices = () => {
                     </Card>
                 </Col>
                 <Col md={9} mb>
-                    <DummyCardEx height='500px'>
-                        <DeviceNav />
-                    </DummyCardEx>
+                    <Circle />
+                    <DeviceNav />
                 </Col>
             </Row>
             <DeviceTable />
