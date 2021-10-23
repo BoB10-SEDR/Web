@@ -1,4 +1,6 @@
+import DeviceBubble from '@Components/DeviceBubble';
 import { useState } from 'react';
+import { dummyDeviceInfoByLayer } from '@Dummy/dummyDeviceInfoByLayer.js';
 
 const Circle = () => {
     // Variables => TODO_P :: 분리
@@ -9,7 +11,9 @@ const Circle = () => {
 
     // TODO_P :: 이거 따로 정의 (테스트용으로 slider 만들어뒀음)
     // * 추후 랜덤배치 만들 예정
-    const [theta, handleChange] = useState(0);
+    // const [theta, handleChange] = useState(0);
+
+    const theta = 0;
 
     // Functions => TODO_P :: 분리
 
@@ -19,14 +23,6 @@ const Circle = () => {
     const getCircleDiameter = circleIndex => `${circleDiameter[circleIndex]}px`;
 
     const getCircleBgColor = circleIndex => `${circleBackgroundColor[circleIndex]}`;
-
-    const calcAbsVerticalValue = (circleIndex = 0, theta = 0) =>
-        (circleDiameter[circleIndex] / 2) * (1 + Math.sin(getRadians(theta)));
-
-    const calcAbsHorizentalValue = (circleIndex = 0, theta = 0) =>
-        (circleDiameter[circleIndex] / 2 - 2) * (1 + Math.cos(getRadians(theta)));
-
-    const getRadians = degrees => degrees * (Math.PI / 180);
 
     return (
         <div className='composition'>
@@ -42,17 +38,27 @@ const Circle = () => {
                 }}
             >
                 {/* level 1 */}
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: -25 + calcAbsVerticalValue(0, theta),
-                        left: -25 + calcAbsHorizentalValue(0, theta),
-                        width: '50px',
-                        height: '50px',
-                        borderRadius: '100%',
-                        backgroundColor: 'white',
-                    }}
-                />
+
+                {/* {dummyDeviceInfoByLayer[0]['devices'].map(e => {
+                    const { location: theta, isRunning } = e;
+
+                    return (
+                        <DeviceBubble
+                            styles={{
+                                position: 'absolute',
+                                top: -25 + calcAbsVerticalValue(0, theta),
+                                left: -25 + calcAbsHorizentalValue(0, theta),
+                                width: '50px',
+                                height: '50px',
+                                borderRadius: '100%',
+                            }}
+                            active={isRunning}
+                            tabInfo={e}
+                        />
+                    );
+                })} */}
+                <DeviceBubbles idx={0} diameter={circleDiameter[0]} />
+
                 <div
                     className={circleClassName[1]}
                     style={{
@@ -67,17 +73,27 @@ const Circle = () => {
                     }}
                 >
                     {/* level 2 */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            top: -25 + calcAbsVerticalValue(1, theta),
-                            left: -25 + calcAbsHorizentalValue(1, theta),
-                            width: '50px',
-                            height: '50px',
-                            borderRadius: '100%',
-                            backgroundColor: 'white',
-                        }}
-                    />
+
+                    {/* {dummyDeviceInfoByLayer[1]['devices'].map(e => {
+                        const { location: theta, isRunning } = e;
+
+                        return (
+                            <DeviceBubble
+                                styles={{
+                                    position: 'absolute',
+                                    top: -25 + calcAbsVerticalValue(1, theta),
+                                    left: -25 + calcAbsHorizentalValue(1, theta),
+                                    width: '50px',
+                                    height: '50px',
+                                    borderRadius: '100%',
+                                }}
+                                active={isRunning}
+                                tabInfo={e}
+                            />
+                        );
+                    })} */}
+
+                    <DeviceBubbles idx={1} diameter={circleDiameter[1]} />
                     <div
                         className={circleClassName[2]}
                         style={{
@@ -92,17 +108,29 @@ const Circle = () => {
                         }}
                     >
                         {/* level 3 */}
-                        <div
-                            style={{
-                                position: 'absolute',
-                                top: -25 + calcAbsVerticalValue(2, theta),
-                                left: -25 + calcAbsHorizentalValue(2, theta),
-                                width: '50px',
-                                height: '50px',
-                                borderRadius: '100%',
-                                backgroundColor: 'white',
-                            }}
-                        />
+
+                        {/* {dummyDeviceInfoByLayer[2]['devices'].map(e => {
+                            const { location: theta, isRunning } = e;
+
+                            return (
+                                <DeviceBubble
+                                    styles={{
+                                        position: 'absolute',
+                                        top: -25 + calcAbsVerticalValue(2, theta),
+                                        left: -25 + calcAbsHorizentalValue(2, theta),
+                                        width: '50px',
+                                        height: '50px',
+                                        borderRadius: '100%',
+                                    }}
+                                    active={isRunning}
+                                    tabInfo={e}
+                                />
+                            );
+                        })} */}
+
+                        {/* 이제 위에 지우고 옮기고 다듬어야함 */}
+
+                        <DeviceBubbles idx={2} diameter={circleDiameter[2]} />
                         <div
                             className={circleClassName[3]}
                             style={{
@@ -127,37 +155,37 @@ const Circle = () => {
                     </div>
                 </div>
             </div>
-
-            <RangeSlider onChange={handleChange} />
         </div>
     );
 };
 
 export default Circle;
 
-const RangeSlider = ({ onChange }) => {
-    const [slider, setSlider] = useState({
-        value: 0,
-        label: '',
+const DeviceBubbles = props => {
+    const { idx: circleIndex, diameter: circleDiameter } = props;
+
+    const getRadians = degrees => degrees * (Math.PI / 180);
+
+    const calcAbsVerticalValue = (theta = 0) => (circleDiameter / 2) * (1 + Math.sin(getRadians(theta)));
+
+    const calcAbsHorizentalValue = (theta = 0) => (circleDiameter / 2 - 2) * (1 + Math.cos(getRadians(theta)));
+
+    return dummyDeviceInfoByLayer[circleIndex]['devices'].map(e => {
+        const { location: theta, isRunning } = e;
+
+        return (
+            <DeviceBubble
+                styles={{
+                    position: 'absolute',
+                    top: -25 + calcAbsVerticalValue(theta),
+                    left: -25 + calcAbsHorizentalValue(theta),
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '100%',
+                }}
+                active={isRunning}
+                tabInfo={e}
+            />
+        );
     });
-
-    const onSlide = value => {
-        onChange(value);
-        setSlider(value);
-    };
-
-    return (
-        <div className='range-slider'>
-            <p>{slider.label}</p>
-            <input
-                type='range'
-                min={0}
-                max={360}
-                value={slider.value}
-                onChange={e => onSlide(e.target.value)}
-                className='slider'
-                id='myRange'
-            ></input>
-        </div>
-    );
 };
