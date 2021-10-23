@@ -1,6 +1,7 @@
 // Custom Components
 import BaseLayer from './Layer/Base';
 import Layer from './Layer/Common';
+import '@Styles/circle.css';
 
 const Circle = props => {
     return (
