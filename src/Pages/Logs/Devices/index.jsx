@@ -1,26 +1,16 @@
 import '@Styles/devices.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-
 import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import DeviceNav from '@Components/DeviceNav';
-import TextNav from '@Components/TextNav';
 import CardBodyForm from '@Components/Card/Form';
 import UpDown from '@Components/UI/UpDown';
 import DeviceTable from '@Components/DeviceTable';
 import SideTabs from '@Components/SideTabs';
-import Circle from '@Components/Circle';
+import EnvInfo from '@Components/EnvInfo';
 
-import BarDummy from '@Dummy/barChartDummy';
-import PieDummy from '@Dummy/pieChartDummy';
 import DummyCardEx from '@Dummy/DummyCardEx';
 
 const Devices = () => {
-    const { barId, barData, barOptions } = BarDummy;
-    const { pieId, pieData, pieOptions } = PieDummy;
-
     const changeNumber = 1339523;
     const changeRate = 4;
 
@@ -42,8 +32,7 @@ const Devices = () => {
                     </Card>
                 </Col>
                 <Col md={9} mb>
-                    <Circle />
-                    <TextNav />
+                    <EnvInfo />
                 </Col>
             </Row>
             <DeviceTable />

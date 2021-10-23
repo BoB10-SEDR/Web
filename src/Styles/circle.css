@@ -1,5 +1,4 @@
 .composition {
-    position: absolute;
     display: inline-block;
     transform-origin: 50% 0;
     transform: scale(0.8);
