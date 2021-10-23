@@ -1,0 +1,44 @@
+#textNav {
+    display: inline-block;
+    position: absolute;
+    right: 5%;
+    width: 20%;
+    height: 578px;
+    word-wrap: break-word;
+    background-color: #1b1e22;
+    background-clip: border-box;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+#textNav ul {
+    padding: 1.5rem 1rem;
+}
+
+.textNavItem {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 3%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.textNavItem:hover {
+    background-color: #595959;
+}
+
+.textNavItem .title {
+    margin-left: 5%;
+}
+
+.textNavItem .count {
+    margin-left: auto;
+    margin-right: 5%;
+    background-color: #404040;
+    border-radius: 10px;
+    width: 20%;
+    text-align: center;
+}

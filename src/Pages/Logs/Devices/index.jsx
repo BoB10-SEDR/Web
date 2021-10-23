@@ -6,6 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import DeviceNav from '@Components/DeviceNav';
+import TextNav from '@Components/TextNav';
 import CardBodyForm from '@Components/Card/Form';
 import UpDown from '@Components/UI/UpDown';
 import DeviceTable from '@Components/DeviceTable';
@@ -42,7 +43,7 @@ const Devices = () => {
                 </Col>
                 <Col md={9} mb>
                     <Circle />
-                    <DeviceNav />
+                    <TextNav />
                 </Col>
             </Row>
             <DeviceTable />
