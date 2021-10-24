@@ -1,5 +1,6 @@
 import '@Styles/textNav.css';
-import { useState } from 'react';
+import Item from './Item';
+import store from '@Stores/envInfo';
 import dummyNav from '@Dummy/textNavDummy';
 
 const TextNav = props => {
@@ -7,29 +8,16 @@ const TextNav = props => {
 
     return (
         <div id='textNav'>
-            <ul>
-                {items.map((item, index) => {
-                    return <Item key={index} {...item} />;
-                })}
-            </ul>
+            <div className='content'>
+                <div className='heading'>환경구성 목록</div>
+                <ul>
+                    {items.map(item => {
+                        const { id } = item;
+                        return <Item key={id} {...item} />;
+                    })}
+                </ul>
+            </div>
         </div>
-    );
-};
-
-const Item = props => {
-    const { Icon, title, count } = props;
-    const [isHovered, setIsHovered] = useState(false);
-
-    const handleHover = () => {
-        setIsHovered(!isHovered);
-    };
-
-    return (
-        <li className='textNavItem' onMouseEnter={handleHover} onMouseLeave={handleHover}>
-            <Icon className='icon' color={isHovered ? 'red' : ''} size='20' />
-            <span className='title'>{title}</span>
-            <span className='count'>{count}</span>
-        </li>
     );
 };
 

@@ -11,6 +11,12 @@
     overflow: scroll;
 }
 
+#textNav .content {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
 #textNav::-webkit-scrollbar {
     height: 0px;
     width: 5px;
@@ -26,18 +32,25 @@
     border-radius: 10px;
 }
 
-#textNav ul {
-    padding: 1.5rem 1rem;
+#textNav .heading {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    background-color: #1b1e22;
+    width: 100%;
+    height: 60px;
+    top: 0;
 }
 
 .textNavItem {
     display: flex;
     align-items: center;
     border-radius: 20px;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     padding-left: 3%;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .textNavItem .icon {
@@ -61,10 +74,18 @@
     transition: background-color 0.2s ease;
 }
 
-.textNavItem:hover .title {
+.textNavItem.active {
+    background-color: #333333;
+}
+
+.textNavItem:hover:not(.active) .icon {
+    color: red !important;
+}
+
+.textNavItem:hover:not(.active) .title {
     color: red;
 }
 
-.textNavItem:hover .count {
+.textNavItem:hover:not(.active) .count {
     background-color: red;
 }
