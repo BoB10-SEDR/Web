@@ -1,11 +1,13 @@
+import { observer } from 'mobx-react';
+import store from '@Stores/envInfo';
 import { calcAbsHorizentalValue, calcAbsVerticalValue } from '@Components/Circle/data';
 import DeviceBubble from '@Components/DeviceBubble';
-import { dummyDeviceInfoByLayer } from '@Dummy/dummyDeviceInfoByLayer';
 
 const DeviceBubbles = props => {
-    const { idx: circleIndex } = props;
+    const { idx: circleIndex = 0 } = props;
+    const circleLayers = store.circleLayers[circleIndex]['devices'];
 
-    return dummyDeviceInfoByLayer[circleIndex]['devices'].map(e => {
+    return circleLayers.map(e => {
         const { location: theta, isRunning } = e;
 
         return (
@@ -25,4 +27,4 @@ const DeviceBubbles = props => {
     });
 };
 
-export default DeviceBubbles;
+export default observer(DeviceBubbles);
