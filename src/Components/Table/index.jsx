@@ -1,94 +1,81 @@
-import { useMemo, useState, useEffect } from 'react';
-import { useTable, useRowSelect } from 'react-table';
-import makeData from './data';
-import '@Styles/table.css';
-import CheckBox from '@Components/UI/CheckBox';
-import { dummyColumns, dummyData } from '@Dummy/tableDummy';
+import { useEffect, useMemo, useState } from 'react';
+import { useBlockLayout, useTable } from 'react-table';
+import getSchemaData from './data';
+import genData from './data/generator';
+
+const dummyFunction = async schema => genData();
 
 const Table = props => {
-    // TODO_P :: namor => 이거 패키지 삭제해야함 (랜덤명 생성 패키지)
-    const { onRowClick = () => {}, nowSelected, columns = dummyColumns, data = dummyData, isCheckable } = props;
-    const cols = useMemo(() => columns, [columns]);
-    const rows = useMemo(() => data, [data]);
+    const { id = 'table', schema = 'example' } = props;
 
-    // console.table(rows);
+    const [tableData, setTableData] = useState([]);
 
+    // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
+    const schemaData = useMemo(() => getSchemaData(schema), []);
+
+    const defaultColumn = useMemo(
+        () => ({
+            width: 150,
+        }),
+        []
+    );
+
+    // 불러오는 값들을 기능에 따라 잘 정의해야함.
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
+        {
+            schemaData,
+            tableData,
+            defaultColumn,
+        },
+        useBlockLayout
+    );
+
+    // 로드시에 스키마를 불러와야하며, 데이터도 받아야함.
+
+    useEffect(() => {
+        (async () => {
+            // TODO_P :: Web 요청으로 data를 불러오는 hook 연결
+            const browseData = await dummyFunction(schema);
+
+            setTableData(browseData);
+        })();
+    }, []);
+
+    // 아래는 스타일 적용을 위해 Tag이름 구분지어야함
     return (
-        <TableContent
-            columns={cols}
-            data={rows}
-            onRowClick={onRowClick}
-            nowSelected={nowSelected}
-            isCheckable={isCheckable}
-        />
+        <div id={id}>
+            <div {...getTableProps()} className='table'>
+                <div>
+                    {headerGroups.map(headerGroup => (
+                        <div {...headerGroup.getHeaderGroupProps()} className='tr'>
+                            {headerGroup.headers.map(column => (
+                                <div {...column.getHeaderProps()} className='th'>
+                                    {column.render('Header')}
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
+
+                <div {...getTableBodyProps()}>
+                    {rows.map((row, i) => {
+                        prepareRow(row);
+                        return (
+                            <div {...row.getRowProps()} className='tr'>
+                                {row.cells.map(cell => {
+                                    return (
+                                        <div {...cell.getCellProps()} className='td'>
+                                            {cell.render('Cell')}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
     );
 };
 
 export default Table;
-
-const TableContent = ({ columns, data, onRowClick, nowSelected, isCheckable }) => {
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
-        selectedFlatRows,
-        state: { selectedRowIds },
-    } = useTable(
-        {
-            columns,
-            data,
-        },
-        useRowSelect,
-        hooks => {
-            if (!isCheckable) return;
-            hooks.visibleColumns.push(columns => [
-                {
-                    id: 'selection',
-                    Header: ({ getToggleAllRowsSelectedProps }) => <CheckBox {...getToggleAllRowsSelectedProps()} />,
-                    Cell: ({ row }) => <CheckBox {...row.getToggleRowSelectedProps()} />,
-                },
-                ...columns,
-            ]);
-        }
-    );
-
-    return (
-        <table id='tableArea' {...getTableProps()}>
-            <thead>
-                {headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map((column, index) => {
-                            return (
-                                <th key={index} {...column.getHeaderProps()}>
-                                    {column.render('Header')}
-                                </th>
-                            );
-                        })}
-                    </tr>
-                ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-                {rows.map((row, idx) => {
-                    const styleCondition = isCheckable ? row.isSelected : nowSelected === idx;
-                    prepareRow(row);
-                    return (
-                        <tr
-                            style={{
-                                backgroundColor: styleCondition ? '#35383d' : 'transparent',
-                            }}
-                            {...row.getRowProps({
-                                onClick: () => onRowClick(idx),
-                            })}
-                        >
-                            {row.cells.map(cell => {
-                                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
-                            })}
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
-    );
-};
