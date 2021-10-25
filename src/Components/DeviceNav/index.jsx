@@ -1,22 +1,40 @@
+import { useHistory } from 'react-router-dom';
 import '@Styles/deviceNav.css';
+import envStore from '@Stores/envInfo';
+import tabStore from '@Stores/deviceTabs';
 import { IoIosArrowBack } from 'react-icons/io';
 import ButtonGroup from '@Components/ButtonGroup';
 import Button from '@Components/UI/Button';
-import IconButtonListDummy from '@Dummy/IconButtonListDummy';
 
 const DeviceNav = props => {
-    const { items = IconButtonListDummy, onArrowClick = () => {} } = props;
+    const history = useHistory();
+
+    const handleClick = () => {
+        history.push('/Logs/Devices');
+    };
+
+    const buttons = [];
+
+    envStore.devices.map(device => {
+        const button = { children: undefined, onClick: undefined };
+        button.children = <device.Icon size='20' />;
+        button.onClick = () => tabStore.openTab(device);
+        buttons.push(button);
+    });
+
     return (
         <div id='deviceNav'>
-            <div className='deviceNavItems'>
-                <div className='deviceNavGroup'>
-                    <ButtonGroup isVertical={true} buttons={items} />
+            <div className='deviceNavItemsWrapper'>
+                <div className='deviceNavItems'>
+                    <div className='deviceNavGroup'>
+                        <ButtonGroup isVertical={true} buttons={buttons} />
+                    </div>
                 </div>
-                <div className='deviceNavToggle'>
-                    <Button isCircle={true} onClick={onArrowClick}>
-                        <IoIosArrowBack color='#fff' />
-                    </Button>
-                </div>
+            </div>
+            <div className='deviceNavToggle'>
+                <Button isCircle={true} onClick={handleClick}>
+                    <IoIosArrowBack color='#fff' />
+                </Button>
             </div>
         </div>
     );

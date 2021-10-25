@@ -2,15 +2,15 @@ import '@Styles/envInfo.css';
 import store from '@Stores/envInfo';
 import Circle from '@Components/Circle';
 import TextNav from '@Components/TextNav';
-import dummyTextNav from '@Dummy/textNav';
+import envInfo from '@Dummy/envInfo';
 
 const EnvInfo = () => {
-    store.setEnv(dummyTextNav[0].id, dummyTextNav[0].circle);
+    store.setEnv(envInfo[0].id, envInfo[0].devices);
 
     return (
         <div id='envInfo'>
             <Circle />
-            <TextNav items={dummyTextNav} />
+            <TextNav items={envInfo} />
         </div>
     );
 };

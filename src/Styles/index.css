@@ -55,3 +55,17 @@ a {
 .reactIcons {
     vertical-align: middle;
 }
+
+::-webkit-scrollbar {
+    height: 0px;
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #cc0000;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: black;
+}
