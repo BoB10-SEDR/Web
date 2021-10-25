@@ -1,7 +1,6 @@
 import '@Styles/textNav.css';
 import Item from './Item';
-import store from '@Stores/envInfo';
-import dummyNav from '@Dummy/textNavDummy';
+import dummyNav from '@Dummy/textNav';
 
 const TextNav = props => {
     const { items = dummyNav } = props;
@@ -12,8 +11,7 @@ const TextNav = props => {
                 <div className='heading'>환경구성 목록</div>
                 <ul>
                     {items.map(item => {
-                        const { id } = item;
-                        return <Item key={id} {...item} />;
+                        return <Item key={item.id} {...item} />;
                     })}
                 </ul>
             </div>
