@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useBlockLayout, useTable } from 'react-table';
+import { useFlexLayout, useTable } from 'react-table';
 import getSchemaData from './data';
 import genData from './data/generator';
+import '@Styles/table.css';
 
-const dummyFunction = async schema => genData();
+const dummyFunction = async schema => genData(50);
 
 const Table = props => {
     const { id = 'table', schema = 'example' } = props;
@@ -15,7 +16,10 @@ const Table = props => {
 
     const defaultColumn = useMemo(
         () => ({
-            width: 150,
+            // When using the useFlexLayout:
+            minWidth: 30, // minWidth is only used as a limit for resizing
+            width: 300, // width is used for both the flex-basis and flex-grow
+            maxWidth: 600, // maxWidth is only used as a limit for resizing
         }),
         []
     );
@@ -23,12 +27,42 @@ const Table = props => {
     // 불러오는 값들을 기능에 따라 잘 정의해야함.
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
         {
-            schemaData,
-            tableData,
+            columns: schemaData,
+            data: tableData,
             defaultColumn,
         },
-        useBlockLayout
+        useFlexLayout
     );
+
+    // Header 그리고 Cell의 속성들
+    const headerProps = (props, { column }) => getStyles(props, column.align);
+
+    const cellProps = (props, { cell }) => getStyles(props, cell.column.align);
+
+    const headerGroupProps = props => getRowStyles(props);
+
+    const rowProps = props => getRowStyles(props);
+
+    const getStyles = (props, align = 'left') => [
+        props,
+        {
+            style: {
+                justifyContent: align === 'center' ? 'center' : align === 'right' ? 'flex-end' : 'flex-start',
+                alignItems: 'flex-start',
+                display: 'flex',
+            },
+        },
+    ];
+
+    const getRowStyles = props => [
+        props,
+        {
+            style: {
+                height: '50px',
+                alignItems: 'center',
+            },
+        },
+    ];
 
     // 로드시에 스키마를 불러와야하며, 데이터도 받아야함.
 
@@ -44,32 +78,37 @@ const Table = props => {
     // 아래는 스타일 적용을 위해 Tag이름 구분지어야함
     return (
         <div id={id}>
-            <div {...getTableProps()} className='table'>
+            <div {...getTableProps()} id='table'>
                 <div>
                     {headerGroups.map(headerGroup => (
-                        <div {...headerGroup.getHeaderGroupProps()} className='tr'>
+                        <tr {...headerGroup.getHeaderGroupProps(headerGroupProps)} className='columnGroup'>
                             {headerGroup.headers.map(column => (
-                                <div {...column.getHeaderProps()} className='th'>
+                                <th {...column.getHeaderProps(headerProps)} className='columnTitle'>
                                     {column.render('Header')}
-                                </div>
+                                </th>
                             ))}
-                        </div>
+                        </tr>
                     ))}
+                    <Hr color='#303236' />
                 </div>
 
                 <div {...getTableBodyProps()}>
                     {rows.map((row, i) => {
+                        const isLast = i === rows.length - 1;
                         prepareRow(row);
                         return (
-                            <div {...row.getRowProps()} className='tr'>
-                                {row.cells.map(cell => {
-                                    return (
-                                        <div {...cell.getCellProps()} className='td'>
-                                            {cell.render('Cell')}
-                                        </div>
-                                    );
-                                })}
-                            </div>
+                            <>
+                                <tr {...row.getRowProps(rowProps)} className='tableRow'>
+                                    {row.cells.map(cell => {
+                                        return (
+                                            <td {...cell.getCellProps(cellProps)} className='rowCell'>
+                                                {cell.render('Cell')}
+                                            </td>
+                                        );
+                                    })}
+                                </tr>
+                                {!isLast && <Hr />}
+                            </>
                         );
                     })}
                 </div>
@@ -79,3 +118,5 @@ const Table = props => {
 };
 
 export default Table;
+
+const Hr = ({ color = '#202327' }) => <hr style={{ border: `.1px solid ${color}`, margin: 0 }} />;

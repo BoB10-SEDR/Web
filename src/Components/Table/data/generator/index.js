@@ -35,16 +35,16 @@ const makeData = (...lens) => {
     return makeDataLevel();
 };
 
-const genData = () => {
-    return [
-        {
-            component: <ToggleSwitch />,
+const genData = (len = 1) => {
+    return range(len).map(e => {
+        return {
+            component: <ToggleSwitch id={e} />,
             left: '좌측정렬 테스트',
             right: '우측 테스트',
             center: '중앙 테스트',
             long: '얼마나 긴지 알기나해? 얼마나 긴지 알기나해?',
-        },
-    ];
+        };
+    });
 };
 
 export default genData;
