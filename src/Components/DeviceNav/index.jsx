@@ -15,7 +15,7 @@ const DeviceNav = props => {
 
     const buttons = [];
 
-    envStore.devices.map(device => {
+    envStore.selectedEnv.devices.map(device => {
         const button = { children: undefined, onClick: undefined };
         button.children = <device.Icon size='20' />;
         button.onClick = () => tabStore.openTab(device);

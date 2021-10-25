@@ -1,13 +1,16 @@
 import { observable } from 'mobx';
 
 const envInfo = {
-    selectedEnvId: 0,
-    devices: [],
+    selectedEnv: {
+        id: undefined,
+        Icon: undefined,
+        title: '',
+        devices: [],
+    },
     circleLayers: Array(3).fill([]),
-    setEnv(id, devices) {
-        this.selectedEnvId = id;
-        this.devices = devices;
-        this.setCircleLayers(devices);
+    setSelectedEnv(env) {
+        this.selectedEnv = env;
+        this.setCircleLayers(env.devices);
     },
     setCircleLayers(devices) {
         this.clearCircleLayers();

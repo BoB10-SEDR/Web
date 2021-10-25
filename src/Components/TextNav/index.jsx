@@ -12,7 +12,7 @@ const TextNav = props => {
                 <div className='listWrapper'>
                     <ul>
                         {items.map(item => {
-                            return <Item key={item.id} {...item} />;
+                            return <Item key={item.id} item={item} />;
                         })}
                     </ul>
                 </div>

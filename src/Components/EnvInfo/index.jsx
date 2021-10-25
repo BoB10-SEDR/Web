@@ -5,7 +5,7 @@ import TextNav from '@Components/TextNav';
 import envInfo from '@Dummy/envInfo';
 
 const EnvInfo = () => {
-    store.setEnv(envInfo[0].id, envInfo[0].devices);
+    store.setSelectedEnv(envInfo[0]);
 
     return (
         <div id='envInfo'>
