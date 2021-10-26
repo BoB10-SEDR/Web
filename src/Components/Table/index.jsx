@@ -1,13 +1,15 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useFlexLayout, useTable } from 'react-table';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useAsyncDebounce, useFlexLayout, useGlobalFilter, useSortBy, useTable } from 'react-table';
 import getSchemaData from './data';
 import genData from './data/generator';
 import '@Styles/table.css';
+import Hr from '@Components/UI/Border';
+import matchSorter from 'match-sorter';
 
 const dummyFunction = async schema => genData(50);
 
 const Table = props => {
-    const { id = 'table', schema = 'example' } = props;
+    const { id = 'table', schema = 'example', tableHeight, searchKeyword } = props;
 
     const [tableData, setTableData] = useState([]);
 
@@ -24,18 +26,46 @@ const Table = props => {
         []
     );
 
+    function fuzzyTextFilterFn(rows, id, filterValue) {
+        return matchSorter(rows, filterValue, { keys: [row => row.values[id]] });
+    }
+
+    // Let the table remove the filter if the string is empty
+    fuzzyTextFilterFn.autoRemove = val => !val;
+
+    const filterTypes = useMemo(
+        () => ({
+            // Add a new fuzzyTextFilterFn filter type.
+            fuzzyText: fuzzyTextFilterFn,
+            // Or, override the default text filter to use
+            // "startWith"
+            text: (rows, id, filterValue) => {
+                return rows.filter(row => {
+                    const rowValue = row.values[id];
+                    return rowValue !== undefined
+                        ? String(rowValue).toLowerCase().startsWith(String(filterValue).toLowerCase())
+                        : true;
+                });
+            },
+        }),
+        []
+    );
+
     // 불러오는 값들을 기능에 따라 잘 정의해야함.
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, setGlobalFilter } = useTable(
         {
             columns: schemaData,
             data: tableData,
             defaultColumn,
+            filterTypes,
         },
-        useFlexLayout
+        useFlexLayout,
+        useGlobalFilter,
+        useSortBy
     );
 
     // Header 그리고 Cell의 속성들
-    const headerProps = (props, { column }) => getStyles(props, column.align);
+    const headerProps = (props, { column }) => getHeaderStyles(props, column.align);
 
     const cellProps = (props, { cell }) => getStyles(props, cell.column.align);
 
@@ -54,6 +84,19 @@ const Table = props => {
         },
     ];
 
+    const getHeaderStyles = (props, align = 'left') => [
+        props,
+        {
+            style: {
+                justifyContent: align === 'center' ? 'center' : align === 'right' ? 'flex-end' : 'flex-start',
+                alignItems: 'flex-start',
+                display: 'flex',
+
+                cursor: 'pointer',
+            },
+        },
+    ];
+
     const getRowStyles = props => [
         props,
         {
@@ -64,29 +107,55 @@ const Table = props => {
         },
     ];
 
+    const onSearchKeywordChange = useAsyncDebounce(value => {
+        setGlobalFilter(value || undefined);
+    }, 0);
+
     // 로드시에 스키마를 불러와야하며, 데이터도 받아야함.
-
+    const mounted = useRef();
     useEffect(() => {
-        (async () => {
-            // TODO_P :: Web 요청으로 data를 불러오는 hook 연결
-            const browseData = await dummyFunction(schema);
+        if (!mounted.current) {
+            (async () => {
+                // TODO_P :: Web 요청으로 data를 불러오는 hook 연결
+                const browseData = await dummyFunction(schema);
 
-            setTableData(browseData);
-        })();
-    }, []);
+                setTableData(browseData);
+                // console.log('rerendered');
+                mounted.current = true;
+            })();
+        } else {
+            onSearchKeywordChange(searchKeyword);
+            // console.log({ status: 'changed', searchKeyword });
+        }
+    }, [searchKeyword, schema, onSearchKeywordChange]);
 
     // 아래는 스타일 적용을 위해 Tag이름 구분지어야함
     return (
-        <div id={id}>
-            <div {...getTableProps()} id='table'>
-                <div>
+        <div id={id} className='table' style={{ height: tableHeight ?? null }}>
+            <div {...getTableProps()} className='tableWrapper'>
+                <div className='tableHeader'>
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps(headerGroupProps)} className='columnGroup'>
-                            {headerGroup.headers.map(column => (
-                                <th {...column.getHeaderProps(headerProps)} className='columnTitle'>
-                                    {column.render('Header')}
-                                </th>
-                            ))}
+                            {headerGroup.headers.map(column => {
+                                const sortProps = column.isAbleToSort
+                                    ? {
+                                          onClick: column.getSortByToggleProps()['onClick'],
+                                      }
+                                    : {};
+
+                                return (
+                                    <th {...column.getHeaderProps(headerProps)} {...sortProps} className='columnTitle'>
+                                        {column.render('Header')}
+                                        {column.isSorted ? (
+                                            !column.isSortedDesc ? (
+                                                <i className='fas fa-caret-down' />
+                                            ) : (
+                                                <i className='fas fa-caret-up' />
+                                            )
+                                        ) : null}
+                                    </th>
+                                );
+                            })}
                         </tr>
                     ))}
                     <Hr color='#303236' />
@@ -118,5 +187,3 @@ const Table = props => {
 };
 
 export default Table;
-
-const Hr = ({ color = '#202327' }) => <hr style={{ border: `.1px solid ${color}`, margin: 0 }} />;

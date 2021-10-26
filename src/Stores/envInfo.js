@@ -4,7 +4,6 @@ const envInfo = {
     selectedEnv: 0,
     setSelectedEnv(index) {
         this.selectedEnv = index;
-        console.log(this.selectedEnv);
     },
 };
 

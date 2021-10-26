@@ -1,3 +1,27 @@
-#table .columnGroup {
+.tableWrapper .columnGroup {
     font-size: 18px;
+}
+
+.table {
+    position: relative;
+}
+
+.table .tableWrapper {
+    overflow: scroll;
+}
+
+.table .tableWrapper .tableHeader {
+    position: sticky;
+    top: 0;
+    background-color: #1b1e22;
+
+    z-index: 2;
+}
+
+.tableHeader .columnTitle i {
+    margin: 3px 0 0 5px;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
