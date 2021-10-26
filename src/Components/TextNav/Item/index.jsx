@@ -2,17 +2,18 @@ import { observer } from 'mobx-react';
 import store from '@Stores/envInfo';
 
 const Item = props => {
-    const { id, Icon, title, count, circle } = props;
+    const { item } = props;
+    const { id, Icon, title, devices } = item;
 
     const handleClick = () => {
-        store.setEnv(id, circle);
+        store.setSelectedEnv(item);
     };
 
     return (
-        <li className={`textNavItem ${store.selectedEnv === id ? 'active' : ''}`} onClick={handleClick}>
+        <li className={`textNavItem ${store.selectedEnv.id === id ? 'active' : ''}`} onClick={handleClick}>
             <Icon className='icon' size='20' />
             <span className='title'>{title}</span>
-            <span className='count'>{count}</span>
+            <span className='count'>{devices.length}</span>
         </li>
     );
 };

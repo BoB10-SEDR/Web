@@ -5,9 +5,9 @@ import DeviceBubble from '@Components/DeviceBubble';
 
 const DeviceBubbles = props => {
     const { idx: circleIndex = 0 } = props;
-    const circleLayers = store.circleLayers[circleIndex]['devices'];
+    const layerBubbles = store.circleLayers[circleIndex];
 
-    return circleLayers.map(e => {
+    return layerBubbles.map(e => {
         const { location: theta, isRunning } = e;
 
         return (
