@@ -1,6 +1,6 @@
+import { ReactComponent as FloorMap } from '@Images/exampleMap.svg';
 import GridLayout from 'react-grid-layout';
 import CustomGridItem from './CustomGridItem';
-import FloorMap from './FloorMap';
 import envInfo from '@Dummy/envInfo';
 
 const GraphicMap = () => {
@@ -13,8 +13,8 @@ const GraphicMap = () => {
     ];
     return (
         <div id='graphicMap'>
-            <FloorMap />
-            <GridLayout className='layout' layout={layout} cols={12} rowHeight={60} width={1200}>
+            <FloorMap className='floorMap' />
+            <GridLayout className='layout' layout={layout} width={1200} rowHeight={60} allowOverlap>
                 {envInfo.map(env => (
                     <CustomGridItem key={env.id}>{env.title}</CustomGridItem>
                 ))}

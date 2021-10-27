@@ -4,7 +4,7 @@ const CustomGridItem = forwardRef((props, ref) => {
     const { style, className, children, ...rest } = props;
 
     return (
-        <div className={`env ${className}`} style={style} ref={ref} {...rest}>
+        <div className={`item ${className}`} style={style} ref={ref} {...rest}>
             {children}
         </div>
     );
