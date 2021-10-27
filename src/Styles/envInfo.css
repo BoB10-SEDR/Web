@@ -1,4 +1,21 @@
 #envInfo {
     display: flex;
+}
+
+#listMap {
     justify-content: space-around;
+}
+
+#graphicMap .env {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4d0000;
+    border: #ff3333 5px solid;
+    font-size: 1.2rem;
+    transition: border-color 0.1s ease;
+}
+
+#graphicMap .env:hover {
+    border-color: white;
 }
