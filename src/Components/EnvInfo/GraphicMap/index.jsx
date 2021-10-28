@@ -1,17 +1,75 @@
 import { ReactComponent as FloorMap } from '@Images/exampleMap.svg';
-import GridLayout from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 import CustomGridItem from './CustomGridItem';
 import envInfo from '@Dummy/envInfo';
 
+const ResponsiveGridLayout = WidthProvider(Responsive);
+
 const GraphicMap = () => {
     const layout = [
-        { i: '0', x: 0, y: 0, w: 20, h: 20 },
-        { i: '1', x: 0, y: 0, w: 20, h: 20 },
-        { i: '2', x: 2, y: 0, w: 20, h: 20 },
-        { i: '3', x: 2, y: 0, w: 20, h: 20 },
-        { i: '4', x: 2, y: 0, w: 20, h: 20 },
-        { i: '5', x: 2, y: 0, w: 20, h: 20 },
-        { i: '6', x: 2, y: 0, w: 20, h: 20 },
+        {
+            w: 27,
+            h: 402,
+            x: 92,
+            y: 13,
+            i: '0',
+            moved: true,
+            static: true,
+        },
+        {
+            w: 17,
+            h: 133,
+            x: 1,
+            y: 459,
+            i: '1',
+            moved: true,
+            static: true,
+        },
+        {
+            w: 6,
+            h: 409,
+            x: 36,
+            y: 9,
+            i: '2',
+            moved: true,
+            static: true,
+        },
+        {
+            w: 5,
+            h: 409,
+            x: 58,
+            y: 9,
+            i: '3',
+            moved: true,
+            static: true,
+        },
+        {
+            w: 5,
+            h: 404,
+            x: 64,
+            y: 11,
+            i: '4',
+            moved: true,
+            static: true,
+        },
+        {
+            w: 83,
+            h: 111,
+            x: 36,
+            y: 478,
+            i: '5',
+            moved: true,
+            static: true,
+        },
+        {
+            w: 21,
+            h: 229,
+            x: 1,
+            y: 10,
+            i: '6',
+            moved: true,
+            static: true,
+        },
     ];
 
     const printCondition = (e = {}, state = '') => {
@@ -21,20 +79,22 @@ const GraphicMap = () => {
     return (
         <div id='graphicMap'>
             <FloorMap className='floorMap' />
-            <GridLayout
+            <ResponsiveGridLayout
                 className='layout'
-                cols={100}
-                layout={layout}
-                width={1000}
+                breakpoints={{ lg: 1000 }}
+                cols={{ lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 }}
+                layouts={{ lg: layout }}
                 rowHeight={1}
-                allowOverlap
+                margin={[0, 0]}
                 onResizeStop={e => printCondition(e, 'ResizeStop')}
                 onDragStop={e => printCondition(e, 'DragStop')}
+                allowOverlap
+                measureBeforeMount
             >
                 {envInfo.map(env => (
                     <CustomGridItem key={env.id}>{env.title}</CustomGridItem>
                 ))}
-            </GridLayout>
+            </ResponsiveGridLayout>
         </div>
     );
 };
