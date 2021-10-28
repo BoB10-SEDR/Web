@@ -9,7 +9,7 @@
 #graphicMap {
     display: inline-block;
     position: relative;
-    width: 1200px;
+    width: 1000px;
     height: 600px;
 }
 
@@ -29,8 +29,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #4d0000;
-    border: #ff3333 5px solid;
+    background-color: #330000;
+    border: #b30000 3px solid;
     font-size: 1.2rem;
     transition: border-color 0.1s ease;
     z-index: 1;

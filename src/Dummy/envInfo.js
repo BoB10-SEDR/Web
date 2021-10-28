@@ -9,7 +9,7 @@ const dummy = [
     {
         id: 0,
         Icon: BiHome,
-        title: 'Home',
+        title: '와인바',
         devices: env1,
     },
     {
@@ -21,17 +21,29 @@ const dummy = [
     {
         id: 2,
         Icon: IoFastFoodOutline,
-        title: '진열대',
+        title: '진열대1',
         devices: env1,
     },
     {
         id: 3,
+        Icon: IoFastFoodOutline,
+        title: '진열대2',
+        devices: env1,
+    },
+    {
+        id: 4,
+        Icon: IoFastFoodOutline,
+        title: '진열대3',
+        devices: env1,
+    },
+    {
+        id: 5,
         Icon: RiDoorLine,
         title: '출입구',
         devices: env2,
     },
     {
-        id: 4,
+        id: 6,
         Icon: HiOutlineServer,
         title: '서버실',
         devices: env1,
