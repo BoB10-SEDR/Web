@@ -5,8 +5,8 @@ import GraphicMap from './GraphicMap';
 const EnvInfo = () => {
     return (
         <div id='envInfo'>
-            {/* <ListMap /> */}
-            <GraphicMap />
+            <ListMap />
+            {/* <GraphicMap /> */}
         </div>
     );
 };

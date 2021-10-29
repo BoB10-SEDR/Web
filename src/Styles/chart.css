@@ -1,6 +1,6 @@
 #lineChartArea {
     position: relative;
-    height: 10rem;
+    height: 18rem;
     width: 100%;
 }
 
@@ -10,6 +10,12 @@
     height: 10rem;
     width: 100%;
 } */
+
+#radarChartArea {
+    position: relative;
+    height: 18rem;
+    width: 100%;
+}
 
 #sparkLineChartArea {
     display: block;
