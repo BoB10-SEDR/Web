@@ -1,8 +1,5 @@
-#envInfo {
-    display: flex;
-}
-
 #listMap {
+    display: flex;
     justify-content: space-around;
 }
 
