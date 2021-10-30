@@ -1,12 +1,12 @@
 import '@Styles/envInfo.css';
-import Circle from '@Components/Circle';
-import TextNav from '@Components/TextNav';
+import ListMap from './ListMap';
+import GraphicMap from './GraphicMap';
 
 const EnvInfo = () => {
     return (
         <div id='envInfo'>
-            <Circle />
-            <TextNav />
+            <ListMap />
+            {/* <GraphicMap /> */}
         </div>
     );
 };

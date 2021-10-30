@@ -1,16 +1,18 @@
 export const fixedRadarData = {
-    borderWidth: 2,
-    backgroundColor: 'rgba(78, 115, 223, 0.05)',
-    borderColor: 'rgba(78, 115, 223, 1)',
-    pointBackgroundColor: 'rgba(78, 115, 223, 1)',
-    pointBorderColor: 'rgba(78, 115, 223, 1)',
-    pointHoverBackgroundColor: 'rgba(78, 115, 223, 1)',
-    pointHoverBorderColor: 'rgba(78, 115, 223, 1)',
+    borderWidth: 1,
+    backgroundColor: 'rgba(255, 0, 0, 0.08)',
+    borderColor: 'red',
+    pointBackgroundColor: 'red',
+    pointBorderColor: 'red',
+    pointHoverBackgroundColor: 'red',
+    pointHoverBorderColor: 'red',
     labelFontSize: 16,
 };
 
 export const getRadarOptions = labelCallback => {
     return {
+        maintainAspectRatio: false,
+
         legend: {
             display: false,
         },
@@ -18,13 +20,21 @@ export const getRadarOptions = labelCallback => {
         scale: {
             gridLines: {
                 // display: false,
-                color: 'rgba(78, 115, 223, 0.1)',
+                color: 'rgba(255, 0, 0, 0.08)',
             },
             angleLines: {
                 // display: false,
             },
             pointLabels: {
-                fontSize: 16,
+                fontSize: 14,
+                fontColor: 'rgba(255,255,255,0.5)',
+            },
+            ticks: {
+                backdropColor: 'transparent',
+                // beginAtZero: true,
+                max: 100,
+                min: 0,
+                stepSize: 20,
             },
         },
         tooltips: {
