@@ -33,6 +33,14 @@
     z-index: 1;
 }
 
-#graphicMap .env:hover {
+#graphicMap .item:hover {
     border-color: white;
+}
+
+#graphicMap .item .transforming {
+    transform-origin: 50%;
+    transform: scale(1.1);
+    opacity: 0;
+    transition-duration: 750ms;
+    transition-timing-function: ease-in;
 }
