@@ -1,5 +1,8 @@
 #listMap {
     display: flex;
+}
+
+#listMap {
     justify-content: space-around;
 }
 
