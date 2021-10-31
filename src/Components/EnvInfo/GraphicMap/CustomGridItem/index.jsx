@@ -6,8 +6,8 @@ const CustomGridItem = forwardRef((props, ref) => {
     const { env, style, className, children, ...rest } = props;
 
     const handleClick = () => {
+        mapStore.setListMode();
         envStore.setSelectedEnv(env);
-        mapStore.setMode('list');
     };
 
     return (

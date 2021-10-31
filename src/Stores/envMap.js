@@ -2,12 +2,17 @@ import { observable } from 'mobx';
 
 const envMap = {
     mode: 'graphic',
-    isTransforming: false,
-    setMode(value) {
-        this.mode = value;
+    setListMode() {
+        this.mode = 'list';
     },
-    setIsTransforming(value) {
-        this.isTransforming = value;
+    setGraphicMode() {
+        this.mode = 'graphic';
+    },
+    isListMode() {
+        return this.mode === 'list';
+    },
+    isGraphicMode() {
+        return this.mode === 'graphic';
     },
 };
 
