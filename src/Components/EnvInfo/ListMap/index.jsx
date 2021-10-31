@@ -7,7 +7,9 @@ const ListMap = ({ show }) => {
     const [isVisible, setIsVisible] = useState(show);
 
     useEffect(() => {
-        if (show) setIsVisible(true);
+        setTimeout(() => {
+            if (show) setIsVisible(true);
+        }, 300);
     }, [show]);
 
     const handleAnimationEnd = () => {
@@ -19,7 +21,7 @@ const ListMap = ({ show }) => {
             {isVisible && (
                 <div
                     id='listMap'
-                    style={{ animation: `${show ? 'fadeIn' : 'fadeOut'} 1s` }}
+                    style={{ animation: `${show ? 'scaleIn' : 'scaleOut'} 0.75s` }}
                     onAnimationEnd={handleAnimationEnd}
                 >
                     <Circle />

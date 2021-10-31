@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ReactComponent as FloorMap } from '@Images/exampleMap.svg';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import CustomGridItem from './CustomGridItem';
@@ -9,6 +9,12 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const GraphicMap = ({ show }) => {
     const [isVisible, setIsVisible] = useState(show);
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (show) setIsVisible(true);
+        }, 1000);
+    }, [show]);
 
     const handleAnimationEnd = () => {
         if (!show) setIsVisible(false);
@@ -23,7 +29,7 @@ const GraphicMap = ({ show }) => {
             {isVisible && (
                 <div
                     id='graphicMap'
-                    style={{ animation: `${show ? 'fadeIn' : 'fadeOut'} 1s` }}
+                    style={{ animation: `${show ? 'none' : 'zoomIn 0.4s'}` }}
                     onAnimationEnd={handleAnimationEnd}
                 >
                     <FloorMap className='floorMap' />
