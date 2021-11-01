@@ -9,7 +9,7 @@ const ListMap = ({ show }) => {
     useEffect(() => {
         setTimeout(() => {
             if (show) setIsVisible(true);
-        }, 300);
+        }, 500);
     }, [show]);
 
     const handleAnimationEnd = () => {
