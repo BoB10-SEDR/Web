@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import FilterButton from '@Components/FilterButton';

@@ -1,7 +1,7 @@
 import { observable } from 'mobx';
 
 const nav = {
-    open: true,
+    open: false,
     setOpen(value) {
         this.open = value;
     },
