@@ -40,5 +40,5 @@ export default LineArea;
 const lineChartInit = (id, data, option) => {
     var ctx = document.getElementById(`${id}`);
     new Chart(ctx, { type: 'line', data: data, options: option });
-    Chart.defaults.global.defaultFontFamily = 'Nunito, NanumSquare';
+    Chart.defaults.global.defaultFontFamily = 'NanumSquare';
 };

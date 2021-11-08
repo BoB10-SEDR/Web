@@ -126,8 +126,6 @@ const Table = props => {
 
                 setTableData(browseData);
 
-                console.table(browseData);
-
                 mounted.current = true;
             })();
         } else {
