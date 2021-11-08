@@ -11,7 +11,7 @@ const Table = props => {
     const {
         id = 'table',
         schema = 'example',
-        defaultRowHeight = '50px',
+        defaultRowHeight = '60',
         tableHeight,
         searchKeyword,
         defaultRowWidth = '200',

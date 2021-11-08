@@ -9,10 +9,18 @@ import SideTabs from '@Components/SideTabs';
 import EnvInfo from '@Components/EnvInfo';
 
 import DummyCardEx from '@Dummy/DummyCardEx';
+import List from '@Components/List';
 
 const Devices = () => {
     const changeNumber = 1339523;
     const changeRate = 4;
+
+    const dummyListData = [
+        { name: 'SQL Injection', desc: 'A, B, C, D에 적용 됨', value: '80%' },
+        { name: '이러이러한 공격', desc: 'A, B, C, D에 적용 됨', value: '10%' },
+        { name: '짧', desc: 'A, B, C, D에 적용 됨', value: '5%' },
+        { name: '그 외 나머지', desc: 'A, B, C, D에 적용 됨', value: '5%' },
+    ];
 
     return (
         <div id='devices' className='page'>
@@ -27,9 +35,7 @@ const Devices = () => {
                         <CardBodyForm titleFontColor='red' title='전체 공격 로그 비율' content='15%' />
                         <UpDown isRate amount={`${changeRate}%`} />
                     </Card>
-                    <Card title='공격 유형별 로그 현황'>
-                        <DummyCardEx height='215px'></DummyCardEx>
-                    </Card>
+                    <List title='공격 유형별 로그 현황' itemType='more' content={dummyListData} />
                 </Col>
                 <Col md={9} mb>
                     <EnvInfo />
