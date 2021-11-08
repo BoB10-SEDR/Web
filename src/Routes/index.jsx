@@ -11,11 +11,6 @@ import Detected from '@Pages/Logs/Detected';
 import Solutions from '@Pages/Solutions';
 import Inspection from '@Pages/Inspection';
 import Debug from '@Pages/Debug';
-import Card from '@Components/Card';
-import LineArea from '@Components/Charts/Line';
-import Radar from '@Components/Charts/Radar';
-import SparkLines from '@Components/Charts/Sparklines';
-import Table from '@Components/Table';
 
 // Datas
 import NavData from '@Components/Nav/Data/NavData';

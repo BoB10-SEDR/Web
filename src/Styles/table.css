@@ -1,32 +1,27 @@
-#tableArea {
-    width: 100%;
-    text-align: left;
-
-    color: #6c7293;
-
-    clear: both;
-    margin-top: 6px !important;
-    margin-bottom: 6px !important;
-    max-width: none !important;
-    border-collapse: separate !important;
-    border-spacing: 0;
+.tableWrapper .columnGroup {
+    font-size: 18px;
 }
 
-#tableArea td,
-#tableArea th {
-    box-sizing: content-box;
-
-    vertical-align: middle;
-    font-size: 0.875rem;
-    line-height: 1;
-    white-space: nowrap;
-
-    padding: 0.9375rem;
-    /* border-top: 1px solid #2c2e33; */
+.table {
+    position: relative;
 }
 
-.tableHeading {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
+.table .tableWrapper {
+    overflow: scroll;
+}
+
+.table .tableWrapper .tableHeader {
+    position: sticky;
+    top: 0;
+    background-color: #1b1e22;
+
+    z-index: 2;
+}
+
+.tableHeader .columnTitle i {
+    margin: 3px 0 0 5px;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

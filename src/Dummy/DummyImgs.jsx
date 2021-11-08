@@ -17,3 +17,9 @@ export const DummyHistory = () => {
         />
     );
 };
+
+export const DummyImgFrame = props => {
+    const { link = '', styles = {} } = props;
+
+    return <img src={link} alt='' width='100%' style={styles} />;
+};

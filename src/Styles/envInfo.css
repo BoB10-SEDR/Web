@@ -1,0 +1,100 @@
+#envInfo {
+    overflow: hidden;
+}
+
+#listMap {
+    display: flex;
+    justify-content: space-around;
+}
+
+#graphicMap {
+    display: inline-block;
+    position: relative;
+    width: 1000px;
+    height: 600px;
+}
+
+#graphicMap .floorMap {
+    position: absolute;
+    width: 100%;
+    height: 600px;
+}
+
+#graphicMap .layout {
+    width: 100%;
+    height: 100% !important;
+}
+
+#graphicMap .item {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #330000;
+    border: #b30000 3px solid;
+    font-size: 1.2rem;
+    transition: all 0.1s ease;
+    z-index: 0;
+}
+
+#graphicMap .item:hover {
+    border-color: white;
+}
+
+#graphicMap.transforming {
+    background-color: white;
+    transform-origin: 50%;
+    transform: scale(1.1);
+    opacity: 0;
+    transition-duration: 750ms;
+    transition-timing-function: ease-in;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.4);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleOut {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+}

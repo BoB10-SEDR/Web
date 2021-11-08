@@ -9,7 +9,8 @@
             "@Functions/*": ["./src/Utils/Functions/*"],
             "@Hooks/*": ["./src/Utils/Hooks/*"],
             "@Stores/*": ["./src/Stores/*"],
-            "@Routes/*": ["./src/Routes/*"]
+            "@Routes/*": ["./src/Routes/*"],
+            "@Images/*": ["./src/Images/*"]
         }
     }
 }

@@ -1,26 +1,52 @@
-import OneSparkLineRow from './Item';
+import Hr from '@Components/UI/Border';
 
-const SparkLines = props => {
-    const dummy = ['화재경보기기', '화재경보기기', '화재경보기기'];
+import '@Styles/chart.css';
+// import Chart from 'react-apexcharts';
+import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
+import { getSparkLineConfig } from './data';
+import { randomData } from '@Dummy/oneSparkLineRowDummy.js';
+import Table from '@Components/Table';
 
+const OneSparkLineRow = ({ name }) => {
+    // TODO_P :: dummy 해제
+    const value = 12345;
+
+    const randomColorHex = Math.round(Math.random() * 0xffffff).toString(16);
+
+    // TODO_P :: dummy(sampleData) 해제, random Color 해제
     return (
-        <table id='sparkLineChartArea'>
-            <thead>
-                <tr>
-                    <th>Source</th>
-                    <th>Total</th>
-                    <th>Trend</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {/* TODO_P :: dummy 해제 */}
-                {dummy.map(e => (
-                    <OneSparkLineRow name={e} />
-                ))}
-            </tbody>
-        </table>
+        <Sparklines data={randomData(30)} limit={20} height={40}>
+            <SparklinesLine color={`#${randomColorHex}`} style={{ strokeWidth: '2', fill: `none` }} />
+            <SparklinesSpots />
+        </Sparklines>
     );
+};
+
+const dummySparklineData = [
+    {
+        source: '네트워크 공격',
+        total: Number(Math.round(Math.random() * 100000 + 1)).toLocaleString(),
+        trend: <OneSparkLineRow />,
+    },
+    {
+        source: '코드 인젝션',
+        total: Number(Math.round(Math.random() * 100000 + 1)).toLocaleString(),
+        trend: <OneSparkLineRow />,
+    },
+    {
+        source: '중복 로그인 시도',
+        total: Number(Math.round(Math.random() * 100000 + 1)).toLocaleString(),
+        trend: <OneSparkLineRow />,
+    },
+    {
+        source: '그 외 기타',
+        total: Number(Math.round(Math.random() * 100000 + 1)).toLocaleString(),
+        trend: <OneSparkLineRow />,
+    },
+];
+
+const SparkLines = () => {
+    return <Table schema='sparkline' browseData={dummySparklineData} defaultRowHeight={60} defaultRowWidth={100} />;
 };
 
 export default SparkLines;

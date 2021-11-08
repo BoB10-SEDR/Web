@@ -1,13 +1,19 @@
 #deviceNav {
+    display: inline-block;
     position: absolute;
     right: 5%;
     width: 4rem;
-    height: 551.4px;
+    height: 600px;
     word-wrap: break-word;
     background-color: #1b1e22;
     background-clip: border-box;
     border-radius: 0.35rem;
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.deviceNavItemsWrapper {
+    height: 550px;
+    overflow: auto;
 }
 
 .deviceNavItems {
@@ -22,5 +28,13 @@
 }
 
 .deviceNavToggle {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    background-color: #1b1e22;
+    width: 100%;
     margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    bottom: 0px;
 }

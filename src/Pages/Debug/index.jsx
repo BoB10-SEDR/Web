@@ -1,25 +1,36 @@
 import Card from '@Components/Card';
+import SparkLines from '@Components/Charts/Sparklines';
 import { Row, Col } from '@Components/Grid';
+import Table from '@Components/Table';
+import { randomRangeIntegerArray } from '@Functions/';
 import '@Styles/debug.css';
+import { useEffect, useState } from 'react';
 
 const Debug = () => {
-    const dummyItems = [
-        { itemType: 'toggle', name: 'itemName', desc: 'description' },
-        { itemType: 'toggle', name: 'itemName', desc: 'description' },
-        { itemType: 'toggle', name: 'itemName', desc: 'description' },
-        { itemType: 'toggle', name: 'itemName', desc: 'description' },
-        { itemType: 'toggle', name: 'itemName', desc: 'description' },
-    ];
+    const [interval, setIntv] = useState('');
+
+    // useEffect(() => {
+    //     const arrLength = 10;
+
+    //     const interval = setInterval(() => {
+    //         console.log(randomRangeIntegerArray({ range: [0, 100] }, arrLength));
+    //     }, 1000);
+
+    //     setIntv(interval);
+    // }, []);
+
+    // const handleClick = e => {
+    //     e.preventDefault();
+    //     console.log('멈춰!');
+    //     clearInterval(interval);
+    // };
 
     return (
         <div id='debug' className='page'>
-            {/* 작업 알아서 하시길 바랍니다 */}
-            <Card title='안녕'>
-                <Row>
-                    <Col lg={3}>
-                        <List content={dummyItems} />
-                    </Col>
-                </Row>
+            {/* <button onClick={handleClick}>STOP</button> */}
+
+            <Card title='test'>
+                <SparkLines />
             </Card>
         </div>
     );
