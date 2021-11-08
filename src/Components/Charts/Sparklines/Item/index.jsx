@@ -10,19 +10,13 @@ const OneSparkLineRow = ({ name }) => {
 
     // TODO_P :: dummy(sampleData) 해제, random Color 해제
     return (
-        <tr className='oneSparkLineRow'>
-            <td className='description'>{name}</td>
-            <td className='totalValue'>{`${value.toLocaleString()}`}</td>
-            <td className='sparkline'>
-                <Sparklines data={sampleData} limit={20}>
-                    <SparklinesLine
-                        color={`#${Math.round(Math.random() * 0xffffff).toString(16)}`}
-                        style={{ strokeWidth: '3', fill: 'none' }}
-                    />
-                    <SparklinesSpots />
-                </Sparklines>
-            </td>
-        </tr>
+        <Sparklines data={sampleData} limit={20}>
+            <SparklinesLine
+                color={`#${Math.round(Math.random() * 0xffffff).toString(16)}`}
+                style={{ strokeWidth: '3', fill: 'none' }}
+            />
+            <SparklinesSpots />
+        </Sparklines>
     );
 };
 

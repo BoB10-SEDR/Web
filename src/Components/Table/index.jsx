@@ -5,11 +5,10 @@ import genData from './data/generator';
 import '@Styles/table.css';
 import Hr from '@Components/UI/Border';
 import matchSorter from 'match-sorter';
-
-const dummyFunction = async schema => genData(50);
+import NoData from '@Components/UI/NoData';
 
 const Table = props => {
-    const { id = 'table', schema = 'example', tableHeight, searchKeyword } = props;
+    const { id = 'table', schema = 'example', tableHeight, searchKeyword, browseData = [] } = props;
 
     const [tableData, setTableData] = useState([]);
 
@@ -116,11 +115,9 @@ const Table = props => {
     useEffect(() => {
         if (!mounted.current) {
             (async () => {
-                // TODO_P :: Web 요청으로 data를 불러오는 hook 연결
-                const browseData = await dummyFunction(schema);
+                // TODO_P :: Dummy 해제
 
                 setTableData(browseData);
-                // console.log('rerendered');
                 mounted.current = true;
             })();
         } else {
@@ -161,26 +158,30 @@ const Table = props => {
                     <Hr color='#303236' />
                 </div>
 
-                <div {...getTableBodyProps()}>
-                    {rows.map((row, i) => {
-                        const isLast = i === rows.length - 1;
-                        prepareRow(row);
-                        return (
-                            <>
-                                <tr {...row.getRowProps(rowProps)} className='tableRow'>
-                                    {row.cells.map(cell => {
-                                        return (
-                                            <td {...cell.getCellProps(cellProps)} className='rowCell'>
-                                                {cell.render('Cell')}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                                {!isLast && <Hr />}
-                            </>
-                        );
-                    })}
-                </div>
+                {browseData.length !== 0 ? (
+                    <div {...getTableBodyProps()}>
+                        {rows.map((row, i) => {
+                            const isLast = i === rows.length - 1;
+                            prepareRow(row);
+                            return (
+                                <>
+                                    <tr {...row.getRowProps(rowProps)} className='tableRow'>
+                                        {row.cells.map(cell => {
+                                            return (
+                                                <td {...cell.getCellProps(cellProps)} className='rowCell'>
+                                                    {cell.render('Cell')}
+                                                </td>
+                                            );
+                                        })}
+                                    </tr>
+                                    {!isLast && <Hr />}
+                                </>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <NoData />
+                )}
             </div>
         </div>
     );

@@ -6,3 +6,9 @@ export const exampleSchema = [
     { Header: '마지막 변경 시간', accessor: 'timestamp', align: 'left', width: 400, isAbleToSort: true },
     { Header: '대응 정책 설명', accessor: 'description', align: 'left', isAbleToSort: true },
 ];
+
+export const sparklineSchema = [
+    { Header: '공격 유형', accessor: 'source', align: 'left', isAbleToSort: true },
+    { Header: '총 로그 수', accessor: 'total', align: 'left', isAbleToSort: true },
+    { Header: '변화 추이', accessor: 'trend', align: 'left', isAbleToSort: true },
+];
