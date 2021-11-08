@@ -21,7 +21,7 @@ function boxMullerRandom() {
     })();
 }
 
-function randomData(n = 30) {
+export function randomData(n = 30) {
     return Array.apply(0, Array(n)).map(boxMullerRandom);
 }
 

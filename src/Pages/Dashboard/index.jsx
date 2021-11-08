@@ -86,7 +86,9 @@ const Dashboard = () => {
                     <Card title='공격 유형별 로그 개수'>
                         {/* <DummyImgFrame link='https://cdn.discordapp.com/attachments/903242363500122137/903242392143024159/unknown.png' /> */}
 
-                        <SparkLines />
+                        <DummyCardEx height='314px'>
+                            <SparkLines />
+                        </DummyCardEx>
                     </Card>
                 </Col>
                 <Col lg={6}>

@@ -8,12 +8,19 @@ import matchSorter from 'match-sorter';
 import NoData from '@Components/UI/NoData';
 
 const Table = props => {
-    const { id = 'table', schema = 'example', tableHeight, searchKeyword, browseData = [] } = props;
+    const {
+        id = 'table',
+        schema = 'example',
+        defaultRowHeight = '50px',
+        tableHeight,
+        searchKeyword,
+        browseData = [],
+    } = props;
 
     const [tableData, setTableData] = useState([]);
 
     // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
-    const schemaData = useMemo(() => getSchemaData(schema), []);
+    const schemaData = useMemo(() => getSchemaData(schema), [schema]);
 
     const defaultColumn = useMemo(
         () => ({
@@ -100,7 +107,7 @@ const Table = props => {
         props,
         {
             style: {
-                height: '50px',
+                height: defaultRowHeight,
                 alignItems: 'center',
             },
         },
@@ -118,6 +125,9 @@ const Table = props => {
                 // TODO_P :: Dummy 해제
 
                 setTableData(browseData);
+
+                console.table(browseData);
+
                 mounted.current = true;
             })();
         } else {
