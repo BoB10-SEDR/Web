@@ -4,7 +4,6 @@ import { Chart } from 'chart.js';
 import { useEffect, useState } from 'react';
 import { fixedRadarData, getRadarOptions } from './data';
 import radarChartDummy from '@Dummy/radarChartDummy.json';
-
 const Radar = props => {
     // TODO_P :: props 템플릿화 & 명세에 적기 & dummy 해제
     const [receivedData, setRadarData] = useState(radarChartDummy);
@@ -21,7 +20,10 @@ const Radar = props => {
         radarChartInit(chartID, radarData, radarOptions);
 
         // TODO_P :: 데이터 불러와서 초기화
-        // setRadarData();
+        setRadarData({
+            chartID: 'radarChart',
+            labelName: '공격유형 레이더',
+        });
     }, []);
 
     return (

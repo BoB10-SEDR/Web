@@ -1,3 +1,4 @@
+import Hr from '@Components/UI/Border';
 import OneSparkLineRow from './Item';
 
 const SparkLines = props => {
