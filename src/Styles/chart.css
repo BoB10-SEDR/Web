@@ -18,7 +18,7 @@
 }
 
 #sparkLineChartArea {
-    display: block;
+    /* display: block; */
     position: relative !important;
     /* vertical-align: middle; */
 
@@ -28,11 +28,11 @@
 
     width: 100%;
 
-    font-family: 'Nunito', 'NanumSquare';
+    font-family: 'NanumSquare';
 }
 
 #sparkLineChartArea thead {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 #sparkLineChartArea thead tr th {
@@ -54,16 +54,17 @@
 }
 
 #sparkLineChartArea .oneSparkLineRow .description {
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 400;
 }
 
 #sparkLineChartArea .oneSparkLineRow .totalValue {
-    font-size: 14px;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 #sparkLineChartArea .oneSparkLineRow .sparkline {
-    width: 200px;
+    /* width: 200px; */
 }
 
 #gaugeChart {

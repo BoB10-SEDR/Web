@@ -22,7 +22,7 @@
 .toggleSwitch input[type='checkbox'] {
     height: 0;
     width: 0;
-    visibility: hidden;
+    display: none;
 }
 
 .toggleSwitch label {
@@ -210,4 +210,10 @@
     border-radius: 10px;
     -webkit-box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
     box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+}
+
+.noData {
+    margin-top: 100px;
+    text-align: center;
+    color: #464646;
 }

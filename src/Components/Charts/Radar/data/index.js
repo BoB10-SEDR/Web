@@ -20,13 +20,21 @@ export const getRadarOptions = labelCallback => {
         scale: {
             gridLines: {
                 // display: false,
-                color: 'rgba(78, 115, 223, 0.1)',
+                color: 'rgba(255, 0, 0, 0.08)',
             },
             angleLines: {
                 // display: false,
             },
             pointLabels: {
-                fontSize: 16,
+                fontSize: 14,
+                fontColor: 'rgba(255,255,255,0.5)',
+            },
+            ticks: {
+                backdropColor: 'transparent',
+                // beginAtZero: true,
+                max: 100,
+                min: 0,
+                stepSize: 20,
             },
         },
         tooltips: {

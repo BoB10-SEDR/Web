@@ -15,6 +15,7 @@ import CardBodyForm from '@Components/Card/Form';
 import Line from '@Components/Charts/Line';
 import Radar from '@Components/Charts/Radar';
 import { DummyImgFrame } from '@Dummy/DummyImgs';
+import SparkLines from '@Components/Charts/Sparklines';
 
 const Dashboard = () => {
     const { barId, barData, barOptions } = BarDummy;
@@ -83,7 +84,11 @@ const Dashboard = () => {
             <Row>
                 <Col lg={6}>
                     <Card title='공격 유형별 로그 개수'>
-                        <DummyImgFrame link='https://cdn.discordapp.com/attachments/903242363500122137/903242392143024159/unknown.png' />
+                        {/* <DummyImgFrame link='https://cdn.discordapp.com/attachments/903242363500122137/903242392143024159/unknown.png' /> */}
+
+                        <DummyCardEx height='314px'>
+                            <SparkLines />
+                        </DummyCardEx>
                     </Card>
                 </Col>
                 <Col lg={6}>
