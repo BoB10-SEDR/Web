@@ -11,9 +11,10 @@ const Table = props => {
     const {
         id = 'table',
         schema = 'example',
-        defaultRowHeight = '50px',
+        defaultRowHeight = '60',
         tableHeight,
         searchKeyword,
+        defaultRowWidth = '200',
         browseData = [],
     } = props;
 
@@ -26,7 +27,7 @@ const Table = props => {
         () => ({
             // When using the useFlexLayout:
             minWidth: 30, // minWidth is only used as a limit for resizing
-            width: 300, // width is used for both the flex-basis and flex-grow
+            width: defaultRowWidth, // width is used for both the flex-basis and flex-grow
             maxWidth: 600, // maxWidth is only used as a limit for resizing
         }),
         []
@@ -107,7 +108,7 @@ const Table = props => {
         props,
         {
             style: {
-                height: defaultRowHeight,
+                height: `${defaultRowHeight}px`,
                 alignItems: 'center',
             },
         },

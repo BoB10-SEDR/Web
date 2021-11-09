@@ -46,7 +46,7 @@ const dummySparklineData = [
 ];
 
 const SparkLines = () => {
-    return <Table schema='sparkline' browseData={dummySparklineData} defaultRowHeight='60px' />;
+    return <Table schema='sparkline' browseData={dummySparklineData} defaultRowHeight={60} defaultRowWidth={100} />;
 };
 
 export default SparkLines;
