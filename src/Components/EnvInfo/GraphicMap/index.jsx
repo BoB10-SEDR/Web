@@ -13,7 +13,7 @@ const GraphicMap = ({ show }) => {
     useEffect(() => {
         setTimeout(() => {
             if (show) setIsVisible(true);
-        }, 1000);
+        }, 500);
     }, [show]);
 
     const handleAnimationEnd = () => {
@@ -29,7 +29,7 @@ const GraphicMap = ({ show }) => {
             {isVisible && (
                 <div
                     id='graphicMap'
-                    style={{ animation: `${show ? 'none' : 'zoomIn 0.4s'}` }}
+                    style={{ animation: `${show ? 'zoomOut' : 'zoomIn'} 0.5s` }}
                     onAnimationEnd={handleAnimationEnd}
                 >
                     <FloorMap className='floorMap' />

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Circle from '@Components/Circle';
 import TextNav from '@Components/TextNav';
+import MiniMap from './MiniMap';
 import envInfo from '@Dummy/envInfo';
 
 const ListMap = ({ show }) => {
@@ -20,12 +21,15 @@ const ListMap = ({ show }) => {
         <>
             {isVisible && (
                 <div
-                    id='listMap'
-                    style={{ animation: `${show ? 'scaleIn' : 'scaleOut'} 0.75s` }}
+                    id='listMapWrapper'
+                    style={{ animation: `${show ? 'scaleIn' : 'scaleOut'} 0.5s` }}
                     onAnimationEnd={handleAnimationEnd}
                 >
-                    <Circle />
-                    <TextNav items={envInfo} />
+                    <MiniMap />
+                    <div id='listMap'>
+                        <Circle />
+                        <TextNav items={envInfo} />
+                    </div>
                 </div>
             )}
         </>
