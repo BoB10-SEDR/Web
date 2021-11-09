@@ -6,11 +6,7 @@ const MiniMap = () => {
         store.setIsGraphic(true);
     };
 
-    return (
-        <div id='miniMap'>
-            <FloorMap id='miniMap' onClick={handleClick} />
-        </div>
-    );
+    return <FloorMap id='miniMap' onClick={handleClick} />;
 };
 
 export default MiniMap;

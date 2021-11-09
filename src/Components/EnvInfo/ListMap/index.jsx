@@ -20,17 +20,17 @@ const ListMap = ({ show }) => {
     return (
         <>
             {isVisible && (
-                <>
+                <div
+                    id='listMapWrapper'
+                    style={{ animation: `${show ? 'scaleIn' : 'scaleOut'} 0.5s` }}
+                    onAnimationEnd={handleAnimationEnd}
+                >
                     <MiniMap />
-                    <div
-                        id='listMap'
-                        style={{ animation: `${show ? 'scaleIn' : 'scaleOut'} 0.75s` }}
-                        onAnimationEnd={handleAnimationEnd}
-                    >
+                    <div id='listMap'>
                         <Circle />
                         <TextNav items={envInfo} />
                     </div>
-                </>
+                </div>
             )}
         </>
     );
