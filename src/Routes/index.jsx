@@ -8,6 +8,7 @@ import Devices from '@Pages/Logs/Devices';
 import DeviceTabs from '@Pages/Logs/Devices/DeviceTabs';
 import Networks from '@Pages/Logs/Networks';
 import Detected from '@Pages/Logs/Detected';
+import Magician from '@Pages/Logs/Magician';
 import Solutions from '@Pages/Solutions';
 import Inspection from '@Pages/Inspection';
 import Debug from '@Pages/Debug';
@@ -37,6 +38,7 @@ const Routes = () => {
                             <Route path='/Solutions' component={Solutions} />
                             <Route path='/Inspection' component={Inspection} />
                             <Route path='/Logs/Details' component={Details} />
+                            <Route path='/Logs/Magician' component={Magician} />
                             <Route path='/Debug' component={Debug} />
                         </Switch>
                         <Footer />

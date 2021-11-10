@@ -52,7 +52,7 @@
 
 #miniMap {
     position: absolute;
-    width: 100px;
+    width: 130px;
     height: 100px;
     transition: filter 0.1s ease;
 }
