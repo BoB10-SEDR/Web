@@ -38,3 +38,11 @@ export const randomRangeIntegerArray = (
 
     return returnArr;
 };
+
+export const randomBoundInteger = (bound = 100000) => {
+    return Number(Math.round(Math.random() * bound + 1)).toLocaleString();
+};
+
+export const randomPercent = () => {
+    return `${Number(Math.round(Math.random() * 100 + 1))}%`;
+};
