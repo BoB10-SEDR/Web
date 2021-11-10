@@ -16,6 +16,7 @@ import Line from '@Components/Charts/Line';
 import Radar from '@Components/Charts/Radar';
 import { DummyImgFrame } from '@Dummy/DummyImgs';
 import SparkLines from '@Components/Charts/Sparklines';
+import d from '@Dummy/dashboardNumbers';
 
 const Dashboard = () => {
     const { barId, barData, barOptions } = BarDummy;
@@ -36,22 +37,30 @@ const Dashboard = () => {
             <Row>
                 <Col xl={3} md={6}>
                     <Card border={`1px solid ${red}`} {...cardDefaultConfig}>
-                        <CardBodyForm titleFontColor={red} title='보안위험지수' content='1단계' />
+                        <CardBodyForm titleFontColor={red} title='보안위험지수' content={`${d.riskStep}단계`} />
                     </Card>
                 </Col>
                 <Col xl={3} md={6}>
                     <Card border={`1px solid ${blue}`} {...cardDefaultConfig}>
-                        <CardBodyForm titleFontColor={blue} title='전체 로그 개수' content='19,991,006 개' />
+                        <CardBodyForm titleFontColor={blue} title='전체 로그 개수' content={`${d.totalLogs} 개`} />
                     </Card>
                 </Col>
                 <Col xl={3} md={6}>
                     <Card border={`1px solid ${pink}`} {...cardDefaultConfig}>
-                        <CardBodyForm titleFontColor={pink} title='공격유형/공격로그개수' content='3/10,928 개' />
+                        <CardBodyForm
+                            titleFontColor={pink}
+                            title='공격유형/공격로그개수'
+                            content={`${d.attacks}/${d.attackLogs} 개`}
+                        />
                     </Card>
                 </Col>
                 <Col xl={3} md={6}>
                     <Card border={`1px solid ${green}`} {...cardDefaultConfig}>
-                        <CardBodyForm titleFontColor={green} title='등록된 장치/센서 수' content='30/256 개' />
+                        <CardBodyForm
+                            titleFontColor={green}
+                            title='등록된 장치/센서 수'
+                            content={`${d.devices}/${d.sensors} 개`}
+                        />
                     </Card>
                 </Col>
             </Row>
