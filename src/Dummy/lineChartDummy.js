@@ -1,10 +1,16 @@
 import DummyCardSimple from './DummyCardSimple';
+import { randomRangeIntegerArray } from '@Functions/';
+
+const rangeConfig = {
+    range: [0, 100000],
+    isLeftIncluded: true,
+    isRightIncluded: true,
+};
 
 export const lineChartDummy = {
     labelName: 'Total Log',
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-
-    data: [0, 50000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+    data: randomRangeIntegerArray(rangeConfig, 12),
 
     unitCallback: (value, index, values) => {
         return value.toLocaleString();
