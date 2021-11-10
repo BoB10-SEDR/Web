@@ -1,7 +1,9 @@
+import { randomBoundInteger } from '@Functions/';
+
 const dummy = {
-    totalLogs: 1000000,
-    disorderLogs: 100,
-    devices: 3,
+    totalLogs: randomBoundInteger(),
+    disorderLogs: randomBoundInteger(100),
+    devices: randomBoundInteger(10),
 };
 
 export default dummy;

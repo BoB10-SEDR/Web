@@ -17,10 +17,6 @@ export const randomRangeInteger = (range = [0, 100], isLeftIncluded = true, isRi
     return randomValue + min + (!isLeftIncluded && isRightIncluded ? 1 : 0);
 };
 
-export const randomBoundIngeter = (bound = 100000) => {
-    return Number(Math.round(Math.random() * bound + 1)).toLocaleString();
-};
-
 export const genRange = len => {
     const arr = [];
     for (let i = 0; i < len; i++) {
@@ -41,4 +37,12 @@ export const randomRangeIntegerArray = (
     const returnArr = genRange(length).map(e => randomRangeInteger(range, isLeftIncluded, isRightIncluded));
 
     return returnArr;
+};
+
+export const randomBoundInteger = (bound = 100000) => {
+    return Number(Math.round(Math.random() * bound + 1)).toLocaleString();
+};
+
+export const randomPercent = () => {
+    return `${Number(Math.round(Math.random() * 100 + 1))}%`;
 };

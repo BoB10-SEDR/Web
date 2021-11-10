@@ -1,12 +1,12 @@
-import { randomBoundIngeter } from '@Functions';
+import { randomBoundInteger } from '@Functions';
 
 const dummy = {
-    riskStep: randomBoundIngeter(5),
-    totalLogs: randomBoundIngeter(),
-    attacks: randomBoundIngeter(10),
-    attackLogs: randomBoundIngeter(),
-    devices: randomBoundIngeter(100),
-    sensors: randomBoundIngeter(),
+    riskStep: randomBoundInteger(5),
+    totalLogs: randomBoundInteger(),
+    attacks: randomBoundInteger(10),
+    attackLogs: randomBoundInteger(),
+    devices: randomBoundInteger(100),
+    sensors: randomBoundInteger(),
 };
 
 export default dummy;
