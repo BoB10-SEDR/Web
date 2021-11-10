@@ -2,6 +2,7 @@ import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import CardBodyForm from '@Components/Card/Form';
 import EventViewer from '@Components/EventViewer';
+import Line from '@Components/Charts/Line';
 import DummyCardEx from '@Dummy/DummyCardEx';
 import d from '@Dummy/magician';
 
@@ -21,7 +22,9 @@ const Magician = () => {
                 </Col>
                 <Col xl={8} md={8} mb>
                     <Card>
-                        <DummyCardEx height='390px'></DummyCardEx>
+                        <DummyCardEx height='390px'>
+                            <Line />
+                        </DummyCardEx>
                     </Card>
                     <Row>
                         <Col md={4} xl={4} mb>
