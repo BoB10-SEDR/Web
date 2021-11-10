@@ -3,6 +3,12 @@ import Card from '@Components/Card';
 import CardBodyForm from '@Components/Card/Form';
 import EventViewer from '@Components/EventViewer';
 import DummyCardEx from '@Dummy/DummyCardEx';
+import d from '@Dummy/magician';
+
+const red = '#F02632';
+const blue = '#727CF5';
+const pink = '#F66C6C';
+const green = '#61CA68';
 
 const Magician = () => {
     return (
@@ -20,17 +26,29 @@ const Magician = () => {
                     <Row>
                         <Col md={4} xl={4} mb>
                             <Card>
-                                <CardBodyForm titleFontColor={'red'} title='보안위험지수' content='1단계' />
+                                <CardBodyForm
+                                    titleFontColor={red}
+                                    title='전체 로그 수'
+                                    content={d.totalLogs.toLocaleString()}
+                                />
                             </Card>
                         </Col>
                         <Col md={4} xl={4} mb>
                             <Card>
-                                <CardBodyForm titleFontColor={'red'} title='보안위험지수' content='1단계' />
+                                <CardBodyForm
+                                    titleFontColor={blue}
+                                    title='장애 로그 수'
+                                    content={d.disorderLogs.toLocaleString()}
+                                />
                             </Card>
                         </Col>
                         <Col md={4} xl={4} mb>
                             <Card>
-                                <CardBodyForm titleFontColor={'red'} title='보안위험지수' content='1단계' />
+                                <CardBodyForm
+                                    titleFontColor={green}
+                                    title='연관 장치 수'
+                                    content={d.devices.toLocaleString()}
+                                />
                             </Card>
                         </Col>
                     </Row>
