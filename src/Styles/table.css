@@ -22,6 +22,11 @@
     margin: 3px 0 0 5px;
 }
 
+.tableHeading {
+    display: flex;
+    justify-content: space-between;
+}
+
 ::-webkit-scrollbar {
     display: none;
 }
