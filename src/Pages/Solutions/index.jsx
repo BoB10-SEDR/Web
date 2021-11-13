@@ -10,14 +10,14 @@ const Solutions = () => {
     const [solutions, setSolutions] = useState([]);
 
     useEffect(() => {
-        async function fetchData() {
+        const fetchData = async () => {
             try {
                 const data = await getPolicies(1, 10);
                 setSolutions(data.outputs);
             } catch (e) {
                 setSolutions([]);
             }
-        }
+        };
         fetchData();
     }, []);
 
