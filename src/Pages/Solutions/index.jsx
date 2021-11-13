@@ -4,29 +4,21 @@ import Card from '@Components/Card';
 import Table from '@Components/Table';
 import TableHeading from '@Components/Table/TableHeading';
 import Button from '@Components/UI/Button';
-import { getPolicies } from '@Api/';
-import axios from 'axios';
+import { getPolicies } from '@Api/policies';
 
 const Solutions = () => {
     const [solutions, setSolutions] = useState([]);
-    const requestConfig = {
-        params: {
-            page: 1,
-            limit: 10,
-        },
-    };
 
     useEffect(() => {
-        const getPolicies = async () => {
+        async function fetchData() {
             try {
-                setSolutions([]);
-                const response = await axios.get('/policies', requestConfig);
-                setSolutions(response.data.outputs);
+                const data = await getPolicies(1, 10);
+                setSolutions(data.outputs);
             } catch (e) {
-                console.log(e);
+                setSolutions([]);
             }
-        };
-        getPolicies();
+        }
+        fetchData();
     }, []);
 
     return (
