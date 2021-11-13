@@ -18,7 +18,7 @@ const Table = props => {
         browseData = [],
     } = props;
 
-    const [tableData, setTableData] = useState([]);
+    const [tableData, setTableData] = useState(browseData);
 
     // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
     const schemaData = useMemo(() => getSchemaData(schema), [schema]);
@@ -124,7 +124,6 @@ const Table = props => {
         if (!mounted.current) {
             (async () => {
                 // TODO_P :: Dummy 해제
-
                 setTableData(browseData);
 
                 mounted.current = true;

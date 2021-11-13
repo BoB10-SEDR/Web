@@ -1,4 +1,4 @@
-import { exampleSchema, sparklineSchema } from './schema';
+import { exampleSchema, sparklineSchema, solutionsSchema } from './schema';
 
 const getSchemaData = (type = '') => {
     if (!type) return [];
@@ -8,6 +8,8 @@ const getSchemaData = (type = '') => {
             return exampleSchema;
         case 'sparkline':
             return sparklineSchema;
+        case 'solutions':
+            return solutionsSchema;
         default:
             return exampleSchema;
     }
