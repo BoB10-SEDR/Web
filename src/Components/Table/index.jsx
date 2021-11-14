@@ -23,7 +23,7 @@ const Table = props => {
         onRowClick = () => {},
     } = props;
 
-    const [tableData, setTableData] = useState(browseData);
+    const [tableData, setTableData] = useState([]);
 
     // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
     const schemaData = useMemo(() => getSchemaData(schema), [schema]);
@@ -225,7 +225,7 @@ const Table = props => {
                     <NoData />
                 )}
             </div>
-            <code>{JSON.stringify({ 'selectedFlatRows[].original': selectedFlatRows.map(d => d.original) })}</code>
+            {/* <code>{JSON.stringify({ 'selectedFlatRows[].original': selectedFlatRows.map(d => d.original) })}</code> */}
         </div>
     );
 };
