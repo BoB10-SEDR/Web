@@ -5,7 +5,7 @@ import Nav from '@Components/Nav';
 import Dashboard from '@Pages/Dashboard';
 import Details from '@Pages/Logs/Details';
 import Devices from '@Pages/Logs/Devices';
-import DeviceTabs from '@Pages/Logs/Devices/DeviceTabs';
+import DeviceDetails from '@Pages/Logs/Devices/DeviceDetails';
 import Networks from '@Pages/Logs/Networks';
 import Detected from '@Pages/Logs/Detected';
 import Magician from '@Pages/Logs/Magician';
@@ -32,7 +32,7 @@ const Routes = () => {
                             <Route path='/' exact component={Dashboard} />
                             <Route path='/Dashboard' component={Dashboard} />
                             <Route path='/Logs/Devices' exact component={Devices} />
-                            <Route path='/Logs/Devices/Tabs' component={DeviceTabs} />
+                            <Route path='/Logs/Devices/Details' component={DeviceDetails} />
                             <Route path='/Logs/Networks' component={Networks} />
                             <Route path='/Logs/Detected' component={Detected} />
                             <Route path='/Solutions' component={Solutions} />

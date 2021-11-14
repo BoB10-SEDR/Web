@@ -22,11 +22,11 @@ const Table = props => {
         onRowClick = () => {},
     } = props;
 
-    const [tableData, setTableData] = useState(browseData);
+    // const [tableData, setTableData] = useState(browseData);
 
-    useEffect(() => {
-        setTableData(browseData);
-    }, [browseData]);
+    // useEffect(() => {
+    //     setTableData(browseData);
+    // }, [browseData]);
 
     // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
     const schemaData = useMemo(() => getSchemaData(schema), [schema]);
@@ -79,7 +79,7 @@ const Table = props => {
     } = useTable(
         {
             columns: schemaData,
-            data: tableData,
+            data: browseData,
             defaultColumn,
             filterTypes,
         },
@@ -153,7 +153,6 @@ const Table = props => {
         if (!mounted.current) {
             (async () => {
                 // TODO_P :: Dummy 해제
-                setTableData(browseData);
 
                 mounted.current = true;
             })();
@@ -207,7 +206,7 @@ const Table = props => {
                                         style={{
                                             backgroundColor: styleCondition ? '#35383d' : 'transparent',
                                         }}
-                                        {...row.getRowProps(rowProps)}
+                                        {...row.getRowProps(rowProps, { onClick: () => onRowClick(i) })}
                                         className='tableRow'
                                     >
                                         {row.cells.map(cell => {

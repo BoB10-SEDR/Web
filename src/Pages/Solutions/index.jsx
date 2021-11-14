@@ -4,7 +4,7 @@ import Card from '@Components/Card';
 import Table from '@Components/Table';
 import TableHeading from '@Components/Table/TableHeading';
 import Button from '@Components/UI/Button';
-import { getPolicies } from '@Api/policies';
+import { getPolicies, postPolicyActivate } from '@Api/policies';
 
 const Solutions = () => {
     const [solutions, setSolutions] = useState([]);
@@ -21,12 +21,20 @@ const Solutions = () => {
         fetchData();
     }, []);
 
+    const activateSolutions = async () => {
+        try {
+            const data = await postPolicyActivate(1, 10);
+        } catch (e) {
+            alert('정책 적용에 실패했습니다. 다시 시도해주세요');
+        }
+    };
+
     return (
         <div id='solutions' className='page'>
             <Card>
                 <TableHeading>
                     <span>대응 정책</span>
-                    <Button>Apply</Button>
+                    <Button onClick={activateSolutions}>Apply</Button>
                 </TableHeading>
                 <Table isCheckable schema='solutions' browseData={solutions} />
             </Card>

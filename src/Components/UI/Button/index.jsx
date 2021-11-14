@@ -6,7 +6,7 @@ const Button = props => {
         backgroundColor = 'red',
         borderColor = backgroundColor,
         color = 'white',
-        onClick,
+        onClick = () => {},
         isActive,
         title,
         className = '',
