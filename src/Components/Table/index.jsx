@@ -21,6 +21,8 @@ const Table = props => {
         browseData = [],
         nowSelected,
         onRowClick = () => {},
+        isSubmitted,
+        onSubmit = () => {},
     } = props;
 
     const [tableData, setTableData] = useState([]);
@@ -161,6 +163,11 @@ const Table = props => {
         }
     }, [searchKeyword, schema, onSearchKeywordChange]);
 
+    useEffect(() => {
+        if (!isSubmitted) return;
+        onSubmit(selectedFlatRows.map(d => d.original));
+    }, [isSubmitted]);
+
     // 아래는 스타일 적용을 위해 Tag이름 구분지어야함
     return (
         <div id={id} className='table' style={{ height: tableHeight ?? null }}>
@@ -225,7 +232,6 @@ const Table = props => {
                     <NoData />
                 )}
             </div>
-            {/* <code>{JSON.stringify({ 'selectedFlatRows[].original': selectedFlatRows.map(d => d.original) })}</code> */}
         </div>
     );
 };

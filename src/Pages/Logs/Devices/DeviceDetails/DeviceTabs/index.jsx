@@ -4,6 +4,7 @@ import { Tabs } from 'react-tabs';
 import Details from '@Pages/Logs/Details';
 import { CustomTabList, CustomTab, CustomTabPanel, TabContent } from '@Components/CustomTabs';
 import TabPanelHeader from '@Components/UI/TabPanelHeader';
+import Card from '@Components/Card';
 import tabStore from '@Stores/deviceTabs';
 
 const DeviceTabs = () => {
@@ -15,7 +16,7 @@ const DeviceTabs = () => {
         <>
             <Tabs
                 className='tabs'
-                selectedIndex={tabStore.getActiveTab()}
+                selectedIndex={tabStore.activeTab}
                 selectedTabClassName='active'
                 onSelect={handleSelect}
             >
@@ -31,8 +32,10 @@ const DeviceTabs = () => {
                 {tabStore.tabs.map((tab, index) => {
                     return (
                         <CustomTabPanel key={index}>
-                            <TabPanelHeader name={tab.deviceName} id={tab.deviceId} />
-                            <Details path={tab.path} />
+                            <Card>
+                                <TabPanelHeader name={tab.deviceName} id={tab.deviceId} />
+                                <Details path={tab.path} />
+                            </Card>
                         </CustomTabPanel>
                     );
                 })}

@@ -1,10 +1,13 @@
+import '@Styles/solution.css';
 import { useEffect, useState } from 'react';
-import PageHeading from '@Components/UI/PageHeading';
+import { observer } from 'mobx-react';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import TableHeading from '@Components/Table/TableHeading';
 import Button from '@Components/UI/Button';
-import { getPolicies, postPolicyActivate } from '@Api/policies';
+import Magician from './Magician';
+import { getPolicies } from '@Api/policies';
+import store from '@Stores/policyMagician';
 
 const Solutions = () => {
     const [solutions, setSolutions] = useState([]);
@@ -21,12 +24,8 @@ const Solutions = () => {
         fetchData();
     }, []);
 
-    const activateSolutions = async () => {
-        try {
-            const data = await postPolicyActivate(1, 10);
-        } catch (e) {
-            alert('정책 적용에 실패했습니다. 다시 시도해주세요');
-        }
+    const openModal = () => {
+        store.setIsOpen(true);
     };
 
     return (
@@ -34,12 +33,18 @@ const Solutions = () => {
             <Card>
                 <TableHeading>
                     <span>대응 정책</span>
-                    <Button onClick={activateSolutions}>Apply</Button>
+                    <Magician />
                 </TableHeading>
-                <Table isCheckable schema='solutions' browseData={solutions} />
+                <Table
+                    isCheckable
+                    schema='solutions'
+                    browseData={solutions}
+                    isSubmitted={store.isOpen}
+                    onSubmit={data => store.setSelectedPolicies(data)}
+                />
             </Card>
         </div>
     );
 };
 
-export default Solutions;
+export default observer(Solutions);
