@@ -8,6 +8,9 @@ import { getPolicy } from '@Api/policies';
 
 const Magician = () => {
     const customStyles = {
+        overlay: {
+            backgroundColor: 'rgba(0,0,0, 0.8)',
+        },
         content: {
             top: '50%',
             left: '50%',
@@ -18,6 +21,7 @@ const Magician = () => {
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
             backgroundColor: '#23262b',
+            border: 'none',
             color: 'white',
             zIndex: 2,
         },
