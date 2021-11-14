@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useAsyncDebounce, useFlexLayout, useGlobalFilter, useSortBy, useTable, useRowSelect } from 'react-table';
 import getSchemaData from './data';
@@ -22,11 +23,7 @@ const Table = props => {
         onRowClick = () => {},
     } = props;
 
-    // const [tableData, setTableData] = useState(browseData);
-
-    // useEffect(() => {
-    //     setTableData(browseData);
-    // }, [browseData]);
+    const [tableData, setTableData] = useState(browseData);
 
     // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
     const schemaData = useMemo(() => getSchemaData(schema), [schema]);
@@ -79,7 +76,7 @@ const Table = props => {
     } = useTable(
         {
             columns: schemaData,
-            data: browseData,
+            data: tableData,
             defaultColumn,
             filterTypes,
         },
@@ -154,6 +151,8 @@ const Table = props => {
             (async () => {
                 // TODO_P :: Dummy 해제
 
+                setTableData(browseData);
+
                 mounted.current = true;
             })();
         } else {
@@ -226,7 +225,7 @@ const Table = props => {
                     <NoData />
                 )}
             </div>
-            {/* <code>{JSON.stringify({ 'selectedFlatRows[].original': selectedFlatRows.map(d => d.original) })}</code> */}
+            <code>{JSON.stringify({ 'selectedFlatRows[].original': selectedFlatRows.map(d => d.original) })}</code>
         </div>
     );
 };
