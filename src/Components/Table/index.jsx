@@ -1,8 +1,10 @@
+import React from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useAsyncDebounce, useFlexLayout, useGlobalFilter, useSortBy, useTable } from 'react-table';
+import { useAsyncDebounce, useFlexLayout, useGlobalFilter, useSortBy, useTable, useRowSelect } from 'react-table';
 import getSchemaData from './data';
 import genData from './data/generator';
 import '@Styles/table.css';
+import CheckBox from '@Components/UI/CheckBox';
 import Hr from '@Components/UI/Border';
 import matchSorter from 'match-sorter';
 import NoData from '@Components/UI/NoData';
@@ -15,10 +17,15 @@ const Table = props => {
         tableHeight,
         searchKeyword,
         defaultRowWidth = '200',
+        isCheckable,
         browseData = [],
+        nowSelected,
+        onRowClick = () => {},
+        isSubmitted,
+        onSubmit = () => {},
     } = props;
 
-    const [tableData, setTableData] = useState([]);
+    const [tableData, setTableData] = useState(browseData);
 
     // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
     const schemaData = useMemo(() => getSchemaData(schema), [schema]);
@@ -59,7 +66,16 @@ const Table = props => {
     );
 
     // 불러오는 값들을 기능에 따라 잘 정의해야함.
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, setGlobalFilter } = useTable(
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+        setGlobalFilter,
+        selectedFlatRows,
+        state: { selectedRowIds },
+    } = useTable(
         {
             columns: schemaData,
             data: tableData,
@@ -68,7 +84,19 @@ const Table = props => {
         },
         useFlexLayout,
         useGlobalFilter,
-        useSortBy
+        useSortBy,
+        useRowSelect,
+        hooks => {
+            if (!isCheckable) return;
+            hooks.visibleColumns.push(columns => [
+                {
+                    id: 'selection',
+                    Header: ({ getToggleAllRowsSelectedProps }) => <CheckBox {...getToggleAllRowsSelectedProps()} />,
+                    Cell: ({ row }) => <CheckBox {...row.getToggleRowSelectedProps()} />,
+                },
+                ...columns,
+            ]);
+        }
     );
 
     // Header 그리고 Cell의 속성들
@@ -135,6 +163,11 @@ const Table = props => {
         }
     }, [searchKeyword, schema, onSearchKeywordChange]);
 
+    useEffect(() => {
+        if (!isSubmitted) return;
+        onSubmit(selectedFlatRows.map(d => d.original));
+    }, [isSubmitted]);
+
     // 아래는 스타일 적용을 위해 Tag이름 구분지어야함
     return (
         <div id={id} className='table' style={{ height: tableHeight ?? null }}>
@@ -170,11 +203,18 @@ const Table = props => {
                 {browseData.length !== 0 ? (
                     <div {...getTableBodyProps()}>
                         {rows.map((row, i) => {
+                            const styleCondition = isCheckable ? row.isSelected : nowSelected === i;
                             const isLast = i === rows.length - 1;
                             prepareRow(row);
                             return (
                                 <>
-                                    <tr {...row.getRowProps(rowProps)} className='tableRow'>
+                                    <tr
+                                        style={{
+                                            backgroundColor: styleCondition ? '#35383d' : 'transparent',
+                                        }}
+                                        {...row.getRowProps(rowProps, { onClick: () => onRowClick(i) })}
+                                        className='tableRow'
+                                    >
                                         {row.cells.map(cell => {
                                             return (
                                                 <td {...cell.getCellProps(cellProps)} className='rowCell'>

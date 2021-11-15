@@ -15,11 +15,16 @@
     top: 0;
     background-color: #1b1e22;
 
-    z-index: 2;
+    z-index: 0;
 }
 
 .tableHeader .columnTitle i {
     margin: 3px 0 0 5px;
+}
+
+.tableHeading {
+    display: flex;
+    justify-content: space-between;
 }
 
 ::-webkit-scrollbar {

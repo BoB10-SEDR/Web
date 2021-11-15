@@ -6,7 +6,7 @@ const ButtonGroup = props => {
     const { isVertical, buttons } = props;
     const [activeButton, setActiveButton] = useState(0);
 
-    const handleClick = (key, onClick) => {
+    const handleClick = (key, onClick = () => {}) => {
         setActiveButton(key);
         onClick();
     };
