@@ -25,7 +25,7 @@ const Table = props => {
         onSubmit = () => {},
     } = props;
 
-    const [tableData, setTableData] = useState([]);
+    const [tableData, setTableData] = useState(browseData);
 
     // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
     const schemaData = useMemo(() => getSchemaData(schema), [schema]);

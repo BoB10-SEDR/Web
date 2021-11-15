@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import Modal from 'react-modal';
 import Button from '@Components/UI/Button';
 import ModalContent from './ModalContent';
 import store from '@Stores/policyMagician';
-import { getPolicy } from '@Api/policies';
 
 const Magician = () => {
     const customStyles = {

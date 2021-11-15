@@ -2,6 +2,7 @@ import '@Styles/ui.css';
 
 const Button = props => {
     const {
+        type = 'button',
         isCircle,
         backgroundColor = 'red',
         borderColor = backgroundColor,
@@ -22,7 +23,7 @@ const Button = props => {
 
     return (
         <button
-            type='button'
+            type={type}
             className={`button ${isCircle ? 'circle' : ''} ${isActive ? 'active' : ''} ${className}`}
             onClick={onClick}
             style={style}

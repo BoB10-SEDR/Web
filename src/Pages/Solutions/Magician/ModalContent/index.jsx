@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
+import { useForm } from 'react-hook-form';
 import { Tabs } from 'react-tabs';
 import { CustomTabList, CustomTab, CustomTabPanel } from '@Components/CustomTabs';
 import Button from '@Components/UI/Button';
 import store from '@Stores/policyMagician';
-import { getPolicy, postPolicyActivate } from '@Api/policies';
+import { getPolicy, postPolicyActivate, getPolicyDevices } from '@Api/policies';
 
 const ModalContent = props => {
     const { onClose = () => {} } = props;
@@ -50,6 +51,13 @@ const ModalContent = props => {
 const PolicyForm = props => {
     const { policy, idx } = props;
     const [parameters, setParameters] = useState([]);
+    const [availableDevices, setAvailableDevices] = useState([]);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { error },
+    } = useForm();
 
     useEffect(() => {
         const fetchParameters = async () => {
@@ -60,8 +68,29 @@ const PolicyForm = props => {
                 setParameters([]);
             }
         };
+        const fetchDevices = async () => {
+            try {
+                const data = await getPolicyDevices(idx);
+                setAvailableDevices(data.output[0].activate);
+            } catch (error) {
+                setAvailableDevices([]);
+            }
+        };
+
         fetchParameters();
+        fetchDevices();
     }, []);
+
+    const onSubmit = data => {
+        console.log(data);
+        // const activatePolicy = async () => {
+        //     try {
+        //         const data = await postActivatePolicy();
+        //     } catch (error) {
+        //         console.log(error)
+        //     }
+        // };
+    };
 
     return (
         <div className='form'>
@@ -70,18 +99,29 @@ const PolicyForm = props => {
                 <div className='description'>{policy.description}</div>
             </div>
 
-            <form>
-                {parameters.map((param, index) => {
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <select {...register('deviceIdx')}>
+                    {availableDevices.map((device, index) => {
+                        const { idx, name } = device;
+                        return (
+                            <option key={idx} value={idx}>
+                                {name}
+                            </option>
+                        );
+                    })}
+                </select>
+                {parameters.map((parameter, index) => {
+                    const { name, description, value } = parameter;
                     return (
                         <div key={index} className='parameter'>
-                            <div className='name'>{param.name}</div>
-                            <div className='description'>{param.description}</div>
-                            <input type='text' value={param.value} />
+                            <div className='name'>{name}</div>
+                            <div className='description'>{description}</div>
+                            <input value={value} {...register(`${name}`)} />
                         </div>
                     );
                 })}
+                <Button type='submit'>Apply</Button>
             </form>
-            <Button>Apply</Button>
         </div>
     );
 };

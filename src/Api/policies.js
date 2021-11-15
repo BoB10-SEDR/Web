@@ -12,8 +12,8 @@ export const getPolicy = async idx => {
     return response.data;
 };
 
-// 대응 저책 별 적용 가능한 장비 리스트 조회
-export const getPolicyAvailableDevices = async idx => {
+// 대응 정책 별 적용 가능한 장비 리스트 조회
+export const getPolicyDevices = async idx => {
     const response = await axios.get(`policies/${idx}/devices`);
     return response.data;
 };
@@ -25,8 +25,8 @@ export const postPolicyRegister = async () => {
 };
 
 // 대응 정책 적용
-export const postPolicyActivate = async (idx, deviceIdx) => {
-    const response = await axios.post(`policies/${idx}/activate/${deviceIdx}`);
+export const postPolicyActivate = async (idx, deviceIdx, data = {}) => {
+    const response = await axios.post(`policies/${idx}/activate/${deviceIdx}`, data);
     return response.data;
 };
 
