@@ -1,32 +1,16 @@
 import '@Styles/solution.css';
-import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 import { observer } from 'mobx-react';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import TableHeading from '@Components/Table/TableHeading';
-import Button from '@Components/UI/Button';
 import Magician from './Magician';
 import { getPolicies } from '@Api/policies';
 import store from '@Stores/policyMagician';
 
 const Solutions = () => {
-    const [solutions, setSolutions] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await getPolicies(1, 10);
-                setSolutions(data.outputs);
-            } catch (e) {
-                setSolutions([]);
-            }
-        };
-        fetchData();
-    }, []);
-
-    const openModal = () => {
-        store.setIsOpen(true);
-    };
+    const [page, limit] = [1, 10];
+    const { data: solutions, error } = useSWR(`policies?page=${page}&limit=${limit}`, () => getPolicies(1, 10));
 
     return (
         <div id='solutions' className='page'>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 import { observer } from 'mobx-react';
 import { useForm } from 'react-hook-form';
 import { Tabs } from 'react-tabs';
@@ -50,36 +50,18 @@ const ModalContent = props => {
 
 const PolicyForm = props => {
     const { policy, idx } = props;
-    const [parameters, setParameters] = useState([]);
-    const [availableDevices, setAvailableDevices] = useState([]);
+    const { name, description } = policy;
+    const { data: policyData, error: fetchPolicyError } = useSWR(`policies/${idx}`, () => getPolicy(idx));
+    const { data: devicesData = { activate: [], recommend: [] }, error: fetchDevicesError } = useSWR(
+        `policies/${idx}/devices`,
+        () => getPolicyDevices(idx)
+    );
 
     const {
         register,
         handleSubmit,
         formState: { error },
     } = useForm();
-
-    useEffect(() => {
-        const fetchParameters = async () => {
-            try {
-                const data = await getPolicy(idx);
-                setParameters(data.outputs[0].argument);
-            } catch (error) {
-                setParameters([]);
-            }
-        };
-        const fetchDevices = async () => {
-            try {
-                const data = await getPolicyDevices(idx);
-                setAvailableDevices(data.output[0].recommand);
-            } catch (error) {
-                setAvailableDevices([]);
-            }
-        };
-
-        fetchParameters();
-        fetchDevices();
-    }, []);
 
     const onSubmit = data => {
         const { deviceIdx, ...args } = data;
@@ -104,16 +86,18 @@ const PolicyForm = props => {
         activatePolicy();
     };
 
+    if (!policyData) return <div>loading...</div>;
+
     return (
         <div className='form'>
             <div className='header'>
-                <div className='name'>{policy.name}</div>
-                <div className='description'>{policy.description}</div>
+                <div className='name'>{name}</div>
+                <div className='description'>{description}</div>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <select {...register('deviceIdx')}>
-                    {availableDevices.map((device, index) => {
+                    {devicesData.recommend.map((device, index) => {
                         const { idx, name } = device;
                         return (
                             <option key={idx} value={idx}>
@@ -122,7 +106,7 @@ const PolicyForm = props => {
                         );
                     })}
                 </select>
-                {parameters.map((parameter, index) => {
+                {policyData.argument.map((parameter, index) => {
                     const { name, description, value } = parameter;
                     return (
                         <div key={index} className='parameter'>
