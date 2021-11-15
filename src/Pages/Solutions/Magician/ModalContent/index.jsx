@@ -5,7 +5,7 @@ import { Tabs } from 'react-tabs';
 import { CustomTabList, CustomTab, CustomTabPanel } from '@Components/CustomTabs';
 import Button from '@Components/UI/Button';
 import store from '@Stores/policyMagician';
-import { getPolicy, postPolicyActivate, getPolicyDevices } from '@Api/policies';
+import { getPolicy, postPolicyActivate, getPolicyDevices, getPolicies } from '@Api/policies';
 
 const ModalContent = props => {
     const { onClose = () => {} } = props;
@@ -71,7 +71,7 @@ const PolicyForm = props => {
         const fetchDevices = async () => {
             try {
                 const data = await getPolicyDevices(idx);
-                setAvailableDevices(data.output[0].activate);
+                setAvailableDevices(data.output[0].recommand);
             } catch (error) {
                 setAvailableDevices([]);
             }
@@ -82,14 +82,26 @@ const PolicyForm = props => {
     }, []);
 
     const onSubmit = data => {
-        console.log(data);
-        // const activatePolicy = async () => {
-        //     try {
-        //         const data = await postActivatePolicy();
-        //     } catch (error) {
-        //         console.log(error)
-        //     }
-        // };
+        const { deviceIdx, ...args } = data;
+        const payload = {
+            ARGUMENT: [convertData],
+        };
+
+        const convertData = () => {
+            Object.entries(args).map(([key, value]) => {
+                return { NAME: key, VALUE: value };
+            });
+        };
+
+        const activatePolicy = async () => {
+            try {
+                const data = await postPolicyActivate(idx, deviceIdx, payload);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        activatePolicy();
     };
 
     return (
