@@ -10,7 +10,7 @@ const SideTabs = () => {
 
     const handleSelect = index => {
         store.setActiveTab(index);
-        history.push('/Logs/Devices/Tabs');
+        history.push('/Logs/Devices/Details');
     };
 
     return (
