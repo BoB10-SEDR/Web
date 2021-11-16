@@ -51,7 +51,10 @@ const ModalContent = props => {
 const PolicyForm = props => {
     const { policy, idx } = props;
     const { name, description } = policy;
-    const { data: policyData, error: fetchPolicyError } = useSWR(`policies/${idx}`, () => getPolicy(idx));
+    const { data: policyData = { recommend: [], argument: [] }, error: fetchPolicyError } = useSWR(
+        `policies/${idx}`,
+        () => getPolicy(idx)
+    );
     const { data: devicesData = { activate: [], recommend: [] }, error: fetchDevicesError } = useSWR(
         `policies/${idx}/devices`,
         () => getPolicyDevices(idx)
@@ -65,19 +68,19 @@ const PolicyForm = props => {
 
     const onSubmit = data => {
         const { deviceIdx, ...args } = data;
+        const arg = [];
         const payload = {
-            ARGUMENT: [convertData],
+            ARGUMENT: arg,
         };
 
-        const convertData = () => {
-            Object.entries(args).map(([key, value]) => {
-                return { NAME: key, VALUE: value };
-            });
-        };
+        Object.entries(args).forEach(([key, value]) => {
+            arg.push({ NAME: key, VALUE: value });
+        });
 
         const activatePolicy = async () => {
             try {
                 const data = await postPolicyActivate(idx, deviceIdx, payload);
+                console.log(data);
             } catch (error) {
                 console.log(error);
             }
@@ -87,6 +90,7 @@ const PolicyForm = props => {
     };
 
     if (!policyData) return <div>loading...</div>;
+    if (!devicesData) return <div>loading...</div>;
 
     return (
         <div className='form'>
@@ -97,25 +101,27 @@ const PolicyForm = props => {
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <select {...register('deviceIdx')}>
-                    {devicesData.recommend.map((device, index) => {
-                        const { idx, name } = device;
+                    {devicesData.recommend &&
+                        devicesData.recommend.map((device, index) => {
+                            const { idx, name } = device;
+                            return (
+                                <option key={idx} value={idx}>
+                                    {name}
+                                </option>
+                            );
+                        })}
+                </select>
+                {policyData.argument &&
+                    policyData.argument.map((parameter, index) => {
+                        const { name, description, value } = parameter;
                         return (
-                            <option key={idx} value={idx}>
-                                {name}
-                            </option>
+                            <div key={index} className='parameter'>
+                                <div className='name'>{name}</div>
+                                <div className='description'>{description}</div>
+                                <input value={value} {...register(`${name}`)} />
+                            </div>
                         );
                     })}
-                </select>
-                {policyData.argument.map((parameter, index) => {
-                    const { name, description, value } = parameter;
-                    return (
-                        <div key={index} className='parameter'>
-                            <div className='name'>{name}</div>
-                            <div className='description'>{description}</div>
-                            <input value={value} {...register(`${name}`)} />
-                        </div>
-                    );
-                })}
                 <Button type='submit'>Apply</Button>
             </form>
         </div>
