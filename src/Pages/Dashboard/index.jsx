@@ -12,14 +12,9 @@ import '@Styles/dashboard.css';
 import CardBodyForm from '@Components/Card/Form';
 import Line from '@Components/Charts/Line';
 import Radar from '@Components/Charts/Radar';
-<<<<<<< HEAD
-import { DummyImgFrame } from '@Dummy/DummyImgs';
-import SparkLines from '@Components/Charts/Sparklines';
-=======
 import SparkLines from '@Components/Charts/Sparklines';
 import d from '@Dummy/dashboardNumbers';
 import { fetcher } from '@Hooks/';
->>>>>>> 135c4f6ad8be31d8e28a1ac27221aebac419227f
 
 const Dashboard = () => {
     const [start, time] = ['2020-01-01', 14400];
