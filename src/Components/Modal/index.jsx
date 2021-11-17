@@ -7,6 +7,7 @@ const customStyle = {
     overlay: {
         backgroundColor: 'rgba(0,0,0, 0.8)',
     },
+
     content: {
         top: '50%',
         left: '50%',
@@ -16,7 +17,7 @@ const customStyle = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        backgroundColor: '#23262b',
+        backgroundColor: '#35383D',
         border: '1px solid rgba(154, 161, 171, 0.2)',
         borderRadius: '6px',
         color: 'white',
@@ -27,6 +28,7 @@ const customStyle = {
 
 const CustomModal = props => {
     // TODO :: props type 명세화 => Style 적용 관련
+
     const {
         hasButton = false,
         modalDefaultStyle = customStyle,
