@@ -19,8 +19,10 @@ const Magician = () => {
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
             backgroundColor: '#23262b',
-            border: 'none',
+            border: '1px solid rgba(154, 161, 171, 0.2)',
+            borderRadius: '6px',
             color: 'white',
+            padding: '80px 80px 30px 80px',
             zIndex: 2,
         },
     };

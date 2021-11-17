@@ -8,6 +8,29 @@ import store from '@Stores/policyMagician';
 import { getPolicy, postPolicyActivate, getPolicyDevices, getPolicies } from '@Api/policies';
 
 const ModalContent = props => {
+    const mode = 1;
+
+    switch (mode) {
+        case 1:
+            return <AddPolicyModal />;
+        case 2:
+            return <PolicyMagician {...props} />;
+        default:
+            return <PolicyMagician onClose={props.onClose} />;
+    }
+};
+
+//
+
+const AddPolicyModal = props => {
+    return (
+        <>
+            <h3 className='addPolicyHeader'>정책 추가하기</h3>
+        </>
+    );
+};
+
+const PolicyMagician = props => {
     const { onClose = () => {} } = props;
 
     const handleSelect = index => {
