@@ -9,27 +9,24 @@ import SideTabs from '@Components/SideTabs';
 import EnvInfo from '@Components/EnvInfo';
 
 import DummyCardEx from '@Dummy/DummyCardEx';
+import d from '@Dummy/devicesNumbers';
+import List from '@Components/List';
 
 const Devices = () => {
-    const changeNumber = 1339523;
-    const changeRate = 4;
-
     return (
         <div id='devices' className='page'>
             <SideTabs />
             <Row>
                 <Col md={3} mb>
                     <Card border='1px solid red'>
-                        <CardBodyForm titleFontColor='red' title='전체 로그 개수' content='19,991,006개' />
-                        <UpDown isDecreasing amount={changeNumber.toLocaleString()} />
+                        <CardBodyForm titleFontColor='red' title='전체 로그 개수' content={`${d.totalLogs}개`} />
+                        <UpDown isDecreasing amount={d.changeNumber.toLocaleString()} />
                     </Card>
                     <Card border='1px solid red'>
                         <CardBodyForm titleFontColor='red' title='전체 공격 로그 비율' content='15%' />
-                        <UpDown isRate amount={`${changeRate}%`} />
+                        <UpDown isRate amount={`${d.changeRate}%`} />
                     </Card>
-                    <Card title='공격 유형별 로그 현황'>
-                        <DummyCardEx height='215px'></DummyCardEx>
-                    </Card>
+                    <List title='공격 유형별 로그 현황' itemType='more' content={d.attackList} />
                 </Col>
                 <Col md={9} mb>
                     <EnvInfo />

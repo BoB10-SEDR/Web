@@ -10,7 +10,8 @@
             "@Hooks/*": ["./src/Utils/Hooks/*"],
             "@Stores/*": ["./src/Stores/*"],
             "@Routes/*": ["./src/Routes/*"],
-            "@Images/*": ["./src/Images/*"]
+            "@Images/*": ["./src/Images/*"],
+            "@Api/*": ["./src/Api/*"]
         }
     }
 }

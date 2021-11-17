@@ -1,21 +1,34 @@
-import PageHeading from '@Components/UI/PageHeading';
+import '@Styles/solution.css';
+import useSWR from 'swr';
+import { observer } from 'mobx-react';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import TableHeading from '@Components/Table/TableHeading';
-import Button from '@Components/UI/Button';
+import Magician from './Magician';
+import { getPolicies } from '@Api/policies';
+import store from '@Stores/policyMagician';
 
 const Solutions = () => {
+    const [page, limit] = [1, 10];
+    const { data: solutions, error } = useSWR(`policies?page=${page}&limit=${limit}`, () => getPolicies(1, 10));
+
     return (
         <div id='solutions' className='page'>
             <Card>
                 <TableHeading>
                     <span>대응 정책</span>
-                    <Button>Apply</Button>
+                    <Magician />
                 </TableHeading>
-                <Table isCheckable />
+                <Table
+                    isCheckable
+                    schema='solutions'
+                    browseData={solutions}
+                    isSubmitted={store.isOpen}
+                    onSubmit={data => store.setSelectedPolicies(data)}
+                />
             </Card>
         </div>
     );
 };
 
-export default Solutions;
+export default observer(Solutions);

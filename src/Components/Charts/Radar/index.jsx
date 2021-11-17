@@ -3,7 +3,11 @@ import '@Styles/chart.css';
 import { Chart } from 'chart.js';
 import { useEffect, useState } from 'react';
 import { fixedRadarData, getRadarOptions } from './data';
+<<<<<<< HEAD
 import radarChartDummy from '@Dummy/radarChartDummy.json';
+=======
+import radarChartDummy from '@Dummy/radarChartDummy';
+>>>>>>> 135c4f6ad8be31d8e28a1ac27221aebac419227f
 const Radar = props => {
     // TODO_P :: props 템플릿화 & 명세에 적기 & dummy 해제
     const [receivedData, setRadarData] = useState(radarChartDummy);

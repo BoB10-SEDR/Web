@@ -9,7 +9,7 @@ const DeviceBubble = props => {
 
     const handleClick = () => {
         store.openTab(tabInfo);
-        history.push('/Logs/Devices/Tabs');
+        history.push('/Logs/Devices/Details');
     };
 
     return (

@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import '@Styles/deviceNav.css';
 import envStore from '@Stores/envInfo';
@@ -15,12 +16,14 @@ const DeviceNav = props => {
 
     const buttons = [];
 
-    envStore.selectedEnv.devices.map(device => {
-        const button = { children: undefined, onClick: undefined };
-        button.children = <device.Icon size='20' />;
-        button.onClick = () => tabStore.openTab(device);
-        buttons.push(button);
-    });
+    useMemo(() => {
+        envStore.selectedEnv.devices.map(device => {
+            const button = { children: undefined, onClick: undefined };
+            button.children = <device.Icon size='20' />;
+            button.onClick = () => tabStore.openTab(device);
+            buttons.push(button);
+        });
+    }, [envStore.selectedEnv]);
 
     return (
         <div id='deviceNav'>

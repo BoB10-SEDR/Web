@@ -3,7 +3,7 @@ import '@Styles/listItem.css';
 
 const Item = props => {
     // TODO_P :: ID값을 받아야하고, 나중에 그 값을 통해 요청을 보낼 수 있어야함.
-    const { itemType = 'toggle', name = 'itemName', desc = 'description' } = props;
+    const { isLast, itemType = 'toggle', name = 'itemName', desc = 'description', value = '80%' } = props;
 
     let isToggle;
     switch (itemType.toLowerCase()) {
@@ -12,14 +12,11 @@ const Item = props => {
             break;
         case 'more':
             isToggle = false;
-
             break;
         default:
             isToggle = true;
             break;
     }
-
-    const value = '80%';
 
     return (
         <>
@@ -28,7 +25,7 @@ const Item = props => {
                     <h3 className='itemName'>{name}</h3>
                     <p className='description'>{desc}</p>
                 </div>
-                {!isToggle ? (
+                {isToggle ? (
                     <div className='toggleWrap'>
                         <ToggleSwitch />
                     </div>
@@ -41,7 +38,7 @@ const Item = props => {
                 )}
             </li>
 
-            <hr style={{ margin: 0, border: '.1px solid #303236' }} />
+            {!isLast && <hr style={{ margin: 0, border: '.1px solid #303236' }} />}
         </>
     );
 };

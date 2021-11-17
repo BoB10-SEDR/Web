@@ -7,6 +7,15 @@ export const exampleSchema = [
     { Header: '대응 정책 설명', accessor: 'description', align: 'left', isAbleToSort: true },
 ];
 
+export const solutionsSchema = [
+    { Header: '대분류', accessor: 'main', align: 'center', width: 100, isAbleToSort: false },
+    { Header: '중분류', accessor: 'classify', align: 'center', width: 100, isAbleToSort: false },
+    { Header: '소분류', accessor: 'sub', align: 'center', width: 100, isAbleToSort: false },
+    { Header: '정책 유형 ID', accessor: 'idx', align: 'center', width: 150, isAbleToSort: true },
+    { Header: '정책 이름', accessor: 'name', align: 'left', width: 150, isAbleToSort: true },
+    { Header: '대응 정책 설명', accessor: 'description', align: 'left', width: 300, isAbleToSort: true },
+];
+
 export const sparklineSchema = [
     { Header: '공격 유형', accessor: 'source', align: 'left', isAbleToSort: true },
     { Header: '총 로그 수', accessor: 'total', align: 'left', isAbleToSort: true },

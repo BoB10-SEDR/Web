@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import FilterButton from '@Components/FilterButton';
+import AddDeviceButton from '@Components/AddDeviceButton';
 import SearchBar from '@Components/SearchBar';
 import DummyCardEx from '@Dummy/DummyCardEx';
 import { dummyColumns, dummyData } from '@Dummy/deviceTableDummy';
@@ -24,6 +25,7 @@ const DeviceTable = () => {
             <div className='tableUtils'>
                 <FilterButton />
                 <SearchBar onClick={handleSearch} />
+                <AddDeviceButton />
             </div>
             <Card>
                 <div className='tableContent'>
