@@ -1,3 +1,4 @@
+import useSWR from 'swr';
 import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
@@ -8,17 +9,24 @@ import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
 import { dummyColumns, dummyData } from '@Dummy/solutionTableDummy';
 import '@Styles/dashboard.css';
-import PageHeading from '@Components/UI/PageHeading';
-import DummyCardSimple from '@Dummy/DummyCardSimple';
-import Slider from '@Components/Slider';
 import CardBodyForm from '@Components/Card/Form';
 import Line from '@Components/Charts/Line';
 import Radar from '@Components/Charts/Radar';
-import { DummyImgFrame } from '@Dummy/DummyImgs';
 import SparkLines from '@Components/Charts/Sparklines';
 import d from '@Dummy/dashboardNumbers';
+import { fetcher } from '@Hooks/';
 
 const Dashboard = () => {
+    const [start, time] = ['2020-01-01', 14400];
+    const requestConfig = { params: { start: start, time: time } };
+    const { data: statData, error: fetchStatDataError } = useSWR(
+        `dashboard/statistics?start=${start}&time=${time}`,
+        url => fetcher(url, requestConfig)
+    );
+    const { data: lineData, error: fetchLineDataError } = useSWR(`dashboard/logs?start=${start}&time=${time}`, url =>
+        fetcher(url, requestConfig)
+    );
+
     const { barId, barData, barOptions } = BarDummy;
     const { pieId, pieData, pieOptions } = PieDummy;
 
@@ -32,6 +40,10 @@ const Dashboard = () => {
         padding: '25px 20px',
     };
 
+    if (!statData) return <div>loading...</div>;
+
+    const { total, attack_type, attack, device, module } = statData[0];
+
     return (
         <div id='dashboard'>
             <Row>
@@ -42,7 +54,7 @@ const Dashboard = () => {
                 </Col>
                 <Col xl={3} md={6}>
                     <Card border={`1px solid ${blue}`} {...cardDefaultConfig}>
-                        <CardBodyForm titleFontColor={blue} title='전체 로그 개수' content={`${d.totalLogs} 개`} />
+                        <CardBodyForm titleFontColor={blue} title='전체 로그 개수' content={`${total} 개`} />
                     </Card>
                 </Col>
                 <Col xl={3} md={6}>
@@ -50,7 +62,7 @@ const Dashboard = () => {
                         <CardBodyForm
                             titleFontColor={pink}
                             title='공격유형/공격로그개수'
-                            content={`${d.attacks}/${d.attackLogs} 개`}
+                            content={`${attack_type}/${attack} 개`}
                         />
                     </Card>
                 </Col>
@@ -59,7 +71,7 @@ const Dashboard = () => {
                         <CardBodyForm
                             titleFontColor={green}
                             title='등록된 장치/센서 수'
-                            content={`${d.devices}/${d.sensors} 개`}
+                            content={`${device}/${module} 개`}
                         />
                     </Card>
                 </Col>
@@ -70,7 +82,7 @@ const Dashboard = () => {
                     <Card title='시간별 전체 로그 수'>
                         <DummyCardEx height='277px'>
                             {/* <Slider /> */}
-                            <Line />
+                            <Line start={start} time={time} url={`dashboard/logs`} />
                         </DummyCardEx>
                     </Card>
                 </Col>

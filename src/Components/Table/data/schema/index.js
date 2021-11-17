@@ -13,7 +13,7 @@ export const solutionsSchema = [
     { Header: '소분류', accessor: 'sub', align: 'center', width: 100, isAbleToSort: false },
     { Header: '정책 유형 ID', accessor: 'idx', align: 'center', width: 150, isAbleToSort: true },
     { Header: '정책 이름', accessor: 'name', align: 'left', width: 150, isAbleToSort: true },
-    { Header: '대응 정책 설명', accessor: 'description', align: 'left', isAbleToSort: true },
+    { Header: '대응 정책 설명', accessor: 'description', align: 'left', width: 300, isAbleToSort: true },
 ];
 
 export const sparklineSchema = [

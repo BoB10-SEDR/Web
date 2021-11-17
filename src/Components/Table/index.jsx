@@ -16,7 +16,7 @@ const Table = props => {
         defaultRowHeight = '60',
         tableHeight,
         searchKeyword,
-        defaultRowWidth = '200',
+        defaultRowWidth = '50',
         isCheckable,
         browseData = [],
         nowSelected,
