@@ -23,9 +23,9 @@ const Dashboard = () => {
         `dashboard/statistics?start=${start}&time=${time}`,
         url => fetcher(url, requestConfig)
     );
-    const { data: lineData, error: fetchLineDataError } = useSWR(`dashboard/logs?start=${start}&time=${time}`, url =>
-        fetcher(url, requestConfig)
-    );
+    // const { data: lineData, error: fetchLineDataError } = useSWR(`dashboard/logs?start=${start}&time=${time}`, url =>
+    //     fetcher(url, requestConfig)
+    // );
 
     const { barId, barData, barOptions } = BarDummy;
     const { pieId, pieData, pieOptions } = PieDummy;
@@ -40,9 +40,7 @@ const Dashboard = () => {
         padding: '25px 20px',
     };
 
-    if (!statData) return <div>loading...</div>;
-
-    const { total, attack_type, attack, device, module } = statData[0];
+    const { total, attack_type, attack, device, module } = d;
 
     return (
         <div id='dashboard'>
