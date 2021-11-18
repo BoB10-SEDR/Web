@@ -31,9 +31,10 @@ const ModalContent = props => {
         console.log(data);
         try {
             const response = await axios.post(`/devices`, data);
-            console.log(response.data);
+            alert('success');
         } catch (error) {
             console.log(error);
+            alert('fail');
         }
     };
 
