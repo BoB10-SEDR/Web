@@ -27,7 +27,6 @@ const Table = props => {
 
     // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
     const schemaData = useMemo(() => getSchemaData(schema), [schema]);
-    console.log({ schema, schemaData, browseData });
 
     const defaultColumn = useMemo(
         () => ({
