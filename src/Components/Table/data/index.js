@@ -1,4 +1,12 @@
-import { exampleSchema, sparklineSchema, solutionsSchema } from './schema';
+import {
+    exampleSchema,
+    sparklineSchema,
+    solutionsSchema,
+    deviceTableSchema,
+    simpleDeviceSchema,
+    eventViewerSchema,
+    logMagicianSchema,
+} from './schema';
 
 const getSchemaData = (type = '') => {
     if (!type) return [];
@@ -10,6 +18,14 @@ const getSchemaData = (type = '') => {
             return sparklineSchema;
         case 'solutions':
             return solutionsSchema;
+        case 'devicetable':
+            return deviceTableSchema;
+        case 'simpledevice':
+            return simpleDeviceSchema;
+        case 'eventviewer':
+            return eventViewerSchema;
+        case 'logmagician':
+            return logMagicianSchema;
         default:
             return exampleSchema;
     }

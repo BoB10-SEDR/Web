@@ -25,8 +25,6 @@ const Table = props => {
         onSubmit = () => {},
     } = props;
 
-    const [tableData, setTableData] = useState(browseData);
-
     // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
     const schemaData = useMemo(() => getSchemaData(schema), [schema]);
 
@@ -78,7 +76,7 @@ const Table = props => {
     } = useTable(
         {
             columns: schemaData,
-            data: tableData,
+            data: browseData,
             defaultColumn,
             filterTypes,
         },
@@ -142,26 +140,25 @@ const Table = props => {
         },
     ];
 
-    const onSearchKeywordChange = useAsyncDebounce(value => {
-        setGlobalFilter(value || undefined);
-    }, 0);
+    // const onSearchKeywordChange = useAsyncDebounce(value => {
+    //     setGlobalFilter(value || undefined);
+    // }, 0);
 
     // 로드시에 스키마를 불러와야하며, 데이터도 받아야함.
-    const mounted = useRef();
-    useEffect(() => {
-        if (!mounted.current) {
-            (async () => {
-                // TODO_P :: Dummy 해제
-
-                setTableData(browseData);
-
-                mounted.current = true;
-            })();
-        } else {
-            onSearchKeywordChange(searchKeyword);
-            // console.log({ status: 'changed', searchKeyword });
-        }
-    }, [searchKeyword, schema, onSearchKeywordChange]);
+    // const mounted = useRef();
+    // useEffect(() => {
+    //     // if (!mounted.current) {
+    //     //     (async () => {
+    //     //         // TODO_P :: Dummy 해제
+    //     //         setTableData(browseData);
+    //     //         mounted.current = true;
+    //     //     })();
+    //     // } else {
+    //     //     onSearchKeywordChange(searchKeyword);
+    //     //     // console.log({ status: 'changed', searchKeyword });
+    //     // }
+    //     console.log('엄마!!!');
+    // }, [searchKeyword, schema, onSearchKeywordChange]);
 
     useEffect(() => {
         if (!isSubmitted) return;
