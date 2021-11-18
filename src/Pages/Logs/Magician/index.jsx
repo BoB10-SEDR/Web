@@ -3,6 +3,7 @@ import Card from '@Components/Card';
 import CardBodyForm from '@Components/Card/Form';
 import EventViewer from '@Components/EventViewer';
 import Line from '@Components/Charts/Line';
+import FileSelector from '@Components/FileSelector';
 import DummyCardEx from '@Dummy/DummyCardEx';
 import d from '@Dummy/magician';
 
@@ -16,12 +17,14 @@ const Magician = () => {
         <div id='magician'>
             <Row>
                 <Col xl={4} md={4} mb>
-                    <Card>
-                        <DummyCardEx height='500px'></DummyCardEx>
+                    <Card title='로그파일 선택'>
+                        <DummyCardEx height='500px'>
+                            <FileSelector />
+                        </DummyCardEx>
                     </Card>
                 </Col>
                 <Col xl={8} md={8} mb>
-                    <Card>
+                    <Card title='로그 실시간 트래픽'>
                         <DummyCardEx height='390px'>
                             <Line />
                         </DummyCardEx>

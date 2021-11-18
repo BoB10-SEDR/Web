@@ -1,0 +1,12 @@
+.modalContent .header {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+.modalContent .header .name {
+    font-size: 1.7rem;
+}
+
+.modalContent .header .description {
+    font-size: 0.9rem;
+    color: #999999;
+}
