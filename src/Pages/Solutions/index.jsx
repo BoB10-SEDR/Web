@@ -11,6 +11,7 @@ import store from '@Stores/policyMagician';
 const Solutions = () => {
     const [page, limit] = [1, 10];
     const { data: solutions, error } = useSWR(`policies?page=${page}&limit=${limit}`, () => getPolicies(1, 10));
+    console.log(solutions);
 
     return (
         <div id='solutions' className='page'>

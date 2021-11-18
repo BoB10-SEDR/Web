@@ -8,6 +8,7 @@ import { fetcher } from '@Hooks/';
 import Modal from '@Components/Modal';
 import * as dummy from '@Dummy/addDeviceDummy';
 
+//추후 리팩토링 필요
 const ModalContent = props => {
     const { onClose = () => {} } = props;
     let { data: deviceCategoryList, error: deviceCategoryListError } = useSWR(`/devices/categories`, url =>

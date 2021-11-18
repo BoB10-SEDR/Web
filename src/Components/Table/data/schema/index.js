@@ -27,10 +27,11 @@ export const deviceTableSchema = [
     { Header: '장치 종류', accessor: 'deviceIcon', align: 'center', isAbleToSort: false },
     { Header: '장치 이름', accessor: 'name', align: 'center', isAbleToSort: true },
     { Header: '소속 구성', accessor: 'group', align: 'center', isAbleToSort: true },
-    { Header: '식별번호', accessor: 'serialNum', align: 'center', isAbleToSort: true },
+    { Header: '식별번호', accessor: 'idx', align: 'center', isAbleToSort: true },
     { Header: '트래픽 변화량', accessor: 'traficDiff', align: 'center', isAbleToSort: true },
     { Header: '연결 상태', accessor: 'status', align: 'center', isAbleToSort: true },
-    { Header: '연결 모듈 수', accessor: 'moduleCount', align: 'center', isAbleToSort: true },
+    { Header: '시리얼 번호', accessor: 'serialNum', align: 'center', isAbleToSort: true },
+    { Header: '갱신 시간', accessor: 'timestamp', align: 'center', isAbleToSort: true },
     { Header: '상세 정보', accessor: 'more', align: 'center', isAbleToSort: false },
 ];
 

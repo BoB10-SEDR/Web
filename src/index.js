@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
 import { IconContext } from 'react-icons';
 import '@Styles/index.css';
 import '@Styles/ui.css';

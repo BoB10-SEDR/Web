@@ -40,8 +40,7 @@ const Dashboard = () => {
         padding: '25px 20px',
     };
 
-    if (!statData) return <div>loading...</div>;
-    const { total, attack_type, attack, device, module } = statData[0];
+    const { total, attack_type, attack, device, module } = statData ? statData[0] : d;
 
     return (
         <div id='dashboard'>
@@ -114,7 +113,7 @@ const Dashboard = () => {
                 <Col lg={6}>
                     <Card title='대응정책 적용/해제'>
                         <DummyCardEx height='314px'>
-                            <Table columns={dummyColumns} data={dummyData} />
+                            <Table browseData={dummyData} />
                         </DummyCardEx>
                     </Card>
                 </Col>
