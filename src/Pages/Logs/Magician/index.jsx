@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import useSWR from 'swr';
 import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import CardBodyForm from '@Components/Card/Form';
@@ -6,6 +8,7 @@ import Line from '@Components/Charts/Line';
 import FileSelector from '@Components/FileSelector';
 import DummyCardEx from '@Dummy/DummyCardEx';
 import d from '@Dummy/magician';
+import { fetcher } from '@Hooks/';
 
 const red = '#F02632';
 const blue = '#727CF5';
@@ -13,6 +16,10 @@ const pink = '#F66C6C';
 const green = '#61CA68';
 
 const Magician = () => {
+    const [limit, setLimit] = useState(20);
+    const [page, setPage] = useState(1);
+    const { data, error } = useSWR(`/devices/logs?limit=${limit}&page=${page}&status=INFO`, url => fetcher(url));
+
     return (
         <div id='magician'>
             <Row>
@@ -62,7 +69,7 @@ const Magician = () => {
             </Row>
             <Row>
                 <Col xl={12} md={12} mb>
-                    <EventViewer />
+                    <EventViewer schema='logMagician' data={data} />
                 </Col>
             </Row>
         </div>

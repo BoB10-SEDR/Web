@@ -5,6 +5,7 @@ import {
     deviceTableSchema,
     simpleDeviceSchema,
     eventViewerSchema,
+    logMagicianSchema,
 } from './schema';
 
 const getSchemaData = (type = '') => {
@@ -23,6 +24,8 @@ const getSchemaData = (type = '') => {
             return simpleDeviceSchema;
         case 'eventviewer':
             return eventViewerSchema;
+        case 'logmagician':
+            return logMagicianSchema;
         default:
             return exampleSchema;
     }
