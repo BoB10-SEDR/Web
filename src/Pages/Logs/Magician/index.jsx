@@ -8,11 +8,11 @@ import DummyCardEx from '@Dummy/DummyCardEx';
 
 const Magician = () => {
     return (
-        <div id='magician'>
+        <div id='magician' className='page'>
             <Row>
                 <Col xl={4} md={4} mb>
                     <Card title='로그파일 선택'>
-                        <DummyCardEx height='500px'>
+                        <DummyCardEx noRelative height='500px'>
                             <FileSelector />
                         </DummyCardEx>
                     </Card>
