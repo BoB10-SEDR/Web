@@ -1,10 +1,6 @@
 import { useState } from 'react';
-// import Resizable from 'react-resizable-box';
 import '@Styles/eventViewer.css';
-import Card from '@Components/Card';
-import DummyCardEx from '@Dummy/DummyCardEx';
 import Table from '@Components/Table';
-import TableHeading from '@Components/Table/TableHeading';
 import logDummy from '@Dummy/logDetailDummy';
 import CardHeader from '@Components/UI/CardHeader';
 import SplitterLayout from 'react-splitter-layout';
