@@ -1,6 +1,6 @@
 import '@Styles/form.css';
 import '@Styles/addDeviceModal.css';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import Button from '@Components/UI/Button';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -21,6 +21,7 @@ const ModalContent = props => {
         `/environments/categories`,
         url => fetcher(url)
     );
+    const { mutate } = useSWRConfig();
 
     const {
         register,
@@ -32,6 +33,7 @@ const ModalContent = props => {
         console.log(data);
         try {
             const response = await axios.post(`/devices`, data);
+            mutate(`/devices/page`);
             alert('success');
         } catch (error) {
             console.log(error);

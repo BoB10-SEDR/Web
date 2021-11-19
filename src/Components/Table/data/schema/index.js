@@ -37,7 +37,7 @@ export const deviceTableSchema = [
 
 export const simpleDeviceSchema = [
     { Header: '갱신 시간', accessor: 'update_time', align: 'center', width: '100', isAbleToSort: true },
-    { Header: '종류', accessor: 'category', align: 'center', width: '50', isAbleToSort: false },
+    { Header: '종류', accessor: 'category', align: 'center', width: '100', isAbleToSort: false },
     { Header: '이름', accessor: 'name', align: 'center', width: '150', isAbleToSort: true },
     { Header: '모델', accessor: 'model_name', align: 'center', width: '150', isAbleToSort: true },
     { Header: '소속 구성', accessor: 'environment', align: 'center', isAbleToSort: true },

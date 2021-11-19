@@ -24,7 +24,7 @@ const Devices = () => {
                         <CardBodyForm titleFontColor='red' title='전체 공격 로그 비율' content='15%' />
                         <UpDown isRate amount={`${d.changeRate}%`} />
                     </Card>
-                    <List title='공격 유형별 로그 현황' itemType='more' content={d.attackList} />
+                    <List title='보안항목 유형별 로그 현황' itemType='more' content={d.attackList} />
                 </Col>
                 <Col md={9} mb>
                     <EnvInfo />

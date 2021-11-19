@@ -24,22 +24,22 @@ const OneSparkLineRow = ({ name }) => {
 
 const dummySparklineData = [
     {
-        source: '네트워크 공격',
+        source: '기기',
         total: Number(Math.round(Math.random() * 100000 + 1)).toLocaleString(),
         trend: <OneSparkLineRow />,
     },
     {
-        source: '코드 인젝션',
+        source: '사용자 계정',
         total: Number(Math.round(Math.random() * 100000 + 1)).toLocaleString(),
         trend: <OneSparkLineRow />,
     },
     {
-        source: '중복 로그인 시도',
+        source: '네트워크',
         total: Number(Math.round(Math.random() * 100000 + 1)).toLocaleString(),
         trend: <OneSparkLineRow />,
     },
     {
-        source: '그 외 기타',
+        source: '제품 보안',
         total: Number(Math.round(Math.random() * 100000 + 1)).toLocaleString(),
         trend: <OneSparkLineRow />,
     },
