@@ -16,7 +16,7 @@ const customStyle = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        backgroundColor: '#23262b',
+        backgroundColor: '#35383D',
         border: '1px solid rgba(154, 161, 171, 0.2)',
         borderRadius: '6px',
         color: 'white',
@@ -34,6 +34,7 @@ const CustomModal = props => {
         contentLabel = 'Custom Modal',
         children,
     } = props;
+  
     const [isOpen, setIsOpen] = useState(false);
 
     const openModal = () => setIsOpen(true);
