@@ -7,9 +7,15 @@ import { lineChartDummy } from '@Dummy/lineChartDummy.js';
 
 const LineArea = props => {
     // TODO_P :: props 제거
-    const { labels = [], data = [] } = props;
-
-    const { labelName = '', unitCallback, labelCallback, chartID = 'lineChart' } = lineChartDummy;
+    const {
+        labels: dummyLabels = [],
+        data: dummyData = [],
+        labelName = '',
+        unitCallback,
+        labelCallback,
+        chartID = 'lineChart',
+    } = lineChartDummy;
+    const { labels = dummyLabels, data = dummyData } = props;
 
     const chartData = {
         labels: labels,
