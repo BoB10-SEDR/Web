@@ -14,9 +14,10 @@ const Table = props => {
         id = 'table',
         schema = 'example',
         defaultRowHeight = '60',
+        defaultRowWidth = '50',
+        defaultFontSize = '18',
         tableHeight,
         searchKeyword,
-        defaultRowWidth = '50',
         isCheckable,
         browseData = [],
         nowSelected,
@@ -136,6 +137,7 @@ const Table = props => {
             style: {
                 height: `${defaultRowHeight}px`,
                 alignItems: 'center',
+                fontSize: `${defaultFontSize}px`,
             },
         },
     ];
