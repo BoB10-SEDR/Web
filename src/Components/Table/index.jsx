@@ -19,14 +19,14 @@ const Table = props => {
         defaultHeaderHeight = '45',
         defaultHeaderFontSize = '16',
         tableHeight,
-        searchKeyword,
         isCheckable,
         browseData = [],
-        nowSelected,
+        nowSelected = 0,
         onRowClick = () => {},
         isSubmitted,
         onSubmit = () => {},
     } = props;
+    const [clickedIndex, setClickedIndex] = useState(nowSelected);
 
     // TODO_P :: Schema 데이터도 그냥 DB에서 불러오기?
     const schemaData = useMemo(() => getSchemaData(schema), [schema]);
@@ -158,6 +158,11 @@ const Table = props => {
         },
     ];
 
+    const handleClick = index => {
+        onRowClick(index);
+        setClickedIndex(index);
+    };
+
     // const onSearchKeywordChange = useAsyncDebounce(value => {
     //     setGlobalFilter(value || undefined);
     // }, 0);
@@ -218,17 +223,14 @@ const Table = props => {
                 {browseData.length !== 0 ? (
                     <div {...getTableBodyProps()}>
                         {rows.map((row, i) => {
-                            const styleCondition = isCheckable ? row.isSelected : nowSelected === i;
                             const isLast = i === rows.length - 1;
                             prepareRow(row);
                             return (
                                 <>
                                     <tr
-                                        style={{
-                                            backgroundColor: styleCondition ? '#35383d' : 'transparent',
-                                        }}
-                                        {...row.getRowProps(rowProps, { onClick: () => onRowClick(i) })}
-                                        className='tableRow'
+                                        className={`tableRow ${clickedIndex === i ? ' clicked' : ''}`}
+                                        {...row.getRowProps(rowProps)}
+                                        onClick={() => handleClick(i)}
                                     >
                                         {row.cells.map(cell => {
                                             return (

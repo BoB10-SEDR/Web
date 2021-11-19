@@ -7,7 +7,9 @@ const TimeLine = () => {
     const [start, setStart] = useState('2020-01-01');
     const [time, setTime] = useState(60);
 
-    const { data: fetchData, error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url => fetcher(url));
+    const { data: fetchData, error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url => fetcher(url), {
+        refreshInterval: 300000,
+    });
     const labels = [],
         data = [];
 

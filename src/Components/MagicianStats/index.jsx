@@ -15,8 +15,10 @@ const MagicianStats = () => {
     const [start, setStart] = useState('2020-01-01');
     const [time, setTime] = useState(14400);
 
-    const { data: statData, error: statDataError } = useSWR(`/dashboard/statistics?start=${start}&time=${time}`, url =>
-        fetcher(url)
+    const { data: statData, error: statDataError } = useSWR(
+        `/dashboard/statistics?start=${start}&time=${time}`,
+        url => fetcher(url),
+        { refreshInterval: 300000 }
     );
 
     const { info, fail, device } = statData ? statData[0] : d;

@@ -6,6 +6,10 @@
     position: relative;
 }
 
+.table .tableRow.clicked {
+    background-color: #404040;
+}
+
 .table .tableWrapper {
     /* overflow: scroll; */
 }
