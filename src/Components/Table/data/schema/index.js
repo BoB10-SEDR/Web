@@ -36,22 +36,22 @@ export const deviceTableSchema = [
 ];
 
 export const simpleDeviceSchema = [
-    { Header: '종류', accessor: 'category', align: 'center', isAbleToSort: false },
-    { Header: '이름', accessor: 'name', align: 'center', isAbleToSort: true },
-    { Header: '모델', accessor: 'model_name', align: 'center', isAbleToSort: true },
+    { Header: '종류', accessor: 'category', align: 'center', width: '50', isAbleToSort: false },
+    { Header: '이름', accessor: 'name', align: 'center', width: '150', isAbleToSort: true },
+    { Header: '모델', accessor: 'model_name', align: 'center', width: '150', isAbleToSort: true },
     { Header: '소속 구성', accessor: 'environment', align: 'center', isAbleToSort: true },
     { Header: '식별번호', accessor: 'idx', align: 'center', isAbleToSort: true },
     { Header: '연결 상태', accessor: 'live', align: 'center', isAbleToSort: true },
-    { Header: '시리얼 번호', accessor: 'serial_number', align: 'center', isAbleToSort: true },
-    { Header: '상세 정보', accessor: 'description', align: 'center', isAbleToSort: false },
+    { Header: '시리얼 번호', accessor: 'serial_number', align: 'center', width: '150', isAbleToSort: true },
+    // { Header: '상세 정보', accessor: 'description', align: 'center', isAbleToSort: false },
 ];
 
 export const logMagicianSchema = [
-    { Header: '타임스탬프', accessor: 'create_time', align: 'center', isAbleToSort: true },
-    { Header: '로그 상태', accessor: 'status', align: 'center', isAbleToSort: true },
-    { Header: '로그 발생지', accessor: 'environment', align: 'center', isAbleToSort: true },
-    { Header: '이벤트 ID', accessor: 'event_code', align: 'center', isAbleToSort: true },
-    { Header: '상세 설명', accessor: 'description', align: 'left', isAbleToSort: false },
+    { Header: '타임스탬프', accessor: 'create_time', align: 'center', width: '50', isAbleToSort: true },
+    { Header: '로그 상태', accessor: 'status', align: 'center', width: '50', isAbleToSort: true },
+    { Header: '로그 발생지', accessor: 'environment', align: 'center', width: '50', isAbleToSort: true },
+    { Header: '이벤트 ID', accessor: 'event_code', align: 'center', width: '50', isAbleToSort: true },
+    { Header: '상세 설명', accessor: 'description', align: 'left', width: '250', isAbleToSort: false },
 ];
 
 // TODO_P :: 간격 배정

@@ -8,7 +8,7 @@ const MagicianEventViewer = () => {
     const [page, setPage] = useState(1);
     const { data = [], error } = useSWR(`/devices/logs?limit=${limit}&page=${page}&status=INFO`, url => fetcher(url));
 
-    return <EventViewer schema='logMagician' data={data} />;
+    return <EventViewer defaultPadding='0 1.25rem 1.25rem 1.25rem' schema='logMagician' data={data} />;
 };
 
 export default MagicianEventViewer;

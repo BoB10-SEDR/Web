@@ -7,7 +7,7 @@
 }
 
 .table .tableWrapper {
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .table .tableWrapper .tableHeader {
