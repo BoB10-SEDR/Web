@@ -4,6 +4,7 @@ import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
 import Pie from '@Components/Charts/Pie';
 import Table from '@Components/Table';
+import DeviceTable from '@Components/DeviceTable';
 import DummyCardEx from '@Dummy/DummyCardEx';
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
@@ -59,7 +60,7 @@ const Dashboard = () => {
                     <Card border={`1px solid ${pink}`} {...cardDefaultConfig}>
                         <CardBodyForm
                             titleFontColor={pink}
-                            title='공격유형/공격로그개수'
+                            title='탐지 보안항목 로그 유형/개수'
                             content={`${attack_type}/${attack} 개`}
                         />
                     </Card>
@@ -86,7 +87,7 @@ const Dashboard = () => {
                 </Col>
 
                 <Col lg={3}>
-                    <Card title='공격 유형별 로그비율'>
+                    <Card title='보안항목 유형별 로그비율'>
                         <DummyCardEx height='277px'>
                             <Radar />
                         </DummyCardEx>
@@ -102,7 +103,7 @@ const Dashboard = () => {
 
             <Row>
                 <Col lg={6}>
-                    <Card title='공격 유형별 로그 개수'>
+                    <Card title='보안항목별 탐지 로그 개수'>
                         {/* <DummyImgFrame link='https://cdn.discordapp.com/attachments/903242363500122137/903242392143024159/unknown.png' /> */}
 
                         <DummyCardEx height='314px'>
@@ -121,10 +122,7 @@ const Dashboard = () => {
 
             <Row>
                 <Col lg={12}>
-                    <Card title='장비 정보 테이블'>
-                        <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
-                        <Bar id={barId} isHorizontal={true} data={barData} options={barOptions} />
-                    </Card>
+                    <DeviceTable />
                 </Col>
             </Row>
         </div>

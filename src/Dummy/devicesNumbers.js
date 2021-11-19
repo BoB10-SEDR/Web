@@ -5,10 +5,10 @@ const dummy = {
     changeNumber: randomBoundInteger(),
     changeRate: randomBoundInteger(100),
     attackList: [
-        { name: 'SQL Injection', desc: 'A, B, C, D에 적용 됨', value: randomPercent() },
-        { name: '이러이러한 공격', desc: 'A, B, C, D에 적용 됨', value: randomPercent() },
-        { name: '짧', desc: 'A, B, C, D에 적용 됨', value: randomPercent() },
-        { name: '그 외 나머지', desc: 'A, B, C, D에 적용 됨', value: randomPercent() },
+        { name: '기기', desc: 'A, B, C, D에 적용 됨', value: randomPercent() },
+        { name: '사용자 계정', desc: 'A, B, C, D에 적용 됨', value: randomPercent() },
+        { name: '네트워크', desc: 'A, B, C, D에 적용 됨', value: randomPercent() },
+        { name: '제품 보안', desc: 'A, B, C, D에 적용 됨', value: randomPercent() },
     ],
 };
 

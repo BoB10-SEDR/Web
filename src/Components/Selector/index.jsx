@@ -7,7 +7,7 @@ import { fetcher } from '@Hooks';
 import axios from 'axios';
 
 const Selector = props => {
-    const { data: fdData, error } = useSWR(`/monitoring/process`, url => fetcher(url));
+    const { data: fdData = [], error } = useSWR(`/monitoring/process`, url => fetcher(url));
     // const devices = store.deviceList;
 
     const handleClick = fd => {

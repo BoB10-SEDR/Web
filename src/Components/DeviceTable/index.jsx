@@ -16,7 +16,7 @@ const DeviceTable = () => {
         data: devicesData = [],
         error,
         isValidating,
-    } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url));
+    } = useSWR(`/devices?page`, () => fetcher(`/devices?page=${page}&limit=${limit}`));
     const [filteredData, setFilteredData] = useState([]);
 
     const handleSearch = input => {
