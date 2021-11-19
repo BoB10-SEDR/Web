@@ -1,13 +1,11 @@
 import '@Styles/devices.css';
 import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
-import DeviceNav from '@Components/DeviceNav';
 import CardBodyForm from '@Components/Card/Form';
 import UpDown from '@Components/UI/UpDown';
 import DeviceTable from '@Components/DeviceTable';
 import SideTabs from '@Components/SideTabs';
 import EnvInfo from '@Components/EnvInfo';
-
 import DummyCardEx from '@Dummy/DummyCardEx';
 import d from '@Dummy/devicesNumbers';
 import List from '@Components/List';
