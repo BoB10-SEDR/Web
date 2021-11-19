@@ -6,6 +6,7 @@ const Button = props => {
         isCircle,
         backgroundColor = 'red',
         borderColor = backgroundColor,
+        buttonStyle,
         color = 'white',
         onClick = () => {},
         isActive,
@@ -19,6 +20,7 @@ const Button = props => {
         backgroundColor: backgroundColor,
         borderColor: borderColor,
         color: color,
+        ...buttonStyle,
     };
 
     return (

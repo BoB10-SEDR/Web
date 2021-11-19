@@ -25,7 +25,7 @@ const Magician = () => {
             <Row>
                 <Col xl={4} md={4} mb>
                     <Card title='로그파일 선택'>
-                        <DummyCardEx height='500px'>
+                        <DummyCardEx noRelative height='500px'>
                             <FileSelector />
                         </DummyCardEx>
                     </Card>

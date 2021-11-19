@@ -31,10 +31,11 @@ const CustomModal = props => {
         hasButton = false,
         modalDefaultStyle = customStyle,
         buttonContent = 'Apply',
+        buttonStyle = {},
         contentLabel = 'Custom Modal',
         children,
     } = props;
-  
+
     const [isOpen, setIsOpen] = useState(false);
 
     const openModal = () => setIsOpen(true);
@@ -42,7 +43,11 @@ const CustomModal = props => {
 
     return (
         <>
-            {hasButton && <Button onClick={openModal}>{buttonContent}</Button>}
+            {hasButton && (
+                <Button buttonStyle={buttonStyle} onClick={openModal}>
+                    {buttonContent}
+                </Button>
+            )}
             <Modal isOpen={isOpen} onRequestClose={closeModal} style={modalDefaultStyle} contentLabel={contentLabel}>
                 {children}
             </Modal>
