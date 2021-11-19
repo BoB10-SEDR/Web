@@ -54,7 +54,7 @@ const Details = props => {
                 <Col md={6} mb>
                     <Card title='적용된 대응 정책 리스트'>
                         <DummyCardEx height='277px'>
-                            <Table columns={dummyColumns} data={dummyData} />
+                            <Table browseData={dummyData} />
                         </DummyCardEx>
                     </Card>
                 </Col>

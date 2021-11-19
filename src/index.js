@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
 import { IconContext } from 'react-icons';
 import '@Styles/index.css';
 import '@Styles/ui.css';
 import Routes from '@Routes';
+import Modal from 'react-modal';
 
 const Home = () => {
     return (
@@ -14,6 +14,6 @@ const Home = () => {
     );
 };
 
-axios.defaults.baseURL = 'http://14.138.200.178:23455/v1/';
+Modal.setAppElement('#root');
 
 ReactDOM.render(<Home />, document.getElementById('root'));

@@ -30,7 +30,7 @@ const DeviceTable = () => {
             <Card>
                 <div className='tableContent'>
                     <DummyCardEx height='500px'>
-                        <Table columns={columns} data={filteredData} />
+                        <Table schema='deviceTable' browseData={filteredData} />
                     </DummyCardEx>
                 </div>
             </Card>

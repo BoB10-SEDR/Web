@@ -41,7 +41,7 @@ const NavData = {
                     cName: 'nav-collapse-item',
                 },
                 {
-                    title: 'Magician',
+                    title: 'Log Magician',
                     path: '/Logs/Magician',
                     cName: 'nav-collapse-item',
                 },

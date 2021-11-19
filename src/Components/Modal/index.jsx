@@ -1,13 +1,12 @@
 import { observer } from 'mobx-react';
+import { useState } from 'react';
 import Modal from 'react-modal';
 import Button from '@Components/UI/Button';
-import store from '@Stores/modal.js';
 
 const customStyle = {
     overlay: {
         backgroundColor: 'rgba(0,0,0, 0.8)',
     },
-
     content: {
         top: '50%',
         left: '50%',
@@ -28,7 +27,6 @@ const customStyle = {
 
 const CustomModal = props => {
     // TODO :: props type 명세화 => Style 적용 관련
-
     const {
         hasButton = false,
         modalDefaultStyle = customStyle,
@@ -36,11 +34,11 @@ const CustomModal = props => {
         contentLabel = 'Custom Modal',
         children,
     } = props;
+  
+    const [isOpen, setIsOpen] = useState(false);
 
-    const { isOpen } = store;
-
-    const openModal = () => store.setIsOpen(true);
-    const closeModal = () => store.setIsOpen(false);
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
 
     return (
         <>
