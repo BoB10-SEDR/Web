@@ -11,9 +11,13 @@ import { fetcher } from '@Hooks/';
 
 const DeviceTable = () => {
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(12);
-    const { data: devicesData = [], error } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url));
-    const [filteredData, setFilteredData] = useState(devicesData);
+    const [limit, setLimit] = useState(100);
+    const {
+        data: devicesData = [],
+        error,
+        isValidating,
+    } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url));
+    const [filteredData, setFilteredData] = useState([]);
 
     const handleSearch = input => {
         const filtered = devicesData.filter(device => {
@@ -26,7 +30,7 @@ const DeviceTable = () => {
 
     useEffect(() => {
         setFilteredData(devicesData);
-    }, [devicesData]);
+    }, [isValidating]);
 
     return (
         <div id='deviceTable'>
