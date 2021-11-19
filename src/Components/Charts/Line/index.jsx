@@ -7,14 +7,9 @@ import { lineChartDummy } from '@Dummy/lineChartDummy.js';
 
 const LineArea = props => {
     // TODO_P :: props 제거
-    const {
-        labels = [],
-        labelName = '',
-        data = [],
-        unitCallback,
-        labelCallback,
-        chartID = 'lineChart',
-    } = lineChartDummy;
+    const { labels = [], data = [] } = props;
+
+    const { labelName = '', unitCallback, labelCallback, chartID = 'lineChart' } = lineChartDummy;
 
     const chartData = {
         labels: labels,
@@ -25,7 +20,7 @@ const LineArea = props => {
 
     useEffect(() => {
         lineChartInit(chartID, chartData, chartOptions);
-    }, []);
+    }, [labels, data]);
 
     // TODO_P :: id, className, 그 이외의 설정들에 대한 컴포넌트화가 진행중임.
     return (

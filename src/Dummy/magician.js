@@ -1,9 +1,9 @@
 import { randomBoundInteger } from '@Functions/';
 
 const dummy = {
-    totalLogs: randomBoundInteger(),
-    disorderLogs: randomBoundInteger(100),
-    devices: randomBoundInteger(10),
+    info: randomBoundInteger(),
+    fail: randomBoundInteger(100),
+    module: randomBoundInteger(10),
 };
 
 export default dummy;
