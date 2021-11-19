@@ -11,11 +11,15 @@ import SplitterLayout from 'react-splitter-layout';
 import 'react-splitter-layout/lib/index.css';
 
 const EventViewer = props => {
-    const { schema = 'eventViewer', data = [] } = props;
+    const { schema = 'eventViewer', data = [], defaultPadding = '1.25rem' } = props;
     const [rowId, setRowId] = useState(0);
 
     const handleRowClick = id => {
         setRowId(id);
+    };
+
+    const customStyle = {
+        padding: defaultPadding,
     };
 
     return (
@@ -23,8 +27,16 @@ const EventViewer = props => {
             <CardHeader title='이벤트뷰어' />
             <div className='eventViewerContentWrapper'>
                 <SplitterLayout vertical={true} primaryMinSize={480} secondaryInitialSize={400}>
-                    <div className='cardBody'>
-                        <Table schema={schema} onRowClick={handleRowClick} nowSelected={rowId} browseData={data} />
+                    <div className='cardBody' style={customStyle}>
+                        <Table
+                            defaultFontSize='12'
+                            defaultHeaderHeight='60'
+                            defaultRowHeight='45'
+                            schema={schema}
+                            onRowClick={handleRowClick}
+                            nowSelected={rowId}
+                            browseData={data}
+                        />
                     </div>
                     <div>
                         <LogDetail id={rowId} />

@@ -47,11 +47,11 @@ export const simpleDeviceSchema = [
 ];
 
 export const logMagicianSchema = [
-    { Header: '타임스탬프', accessor: 'create_time', align: 'center', isAbleToSort: true },
-    { Header: '로그 상태', accessor: 'status', align: 'center', isAbleToSort: true },
-    { Header: '로그 발생지', accessor: 'environment', align: 'center', isAbleToSort: true },
-    { Header: '이벤트 ID', accessor: 'event_code', align: 'center', isAbleToSort: true },
-    { Header: '상세 설명', accessor: 'description', align: 'left', isAbleToSort: false },
+    { Header: '타임스탬프', accessor: 'create_time', align: 'center', width: '50', isAbleToSort: true },
+    { Header: '로그 상태', accessor: 'status', align: 'center', width: '50', isAbleToSort: true },
+    { Header: '로그 발생지', accessor: 'environment', align: 'center', width: '50', isAbleToSort: true },
+    { Header: '이벤트 ID', accessor: 'event_code', align: 'center', width: '50', isAbleToSort: true },
+    { Header: '상세 설명', accessor: 'description', align: 'left', width: '250', isAbleToSort: false },
 ];
 
 // TODO_P :: 간격 배정

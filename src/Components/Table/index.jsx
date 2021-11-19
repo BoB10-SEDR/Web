@@ -16,6 +16,8 @@ const Table = props => {
         defaultRowHeight = '60',
         defaultRowWidth = '50',
         defaultFontSize = '18',
+        defaultHeaderHeight = '45',
+        defaultHeaderFontSize = '16',
         tableHeight,
         searchKeyword,
         isCheckable,
@@ -103,7 +105,18 @@ const Table = props => {
 
     const cellProps = (props, { cell }) => getStyles(props, cell.column.align);
 
-    const headerGroupProps = props => getRowStyles(props);
+    const headerGroupProps = props => getHeaderGroupStyles(props);
+
+    const getHeaderGroupStyles = props => [
+        props,
+        {
+            style: {
+                height: `${defaultHeaderHeight}px`,
+                alignItems: 'center',
+                fontSize: `${defaultHeaderFontSize}px`,
+            },
+        },
+    ];
 
     const rowProps = props => getRowStyles(props);
 
@@ -123,10 +136,13 @@ const Table = props => {
         {
             style: {
                 justifyContent: align === 'center' ? 'center' : align === 'right' ? 'flex-end' : 'flex-start',
-                alignItems: 'flex-start',
+                alignItems: 'center',
                 display: 'flex',
 
                 cursor: 'pointer',
+
+                height: `${defaultHeaderHeight}px`,
+                fontSize: `${defaultHeaderFontSize}px`,
             },
         },
     ];
