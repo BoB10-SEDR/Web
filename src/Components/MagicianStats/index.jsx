@@ -19,7 +19,7 @@ const MagicianStats = () => {
         fetcher(url)
     );
 
-    const { info, fail, module } = statData ? statData[0] : d;
+    const { info, fail, device } = statData ? statData[0] : d;
 
     return (
         <>
@@ -35,7 +35,7 @@ const MagicianStats = () => {
             </Col>
             <Col md={4} xl={4} mb>
                 <Card>
-                    <CardBodyForm titleFontColor={green} title='연관 장치 수' content={module.toLocaleString()} />
+                    <CardBodyForm titleFontColor={green} title='연관 장치 수' content={device.toLocaleString()} />
                 </Card>
             </Col>
         </>

@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import useSWR from 'swr';
 import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import MagicianEventViewer from '@Components/MagicianEventViewer';
@@ -7,13 +5,8 @@ import TimeLine from '@Components/Charts/TimeLine';
 import FileSelector from '@Components/FileSelector';
 import MagicianStats from '@Components/MagicianStats';
 import DummyCardEx from '@Dummy/DummyCardEx';
-import { fetcher } from '@Hooks/';
 
 const Magician = () => {
-    const [limit, setLimit] = useState(20);
-    const [page, setPage] = useState(1);
-    const { data, error } = useSWR(`/devices/logs?limit=${limit}&page=${page}&status=INFO`, url => fetcher(url));
-
     return (
         <div id='magician'>
             <Row>
