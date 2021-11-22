@@ -10,7 +10,7 @@ const MagicianEventViewer = () => {
         `/devices/logs`,
         () => fetcher(`/devices/logs?limit=${limit}&page=${page}&status=INFO`),
         {
-            refreshInterval: 300000,
+            refreshInterval: 60000,
         }
     );
 

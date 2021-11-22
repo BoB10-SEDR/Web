@@ -1,15 +1,20 @@
-import Line from '@Components/Charts/Line';
 import { useState } from 'react';
 import useSWR from 'swr';
+import Line from '@Components/Charts/Line';
 import { fetcher } from '@Hooks/';
+import { format } from 'date-fns';
+import { useInterval } from 'react-use';
 
 const TimeLine = () => {
-    const [start, setStart] = useState('2021-11-19');
+    const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
     const [time, setTime] = useState(10);
 
-    const { data: fetchData, error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url => fetcher(url), {
-        refreshInterval: 10000,
-    });
+    useInterval(() => {
+        setStart(format(Date.now(), 'yyyy-MM-dd'));
+    }, 60000);
+
+    const { data: fetchData, error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url => fetcher(url));
+
     const labels = [],
         data = [];
 
