@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import { observer } from 'mobx-react';
 import '@Styles/selector.css';
 import store from '@Stores/logMagician';
@@ -7,7 +7,9 @@ import { fetcher } from '@Hooks';
 import axios from 'axios';
 
 const Selector = props => {
-    const { data: fdData = [], error } = useSWR(`/monitoring/process`, url => fetcher(url));
+    const { data: fdData = [], error } = useSWR(`/monitoring/process`, url => fetcher(url), { refreshInterval: 10000 });
+    const { mutate } = useSWRConfig();
+
     // const devices = store.deviceList;
 
     const handleClick = fd => {
@@ -17,7 +19,8 @@ const Selector = props => {
             process_name: name,
         };
         try {
-            const response = axios.post(`/monitoring/${idx}/activate`, body);
+            const response = axios.post(`/monitoring/147/activate`, body);
+            mutate(`/devices/logs`);
             alert('success');
         } catch (e) {
             alert('error');
@@ -36,8 +39,8 @@ const Selector = props => {
                         const { name, path } = fd;
                         return (
                             <Item
-                                title={name}
-                                description={`${path}, ${processName}`}
+                                title={path}
+                                description={`${name}, ${processName}`}
                                 onClick={() => handleClick(fd)}
                             />
                         );

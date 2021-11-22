@@ -1,10 +1,12 @@
-import useSWR from 'swr';
 import { Row, Col } from '@Components/Grid';
+import { useEffect } from 'react';
 import Card from '@Components/Card';
 import Bar from '@Components/Charts/Bar';
 import Pie from '@Components/Charts/Pie';
 import Table from '@Components/Table';
+import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import DeviceTable from '@Components/DeviceTable';
+import useSWR from 'swr';
 import DummyCardEx from '@Dummy/DummyCardEx';
 import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
@@ -18,6 +20,12 @@ import d from '@Dummy/dashboardNumbers';
 import { fetcher } from '@Hooks/';
 
 const Dashboard = () => {
+    const [page, limit] = [1, 10];
+    let {
+        data: solutionsData = [],
+        isValidating,
+        error,
+    } = useSWR(`policies?page=${page}&limit=${limit}`, url => fetcher(url));
     const [start, time] = ['2020-01-01', 14400];
     const requestConfig = { params: { start: start, time: time } };
     const { data: statData, error: fetchStatDataError } = useSWR(
@@ -114,7 +122,7 @@ const Dashboard = () => {
                 <Col lg={6}>
                     <Card title='대응정책 적용/해제'>
                         <DummyCardEx height='314px'>
-                            <Table browseData={dummyData} />
+                            <Table schema='solutions' browseData={solutionsData} />
                         </DummyCardEx>
                     </Card>
                 </Col>

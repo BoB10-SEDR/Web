@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import '@Styles/chart.css';
 import { Chart } from 'chart.js';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { fixedChartData, getChartOptions } from './data';
 import { lineChartDummy } from '@Dummy/lineChartDummy.js';
 

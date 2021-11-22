@@ -8,6 +8,7 @@ import SearchBar from '@Components/SearchBar';
 import DummyCardEx from '@Dummy/DummyCardEx';
 import { dummyColumns, dummyData } from '@Dummy/deviceTableDummy';
 import { fetcher } from '@Hooks/';
+import Status from '@Components/UI/Status';
 
 const DeviceTable = () => {
     const [page, setPage] = useState(1);
@@ -16,7 +17,7 @@ const DeviceTable = () => {
         data: devicesData = [],
         error,
         isValidating,
-    } = useSWR(`/devices?page`, () => fetcher(`/devices?page=${page}&limit=${limit}`));
+    } = useSWR(`/devices?page`, () => fetcher(`/devices?page=${page}&limit=${limit}`), { refreshInterval: 10000 });
     const [filteredData, setFilteredData] = useState([]);
 
     const handleSearch = input => {
@@ -29,7 +30,14 @@ const DeviceTable = () => {
     };
 
     useEffect(() => {
-        setFilteredData(devicesData);
+        const formattedData = devicesData.map(e => {
+            return {
+                ...e,
+                live: <Status status={e['live'] ? 'CONNECT' : 'DISCONNECT'} />,
+            };
+        });
+
+        setFilteredData(formattedData);
     }, [isValidating]);
 
     return (

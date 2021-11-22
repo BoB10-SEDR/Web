@@ -4,11 +4,11 @@ import useSWR from 'swr';
 import { fetcher } from '@Hooks/';
 
 const TimeLine = () => {
-    const [start, setStart] = useState('2020-01-01');
-    const [time, setTime] = useState(60);
+    const [start, setStart] = useState('2021-11-19');
+    const [time, setTime] = useState(10);
 
     const { data: fetchData, error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url => fetcher(url), {
-        refreshInterval: 300000,
+        refreshInterval: 10000,
     });
     const labels = [],
         data = [];
