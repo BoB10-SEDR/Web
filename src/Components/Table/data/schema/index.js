@@ -8,13 +8,13 @@ export const exampleSchema = [
 ];
 
 export const solutionsSchema = [
+    { Header: '정책 ID', accessor: 'idx', align: 'center', width: 80, isAbleToSort: true },
     { Header: '대분류', accessor: 'main', align: 'center', width: 100, isAbleToSort: false },
     { Header: '중분류', accessor: 'classify', align: 'center', width: 100, isAbleToSort: false },
     { Header: '소분류', accessor: 'sub', align: 'center', width: 100, isAbleToSort: false },
-    { Header: '정책 유형 ID', accessor: 'idx', align: 'center', width: 150, isAbleToSort: true },
     { Header: '정책 이름', accessor: 'name', align: 'left', width: 150, isAbleToSort: true },
     { Header: '대응 정책 설명', accessor: 'description', align: 'left', width: 300, isAbleToSort: true },
-    { Header: '적용 여부', accessor: 'toggle', align: 'left', width: 300, isAbleToSort: true },
+    { Header: '적용 여부', accessor: 'toggle', align: 'center', width: 300, isAbleToSort: true },
 ];
 
 export const sparklineSchema = [
@@ -78,7 +78,7 @@ export const recommandedPolicyListSchema = [
     { Header: '대응 정책 명', accessor: 'policyName', align: 'left', isAbleToSort: false },
     { Header: '상세 설명', accessor: 'description', align: 'left', isAbleToSort: false },
     { Header: '타임스탬프', accessor: 'timestamp', align: 'left', isAbleToSort: false },
-    { Header: '적용 여부', accessor: 'status', align: 'center', isAbleToSort: false },
+    { Header: '적용 여부', accessor: 'toggle', align: 'center', isAbleToSort: false },
 ];
 
 // TODO_P :: 간격 배정

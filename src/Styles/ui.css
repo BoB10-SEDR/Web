@@ -49,7 +49,7 @@
 }
 
 .toggleSwitch input:checked + label {
-    background: #db7470;
+    background: red;
 }
 
 .toggleSwitch input:checked + label:after {

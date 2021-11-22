@@ -18,6 +18,7 @@ import Radar from '@Components/Charts/Radar';
 import SparkLines from '@Components/Charts/Sparklines';
 import d from '@Dummy/dashboardNumbers';
 import { fetcher } from '@Hooks/';
+import { attachToggle } from '@Functions/';
 
 const Dashboard = () => {
     const [page, limit] = [1, 10];
@@ -50,6 +51,8 @@ const Dashboard = () => {
     };
 
     const { total, attack_type, attack, device, module } = statData ? statData[0] : d;
+
+    const solutions = attachToggle(solutionsData, 'idx');
 
     return (
         <div id='dashboard'>
@@ -122,7 +125,7 @@ const Dashboard = () => {
                 <Col lg={6}>
                     <Card title='대응정책 적용/해제'>
                         <DummyCardEx height='314px'>
-                            <Table schema='solutions' browseData={solutionsData} />
+                            <Table schema='solutions' browseData={solutions} />
                         </DummyCardEx>
                     </Card>
                 </Col>
