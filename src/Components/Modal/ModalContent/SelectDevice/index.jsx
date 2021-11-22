@@ -10,7 +10,7 @@ const SelectDevice = props => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(12);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const { data: devicesData, error } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url));
+    const { data: devicesData = [], error } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url));
 
     const handleClick = () => {
         setIsSubmitted(true);
