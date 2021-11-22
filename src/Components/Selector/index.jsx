@@ -7,7 +7,7 @@ import { fetcher } from '@Hooks';
 import axios from 'axios';
 
 const Selector = props => {
-    const { data: fdData = [], error } = useSWR(`/monitoring/process`, url => fetcher(url), { refreshInterval: 10000 });
+    const { data: fdData = [], error } = useSWR(`/monitoring/process`, url => fetcher(url), { refreshInterval: 60000 });
     const { mutate } = useSWRConfig();
 
     // const devices = store.deviceList;

@@ -23,10 +23,23 @@ const LineArea = props => {
     };
 
     const chartOptions = getChartOptions(unitCallback, labelCallback);
+    let chart = null;
 
     useEffect(() => {
-        lineChartInit(chartID, chartData, chartOptions);
-    }, [labels, data]);
+        lineChartInit(chart, chartID, chartData, chartOptions);
+    }, []);
+
+    useEffect(() => {
+        if (!chart) return;
+        chart.data.labels = labels;
+        chart.update();
+    }, [labels]);
+
+    useEffect(() => {
+        if (!chart) return;
+        chart.data.datasets[0].data = data;
+        chart.update();
+    }, [data]);
 
     // TODO_P :: id, className, 그 이외의 설정들에 대한 컴포넌트화가 진행중임.
     return (
@@ -38,8 +51,9 @@ const LineArea = props => {
 
 export default LineArea;
 
-const lineChartInit = (id, data, option) => {
-    var ctx = document.getElementById(`${id}`);
-    new Chart(ctx, { type: 'line', data: data, options: option });
+const lineChartInit = (chart, id, data, option) => {
+    const ctx = document.getElementById(`${id}`);
+    const config = { type: 'line', data: data, options: option };
+    chart = new Chart(ctx, config);
     Chart.defaults.global.defaultFontFamily = 'NanumSquare';
 };

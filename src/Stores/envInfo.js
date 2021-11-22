@@ -2,8 +2,8 @@ import { observable } from 'mobx';
 
 const envInfo = {
     selectedEnv: {
-        id: undefined,
-        Icon: undefined,
+        id: null,
+        Icon: null,
         title: '',
         devices: [],
     },

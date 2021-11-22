@@ -18,7 +18,7 @@ const DeviceNav = props => {
 
     useMemo(() => {
         envStore.selectedEnv.devices.map(device => {
-            const button = { children: undefined, onClick: undefined };
+            const button = { children: undefined, onClick: null };
             button.children = <device.Icon size='20' />;
             button.onClick = () => tabStore.openTab(device);
             buttons.push(button);
