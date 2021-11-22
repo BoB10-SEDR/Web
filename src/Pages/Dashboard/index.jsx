@@ -125,7 +125,7 @@ const Dashboard = () => {
                 <Col lg={6}>
                     <Card title='대응정책 적용/해제'>
                         <DummyCardEx height='314px'>
-                            <Table schema='solutions' browseData={solutions} />
+                            <Table schema='simpleSolutions' browseData={solutions} />
                         </DummyCardEx>
                     </Card>
                 </Col>

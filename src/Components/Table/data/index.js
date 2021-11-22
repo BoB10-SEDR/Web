@@ -2,6 +2,7 @@ import {
     exampleSchema,
     sparklineSchema,
     solutionsSchema,
+    simpleSolutionsSchema,
     deviceTableSchema,
     simpleDeviceSchema,
     eventViewerSchema,
@@ -18,6 +19,8 @@ const getSchemaData = (type = '') => {
             return sparklineSchema;
         case 'solutions':
             return solutionsSchema;
+        case 'simplesolutions':
+            return simpleSolutionsSchema;
         case 'devicetable':
             return deviceTableSchema;
         case 'simpledevice':
