@@ -9,10 +9,11 @@ import { getPolicies } from '@Api/policies';
 import store from '@Stores/policyMagician';
 import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import { attachToggle } from '@Functions/';
+import dummySolutions from '@Dummy/solutions';
 
 const Solutions = () => {
     const [page, limit] = [1, 10];
-    const { data: solutionsData = [], error } = useSWR(`policies?page=${page}&limit=${limit}`, () =>
+    const { data: solutionsData = dummySolutions, error } = useSWR(`policies?page=${page}&limit=${limit}`, () =>
         getPolicies(1, 10)
     );
 

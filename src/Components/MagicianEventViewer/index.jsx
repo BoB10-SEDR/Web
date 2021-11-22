@@ -2,11 +2,12 @@ import { useState } from 'react';
 import useSWR from 'swr';
 import EventViewer from '@Components/EventViewer';
 import { fetcher } from '@Hooks/';
+import dummyLogs from '@Dummy/logMagician';
 
 const MagicianEventViewer = () => {
     const [limit, setLimit] = useState(20);
     const [page, setPage] = useState(1);
-    const { data = [], error } = useSWR(
+    const { data = dummyLogs, error } = useSWR(
         `/devices/logs`,
         () => fetcher(`/devices/logs?limit=${limit}&page=${page}&status=INFO`),
         {

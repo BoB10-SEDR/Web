@@ -17,13 +17,14 @@ import Line from '@Components/Charts/Line';
 import Radar from '@Components/Charts/Radar';
 import SparkLines from '@Components/Charts/Sparklines';
 import d from '@Dummy/dashboardNumbers';
+import dummySolutions from '@Dummy/solutions';
 import { fetcher } from '@Hooks/';
 import { attachToggle } from '@Functions/';
 
 const Dashboard = () => {
     const [page, limit] = [1, 10];
     let {
-        data: solutionsData = [],
+        data: solutionsData = dummySolutions,
         isValidating,
         error,
     } = useSWR(`policies?page=${page}&limit=${limit}`, url => fetcher(url));

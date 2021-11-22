@@ -1,181 +1,54 @@
-import Detail from '@Components/UI/Detail';
-import store from '@Stores/deviceTabs';
-import { AiFillRedditCircle, AiFillTwitterCircle } from 'react-icons/ai';
-import { SiApple } from 'react-icons/si';
-
-const dummyColumns = [
+const dummy = [
     {
-        Header: '장치 종류',
-        accessor: 'Col1',
+        update_time: '2021-11-22 12:00:00',
+        category: '네트워크',
+        name: 'IP Camera',
+        model_name: 'IPC3232ER-DV',
+        environment: '서버실',
+        idx: 1,
+        live: false,
+        serial_number: 'LPYKS-0311121292',
     },
     {
-        Header: '장치 이름',
-        accessor: 'Col2',
-    },
-
-    {
-        Header: '소속 구성',
-        accessor: 'Col3',
-    },
-    {
-        Header: '식별번호',
-        accessor: 'Col4',
+        update_time: '2021-11-19 07:09:37',
+        category: '네트워크',
+        name: '서버실_중계기',
+        model_name: 'Raspberry Pi 4',
+        environment: '서버실',
+        idx: 2,
+        live: true,
+        serial_number: 'SNSEA-3054988937',
     },
     {
-        Header: '트래픽 변화량',
-        accessor: 'Col5',
+        update_time: '2021-04-26 18:57:32',
+        category: '센서',
+        name: 'IP Camera',
+        model_name: 'IPC3232ER-DV',
+        environment: '서버실',
+        idx: 3,
+        live: false,
+        serial_number: 'RDHIF-9858331254',
     },
     {
-        Header: '연결 상태',
-        accessor: 'Col6',
+        update_time: '2021-09-10 11:16:40',
+        category: '기기',
+        name: '출입구_키오스크',
+        model_name: 'SMK 6000',
+        environment: '서버실',
+        idx: 4,
+        live: false,
+        serial_number: 'CTAUF-2204585350',
     },
     {
-        Header: '연결 모듈 수',
-        accessor: 'Col7',
-    },
-    {
-        Header: '상세 정보',
-        accessor: 'Col8',
-    },
-];
-
-const dummyData = [
-    {
-        Col1: 'icon1',
-        Col2: '화재경보기기',
-        Col3: '구성이름입니다.',
-        Col4: '219170147',
-        Col5: '13,395',
-        Col6: '양호',
-        Col7: '23개',
-        Col8: (
-            <Detail
-                onClick={() =>
-                    store.openTab({
-                        Icon: AiFillRedditCircle,
-                        deviceType: 'computer',
-                        deviceName: '화재경보기기',
-                        deviceId: '20190003709',
-                        path: '/sdfs',
-                    })
-                }
-            />
-        ),
-    },
-    {
-        Col1: 'icon2',
-        Col2: 'IP 카메라',
-        Col3: '구성이름입니다.',
-        Col4: '219170147',
-        Col5: '13,395',
-        Col6: '위험',
-        Col7: '23개',
-        Col8: (
-            <Detail
-                onClick={() =>
-                    store.openTab({
-                        Icon: AiFillTwitterCircle,
-                        deviceType: 'camera',
-                        deviceName: 'IP 카메라',
-                        deviceId: '20190003709',
-                        path: '/sdfs',
-                    })
-                }
-            />
-        ),
-    },
-    {
-        Col1: 'icon3',
-        Col2: '공유기',
-        Col3: '구성이름입니다.',
-        Col4: '219170147',
-        Col5: '13,395',
-        Col6: '위험',
-        Col7: '23개',
-        Col8: (
-            <Detail
-                onClick={() =>
-                    store.openTab({
-                        Icon: SiApple,
-                        deviceType: 'computer',
-                        deviceName: '공유기',
-                        deviceId: '20190003709',
-                        path: '/sdfs',
-                    })
-                }
-            />
-        ),
-    },
-    {
-        Col1: 'icon4',
-        Col2: '장치 이름입니다.',
-        Col3: '구성이름입니다.',
-        Col4: '219170147',
-        Col5: '13,395',
-        Col6: '양호',
-        Col7: '23개',
-        Col8: <Detail />,
-    },
-    {
-        Col1: 'icon5',
-        Col2: '장치 이름입니다.',
-        Col3: '구성이름입니다.',
-        Col4: '219170147',
-        Col5: '13,395',
-        Col6: '위험',
-        Col7: '23개',
-        Col8: <Detail />,
-    },
-    {
-        Col1: 'icon6',
-        Col2: '장치 이름입니다.',
-        Col3: '구성이름입니다.',
-        Col4: '219170147',
-        Col5: '13,395',
-        Col6: '양호',
-        Col7: '23개',
-        Col8: <Detail />,
-    },
-    {
-        Col1: 'icon7',
-        Col2: '장치 이름입니다.',
-        Col3: '구성이름입니다.',
-        Col4: '219170147',
-        Col5: '13,395',
-        Col6: '위험',
-        Col7: '23개',
-        Col8: <Detail />,
-    },
-    {
-        Col1: 'icon8',
-        Col2: '장치 이름입니다.',
-        Col3: '구성이름입니다.',
-        Col4: '219170147',
-        Col5: '13,395',
-        Col6: '양호',
-        Col7: '23개',
-        Col8: <Detail />,
-    },
-    {
-        Col1: 'icon9',
-        Col2: '장치 이름입니다.',
-        Col3: '구성이름입니다.',
-        Col4: '219170147',
-        Col5: '13,395',
-        Col6: '위험',
-        Col7: '23개',
-        Col8: <Detail />,
-    },
-    {
-        Col1: 'icon10',
-        Col2: '장치 이름입니다.',
-        Col3: '구성이름입니다.',
-        Col4: '219170147',
-        Col5: '13,395',
-        Col6: '양호',
-        Col7: '23개',
-        Col8: <Detail />,
+        update_time: '2021-11-22 12:00:00',
+        category: '네트워크',
+        name: 'IP Camera',
+        model_name: 'IPC3232ER-DV',
+        environment: '서버실',
+        idx: 5,
+        live: false,
+        serial_number: 'QHWSW-4366519649',
     },
 ];
 
-export { dummyColumns, dummyData };
+export default dummy;

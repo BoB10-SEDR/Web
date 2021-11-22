@@ -19,7 +19,6 @@ const TimeLine = () => {
         data = [];
 
     if (fetchData) {
-        console.log(fetchData);
         fetchData.map((item, index) => {
             if (index > 5) return;
             const { date, info = 0 } = item;

@@ -6,7 +6,7 @@ import FilterButton from '@Components/FilterButton';
 import AddDeviceButton from '@Components/AddDeviceButton';
 import SearchBar from '@Components/SearchBar';
 import DummyCardEx from '@Dummy/DummyCardEx';
-import { dummyColumns, dummyData } from '@Dummy/deviceTableDummy';
+import dummyDevices from '@Dummy/deviceTableDummy';
 import { fetcher } from '@Hooks/';
 import Status from '@Components/UI/Status';
 
@@ -14,7 +14,7 @@ const DeviceTable = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(100);
     const {
-        data: devicesData = [],
+        data: devicesData = dummyDevices,
         error,
         isValidating,
     } = useSWR(`/devices?page`, () => fetcher(`/devices?page=${page}&limit=${limit}`), { refreshInterval: 10000 });
