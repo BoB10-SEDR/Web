@@ -10,13 +10,15 @@ const TimeLine = () => {
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
     const [time, setTime] = useState(10);
 
+    const { data: fetchData = dummyTimeLine, error } = useSWR(
+        `/dashboard/logs?start=${start}&time=${time}`,
+        url => fetcher(url),
+        { refreshInterval: 60000 }
+    );
+
     useInterval(() => {
         setStart(format(Date.now(), 'yyyy-MM-dd'));
     }, 60000);
-
-    const { data: fetchData = dummyTimeLine, error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url =>
-        fetcher(url)
-    );
 
     const labels = [],
         data = [];
@@ -33,8 +35,6 @@ const TimeLine = () => {
             data.push(info);
         });
     }
-
-    console.log({ labels, data });
 
     return <Line labels={labels} data={data} />;
 };
