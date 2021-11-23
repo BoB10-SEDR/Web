@@ -4,6 +4,7 @@ import Line from '@Components/Charts/Line';
 import { fetcher } from '@Hooks/';
 import { format } from 'date-fns';
 import { useInterval } from 'react-use';
+import dummyTimeLine from '@Dummy/timeLine';
 
 const TimeLine = () => {
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
@@ -13,12 +14,14 @@ const TimeLine = () => {
         setStart(format(Date.now(), 'yyyy-MM-dd'));
     }, 60000);
 
-    const { data: fetchData, error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url => fetcher(url));
+    const { data: fetchData = dummyTimeLine, error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url =>
+        fetcher(url)
+    );
 
     const labels = [],
         data = [];
 
-    if (fetchData) {
+    if (fetchData !== dummyTimeLine) {
         fetchData.map((item, index) => {
             if (index > 5) return;
             const { date, info = 0 } = item;
