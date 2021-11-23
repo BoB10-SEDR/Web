@@ -3,11 +3,14 @@ import useSWR, { useSWRConfig } from 'swr';
 import { observer } from 'mobx-react';
 import '@Styles/selector.css';
 import store from '@Stores/logMagician';
+import dummyFd from '@Dummy/fd';
 import { fetcher } from '@Hooks';
 import axios from 'axios';
 
 const Selector = props => {
-    const { data: fdData = [], error } = useSWR(`/monitoring/process`, url => fetcher(url), { refreshInterval: 60000 });
+    const { data: fdData = dummyFd, error } = useSWR(`/monitoring/process`, url => fetcher(url), {
+        refreshInterval: 60000,
+    });
     const { mutate } = useSWRConfig();
 
     // const devices = store.deviceList;
