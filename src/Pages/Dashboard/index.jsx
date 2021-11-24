@@ -1,21 +1,18 @@
 import { Row, Col } from '@Components/Grid';
 import { useEffect } from 'react';
 import Card from '@Components/Card';
-import Bar from '@Components/Charts/Bar';
 import Pie from '@Components/Charts/Pie';
 import Table from '@Components/Table';
-import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import DeviceTable from '@Components/DeviceTable';
 import useSWR from 'swr';
 import DummyCardEx from '@Dummy/DummyCardEx';
-import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
-import { dummyColumns, dummyData } from '@Dummy/solutionTableDummy';
 import '@Styles/dashboard.css';
 import CardBodyForm from '@Components/Card/Form';
-import Line from '@Components/Charts/Line';
 import Radar from '@Components/Charts/Radar';
 import SparkLines from '@Components/Charts/Sparklines';
+import TimeLine from '@Components/Charts/TimeLine';
+import ThreatRadar from '@Components/Charts/ThreatRadar';
 import d from '@Dummy/dashboardNumbers';
 import dummySolutions from '@Dummy/solutions';
 import { fetcher } from '@Hooks/';
@@ -34,11 +31,7 @@ const Dashboard = () => {
         `dashboard/statistics?start=${start}&time=${time}`,
         url => fetcher(url, requestConfig)
     );
-    const { data: lineData, error: fetchLineDataError } = useSWR(`dashboard/logs?start=${start}&time=${time}`, url =>
-        fetcher(url, requestConfig)
-    );
 
-    const { barId, barData, barOptions } = BarDummy;
     const { pieId, pieData, pieOptions } = PieDummy;
 
     const red = '#F02632';
@@ -92,8 +85,7 @@ const Dashboard = () => {
                 <Col lg={6}>
                     <Card title='시간별 전체 로그 수'>
                         <DummyCardEx height='277px'>
-                            {/* <Slider /> */}
-                            <Line start={start} time={time} url={`dashboard/logs`} />
+                            <TimeLine />
                         </DummyCardEx>
                     </Card>
                 </Col>
@@ -101,7 +93,7 @@ const Dashboard = () => {
                 <Col lg={3}>
                     <Card title='보안항목 유형별 로그비율'>
                         <DummyCardEx height='277px'>
-                            <Radar />
+                            <ThreatRadar />
                         </DummyCardEx>
                     </Card>
                 </Col>
