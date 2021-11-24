@@ -6,7 +6,7 @@ const EditButton = props => {
 
     return (
         <Button className='editButton' onClick={onClick} backgroundColor='transparent'>
-            <FiEdit />
+            <FiEdit size='24' />
         </Button>
     );
 };

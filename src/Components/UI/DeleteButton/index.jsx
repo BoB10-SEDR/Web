@@ -6,7 +6,7 @@ const deleteButton = props => {
 
     return (
         <Button className='deleteButton' onClick={onClick} backgroundColor='transparent'>
-            <BiTrash />
+            <BiTrash size='24' />
         </Button>
     );
 };
