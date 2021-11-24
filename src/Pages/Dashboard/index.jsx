@@ -1,5 +1,5 @@
 import { Row, Col } from '@Components/Grid';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '@Components/Card';
 import Pie from '@Components/Charts/Pie';
 import Table from '@Components/Table';
@@ -16,6 +16,7 @@ import ThreatRadar from '@Components/Charts/ThreatRadar';
 import d from '@Dummy/dashboardNumbers';
 import dummySolutions from '@Dummy/solutions';
 import { fetcher } from '@Hooks/';
+import { format } from 'date-fns';
 
 const Dashboard = () => {
     const [page, limit] = [1, 10];
@@ -24,7 +25,9 @@ const Dashboard = () => {
         isValidating,
         error,
     } = useSWR(`policies?page=${page}&limit=${limit}`, url => fetcher(url));
-    const [start, time] = ['2020-01-01', 14400];
+    const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
+    const [time, setTime] = useState(5);
+
     const requestConfig = { params: { start: start, time: time } };
     const { data: statData, error: fetchStatDataError } = useSWR(
         `dashboard/statistics?start=${start}&time=${time}`,
