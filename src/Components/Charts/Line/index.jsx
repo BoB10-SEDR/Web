@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import '@Styles/chart.css';
 import { Chart } from 'chart.js';
-import { useEffect, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { fixedChartData, getChartOptions } from './data';
 import { lineChartDummy } from '@Dummy/lineChartDummy.js';
 
@@ -16,6 +16,8 @@ const LineArea = props => {
         chartID = 'lineChart',
     } = lineChartDummy;
     const { labels = dummyLabels, data = dummyData } = props;
+    const chartContainer = useRef(null);
+    const [chart, setChart] = useState(null);
 
     const chartData = {
         labels: labels,
@@ -23,11 +25,21 @@ const LineArea = props => {
     };
 
     const chartOptions = getChartOptions(unitCallback, labelCallback);
-    let chart = null;
+
+    const chartInit = (container, data, option) => {
+        const config = { type: 'line', data: data, options: option };
+        const chart = new Chart(container.current, config);
+        Chart.defaults.global.defaultFontFamily = 'NanumSquare';
+
+        return chart;
+    };
 
     useEffect(() => {
-        lineChartInit(chart, chartID, chartData, chartOptions);
-    }, []);
+        if (chartContainer && chartContainer.current) {
+            const instance = chartInit(chartContainer, chartData, chartOptions);
+            setChart(instance);
+        }
+    }, [chartContainer]);
 
     useEffect(() => {
         if (!chart) return;
@@ -44,16 +56,9 @@ const LineArea = props => {
     // TODO_P :: id, className, 그 이외의 설정들에 대한 컴포넌트화가 진행중임.
     return (
         <div id='lineChartArea'>
-            <canvas id={chartID} />
+            <canvas id={chartID} ref={chartContainer} />
         </div>
     );
 };
 
 export default LineArea;
-
-const lineChartInit = (chart, id, data, option) => {
-    const ctx = document.getElementById(`${id}`);
-    const config = { type: 'line', data: data, options: option };
-    chart = new Chart(ctx, config);
-    Chart.defaults.global.defaultFontFamily = 'NanumSquare';
-};

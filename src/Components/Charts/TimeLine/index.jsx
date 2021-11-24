@@ -8,7 +8,7 @@ import dummyTimeLine from '@Dummy/timeLine';
 
 const TimeLine = () => {
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
-    const [time, setTime] = useState(10);
+    const [time, setTime] = useState(5);
 
     const { data: fetchData = [], error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url => fetcher(url), {
         refreshInterval: 60000,
@@ -23,7 +23,7 @@ const TimeLine = () => {
 
     if (fetchData) {
         fetchData.map((item, index) => {
-            if (index > 5) return;
+            if (index > 10) return;
             const { date, info = 0 } = item;
             const timestamp = new Date(date);
             const hours = ('0' + timestamp.getHours()).slice(-2),

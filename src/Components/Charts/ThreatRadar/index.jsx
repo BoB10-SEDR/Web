@@ -7,7 +7,7 @@ import { useInterval } from 'react-use';
 import { threatDataLabel, threatDataIndex } from './data';
 
 const ThreatRadar = () => {
-    const [start, setStart] = useState('2020-01-01');
+    const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
 
     const { data: fetchData = [], error: fetchError } = useSWR(
         `/dashboard/logs/attack?start=${start}`,

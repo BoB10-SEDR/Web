@@ -1,39 +1,50 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import '@Styles/chart.css';
 import { Chart } from 'chart.js';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { fixedRadarData, getRadarOptions } from './data';
 import radarChartDummy from '@Dummy/radarChartDummy';
 
 const Radar = props => {
     // TODO_P :: props 템플릿화 & 명세에 적기 & dummy 해제
-    const [receivedData, setRadarData] = useState(radarChartDummy);
     const {
         chartID = 'radarChart',
         labelName = '',
         labels: dummyLabels = [],
         data: dummyData = [],
         labelCallback,
-    } = receivedData;
+    } = radarChartDummy;
     const { labels = dummyLabels, data = dummyData } = props;
-    let chart = null;
+    const chartContainer = useRef(null);
+    const [chart, setChart] = useState(null);
 
-    const radarData = {
+    const chartData = {
         labels: labels,
         datasets: [{ ...fixedRadarData, label: labelName, data: data }],
     };
 
-    const radarOptions = getRadarOptions(labelCallback);
+    const chartOptions = getRadarOptions(labelCallback);
+
+    const chartInit = (container, data, option) => {
+        const config = { type: 'radar', data: data, options: option };
+        const chart = new Chart(container.current, config);
+        Chart.defaults.global.defaultFontFamily = 'NanumSquare';
+
+        return chart;
+    };
 
     useEffect(() => {
-        radarChartInit(chart, chartID, radarData, radarOptions);
+        if (chartContainer && chartContainer.current) {
+            const instance = chartInit(chartContainer, chartData, chartOptions);
+            setChart(instance);
+        }
+    }, [chartContainer]);
 
-        // TODO_P :: 데이터 불러와서 초기화
-        setRadarData({
-            chartID: 'radarChart',
-            labelName: '공격유형 레이더',
-        });
-    }, []);
+    useEffect(() => {
+        if (!chart) return;
+        chart.data.labels = labels;
+        chart.update();
+    }, [labels]);
 
     useEffect(() => {
         if (!chart) return;
@@ -43,19 +54,9 @@ const Radar = props => {
 
     return (
         <div id='radarChartArea'>
-            <canvas id={chartID} />
+            <canvas id={chartID} ref={chartContainer} />
         </div>
     );
 };
 
 export default Radar;
-
-const radarChartInit = (chart, id = 'radarChart', data = {}, options = {}) => {
-    if (data === {}) return;
-
-    // TODO_P :: data가 없다면 예외처리.
-    var ctx = document.getElementById(`${id}`);
-    const config = { type: 'radar', data: data, options: options };
-    chart = new Chart(ctx, config);
-    Chart.defaults.global.defaultFontFamily = 'NanumSquare';
-};
