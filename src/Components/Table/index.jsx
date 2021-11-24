@@ -8,6 +8,9 @@ import CheckBox from '@Components/UI/CheckBox';
 import Hr from '@Components/UI/Border';
 import matchSorter from 'match-sorter';
 import NoData from '@Components/UI/NoData';
+import ToggleSwitch from '@Components/UI/ToggleSwitch';
+import EditButton from '@Components/UI/EditButton';
+import ConfigButtons from '@Components/UI/ConfigButtons';
 
 const Table = props => {
     const {
@@ -24,6 +27,9 @@ const Table = props => {
         nowSelected = 0,
         onRowClick = () => {},
         isSubmitted,
+        hasToggle,
+        toggleId,
+        hasConfig,
         onSubmit = () => {},
     } = props;
     const [clickedIndex, setClickedIndex] = useState(nowSelected);
@@ -88,15 +94,46 @@ const Table = props => {
         useSortBy,
         useRowSelect,
         hooks => {
-            if (!isCheckable) return;
-            hooks.visibleColumns.push(columns => [
-                {
-                    id: 'selection',
-                    Header: ({ getToggleAllRowsSelectedProps }) => <CheckBox {...getToggleAllRowsSelectedProps()} />,
-                    Cell: ({ row }) => <CheckBox {...row.getToggleRowSelectedProps()} />,
-                },
-                ...columns,
-            ]);
+            if (isCheckable) {
+                hooks.visibleColumns.push(columns => [
+                    {
+                        id: 'selection',
+                        Header: ({ getToggleAllRowsSelectedProps }) => (
+                            <CheckBox {...getToggleAllRowsSelectedProps()} />
+                        ),
+                        Cell: ({ row }) => <CheckBox {...row.getToggleRowSelectedProps()} />,
+                    },
+                    ...columns,
+                ]);
+            }
+            if (hasToggle) {
+                hooks.visibleColumns.push(columns => [
+                    ...columns,
+                    {
+                        id: 'toggle',
+                        Header: '상태',
+                        Cell: ({ row }) => {
+                            return <ToggleSwitch id={row.original[toggleId]} />;
+                        },
+                        align: 'center',
+                        width: 100,
+                    },
+                ]);
+            }
+            if (hasConfig) {
+                hooks.visibleColumns.push(columns => [
+                    ...columns,
+                    {
+                        id: 'config',
+                        Header: '설정',
+                        Cell: ({ row }) => {
+                            return <ConfigButtons />;
+                        },
+                        align: 'center',
+                        width: 100,
+                    },
+                ]);
+            }
         }
     );
 

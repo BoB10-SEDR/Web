@@ -48,13 +48,3 @@ export const randomBoundInteger = (bound = 100000) => {
 export const randomPercent = () => {
     return `${Number(Math.round(Math.random() * 100 + 1))}%`;
 };
-
-export const attachToggle = (data, toggleId) => {
-    return data.map(item => {
-        const key = item[toggleId];
-        return {
-            ...item,
-            toggle: <ToggleSwitch key={key} id={key} />,
-        };
-    });
-};

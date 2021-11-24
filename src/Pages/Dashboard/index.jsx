@@ -16,12 +16,11 @@ import ThreatRadar from '@Components/Charts/ThreatRadar';
 import d from '@Dummy/dashboardNumbers';
 import dummySolutions from '@Dummy/solutions';
 import { fetcher } from '@Hooks/';
-import { attachToggle } from '@Functions/';
 
 const Dashboard = () => {
     const [page, limit] = [1, 10];
     let {
-        data: solutionsData = dummySolutions,
+        data: solutions = dummySolutions,
         isValidating,
         error,
     } = useSWR(`policies?page=${page}&limit=${limit}`, url => fetcher(url));
@@ -45,8 +44,6 @@ const Dashboard = () => {
     };
 
     const { total, attack_type, attack, device, module } = statData ? statData[0] : d;
-
-    const solutions = attachToggle(solutionsData, 'idx');
 
     return (
         <div id='dashboard'>
@@ -118,7 +115,7 @@ const Dashboard = () => {
                 <Col lg={6}>
                     <Card title='대응정책 적용/해제'>
                         <DummyCardEx height='314px'>
-                            <Table schema='simpleSolutions' browseData={solutions} />
+                            <Table schema='simpleSolutions' hasToggle toggleId='idx' browseData={solutions} />
                         </DummyCardEx>
                     </Card>
                 </Col>

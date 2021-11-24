@@ -7,17 +7,13 @@ import TableHeading from '@Components/Table/TableHeading';
 import Magician from './Magician';
 import { getPolicies } from '@Api/policies';
 import store from '@Stores/policyMagician';
-import ToggleSwitch from '@Components/UI/ToggleSwitch';
-import { attachToggle } from '@Functions/';
 import dummySolutions from '@Dummy/solutions';
 
 const Solutions = () => {
     const [page, limit] = [1, 10];
-    const { data: solutionsData = dummySolutions, error } = useSWR(`policies?page=${page}&limit=${limit}`, () =>
+    let { data: solutions = dummySolutions, error } = useSWR(`policies?page=${page}&limit=${limit}`, () =>
         getPolicies(1, 10)
     );
-
-    const solutions = attachToggle(solutionsData, 'idx');
 
     return (
         <div id='solutions' className='page'>
@@ -28,8 +24,9 @@ const Solutions = () => {
                 </TableHeading>
                 <Table
                     isCheckable
+                    hasConfig
                     hasToggle
-                    toggleKey='idx'
+                    toggleId='idx'
                     schema='solutions'
                     browseData={solutions}
                     isSubmitted={store.isOpen}
