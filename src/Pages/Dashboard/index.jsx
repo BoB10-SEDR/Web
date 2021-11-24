@@ -9,7 +9,6 @@ import DummyCardEx from '@Dummy/DummyCardEx';
 import PieDummy from '@Dummy/pieChartDummy';
 import '@Styles/dashboard.css';
 import CardBodyForm from '@Components/Card/Form';
-import Radar from '@Components/Charts/Radar';
 import SparkLines from '@Components/Charts/Sparklines';
 import TimeLine from '@Components/Charts/TimeLine';
 import ThreatRadar from '@Components/Charts/ThreatRadar';
