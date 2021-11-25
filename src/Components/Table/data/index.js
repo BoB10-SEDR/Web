@@ -8,6 +8,7 @@ import {
     eventViewerSchema,
     logMagicianSchema,
     processTableSchema,
+    filesSchema,
 } from './schema';
 
 const getSchemaData = (type = '') => {
@@ -32,6 +33,8 @@ const getSchemaData = (type = '') => {
             return logMagicianSchema;
         case 'process':
             return processTableSchema;
+        case 'files':
+            return filesSchema;
         default:
             return exampleSchema;
     }

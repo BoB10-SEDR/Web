@@ -7,7 +7,7 @@ import store from '@Stores/logMagician';
 import Button from '@Components/UI/Button';
 import ProcessTable from '@Components/ProcessTable';
 
-const SelectFile = props => {
+const SelectFile = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(12);
     const [isSubmitted, setIsSubmitted] = useState(false);

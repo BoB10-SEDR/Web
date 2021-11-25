@@ -2,7 +2,7 @@ import '@Styles/processTable.css';
 import useSWR from 'swr';
 import Table from '@Components/Table';
 import { fetcher } from '@Hooks/';
-import LogList from '@Components/LogList';
+import FileList from '@Components/FileList';
 
 const ProcessTable = props => {
     const { deviceIdx } = props;
@@ -10,14 +10,21 @@ const ProcessTable = props => {
 
     const renderRowSubComponent = ({ row }) => {
         const { pid } = row.values;
-        return <LogList deviceIdx={deviceIdx} pid={pid} />;
+        return <FileList deviceIdx={deviceIdx} pid={pid} />;
     };
 
     if (!data) return <div>loading...</div>;
 
     return (
         <div className='processTable'>
-            <Table schema='process' browseData={data} isExpandable renderRowSubComponent={renderRowSubComponent} />
+            <Table
+                schema='process'
+                browseData={data}
+                isExpandable
+                defaultRowHeight='30'
+                defaultFontSize='14'
+                renderRowSubComponent={renderRowSubComponent}
+            />
         </div>
     );
 };
