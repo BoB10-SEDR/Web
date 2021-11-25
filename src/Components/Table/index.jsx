@@ -9,8 +9,8 @@ import Hr from '@Components/UI/Border';
 import matchSorter from 'match-sorter';
 import NoData from '@Components/UI/NoData';
 import ToggleSwitch from '@Components/UI/ToggleSwitch';
-import EditButton from '@Components/UI/EditButton';
 import ConfigButtons from '@Components/UI/ConfigButtons';
+import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
 const Table = props => {
     const {
@@ -121,7 +121,9 @@ const Table = props => {
                             // Use Cell to render an expander for each row.
                             // We can use the getToggleRowExpandedProps prop-getter
                             // to build the expander.
-                            <span {...row.getToggleRowExpandedProps()}>{row.isExpanded ? '👇' : '👉'}</span>
+                            <span {...row.getToggleRowExpandedProps()}>
+                                {row.isExpanded ? <IoIosArrowDown /> : <IoIosArrowForward />}
+                            </span>
                         ),
                     },
                     ...columns,

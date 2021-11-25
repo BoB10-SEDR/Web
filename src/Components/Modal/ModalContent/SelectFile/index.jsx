@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import useSWR from 'swr';
 import '@Styles/modalContent.css';
 import Table from '@Components/Table';
@@ -6,12 +6,10 @@ import { fetcher } from '@Hooks/';
 import store from '@Stores/logMagician';
 import Button from '@Components/UI/Button';
 import ProcessTable from '@Components/ProcessTable';
+import Status from '@Components/UI/Status';
 
 const SelectFile = () => {
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(12);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const { data: devicesData = [], error } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url));
 
     const handleClick = () => {
         setIsSubmitted(true);
@@ -33,24 +31,43 @@ const SelectFile = () => {
             <Button buttonStyle={applyButtonStyle} onClick={handleClick}>
                 Apply
             </Button>
-            <DeviceTable isSubmitted={isSubmitted} browseData={devicesData} />
+            <DeviceTable isSubmitted={isSubmitted} />
         </div>
     );
 };
 
 const DeviceTable = props => {
-    const { isSubmitted, browseData = [] } = props;
+    const { isSubmitted } = props;
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(12);
+    const [filteredData, setFilteredData] = useState([]);
+    let {
+        data: devicesData = [],
+        error,
+        isValidating,
+    } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url));
 
     const renderRowSubComponent = useCallback(({ row }) => {
         const { idx } = row.values;
         return <ProcessTable deviceIdx={idx} />;
     }, []);
 
+    useEffect(() => {
+        const formattedData = devicesData.map(e => {
+            return {
+                ...e,
+                live: <Status status={e['live'] ? 'CONNECT' : 'DISCONNECT'} />,
+            };
+        });
+
+        setFilteredData(formattedData);
+    }, [isValidating]);
+
     return (
         <Table
             isExpandable
             isSubmitted={isSubmitted}
-            browseData={browseData}
+            browseData={filteredData}
             onSubmit={data => store.setDeviceList(data)}
             defaultRowHeight='30'
             defaultFontSize='14'
