@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import useSWR from 'swr';
 import '@Styles/modalContent.css';
 import Table from '@Components/Table';
 import { fetcher } from '@Hooks/';
 import store from '@Stores/logMagician';
 import Button from '@Components/UI/Button';
+import ProcessTable from '@Components/ProcessTable';
 
-const SelectDevice = props => {
+const SelectFile = props => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(12);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -32,17 +33,31 @@ const SelectDevice = props => {
             <Button buttonStyle={applyButtonStyle} onClick={handleClick}>
                 Apply
             </Button>
-            <Table
-                isCheckable
-                isSubmitted={isSubmitted}
-                browseData={devicesData}
-                onSubmit={data => store.setDeviceList(data)}
-                defaultRowHeight='30'
-                defaultFontSize='14'
-                schema='simpleDevice'
-            ></Table>
+            <DeviceTable isSubmitted={isSubmitted} browseData={devicesData} />
         </div>
     );
 };
 
-export default SelectDevice;
+const DeviceTable = props => {
+    const { isSubmitted, browseData = [] } = props;
+
+    const renderRowSubComponent = useCallback(({ row }) => {
+        const { idx } = row.values;
+        return <ProcessTable deviceIdx={idx} />;
+    }, []);
+
+    return (
+        <Table
+            isExpandable
+            isSubmitted={isSubmitted}
+            browseData={browseData}
+            onSubmit={data => store.setDeviceList(data)}
+            defaultRowHeight='30'
+            defaultFontSize='14'
+            schema='simpleDevice'
+            renderRowSubComponent={renderRowSubComponent}
+        ></Table>
+    );
+};
+
+export default SelectFile;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { useAsyncDebounce, useFlexLayout, useGlobalFilter, useSortBy, useTable, useRowSelect } from 'react-table';
+import { useEffect, useMemo, useState } from 'react';
+import { useExpanded, useFlexLayout, useGlobalFilter, useSortBy, useTable, useRowSelect } from 'react-table';
 import getSchemaData from './data';
 import genData from './data/generator';
 import '@Styles/table.css';
@@ -29,8 +29,11 @@ const Table = props => {
         isSubmitted,
         hasToggle,
         toggleId,
+        onToggle = () => {},
         hasConfig,
+        isExpandable,
         onSubmit = () => {},
+        renderRowSubComponent = () => {},
     } = props;
     const [clickedIndex, setClickedIndex] = useState(nowSelected);
 
@@ -81,7 +84,8 @@ const Table = props => {
         prepareRow,
         setGlobalFilter,
         selectedFlatRows,
-        state: { selectedRowIds },
+        visibleColumns,
+        state: { selectedRowIds, expanded },
     } = useTable(
         {
             columns: schemaData,
@@ -92,6 +96,7 @@ const Table = props => {
         useFlexLayout,
         useGlobalFilter,
         useSortBy,
+        useExpanded,
         useRowSelect,
         hooks => {
             if (isCheckable) {
@@ -102,6 +107,22 @@ const Table = props => {
                             <CheckBox {...getToggleAllRowsSelectedProps()} />
                         ),
                         Cell: ({ row }) => <CheckBox {...row.getToggleRowSelectedProps()} />,
+                    },
+                    ...columns,
+                ]);
+            }
+            if (isExpandable) {
+                hooks.visibleColumns.push(columns => [
+                    {
+                        // Make an expander cell
+                        Header: () => null, // No header
+                        id: 'expander', // It needs an ID
+                        Cell: ({ row }) => (
+                            // Use Cell to render an expander for each row.
+                            // We can use the getToggleRowExpandedProps prop-getter
+                            // to build the expander.
+                            <span {...row.getToggleRowExpandedProps()}>{row.isExpanded ? '👇' : '👉'}</span>
+                        ),
                     },
                     ...columns,
                 ]);
@@ -277,6 +298,20 @@ const Table = props => {
                                             );
                                         })}
                                     </tr>
+                                    {row.isExpanded ? (
+                                        <tr>
+                                            <td colSpan={visibleColumns.length}>
+                                                {/*
+                          Inside it, call our renderRowSubComponent function. In reality,
+                          you could pass whatever you want as props to
+                          a component like this, including the entire
+                          table instance. But for this example, we'll just
+                          pass the row
+                        */}
+                                                {renderRowSubComponent({ row })}
+                                            </td>
+                                        </tr>
+                                    ) : null}
                                     {!isLast && <Hr />}
                                 </>
                             );

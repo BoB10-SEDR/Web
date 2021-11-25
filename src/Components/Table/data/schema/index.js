@@ -95,3 +95,8 @@ export const inspectionTableSchema = [
     { Header: '대상 OS', accessor: 'target', align: 'left', isAbleToSort: false },
     { Header: '테스트 설명', accessor: 'description', align: 'left', isAbleToSort: false },
 ];
+
+export const processTableSchema = [
+    { Header: '프로세스 명', accessor: 'command', align: 'center', width: '500', isAbleToSort: false },
+    { Header: 'PID', accessor: 'idx', align: 'center', width: '300', isAbleToSort: false },
+];

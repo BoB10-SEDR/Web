@@ -1,8 +1,8 @@
 import Modal from '@Components/Modal';
-import SelectDevice from '@Components/Modal/ModalContent/SelectDevice';
+import SelectFile from '@Components/Modal/ModalContent/SelectFile';
 import Selector from '@Components/Selector';
 
-const FileSelector = () => {
+const MagicianConfig = () => {
     const buttonCustom = {
         position: 'absolute',
         top: '15px',
@@ -11,12 +11,12 @@ const FileSelector = () => {
 
     return (
         <div id='fileSelector'>
-            <Modal hasButton buttonStyle={buttonCustom} buttonContent='장비 선택'>
-                <SelectDevice />
+            <Modal hasButton buttonStyle={buttonCustom} buttonContent='파일 추가'>
+                <SelectFile />
             </Modal>
             <Selector />
         </div>
     );
 };
 
-export default FileSelector;
+export default MagicianConfig;

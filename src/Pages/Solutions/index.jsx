@@ -8,6 +8,8 @@ import Magician from './Magician';
 import { getPolicies } from '@Api/policies';
 import store from '@Stores/policyMagician';
 import dummySolutions from '@Dummy/solutions';
+import Modal from '@Components/Modal';
+import AddPolicy from '@Components/Modal/ModalContent/AddPolicy';
 
 const Solutions = () => {
     const [page, limit] = [1, 10];
@@ -20,7 +22,9 @@ const Solutions = () => {
             <Card>
                 <TableHeading>
                     <span>대응 정책</span>
-                    <Magician />
+                    <Modal hasButton buttonContent='추가하기'>
+                        <AddPolicy />
+                    </Modal>
                 </TableHeading>
                 <Table
                     isCheckable
