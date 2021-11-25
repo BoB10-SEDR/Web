@@ -1,23 +1,23 @@
 import '@Styles/processTable.css';
-import { useEffect } from 'react';
 import useSWR from 'swr';
 import Table from '@Components/Table';
 import { fetcher } from '@Hooks/';
+import LogList from '@Components/LogList';
 
 const ProcessTable = props => {
     const { deviceIdx } = props;
     const { data = [], error } = useSWR(`/monitoring/${deviceIdx}/process`, url => fetcher(url));
 
-    // useEffect(() => {
-
-    // }, [])
+    const renderRowSubComponent = ({ row }) => {
+        const { pid } = row.values;
+        return <LogList deviceIdx={deviceIdx} pid={pid} />;
+    };
 
     if (!data) return <div>loading...</div>;
-    console.log(data);
 
     return (
         <div className='processTable'>
-            <Table schema='process' browseData={data} />
+            <Table schema='process' browseData={data} isExpandable renderRowSubComponent={renderRowSubComponent} />
         </div>
     );
 };

@@ -98,5 +98,5 @@ export const inspectionTableSchema = [
 
 export const processTableSchema = [
     { Header: '프로세스 명', accessor: 'command', align: 'center', width: '500', isAbleToSort: false },
-    { Header: 'PID', accessor: 'idx', align: 'center', width: '300', isAbleToSort: false },
+    { Header: 'PID', accessor: 'pid', align: 'center', width: '300', isAbleToSort: false },
 ];
