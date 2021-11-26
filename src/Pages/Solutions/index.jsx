@@ -8,12 +8,11 @@ import Magician from './Magician';
 import { getPolicies } from '@Api/policies';
 import store from '@Stores/policyMagician';
 import dummySolutions from '@Dummy/solutions';
+import { fetcher } from '@Hooks/';
 
 const Solutions = () => {
     const [page, limit] = [1, 10];
-    let { data: solutions = dummySolutions, error } = useSWR(`policies?page=${page}&limit=${limit}`, () =>
-        getPolicies(1, 10)
-    );
+    let { data: solutions = dummySolutions, error } = useSWR(`/policies/custom?page=${page}`, url => fetcher(url));
 
     return (
         <div id='solutions' className='page'>
@@ -23,10 +22,10 @@ const Solutions = () => {
                     <Magician />
                 </TableHeading>
                 <Table
-                    isCheckable
                     hasConfig
                     hasToggle
                     toggleId='idx'
+                    toggleValueField='activate'
                     schema='solutions'
                     browseData={solutions}
                     isSubmitted={store.isOpen}
