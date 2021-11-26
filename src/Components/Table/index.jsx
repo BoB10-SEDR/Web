@@ -30,7 +30,9 @@ const Table = props => {
         isSubmitted,
         hasToggle,
         toggleId,
-        onToggle = () => {},
+        toggleValueField,
+        onToggleActivate = () => {},
+        onToggleInactivate = () => {},
         hasConfig,
         isExpandable,
         onSubmit = () => {},
@@ -137,7 +139,15 @@ const Table = props => {
                         id: 'toggle',
                         Header: '상태',
                         Cell: ({ row }) => {
-                            return <ToggleSwitch id={row.original[toggleId]} />;
+                            const original = row.original;
+                            return (
+                                <ToggleSwitch
+                                    id={original[toggleId]}
+                                    isToggled={original[toggleValueField]}
+                                    onActivate={() => onToggleActivate({ row })}
+                                    onInactivate={() => onToggleInactivate({ row })}
+                                />
+                            );
                         },
                         align: 'center',
                         width: 100,
