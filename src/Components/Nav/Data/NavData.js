@@ -1,6 +1,7 @@
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io5';
 import * as MdIcons from 'react-icons/md';
+import * as GrIcons from 'react-icons/gr';
 
 const NavData = {
     brand: {
@@ -27,22 +28,17 @@ const NavData = {
         {
             type: 'link',
             isCollapsed: true,
-            title: 'Logs',
+            title: 'Resources',
             icon: <AiIcons.AiOutlineDatabase className='navIcon' />,
             children: [
                 {
                     title: 'Devices',
-                    path: '/Logs/Devices',
+                    path: '/Resources/Devices',
                     cName: 'nav-collapse-item',
                 },
                 {
                     title: 'Networks',
-                    path: '/Logs/Networks',
-                    cName: 'nav-collapse-item',
-                },
-                {
-                    title: 'Log Magician',
-                    path: '/Logs/Magician',
+                    path: '/Resources/Networks',
                     cName: 'nav-collapse-item',
                 },
             ],
@@ -50,9 +46,16 @@ const NavData = {
         {
             type: 'link',
             isCollapsed: false,
+            title: 'Monitoring',
+            path: '/Monitoring',
+            icon: <IoIcons.IoAnalytics className='navIcon' />,
+        },
+        {
+            type: 'link',
+            isCollapsed: false,
             title: 'Solutions',
             path: '/Solutions',
-            icon: <IoIcons.IoToggle className='navIcon' />,
+            icon: <IoIcons.IoShieldCheckmarkOutline className='navIcon' />,
         },
         {
             type: 'link',

@@ -8,7 +8,7 @@ import Modal from 'react-modal';
 
 const Home = () => {
     return (
-        <IconContext.Provider value={{ className: 'reactIcons', color: '#fff' }}>
+        <IconContext.Provider value={{ className: 'reactIcons', color: 'white' }}>
             <Routes />
         </IconContext.Provider>
     );

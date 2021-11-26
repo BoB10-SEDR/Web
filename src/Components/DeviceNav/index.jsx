@@ -11,7 +11,7 @@ const DeviceNav = props => {
     const history = useHistory();
 
     const handleClick = () => {
-        history.push('/Logs/Devices');
+        history.push('/Resources/Devices');
     };
 
     const buttons = [];
