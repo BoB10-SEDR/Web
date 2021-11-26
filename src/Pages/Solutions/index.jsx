@@ -18,13 +18,23 @@ const Solutions = () => {
         fetcher(`/policies/custom?page=${page}`)
     );
 
-    const onToggle = ({ row }) => {
-        const { deviceIdx, policyIdx } = row;
+    const onToggleActivate = async ({ row }) => {
+        const { device_idx: deviceIdx, idx: policyIdx } = row;
         try {
-            const response = axios.post(`/policies/${policyIdx}/activate/${deviceIdx}`);
+            const response = await axios.post(`/policies/${policyIdx}/activate/${deviceIdx}`);
             mutate(`/policies/custom`);
         } catch (error) {
-            alert(error);
+            console.log(error);
+        }
+    };
+
+    const onToggleInactivate = async ({ row }) => {
+        const { device_idx: deviceIdx, idx: policyIdx } = row;
+        try {
+            const response = await axios.post(`/policies/${policyIdx}/inactivate/${deviceIdx}`);
+            mutate(`/policies/custom`);
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -44,7 +54,8 @@ const Solutions = () => {
                     browseData={solutions}
                     isSubmitted={store.isOpen}
                     onSubmit={data => store.setSelectedPolicies(data)}
-                    onToggle={onToggle}
+                    onToggleActivate={onToggleActivate}
+                    onToggleInactivate={onToggleInactivate}
                 />
             </Card>
         </div>

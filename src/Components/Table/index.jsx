@@ -30,7 +30,8 @@ const Table = props => {
         hasToggle,
         toggleId,
         toggleValueField,
-        onToggle = () => {},
+        onToggleActivate = () => {},
+        onToggleInactivate = () => {},
         hasConfig,
         onSubmit = () => {},
     } = props;
@@ -120,7 +121,8 @@ const Table = props => {
                                 <ToggleSwitch
                                     id={original[toggleId]}
                                     isToggled={original[toggleValueField]}
-                                    onToggle={() => onToggle({ row })}
+                                    onActivate={() => onToggleActivate({ row })}
+                                    onInactivate={() => onToggleInactivate({ row })}
                                 />
                             );
                         },

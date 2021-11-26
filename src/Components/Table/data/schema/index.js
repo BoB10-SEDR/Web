@@ -20,6 +20,7 @@ export const solutionsSchema = [
     { Header: '소분류', accessor: 'sub', align: 'center', width: 100, isAbleToSort: false },
     { Header: '정책 이름', accessor: 'name', align: 'center', width: 150, isAbleToSort: true },
     { Header: '적용 장비 명', accessor: 'device_name', align: 'center', width: 150, isAbleToSort: true },
+    { Header: '적용 장비 번호', accessor: 'device_idx', align: 'center', width: 150, isAbleToSort: true },
     { Header: '대응 정책 설명', accessor: 'description', align: 'left', width: 200, isAbleToSort: true },
 ];
 
