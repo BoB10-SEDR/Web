@@ -7,7 +7,6 @@ import Details from '@Pages/Logs/Details';
 import Devices from '@Pages/Logs/Devices';
 import DeviceDetails from '@Pages/Logs/Devices/DeviceDetails';
 import Networks from '@Pages/Logs/Networks';
-import Detected from '@Pages/Logs/Detected';
 import Magician from '@Pages/Logs/Magician';
 import Solutions from '@Pages/Solutions';
 import Inspection from '@Pages/Inspection';

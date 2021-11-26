@@ -1,3 +1,4 @@
+import '@Styles/addFd.css';
 import { useState, useCallback, useEffect } from 'react';
 import useSWR from 'swr';
 import '@Styles/modalContent.css';
@@ -5,10 +6,9 @@ import Table from '@Components/Table';
 import { fetcher } from '@Hooks/';
 import store from '@Stores/logMagician';
 import Button from '@Components/UI/Button';
-import ProcessTable from '@Components/ProcessTable';
 import Status from '@Components/UI/Status';
 
-const SelectFile = () => {
+const AddFd = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleClick = () => {
@@ -23,10 +23,10 @@ const SelectFile = () => {
     };
 
     return (
-        <div className='modalContent'>
+        <div id='addFd' className='modalContent'>
             <div className='header'>
-                <div className='name'>장비 선택하기</div>
-                <div className='description'>모니터링할 장비를 선택해주세요</div>
+                <div className='name'>모니터링 파일 선택</div>
+                <div className='description'>장비-프로세스-파일 순으로 선택하세요</div>
             </div>
             <Button buttonStyle={applyButtonStyle} onClick={handleClick}>
                 Apply
@@ -65,6 +65,7 @@ const DeviceTable = props => {
 
     return (
         <Table
+            className='deviceTable'
             isExpandable
             isSubmitted={isSubmitted}
             browseData={filteredData}
@@ -73,8 +74,46 @@ const DeviceTable = props => {
             defaultFontSize='14'
             schema='simpleDevice'
             renderRowSubComponent={renderRowSubComponent}
-        ></Table>
+        />
     );
 };
 
-export default SelectFile;
+const ProcessTable = props => {
+    const { deviceIdx } = props;
+    const { data = [], error } = useSWR(`/monitoring/${deviceIdx}/process`, url => fetcher(url));
+
+    const renderRowSubComponent = ({ row }) => {
+        const { pid } = row.values;
+        return <FileTable deviceIdx={deviceIdx} pid={pid} />;
+    };
+
+    if (!data) return <div>loading...</div>;
+
+    return (
+        <div className='processTable'>
+            <Table
+                schema='process'
+                browseData={data}
+                isExpandable
+                defaultRowHeight='30'
+                defaultFontSize='14'
+                renderRowSubComponent={renderRowSubComponent}
+            />
+        </div>
+    );
+};
+
+const FileTable = props => {
+    const { deviceIdx, pid } = props;
+    const { data, error } = useSWR(`/monitoring/${deviceIdx}/process/${pid}/filedescriptor`, url => fetcher(url));
+
+    if (!data) return <div>loading...</div>;
+
+    return (
+        <div className='fileList'>
+            <Table isCheckable schema='files' browseData={data} defaultRowHeight='30' defaultFontSize='14' />
+        </div>
+    );
+};
+
+export default AddFd;

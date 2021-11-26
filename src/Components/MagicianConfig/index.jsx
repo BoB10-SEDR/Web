@@ -1,5 +1,5 @@
 import Modal from '@Components/Modal';
-import SelectFile from '@Components/Modal/ModalContent/SelectFile';
+import AddFd from '@Components/Modal/ModalContent/AddFd';
 import Selector from '@Components/Selector';
 
 const MagicianConfig = () => {
@@ -12,7 +12,7 @@ const MagicianConfig = () => {
     return (
         <div id='fileSelector'>
             <Modal hasButton buttonStyle={buttonCustom} buttonContent='파일 추가'>
-                <SelectFile />
+                <AddFd />
             </Modal>
             <Selector />
         </div>

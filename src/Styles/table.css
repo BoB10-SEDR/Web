@@ -7,7 +7,7 @@
 }
 
 .table .tableRow.clicked {
-    background-color: #404040;
+    background-color: rgba(255, 0, 0, 0.5);
 }
 
 .table .tableWrapper {

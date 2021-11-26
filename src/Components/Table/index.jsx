@@ -15,6 +15,7 @@ import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 const Table = props => {
     const {
         id = 'table',
+        className = '',
         schema = 'example',
         defaultRowHeight = '60',
         defaultRowWidth = '50',
@@ -250,7 +251,7 @@ const Table = props => {
 
     // 아래는 스타일 적용을 위해 Tag이름 구분지어야함
     return (
-        <div id={id} className='table' style={{ height: tableHeight ?? null }}>
+        <div id={id} className={`table ${className}`} style={{ height: tableHeight ?? null }}>
             <div {...getTableProps()} className='tableWrapper'>
                 <div className='tableHeader'>
                     {headerGroups.map(headerGroup => (
@@ -300,20 +301,7 @@ const Table = props => {
                                             );
                                         })}
                                     </tr>
-                                    {row.isExpanded ? (
-                                        <tr>
-                                            <td colSpan={visibleColumns.length}>
-                                                {/*
-                          Inside it, call our renderRowSubComponent function. In reality,
-                          you could pass whatever you want as props to
-                          a component like this, including the entire
-                          table instance. But for this example, we'll just
-                          pass the row
-                        */}
-                                                {renderRowSubComponent({ row })}
-                                            </td>
-                                        </tr>
-                                    ) : null}
+                                    {row.isExpanded ? renderRowSubComponent({ row }) : null}
                                     {!isLast && <Hr />}
                                 </>
                             );
