@@ -1,5 +1,6 @@
 import '@Styles/solution.css';
-import useSWR from 'swr';
+import axios from 'axios';
+import useSWR, { useSWRConfig } from 'swr';
 import { observer } from 'mobx-react';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
@@ -11,8 +12,21 @@ import dummySolutions from '@Dummy/solutions';
 import { fetcher } from '@Hooks/';
 
 const Solutions = () => {
+    const { mutate } = useSWRConfig();
     const [page, limit] = [1, 10];
-    let { data: solutions = dummySolutions, error } = useSWR(`/policies/custom?page=${page}`, url => fetcher(url));
+    let { data: solutions = dummySolutions, error } = useSWR(`/policies/custom`, () =>
+        fetcher(`/policies/custom?page=${page}`)
+    );
+
+    const onToggle = ({ row }) => {
+        const { deviceIdx, policyIdx } = row;
+        try {
+            const response = axios.post(`/policies/${policyIdx}/activate/${deviceIdx}`);
+            mutate(`/policies/custom`);
+        } catch (error) {
+            alert(error);
+        }
+    };
 
     return (
         <div id='solutions' className='page'>
@@ -30,6 +44,7 @@ const Solutions = () => {
                     browseData={solutions}
                     isSubmitted={store.isOpen}
                     onSubmit={data => store.setSelectedPolicies(data)}
+                    onToggle={onToggle}
                 />
             </Card>
         </div>
