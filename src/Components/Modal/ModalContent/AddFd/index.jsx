@@ -110,7 +110,7 @@ const FileTable = props => {
     if (!data) return <div>loading...</div>;
 
     return (
-        <div className='fileList'>
+        <div className='fileTable'>
             <Table isCheckable schema='files' browseData={data} defaultRowHeight='30' defaultFontSize='14' />
         </div>
     );
