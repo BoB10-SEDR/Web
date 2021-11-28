@@ -1,5 +1,6 @@
 import '@Styles/addFd.css';
 import { useState, useCallback, useEffect } from 'react';
+import { observer } from 'mobx-react';
 import useSWR from 'swr';
 import '@Styles/modalContent.css';
 import Table from '@Components/Table';
@@ -9,10 +10,8 @@ import Button from '@Components/UI/Button';
 import Status from '@Components/UI/Status';
 
 const AddFd = () => {
-    const [isSubmitted, setIsSubmitted] = useState(false);
-
     const handleClick = () => {
-        setIsSubmitted(true);
+        store.setIsSubmitted(true);
     };
 
     const applyButtonStyle = {
@@ -31,13 +30,12 @@ const AddFd = () => {
             <Button buttonStyle={applyButtonStyle} onClick={handleClick}>
                 Apply
             </Button>
-            <DeviceTable isSubmitted={isSubmitted} />
+            <DeviceTable />
         </div>
     );
 };
 
-const DeviceTable = props => {
-    const { isSubmitted } = props;
+const DeviceTable = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(12);
     const [filteredData, setFilteredData] = useState([]);
@@ -67,9 +65,7 @@ const DeviceTable = props => {
         <Table
             className='deviceTable'
             isExpandable
-            isSubmitted={isSubmitted}
             browseData={filteredData}
-            onSubmit={data => store.setDeviceList(data)}
             defaultRowHeight='30'
             defaultFontSize='14'
             schema='simpleDevice'
@@ -103,17 +99,30 @@ const ProcessTable = props => {
     );
 };
 
-const FileTable = props => {
+const FileTable = observer(props => {
     const { deviceIdx, pid } = props;
     const { data, error } = useSWR(`/monitoring/${deviceIdx}/process/${pid}/filedescriptor`, url => fetcher(url));
+
+    const handleSubmit = data => {
+        store.addFdList(data);
+        store.setIsSubmitted(false);
+    };
 
     if (!data) return <div>loading...</div>;
 
     return (
         <div className='fileTable'>
-            <Table isCheckable schema='files' browseData={data} defaultRowHeight='30' defaultFontSize='14' />
+            <Table
+                isCheckable
+                schema='files'
+                browseData={data}
+                isSubmitted={store.isSubmitted}
+                onSubmit={handleSubmit}
+                defaultRowHeight='30'
+                defaultFontSize='14'
+            />
         </div>
     );
-};
+});
 
 export default AddFd;
