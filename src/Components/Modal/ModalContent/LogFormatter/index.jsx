@@ -1,5 +1,5 @@
 import '@Styles/logFormatter.css';
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import useSWR, { useSWRConfig } from 'swr';
 import { observer } from 'mobx-react';
@@ -26,9 +26,10 @@ const LogFormatter = () => {
                     <div className='header'>로그 포매터</div>
                     <CustomTabList>
                         {store.fdList.map((file, index) => {
+                            const { idx, name } = file;
                             return (
                                 <CustomTab key={index} tabIndex={index}>
-                                    <TabContent tabIndex={index} file={file} />
+                                    <TabContent tabIndex={index} file={file} description={`${idx} / ${name}`} />
                                 </CustomTab>
                             );
                         })}
@@ -36,9 +37,10 @@ const LogFormatter = () => {
                 </div>
                 <div className='tabForm'>
                     {store.fdList.map((file, index) => {
+                        const { idx, name } = file;
                         return (
                             <CustomTabPanel key={index}>
-                                <Form idx={file.idx} file={file} />
+                                <Form idx={file.idx} file={file} description={`${idx} / ${name}`} />
                             </CustomTabPanel>
                         );
                     })}
@@ -49,21 +51,23 @@ const LogFormatter = () => {
 };
 
 const TabContent = props => {
-    const { file } = props;
+    const { file, description } = props;
     const { idx, name, path, pid } = file;
 
     return (
         <div className='tabContent'>
             <div className='name'>{path}</div>
-            <div className='category'>{`${idx} / ${name}`}</div>
+            <div className='category'>{description}</div>
         </div>
     );
 };
 
 const Form = props => {
-    const { file, idx } = props;
-    const { path, description } = file;
-    const [sampleLog, setSampleLog] = useState(null);
+    const { file, idx, description } = props;
+    const { path } = file;
+    const [sampleLog, setSampleLog] = useState('');
+    const [regExp, setRegExp] = useState(new RegExp(''));
+    const [result, setResult] = useState('');
 
     const {
         register,
@@ -88,6 +92,21 @@ const Form = props => {
         activateMonitorFile();
     };
 
+    const handleSampleLogChange = useCallback(event => {
+        setSampleLog(event.target.value);
+    }, []);
+
+    const handleRegFormatChange = useCallback(event => {
+        setRegExp(event.target.value);
+    }, []);
+
+    const matchRegExp = () => {
+        const reg = new RegExp(regExp);
+        const result = sampleLog.match(reg);
+        setResult(result);
+        console.log(reg, result);
+    };
+
     return (
         <div className='form'>
             <div className='header'>
@@ -99,14 +118,20 @@ const Form = props => {
                 <label htmlFor='sampleLog'>
                     <div className='title'>샘플 로그</div>
                 </label>
-                <input id='sampleLog' defaultValue={sampleLog} />
-                <Button className='absolute'>Edit</Button>
+                <input id='sampleLog' value={sampleLog} onChange={handleSampleLogChange} />
 
                 <label htmlFor='regFormat'>
                     <div className='title'>정규식</div>
                 </label>
-                <input id='regFormat' />
-                <Button className='absolute'>Display</Button>
+
+                <div className='textInput'>
+                    <input id='regFormat' defaultValue={regExp} onChange={handleRegFormatChange} />
+                    <Button className='absolute' onClick={matchRegExp}>
+                        display
+                    </Button>
+                </div>
+
+                <div className='result'>{result}</div>
                 <Button type='submit'>Apply</Button>
             </form>
             <Button>건너뛰기</Button>
