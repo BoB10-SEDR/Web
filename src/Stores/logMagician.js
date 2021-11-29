@@ -4,6 +4,7 @@ const logMagician = {
     deviceList: [],
     fdList: [],
     isSubmitted: false,
+    activeTab: 0,
     setDeviceList(value) {
         this.deviceList = value;
     },
@@ -12,10 +13,13 @@ const logMagician = {
     },
     addFdList(value) {
         this.fdList.push(...value);
-        console.log(this.fdList.length);
+        console.log(value);
     },
     setIsSubmitted(value) {
         this.isSubmitted = value;
+    },
+    setActiveTab(value) {
+        this.activeTab = value;
     },
 };
 

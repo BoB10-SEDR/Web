@@ -2,14 +2,29 @@ import '@Styles/addFd.css';
 import { useState, useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import useSWR from 'swr';
+import Modal from '@Components/Modal';
 import '@Styles/modalContent.css';
 import Table from '@Components/Table';
 import { fetcher } from '@Hooks/';
 import store from '@Stores/logMagician';
 import Button from '@Components/UI/Button';
 import Status from '@Components/UI/Status';
+import LogFormatter from '@Components/Modal/ModalContent/LogFormatter';
 
-const AddFd = () => {
+const SelectLogFile = () => {
+    return (
+        <div id='addFd' className='modalContent'>
+            <div className='header'>
+                <div className='name'>모니터링 파일 선택</div>
+                <div className='description'>장비-프로세스-파일 순으로 선택하세요</div>
+            </div>
+            <SubmitButton />
+            <DeviceTable />
+        </div>
+    );
+};
+
+const SubmitButton = () => {
     const handleClick = () => {
         store.setIsSubmitted(true);
     };
@@ -22,15 +37,10 @@ const AddFd = () => {
     };
 
     return (
-        <div id='addFd' className='modalContent'>
-            <div className='header'>
-                <div className='name'>모니터링 파일 선택</div>
-                <div className='description'>장비-프로세스-파일 순으로 선택하세요</div>
-            </div>
-            <Button buttonStyle={applyButtonStyle} onClick={handleClick}>
-                Apply
-            </Button>
-            <DeviceTable />
+        <div className='submitButton' onClick={handleClick}>
+            <Modal hasButton buttonContent='Apply' buttonStyle={applyButtonStyle}>
+                <LogFormatter />
+            </Modal>
         </div>
     );
 };
@@ -125,4 +135,4 @@ const FileTable = observer(props => {
     );
 });
 
-export default AddFd;
+export default SelectLogFile;

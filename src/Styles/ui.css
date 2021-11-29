@@ -123,6 +123,10 @@
     border-radius: 50%;
 }
 
+.button.absolute {
+    position: absolute;
+}
+
 .button:not(:disabled):not(.disabled) {
     cursor: pointer;
 }

@@ -1,8 +1,8 @@
 import Modal from '@Components/Modal';
-import AddFd from '@Components/Modal/ModalContent/AddFd';
+import SelectLogFile from '@Components/Modal/ModalContent/SelectLogFile';
 import Selector from '@Components/Selector';
 
-const MagicianConfig = () => {
+const LogMagician = () => {
     const buttonCustom = {
         position: 'absolute',
         top: '15px',
@@ -12,11 +12,11 @@ const MagicianConfig = () => {
     return (
         <div id='fileSelector'>
             <Modal hasButton buttonStyle={buttonCustom} buttonContent='파일 추가'>
-                <AddFd />
+                <SelectLogFile />
             </Modal>
             <Selector />
         </div>
     );
 };
 
-export default MagicianConfig;
+export default LogMagician;

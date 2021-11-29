@@ -1,0 +1,75 @@
+#logFormatter .header {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+#logFormatter .tabs {
+    display: flex;
+}
+
+#logFormatter .tabs .tabList {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+#logFormatter .tabList {
+    display: flex;
+    flex-direction: column;
+}
+
+#logFormatter .tab {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 10px;
+    transition: background-color 0.2s ease;
+}
+
+#logFormatter .tab.active {
+    background-color: #404040;
+}
+
+#logFormatter .tab:hover {
+    background-color: #404040;
+}
+
+#logFormatter .tabContent {
+}
+
+#logFormatter .tabContent .category {
+    font-size: 0.7rem;
+    color: #8c8c8c;
+}
+
+.form .header {
+    margin-bottom: 30px;
+}
+
+.form .header .name {
+    font-size: 1.7rem;
+}
+
+.form .header .description {
+    font-size: 0.9rem;
+    color: #999999;
+}
+
+.form .parameter {
+    margin-bottom: 30px;
+}
+
+.form .parameter .name {
+    font-size: 1.5rem;
+}
+
+.parameter input {
+    width: 800px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}

@@ -2,7 +2,7 @@ import { Row, Col } from '@Components/Grid';
 import Card from '@Components/Card';
 import MagicianEventViewer from '@Components/MagicianEventViewer';
 import TimeLine from '@Components/Charts/TimeLine';
-import MagicianConfig from '@Components/MagicianConfig';
+import LogMagician from '@Components/LogMagician';
 import MagicianStats from '@Components/MagicianStats';
 import DummyCardEx from '@Dummy/DummyCardEx';
 
@@ -13,7 +13,7 @@ const Magician = () => {
                 <Col xl={4} md={4} mb>
                     <Card title='로그파일 선택'>
                         <DummyCardEx noRelative height='500px'>
-                            <MagicianConfig />
+                            <LogMagician />
                         </DummyCardEx>
                     </Card>
                 </Col>
