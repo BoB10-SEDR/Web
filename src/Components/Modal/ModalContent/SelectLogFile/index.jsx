@@ -1,4 +1,4 @@
-import '@Styles/addFd.css';
+import '@Styles/selectLogFile.css';
 import { useState, useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import useSWR from 'swr';
@@ -13,7 +13,7 @@ import LogFormatter from '@Components/Modal/ModalContent/LogFormatter';
 
 const SelectLogFile = () => {
     return (
-        <div id='addFd' className='modalContent'>
+        <div id='logFormatter' className='modalContent'>
             <div className='header'>
                 <div className='name'>모니터링 파일 선택</div>
                 <div className='description'>장비-프로세스-파일 순으로 선택하세요</div>
@@ -26,19 +26,13 @@ const SelectLogFile = () => {
 
 const SubmitButton = () => {
     const handleClick = () => {
+        store.setFdList([]);
         store.setIsSubmitted(true);
     };
 
-    const applyButtonStyle = {
-        position: 'absolute',
-        zIndex: 3,
-        top: '15px',
-        right: '20px',
-    };
-
     return (
-        <div className='submitButton' onClick={handleClick}>
-            <Modal hasButton buttonContent='Apply' buttonStyle={applyButtonStyle}>
+        <div className='submitButton'>
+            <Modal hasButton buttonContent='Apply' buttonClassName='submitButton' onClick={handleClick}>
                 <LogFormatter />
             </Modal>
         </div>

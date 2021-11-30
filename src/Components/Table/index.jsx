@@ -256,7 +256,7 @@ const Table = props => {
 
     useEffect(() => {
         if (!isSubmitted) return;
-        onSubmit(selectedFlatRows.map(d => d.original));
+        return onSubmit(selectedFlatRows.map(d => d.original));
     }, [isSubmitted]);
 
     // 아래는 스타일 적용을 위해 Tag이름 구분지어야함

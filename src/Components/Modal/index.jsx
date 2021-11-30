@@ -34,17 +34,23 @@ const CustomModal = props => {
         buttonStyle = {},
         contentLabel = 'Custom Modal',
         children,
+        onClick = () => {},
+        buttonClassName,
     } = props;
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
+
+    const handleClick = () => {
+        setIsOpen(true);
+        onClick();
+    };
 
     return (
         <>
             {hasButton && (
-                <Button buttonStyle={buttonStyle} onClick={openModal}>
+                <Button buttonStyle={buttonStyle} onClick={handleClick} className={buttonClassName}>
                     {buttonContent}
                 </Button>
             )}

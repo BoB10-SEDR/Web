@@ -1,0 +1,20 @@
+#logFormatter .deviceTable {
+    position: relative;
+}
+
+#logFormatter .processTable {
+    display: block;
+    width: 100%;
+    background-color: #333333;
+}
+
+#logFormatter .fileTable {
+    background-color: #1c1e22;
+}
+
+#logFormatter .submitButton {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 3;
+}

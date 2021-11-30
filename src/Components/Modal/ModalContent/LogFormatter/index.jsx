@@ -101,10 +101,13 @@ const Form = props => {
     }, []);
 
     const matchRegExp = () => {
-        const reg = new RegExp(regExp);
-        const result = sampleLog.match(reg);
-        setResult(result);
-        console.log(reg, result);
+        try {
+            const reg = new RegExp(regExp);
+            const result = sampleLog.match(reg);
+            setResult(result);
+        } catch (error) {
+            alert('wrong expression');
+        }
     };
 
     return (
