@@ -3,7 +3,6 @@ import useSWR, { useSWRConfig } from 'swr';
 import { useState } from 'react';
 import Modal from '@Components/Modal';
 import SelectLogFile from '@Components/Modal/ModalContent/SelectLogFile';
-import Selector from '@Components/Selector';
 import Table from '@Components/Table';
 import { fetcher } from '@Hooks/';
 
@@ -27,7 +26,7 @@ const LogMagician = () => {
 const ManageTable = () => {
     const { mutate } = useSWRConfig();
     const [page, setPage] = useState(1);
-    const { data: monitoringData = [], error } = useSWR(`/monitoring`, url => fetcher(url));
+    const { data: monitoringData = [], error } = useSWR(`/monitoring?page=${page}`, url => fetcher(url));
 
     const onToggleActivate = async ({ row }) => {
         const { device_idx: deviceIdx, idx: policyIdx } = row;
