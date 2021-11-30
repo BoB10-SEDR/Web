@@ -55,6 +55,13 @@ export const simpleDeviceSchema = [
     // { Header: '상세 정보', accessor: 'description', align: 'center', isAbleToSort: false },
 ];
 
+export const monitoringTableSchema = [
+    { Header: '식별번호', accessor: 'idx', align: 'center', isAbleToSort: true },
+    { Header: '파일 이름', accessor: 'file_descriptor_name', align: 'center', width: '100', isAbleToSort: true },
+    { Header: '파일 경로', accessor: 'file_descriptor_path', align: 'center', width: '100', isAbleToSort: true },
+    { Header: '갱신 시간', accessor: 'file_descriptor_update_time', align: 'center', width: '100', isAbleToSort: true },
+];
+
 export const logMagicianSchema = [
     { Header: '타임스탬프', accessor: 'create_time', align: 'center', width: '50', isAbleToSort: true },
     { Header: '기기', accessor: 'device_name', align: 'center', width: '100', isAbleToSort: true },

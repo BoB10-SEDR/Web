@@ -9,6 +9,7 @@ import {
     logMagicianSchema,
     processTableSchema,
     filesSchema,
+    monitoringTableSchema,
 } from './schema';
 
 const getSchemaData = (type = '') => {
@@ -35,6 +36,8 @@ const getSchemaData = (type = '') => {
             return processTableSchema;
         case 'files':
             return filesSchema;
+        case 'monitoring':
+            return monitoringTableSchema;
         default:
             return exampleSchema;
     }
