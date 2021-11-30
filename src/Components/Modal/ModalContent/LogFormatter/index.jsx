@@ -111,6 +111,10 @@ const Form = props => {
 
     const regResult = useMemo(() => matchRegExp(), [sampleLog, regExp]);
 
+    const handleClick = () => {
+        store.setNextTab();
+    };
+
     return (
         <div className='form'>
             <div className='header'>
@@ -138,7 +142,7 @@ const Form = props => {
                     <Button type='submit' className='submitButton'>
                         Apply
                     </Button>
-                    <Button>건너뛰기</Button>
+                    {store.isLastTab() ? '' : <Button onClick={handleClick}>건너뛰기</Button>}
                 </div>
             </form>
         </div>

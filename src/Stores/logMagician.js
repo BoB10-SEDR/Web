@@ -1,4 +1,5 @@
 import { observable } from 'mobx';
+import { GiTrojanHorse } from 'react-icons/gi';
 
 const logMagician = {
     deviceList: [],
@@ -20,6 +21,12 @@ const logMagician = {
     },
     setActiveTab(value) {
         this.activeTab = value;
+    },
+    setNextTab() {
+        this.activeTab += 1;
+    },
+    isLastTab() {
+        return this.activeTab === this.fdList.length - 1;
     },
 };
 

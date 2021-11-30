@@ -10,7 +10,7 @@
 #logFormatter .tabs .tabList {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 200px;
 }
 
 #logFormatter .tabList {
@@ -27,14 +27,11 @@
 }
 
 #logFormatter .tab.active {
-    background-color: #404040;
+    background-color: #595959;
 }
 
 #logFormatter .tab:hover {
-    background-color: #404040;
-}
-
-#logFormatter .tabContent {
+    background-color: #595959;
 }
 
 #logFormatter .tabContent .category {
