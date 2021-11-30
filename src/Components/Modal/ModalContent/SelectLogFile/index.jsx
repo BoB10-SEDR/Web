@@ -11,7 +11,7 @@ import Button from '@Components/UI/Button';
 import Status from '@Components/UI/Status';
 import LogFormatter from '@Components/Modal/ModalContent/LogFormatter';
 
-const SelectLogFile = () => {
+const SelectLogFile = observer(() => {
     return (
         <div id='selectLogFile' className='modalContent'>
             <div className='header'>
@@ -22,7 +22,7 @@ const SelectLogFile = () => {
             <DeviceTable />
         </div>
     );
-};
+});
 
 const SubmitButton = () => {
     const handleClick = () => {
@@ -105,7 +105,22 @@ const ProcessTable = props => {
 
 const FileTable = observer(props => {
     const { deviceIdx, pid } = props;
-    const { data, error } = useSWR(`/monitoring/${deviceIdx}/process/${pid}/filedescriptor`, url => fetcher(url));
+    const {
+        data = [],
+        error,
+        isValidating,
+    } = useSWR(`/monitoring/${deviceIdx}/process/${pid}/filedescriptor`, url => fetcher(url));
+    const [formattedData, setFormattedData] = useState([]);
+
+    useEffect(() => {
+        const formattedData = data.map(item => {
+            return {
+                ...item,
+                device_idx: deviceIdx,
+            };
+        });
+        setFormattedData(formattedData);
+    }, [isValidating]);
 
     const handleSubmit = data => {
         store.addFdList(data);
@@ -119,7 +134,7 @@ const FileTable = observer(props => {
             <Table
                 isCheckable
                 schema='files'
-                browseData={data}
+                browseData={formattedData}
                 isSubmitted={store.isSubmitted}
                 onSubmit={handleSubmit}
                 defaultRowHeight='30'

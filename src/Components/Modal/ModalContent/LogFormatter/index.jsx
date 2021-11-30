@@ -64,7 +64,7 @@ const TabContent = props => {
 
 const Form = props => {
     const { file, idx, description } = props;
-    const { path } = file;
+    const { path, device_idx, pid } = file;
     const [sampleLog, setSampleLog] = useState('');
     const [regExp, setRegExp] = useState(new RegExp(''));
 
@@ -77,10 +77,9 @@ const Form = props => {
     const { mutate } = useSWRConfig();
 
     const onSubmit = data => {
-        const activateMonitorFile = async () => {
+        const activateMonitoringFile = async () => {
             try {
                 const response = axios.post(`/monitoring/${idx}/activate`);
-                mutate(`/monitoring`);
                 alert('success');
             } catch (error) {
                 alert('error');
@@ -88,7 +87,25 @@ const Form = props => {
             }
         };
 
-        activateMonitorFile();
+        const addMonitoringFile = async () => {
+            const body = {
+                device_idx: device_idx,
+                process_idx: pid,
+                file_descriptor_idx: idx,
+            };
+            console.log(body);
+
+            try {
+                const response = axios.post(`/monitoring`, body);
+                mutate('/monitoring');
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        activateMonitoringFile();
+        addMonitoringFile();
+        store.setNextTab();
     };
 
     const handleSampleLogChange = useCallback(event => {
