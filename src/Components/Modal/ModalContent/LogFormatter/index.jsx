@@ -67,7 +67,6 @@ const Form = props => {
     const { path } = file;
     const [sampleLog, setSampleLog] = useState('');
     const [regExp, setRegExp] = useState(new RegExp(''));
-    const [result, setResult] = useState('');
 
     const {
         register,
@@ -104,11 +103,13 @@ const Form = props => {
         try {
             const reg = new RegExp(regExp);
             const result = sampleLog.match(reg);
-            setResult(result);
+            return result;
         } catch (error) {
             alert('wrong expression');
         }
     };
+
+    const regResult = useMemo(() => matchRegExp(), [sampleLog, regExp]);
 
     return (
         <div className='form'>
@@ -129,12 +130,9 @@ const Form = props => {
 
                 <div className='textInput'>
                     <input id='regFormat' defaultValue={regExp} onChange={handleRegFormatChange} />
-                    <Button className='absolute' onClick={matchRegExp}>
-                        display
-                    </Button>
                 </div>
 
-                <div className='result'>{result}</div>
+                <div className='result'>{regResult}</div>
                 <Button type='submit'>Apply</Button>
             </form>
             <Button>건너뛰기</Button>
