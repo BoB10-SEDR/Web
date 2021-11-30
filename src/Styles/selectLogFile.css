@@ -1,18 +1,18 @@
-#logFormatter .deviceTable {
+#selectLogFile .deviceTable {
     position: relative;
 }
 
-#logFormatter .processTable {
+#selectLogFile .processTable {
     display: block;
     width: 100%;
     background-color: #333333;
 }
 
-#logFormatter .fileTable {
+#selectLogFile .fileTable {
     background-color: #1c1e22;
 }
 
-#logFormatter .submitButton {
+#selectLogFile .submitButton {
     position: absolute;
     top: 15px;
     right: 20px;

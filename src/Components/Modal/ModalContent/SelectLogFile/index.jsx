@@ -13,7 +13,7 @@ import LogFormatter from '@Components/Modal/ModalContent/LogFormatter';
 
 const SelectLogFile = () => {
     return (
-        <div id='logFormatter' className='modalContent'>
+        <div id='selectLogFile' className='modalContent'>
             <div className='header'>
                 <div className='name'>모니터링 파일 선택</div>
                 <div className='description'>장비-프로세스-파일 순으로 선택하세요</div>

@@ -133,9 +133,14 @@ const Form = props => {
                 </div>
 
                 <div className='result'>{regResult}</div>
-                <Button type='submit'>Apply</Button>
+
+                <div className='buttons'>
+                    <Button type='submit' className='submitButton'>
+                        Apply
+                    </Button>
+                    <Button>건너뛰기</Button>
+                </div>
             </form>
-            <Button>건너뛰기</Button>
         </div>
     );
 };
