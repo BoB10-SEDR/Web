@@ -39,6 +39,18 @@
     flex: 5;
 }
 
+#bodyWrapper .grid-3 {
+    flex: 3;
+}
+
+#bodyWrapper .grid-4 {
+    flex: 4;
+}
+
+#bodyWrapper .grid-5 {
+    flex: 5;
+}
+
 #bodyWrapper div:last-child {
     border-right: none;
     flex: 8;
