@@ -8,9 +8,7 @@ import store from '@Stores/policyMagician';
 import { getPolicy, postPolicyActivate, getPolicyDevices, getPolicies } from '@Api/policies';
 import { fetcher } from '@Hooks/';
 
-const PolicyForm = props => {
-    const { onClose = () => {} } = props;
-
+const PolicyForm = () => {
     const handleSelect = index => {
         store.setActiveTab(index);
     };
@@ -28,7 +26,7 @@ const PolicyForm = props => {
                     <CustomTabList>
                         {store.selectedPolicies.map((policy, index) => {
                             return (
-                                <CustomTab key={index} tabIndex={index}>
+                                <CustomTab key={policy.idx} tabIndex={index}>
                                     <TabContent tabIndex={index} policy={policy} />
                                 </CustomTab>
                             );
@@ -49,17 +47,25 @@ const PolicyForm = props => {
     );
 };
 
+const TabContent = props => {
+    const { tabIndex, policy } = props;
+    const { name, main, classify, sub } = policy;
+
+    return (
+        <div className='tabContent'>
+            <div className='name'>{name}</div>
+            <div className='category'>{`${main} / ${classify} / ${sub}`}</div>
+        </div>
+    );
+};
+
 const Form = props => {
     const { policy, idx } = props;
     const { name, description } = policy;
-    const { data: policyData = { recommend: [], argument: [] }, error: fetchPolicyError } = useSWR(
-        `policies/${idx}`,
-        url => fetcher(url)
+    const { data: devicesData = { activate: [], recommend: [] } } = useSWR(`policies/${idx}/devices`, url =>
+        fetcher(url)
     );
-    const { data: devicesData = { activate: [], recommend: [] }, error: fetchDevicesError } = useSWR(
-        `policies/${idx}/devices`,
-        url => fetcher(url)
-    );
+    const { data: fetchPolicyData = [] } = useSWR(`policies/${idx}`, url => fetcher(url));
 
     const {
         register,
@@ -90,8 +96,11 @@ const Form = props => {
         activatePolicy();
     };
 
-    if (!policyData) return <div>loading...</div>;
     if (!devicesData) return <div>loading...</div>;
+    if (!fetchPolicyData) return <div>loading...</div>;
+
+    const policyData = fetchPolicyData[0].argument;
+    console.log({ devicesData, policyData });
 
     return (
         <div className='form'>
@@ -112,31 +121,18 @@ const Form = props => {
                             );
                         })}
                 </select>
-                {policyData.argument &&
-                    policyData.argument.map((parameter, index) => {
-                        const { name, description, value } = parameter;
-                        return (
-                            <div key={index} className='parameter'>
-                                <div className='name'>{name}</div>
-                                <div className='description'>{description}</div>
-                                <input value={value} {...register(`${name}`)} />
-                            </div>
-                        );
-                    })}
+                {policyData.map((parameter, index) => {
+                    const { name, description, value } = parameter;
+                    return (
+                        <div key={index} className='parameter'>
+                            <div className='name'>{name}</div>
+                            <div className='description'>{description}</div>
+                            <input value={value} {...register(`${name}`)} />
+                        </div>
+                    );
+                })}
                 <Button type='submit'>Apply</Button>
             </form>
-        </div>
-    );
-};
-
-const TabContent = props => {
-    const { tabIndex, policy } = props;
-    const { name, main, classify, sub } = policy;
-
-    return (
-        <div className='tabContent'>
-            <div className='name'>{name}</div>
-            <div className='category'>{`${main} / ${classify} / ${sub}`}</div>
         </div>
     );
 };

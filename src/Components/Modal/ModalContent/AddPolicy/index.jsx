@@ -81,6 +81,7 @@ const Body = observer(() => {
 
 const SubmitButton = () => {
     const handleClick = () => {
+        store.setSelectedPolicies([]);
         store.setIsSubmitted(true);
     };
 
