@@ -4,6 +4,7 @@ import policyData from './data/new';
 import Section from '@Components/Section';
 import store from '@Stores/policyMagician';
 import Modal from '@Components/Modal';
+import PolicyForm from '@Components/Modal/ModalContent/PolicyForm';
 // import Section from './Section';
 
 const AddPolicy = () => {
@@ -38,9 +39,8 @@ const Body = observer(() => {
     };
 
     const handleSubmit = data => {
-        store.setSectionSelectedList(data);
+        store.setSelectedPolicies([...data]);
         store.setIsSubmitted(false);
-        console.log(data);
     };
 
     return (
@@ -87,7 +87,7 @@ const SubmitButton = () => {
     return (
         <div className='submitButton'>
             <Modal hasButton buttonContent='Apply' buttonClassName='submitButton' onClick={handleClick}>
-                {/* <LogFormatter /> */}
+                <PolicyForm />
             </Modal>
         </div>
     );
