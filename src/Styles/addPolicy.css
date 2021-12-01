@@ -116,3 +116,10 @@
 #bodyWrapper .section .bodyList .bodyListItem.checked {
     background-color: #6c6e70;
 }
+
+#addPolicy .submitButton {
+    position: absolute;
+    top: 35px;
+    right: 30px;
+    z-index: 3;
+}

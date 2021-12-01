@@ -6,6 +6,7 @@ const magician = {
     activeTab: 0,
     sectionIndexList: [false, false, false, false],
     sectionSelectedList: [],
+    isSubmitted: false,
     setActiveTab(value) {
         this.activeTab = value;
     },
@@ -28,6 +29,9 @@ const magician = {
     },
     setSectionSelectedList(value) {
         this.sectionSelectedList = value;
+    },
+    setIsSubmitted(value) {
+        this.isSubmitted = value;
     },
 };
 

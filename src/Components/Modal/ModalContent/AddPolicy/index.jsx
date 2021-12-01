@@ -1,18 +1,17 @@
 import '@Styles/addPolicy.css';
 import { observer } from 'mobx-react';
-import { useState } from 'react';
-import { dummyLargeData, dummyMediumData, dummyMoreData, dummySmallData, initData } from './data';
 import policyData from './data/new';
 import Section from '@Components/Section';
 import store from '@Stores/policyMagician';
+import Modal from '@Components/Modal';
 // import Section from './Section';
 
 const AddPolicy = () => {
     return (
-        <>
+        <div id='addPolicy'>
             <Header />
             <Body />
-        </>
+        </div>
     );
 };
 
@@ -21,6 +20,7 @@ const Header = () => {
         <div id='headerWrapper'>
             <h3 className='addPolicyHeader'>정책 추가하기</h3>
             <span>원하는 정책을 고르고, 설정후 추가</span>
+            <SubmitButton />
         </div>
     );
 };
@@ -37,7 +37,11 @@ const Body = observer(() => {
         store.setSectionIndexList(section, index);
     };
 
-    const handleMultiSelect = index => {};
+    const handleSubmit = data => {
+        store.setSectionSelectedList(data);
+        store.setIsSubmitted(false);
+        console.log(data);
+    };
 
     return (
         <div id='bodyWrapper'>
@@ -62,9 +66,31 @@ const Body = observer(() => {
                 onSelect={index => handleSelect(2, index)}
                 selectedIndex={isub}
             />
-            <Section title='보안항목' grid={8} data={last} onSelect={index => handleSelect(3, index)} isLast />
+            <Section
+                title='보안항목'
+                grid={8}
+                data={last}
+                onSelect={index => handleSelect(3, index)}
+                isLast
+                isSubmitted={store.isSubmitted}
+                onSubmit={handleSubmit}
+            />
         </div>
     );
 });
+
+const SubmitButton = () => {
+    const handleClick = () => {
+        store.setIsSubmitted(true);
+    };
+
+    return (
+        <div className='submitButton'>
+            <Modal hasButton buttonContent='Apply' buttonClassName='submitButton' onClick={handleClick}>
+                {/* <LogFormatter /> */}
+            </Modal>
+        </div>
+    );
+};
 
 export default AddPolicy;

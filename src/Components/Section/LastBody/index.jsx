@@ -1,9 +1,12 @@
-import { useState } from 'react';
-import Button from '@Components/UI/Button';
+import { useState, useEffect } from 'react';
 
 const LastBody = props => {
-    const { data } = props;
+    const { data, onSubmit, isSubmitted } = props;
     const [selectedItems, setSelectedItems] = useState(new Set());
+
+    useEffect(() => {
+        onSubmit(selectedItems);
+    }, [isSubmitted]);
 
     const handleSelectedItem = (item, isSelected) => {
         if (isSelected) {
@@ -15,16 +18,11 @@ const LastBody = props => {
         }
     };
 
-    const handleClick = () => {
-        console.log(selectedItems);
-    };
-
     return (
         <ul className='bodyList'>
             {data.map(item => {
                 return <Item key={item.idx} item={item} onSelect={handleSelectedItem} />;
             })}
-            <Button onClick={handleClick}>Apply</Button>
         </ul>
     );
 };

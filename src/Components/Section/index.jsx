@@ -1,12 +1,25 @@
 import LastBody from './LastBody';
 
 const Section = props => {
-    const { title, data = [], grid = 3, onSelect = () => {}, selectedIndex = false, isLast } = props;
+    const {
+        title,
+        data = [],
+        grid = 3,
+        onSelect = () => {},
+        selectedIndex = false,
+        isLast,
+        isSubmitted,
+        onSubmit = () => {},
+    } = props;
 
     return (
         <div className={`section grid-${grid}`}>
             <Header>{title}</Header>
-            {isLast ? <LastBody data={data} /> : <Body data={data} onSelect={onSelect} selectedIndex={selectedIndex} />}
+            {isLast ? (
+                <LastBody data={data} onSubmit={onSubmit} isSubmitted={isSubmitted} />
+            ) : (
+                <Body data={data} onSelect={onSelect} selectedIndex={selectedIndex} />
+            )}
         </div>
     );
 };
