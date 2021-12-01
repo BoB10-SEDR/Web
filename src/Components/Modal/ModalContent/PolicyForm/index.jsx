@@ -127,7 +127,7 @@ const Form = props => {
                         <div key={index} className='parameter'>
                             <div className='name'>{name}</div>
                             <div className='description'>{description}</div>
-                            <input value={value} {...register(`${name}`)} />
+                            <input defaultValue={value} {...register(`${name}`)} />
                         </div>
                     );
                 })}
