@@ -37,6 +37,8 @@ const Body = observer(() => {
         store.setSectionIndexList(section, index);
     };
 
+    const handleMultiSelect = index => {};
+
     return (
         <div id='bodyWrapper'>
             <Section
@@ -60,7 +62,7 @@ const Body = observer(() => {
                 onSelect={index => handleSelect(2, index)}
                 selectedIndex={isub}
             />
-            <Section title='보안항목' grid={8} data={last} onSelect={index => handleSelect(3, index)} />
+            <Section title='보안항목' grid={8} data={last} onSelect={index => handleSelect(3, index)} isLast />
         </div>
     );
 });

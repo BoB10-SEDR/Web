@@ -1,4 +1,4 @@
-import '@Styles/form.css';
+import '@Styles/magicianForm.css';
 import '@Styles/addDeviceModal.css';
 import useSWR, { useSWRConfig } from 'swr';
 import Button from '@Components/UI/Button';

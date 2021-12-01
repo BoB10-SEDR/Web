@@ -5,6 +5,7 @@ const magician = {
     selectedPolicies: [],
     activeTab: 0,
     sectionIndexList: [false, false, false, false],
+    sectionSelectedList: [],
     setActiveTab(value) {
         this.activeTab = value;
     },
@@ -24,6 +25,9 @@ const magician = {
         }
 
         console.log(this.sectionIndexList);
+    },
+    setSectionSelectedList(value) {
+        this.sectionSelectedList = value;
     },
 };
 

@@ -122,7 +122,7 @@ const PolicyForm = props => {
                 <div className='description'>{description}</div>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className='magicianForm' onSubmit={handleSubmit(onSubmit)}>
                 <select {...register('deviceIdx')}>
                     {devicesData.recommend &&
                         devicesData.recommend.map((device, index) => {

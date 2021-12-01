@@ -1,12 +1,12 @@
-form input {
+.magicianForm input {
     margin-bottom: 30px;
 }
 
-form .title {
+.magicianForm .title {
     font-size: 1.1rem;
 }
 
-form input {
+.magicianForm input {
     width: 800px;
     height: 40px;
     border-radius: 10px;
@@ -16,7 +16,7 @@ form input {
     border: none;
     outline: none;
 }
-form select {
+.magicianForm select {
     width: 150px;
     height: 40px;
     outline: 0 none;
@@ -30,18 +30,18 @@ form select {
     margin-right: 10px;
 }
 
-form select .title {
+.magicianForm select .title {
     font-size: 1.2rem;
 }
 
-form select option {
+.magicianForm select option {
     border: none;
     background: #1a1a1a;
     color: white;
     padding: 3px 0;
 }
 
-form .buttons {
+.magicianForm .buttons {
     display: flex;
     justify-content: flex-end;
 }

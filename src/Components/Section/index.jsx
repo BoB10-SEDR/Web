@@ -1,10 +1,12 @@
+import LastBody from './LastBody';
+
 const Section = props => {
-    const { title = '', data = [], grid = 3, onSelect, selectedIndex } = props;
+    const { title, data = [], grid = 3, onSelect = () => {}, selectedIndex = false, isLast } = props;
 
     return (
         <div className={`section grid-${grid}`}>
             <Header>{title}</Header>
-            <Body data={data} onSelect={onSelect} selectedIndex={selectedIndex} />
+            {isLast ? <LastBody data={data} /> : <Body data={data} onSelect={onSelect} selectedIndex={selectedIndex} />}
         </div>
     );
 };
@@ -14,7 +16,7 @@ const Header = ({ children }) => {
 };
 
 const Body = props => {
-    const { data = [], onSelect, selectedIndex = 0 } = props;
+    const { data, onSelect, selectedIndex } = props;
 
     const handleClick = index => {
         onSelect(index);
@@ -38,7 +40,7 @@ const Body = props => {
 };
 
 const Item = props => {
-    const { children, isSelected, onClick = () => {} } = props;
+    const { children, isSelected, onClick } = props;
 
     return (
         <li className='bodyListItem' isSelected={isSelected} onClick={onClick}>

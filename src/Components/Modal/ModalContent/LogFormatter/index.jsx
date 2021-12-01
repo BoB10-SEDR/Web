@@ -139,7 +139,7 @@ const Form = props => {
                 <div className='description'>{description}</div>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className='magicianForm' onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor='sampleLog'>
                     <div className='title'>샘플 로그</div>
                 </label>

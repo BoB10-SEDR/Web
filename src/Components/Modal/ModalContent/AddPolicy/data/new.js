@@ -141,7 +141,16 @@ const solutions = [
                 sub: [
                     {
                         name: 'ACL 설정',
-                        last: [],
+                        last: [
+                            {
+                                idx: 2,
+                                name: '관리자 중복접속 방지',
+                            },
+                            {
+                                idx: 3,
+                                name: 'SNMP 커뮤니티 권한 설정',
+                            },
+                        ],
                     },
                     {
                         name: '기타 설정',

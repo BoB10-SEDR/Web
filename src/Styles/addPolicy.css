@@ -88,6 +88,7 @@
 }
 
 #bodyWrapper .section .bodyList .bodyListItem {
+    position: relative;
     height: 40px;
     padding-left: 17px;
     cursor: pointer;
@@ -102,4 +103,16 @@
 #bodyWrapper .section .bodyList .bodyListItem[isBlocked='1'] {
     opacity: 0.2;
     cursor: default;
+}
+
+#bodyWrapper .section input[type='checkbox'] {
+    display: none;
+}
+
+#bodyWrapper .section input[type='checkbox'] + label {
+    display: block;
+}
+
+#bodyWrapper .section .bodyList .bodyListItem.checked {
+    background-color: #6c6e70;
 }
