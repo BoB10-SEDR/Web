@@ -1,3 +1,4 @@
+import '@Styles/magician.css';
 import useSWR from 'swr';
 import { observer } from 'mobx-react';
 import { useForm } from 'react-hook-form';
@@ -14,14 +15,14 @@ const PolicyForm = () => {
     };
 
     return (
-        <div id='policyMagician'>
+        <div id='magician'>
             <Tabs
                 className='tabs'
                 selectedIndex={store.activeTab}
                 selectedTabClassName='active'
                 onSelect={handleSelect}
             >
-                <div className='policyList'>
+                <div className='tabList'>
                     <div className='header'>정책 마법사</div>
                     <CustomTabList>
                         {store.selectedPolicies.map((policy, index) => {
@@ -33,7 +34,7 @@ const PolicyForm = () => {
                         })}
                     </CustomTabList>
                 </div>
-                <div className='policyForm'>
+                <div className='form'>
                     {store.selectedPolicies.map((policy, index) => {
                         return (
                             <CustomTabPanel key={index}>
@@ -62,10 +63,10 @@ const TabContent = props => {
 const Form = props => {
     const { policy, idx } = props;
     const { name, description } = policy;
-    const { data: devicesData = { activate: [], recommend: [] } } = useSWR(`policies/${idx}/devices`, url =>
+    const { data: devicesData = { active: [], recommend: [] } } = useSWR(`policies/${idx}/devices`, url =>
         fetcher(url)
     );
-    const { data: fetchPolicyData = [] } = useSWR(`policies/${idx}`, url => fetcher(url));
+    const { data: fetchPolicyData } = useSWR(`policies/${idx}`, url => fetcher(url));
 
     const {
         register,
@@ -100,7 +101,6 @@ const Form = props => {
     if (!fetchPolicyData) return <div>loading...</div>;
 
     const policyData = fetchPolicyData[0].argument;
-    console.log({ devicesData, policyData });
 
     return (
         <div className='form'>
@@ -109,25 +109,32 @@ const Form = props => {
                 <div className='description'>{description}</div>
             </div>
 
-            <form className='magicianForm' onSubmit={handleSubmit(onSubmit)}>
-                <select {...register('deviceIdx')}>
-                    {devicesData.recommend &&
-                        devicesData.recommend.map((device, index) => {
-                            const { idx, name } = device;
-                            return (
-                                <option key={idx} value={idx}>
-                                    {name}
-                                </option>
-                            );
-                        })}
-                </select>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className='inputBox'>
+                    <label htmlFor='selectDevice'>
+                        <div className='title'>장비 선택</div>
+                        <select id='selectDevice' {...register('deviceIdx')}>
+                            {devicesData.recommend &&
+                                devicesData.recommend.map((device, index) => {
+                                    const { idx, name } = device;
+                                    return (
+                                        <option key={idx} value={idx}>
+                                            {name}
+                                        </option>
+                                    );
+                                })}
+                        </select>
+                    </label>
+                </div>
                 {policyData.map((parameter, index) => {
                     const { name, description, value } = parameter;
                     return (
-                        <div key={index} className='parameter'>
-                            <div className='name'>{name}</div>
-                            <div className='description'>{description}</div>
-                            <input defaultValue={value} {...register(`${name}`)} />
+                        <div key={index} className='inputBox'>
+                            <label htmlFor={index}>
+                                <div className='title'>{name}</div>
+                                <div className='description'>{description}</div>
+                                <input id={index} defaultValue={value} {...register(`${name}`)} />
+                            </label>
                         </div>
                     );
                 })}

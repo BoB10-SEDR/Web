@@ -5,7 +5,6 @@ import Section from '@Components/Section';
 import store from '@Stores/policyMagician';
 import Modal from '@Components/Modal';
 import PolicyForm from '@Components/Modal/ModalContent/PolicyForm';
-// import Section from './Section';
 
 const AddPolicy = () => {
     return (

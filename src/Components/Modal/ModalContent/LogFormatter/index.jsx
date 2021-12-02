@@ -1,4 +1,3 @@
-import '@Styles/logFormatter.css';
 import { useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import useSWR, { useSWRConfig } from 'swr';
@@ -15,7 +14,7 @@ const LogFormatter = () => {
     };
 
     return (
-        <div id='logFormatter'>
+        <div id='magician'>
             <Tabs
                 className='tabs'
                 selectedIndex={store.activeTab}
@@ -139,18 +138,19 @@ const Form = props => {
                 <div className='description'>{description}</div>
             </div>
 
-            <form className='magicianForm' onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor='sampleLog'>
-                    <div className='title'>샘플 로그</div>
-                </label>
-                <input id='sampleLog' value={sampleLog} onChange={handleSampleLogChange} />
+            <form className='form' onSubmit={handleSubmit(onSubmit)}>
+                <div className='inputBox'>
+                    <label htmlFor='sampleLog'>
+                        <div className='title'>샘플 로그</div>
+                    </label>
+                    <input id='sampleLog' value={sampleLog} onChange={handleSampleLogChange} />
+                </div>
 
-                <label htmlFor='regFormat'>
-                    <div className='title'>정규식</div>
-                </label>
-
-                <div className='textInput'>
-                    <input id='regFormat' defaultValue={regExp} onChange={handleRegFormatChange} />
+                <div className='inputBox'>
+                    <label htmlFor='regFormat'>
+                        <div className='title'>정규식</div>
+                        <input id='regFormat' defaultValue={regExp} onChange={handleRegFormatChange} />
+                    </label>
                 </div>
 
                 <div className='result'>{regResult}</div>
