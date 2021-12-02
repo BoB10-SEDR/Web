@@ -23,8 +23,6 @@ const magician = {
         for (let i = nextIndex; i < this.sectionIndexList.length; i++) {
             this.sectionIndexList[i] = false;
         }
-
-        console.log(this.sectionIndexList);
     },
     setIsSubmitted(value) {
         this.isSubmitted = value;

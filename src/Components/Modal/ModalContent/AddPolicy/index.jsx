@@ -86,7 +86,7 @@ const SubmitButton = () => {
 
     return (
         <div className='submitButton'>
-            <Modal hasButton buttonContent='Apply' buttonClassName='submitButton' onClick={handleClick}>
+            <Modal hasButton isStacked buttonContent='Apply' buttonClassName='submitButton' onClick={handleClick}>
                 <PolicyForm />
             </Modal>
         </div>
