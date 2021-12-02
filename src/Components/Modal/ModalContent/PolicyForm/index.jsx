@@ -22,7 +22,7 @@ const PolicyForm = () => {
                 selectedTabClassName='active'
                 onSelect={handleSelect}
             >
-                <div className='tabList'>
+                <div className='leftTab'>
                     <div className='header'>정책 마법사</div>
                     <CustomTabList>
                         {store.selectedPolicies.map((policy, index) => {
@@ -34,7 +34,7 @@ const PolicyForm = () => {
                         })}
                     </CustomTabList>
                 </div>
-                <div className='form'>
+                <div className='tabForm'>
                     {store.selectedPolicies.map((policy, index) => {
                         return (
                             <CustomTabPanel key={index}>
