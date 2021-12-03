@@ -4,7 +4,7 @@ import policyData from './data/new';
 import Section from '@Components/Section';
 import store from '@Stores/policyMagician';
 import Modal from '@Components/Modal';
-import PolicyForm from '@Components/Modal/ModalContent/PolicyForm';
+import PolicyFormatter from '@Components/Modal/ModalContent/PolicyFormatter';
 
 const AddPolicy = () => {
     return (
@@ -87,7 +87,7 @@ const SubmitButton = () => {
     return (
         <div className='submitButton'>
             <Modal hasButton isStacked buttonContent='Apply' buttonClassName='submitButton' onClick={handleClick}>
-                <PolicyForm />
+                <PolicyFormatter />
             </Modal>
         </div>
     );
