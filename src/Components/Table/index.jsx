@@ -37,6 +37,8 @@ const Table = props => {
         isExpandable,
         onSubmit = () => {},
         renderRowSubComponent = () => {},
+        onEdit = () => {},
+        onDelete = () => {},
     } = props;
     const [clickedIndex, setClickedIndex] = useState(nowSelected);
 
@@ -77,6 +79,14 @@ const Table = props => {
         }),
         []
     );
+
+    const handleEdit = () => {
+        onEdit();
+    };
+
+    const handleDelete = () => {
+        onDelete();
+    };
 
     // 불러오는 값들을 기능에 따라 잘 정의해야함.
     const {
@@ -161,7 +171,7 @@ const Table = props => {
                         id: 'config',
                         Header: '설정',
                         Cell: ({ row }) => {
-                            return <ConfigButtons />;
+                            return <ConfigButtons onEdit={handleEdit} onDelete={handleDelete} />;
                         },
                         align: 'center',
                         width: 100,
