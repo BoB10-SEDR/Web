@@ -107,11 +107,12 @@ export const inspectionTableSchema = [
 ];
 
 export const processTableSchema = [
-    { Header: 'PID', accessor: 'pid', align: 'center', width: '300', isAbleToSort: false },
-    { Header: '프로세스 명', accessor: 'command', align: 'center', width: '500', isAbleToSort: false },
+    { Header: 'PID', accessor: 'pid', align: 'center', width: '300', isAbleToSort: true },
+    { Header: '프로세스 명', accessor: 'name', align: 'center', width: '300', isAbleToSort: true },
+    { Header: '경로', accessor: 'command', align: 'center', width: '500', isAbleToSort: true },
 ];
 
 export const filesSchema = [
-    { Header: '번호', accessor: 'idx', align: 'center', width: '300', isAbleToSort: false },
-    { Header: '파일 명', accessor: 'path', align: 'center', width: '500', isAbleToSort: false },
+    { Header: '번호', accessor: 'idx', align: 'center', width: '300', isAbleToSort: true },
+    { Header: '파일 명', accessor: 'path', align: 'center', width: '500', isAbleToSort: true },
 ];

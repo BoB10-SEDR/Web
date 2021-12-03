@@ -8,7 +8,7 @@ import store from '@Stores/logMagician';
 const MonitoringForm = props => {
     const exampleReg = String.raw`(?<ip>.*?) (?<remote_log_name>.*?) (?<userid>.*?) \[(?<date>.*?)(?= ) (?<timezone>.*?)\] "(?<request_method>.*?) (?<path>.*?)(?<request_version> HTTP\/.*)?" (?<status>.*?) (?<length>.*?) "(?<referrer>.*?)" "(?<user_agent>.*?)" (?<session_id>.*?) (?<generation_time_micro>.*?) (?<virtual_host>.*)`;
     const { file, idx, description } = props;
-    const { path, device_idx, pid } = file;
+    const { path, deviceIdx, pid, processName } = file;
     const [sampleLog, setSampleLog] = useState('');
     const [regExp, setRegExp] = useState(new RegExp(exampleReg));
     const [regError, setRegError] = useState('');
@@ -21,9 +21,16 @@ const MonitoringForm = props => {
     const { mutate } = useSWRConfig();
 
     const onSubmit = data => {
+        const body = {
+            path: path,
+            process_name: processName,
+            isActive: true,
+            regex: regExp,
+        };
+
         const activateMonitoringFile = async () => {
             try {
-                const response = axios.post(`/monitoring/${idx}/activate`);
+                const response = axios.post(`/monitoring/${deviceIdx}/state`, body);
                 alert('success');
             } catch (error) {
                 alert('error');
@@ -33,7 +40,7 @@ const MonitoringForm = props => {
 
         const addMonitoringFile = async () => {
             const body = {
-                device_idx: device_idx,
+                device_idx: deviceIdx,
                 process_idx: pid,
                 file_descriptor_idx: idx,
             };
