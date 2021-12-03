@@ -6,7 +6,7 @@ import LogMagician from '@Components/LogMagician';
 import MagicianStats from '@Components/MagicianStats';
 import DummyCardEx from '@Dummy/DummyCardEx';
 
-const Magician = () => {
+const Monitoring = () => {
     return (
         <div id='magician' className='page'>
             <Row>
@@ -37,4 +37,4 @@ const Magician = () => {
     );
 };
 
-export default Magician;
+export default Monitoring;

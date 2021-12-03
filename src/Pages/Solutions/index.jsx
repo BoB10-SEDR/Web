@@ -1,4 +1,3 @@
-import '@Styles/solution.css';
 import axios from 'axios';
 import useSWR, { useSWRConfig } from 'swr';
 import { observer } from 'mobx-react';

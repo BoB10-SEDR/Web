@@ -1,0 +1,116 @@
+#magician .header {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+#magician .tabs {
+    display: flex;
+}
+
+#magician .tabs .leftTab {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+#magician .tabList {
+    display: flex;
+    flex-direction: column;
+}
+
+#magician .tab {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 10px;
+    transition: background-color 0.2s ease;
+}
+
+#magician .tabForm {
+    width: 80%;
+}
+
+#magician .tab.active {
+    background-color: #595959;
+}
+
+#magician .tab:hover {
+    background-color: #595959;
+}
+
+#magician .tabContent .category {
+    font-size: 0.7rem;
+    color: #8c8c8c;
+}
+
+.form .header {
+    margin-bottom: 30px;
+}
+
+.form .header .name {
+    font-size: 1.7rem;
+}
+
+.form .header .description {
+    font-size: 0.9rem;
+    color: #999999;
+}
+
+#magician .result {
+    min-height: 200px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+
+#magician .submitButton {
+    margin-right: 10px;
+}
+
+#magician select {
+    width: 150px;
+    height: 40px;
+    outline: 0 none;
+    border-radius: 4px;
+    background: #1a1a1a no-repeat;
+    background-size: 20px;
+    padding: 5px 30px 5px 10px;
+    color: white;
+    border: none;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#magician input {
+    width: 100%;
+    height: 50px;
+    padding-left: 10px;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    margin-top: 5px;
+}
+
+#magician .inputBox {
+    margin-bottom: 30px;
+}
+
+#magician .inputBox .title {
+    font-size: 1.2rem;
+}
+
+#magician .inputBox .description {
+    font-size: 0.9rem;
+    color: #999999;
+}
+
+#magician .error {
+    color: red;
+    height: 0.9rem;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}

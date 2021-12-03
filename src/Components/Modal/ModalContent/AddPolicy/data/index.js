@@ -2,9 +2,9 @@ const dummyLargeData = {
     name: '대분류',
     content: [
         { title: '기기', isBlocked: false },
-        { title: '사용자', isBlocked: true },
-        { title: '네트워크', isBlocked: true },
-        { title: '기타', isBlocked: true },
+        { title: '사용자', isBlocked: false },
+        { title: '네트워크', isBlocked: false },
+        { title: '기타', isBlocked: false },
     ],
 };
 

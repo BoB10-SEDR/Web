@@ -1,10 +1,11 @@
+import '@Styles/magician.css';
 import { observer } from 'mobx-react';
 import { Tabs } from 'react-tabs';
 import { CustomTabList, CustomTab, CustomTabPanel } from '@Components/CustomTabs';
-import store from '@Stores/logMagician';
-import MonitoringForm from '@Components/Modal/ModalContent/MonitoringForm';
+import store from '@Stores/policyMagician';
+import PolicyForm from '@Components/Modal/ModalContent/PolicyForm';
 
-const LogFormatter = () => {
+const PolicyFormatter = () => {
     const handleSelect = index => {
         store.setActiveTab(index);
     };
@@ -18,24 +19,22 @@ const LogFormatter = () => {
                 onSelect={handleSelect}
             >
                 <div className='leftTab'>
-                    <div className='header'>로그 포매터</div>
+                    <div className='header'>정책 마법사</div>
                     <CustomTabList>
-                        {store.fdList.map((file, index) => {
-                            const { idx, name } = file;
+                        {store.selectedPolicies.map((policy, index) => {
                             return (
-                                <CustomTab key={index} tabIndex={index}>
-                                    <TabContent tabIndex={index} file={file} description={`${idx} / ${name}`} />
+                                <CustomTab key={policy.idx} tabIndex={index}>
+                                    <TabContent tabIndex={index} policy={policy} />
                                 </CustomTab>
                             );
                         })}
                     </CustomTabList>
                 </div>
                 <div className='tabForm'>
-                    {store.fdList.map((file, index) => {
-                        const { idx, name } = file;
+                    {store.selectedPolicies.map((policy, index) => {
                         return (
                             <CustomTabPanel key={index}>
-                                <MonitoringForm idx={file.idx} file={file} description={`${idx} / ${name}`} />
+                                <PolicyForm idx={policy.idx} policy={policy} />
                             </CustomTabPanel>
                         );
                     })}
@@ -46,15 +45,15 @@ const LogFormatter = () => {
 };
 
 const TabContent = props => {
-    const { file, description } = props;
-    const { idx, name, path, pid } = file;
+    const { tabIndex, policy } = props;
+    const { name, main, classify, sub } = policy;
 
     return (
         <div className='tabContent'>
-            <div className='name'>{path}</div>
-            <div className='category'>{description}</div>
+            <div className='name'>{name}</div>
+            <div className='category'>{`${main} / ${classify} / ${sub}`}</div>
         </div>
     );
 };
 
-export default observer(LogFormatter);
+export default observer(PolicyFormatter);

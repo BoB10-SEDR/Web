@@ -19,19 +19,10 @@ import { format } from 'date-fns';
 
 const Dashboard = () => {
     const [page, limit] = [1, 10];
-    let {
-        data: solutions = dummySolutions,
-        isValidating,
-        error,
-    } = useSWR(`policies?page=${page}&limit=${limit}`, url => fetcher(url));
+    let { data: solutions = dummySolutions } = useSWR(`policies?page=${page}&limit=${limit}`, url => fetcher(url));
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
     const [time, setTime] = useState(5);
-
-    const requestConfig = { params: { start: start, time: time } };
-    const { data: statData, error: fetchStatDataError } = useSWR(
-        `dashboard/statistics?start=${start}&time=${time}`,
-        url => fetcher(url, requestConfig)
-    );
+    const { data: statData } = useSWR(`/dashboard/statistics?start=${start}&time=${time}`, url => fetcher(url));
 
     const { pieId, pieData, pieOptions } = PieDummy;
 

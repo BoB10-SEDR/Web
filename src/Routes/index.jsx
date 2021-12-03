@@ -7,7 +7,7 @@ import Details from '@Pages/Logs/Details';
 import Devices from '@Pages/Logs/Devices';
 import DeviceDetails from '@Pages/Logs/Devices/DeviceDetails';
 import Networks from '@Pages/Logs/Networks';
-import Magician from '@Pages/Logs/Magician';
+import Monitoring from '@Pages/Logs/Monitoring';
 import Solutions from '@Pages/Solutions';
 import Inspection from '@Pages/Inspection';
 import Debug from '@Pages/Debug';
@@ -36,7 +36,7 @@ const Routes = () => {
                             <Route path='/Solutions' component={Solutions} />
                             <Route path='/Inspection' component={Inspection} />
                             <Route path='/Resources/Details' component={Details} />
-                            <Route path='/Monitoring' component={Magician} />
+                            <Route path='/Monitoring' component={Monitoring} />
                             <Route path='/Debug' component={Debug} />
                         </Switch>
                         <Footer />
