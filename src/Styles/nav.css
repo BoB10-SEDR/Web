@@ -170,20 +170,18 @@
     }
 
     .navLink {
-        display: block;
         width: 100%;
         text-align: left;
         padding: 1rem;
-        width: 14rem;
     }
     .navLink span {
         font-size: 0.85rem;
         display: inline;
     }
     .navLink.collapsed::after {
+        float: right;
         width: 1rem;
         text-align: center;
-        float: right;
         vertical-align: 0;
         border: 0;
         font-weight: 900;
