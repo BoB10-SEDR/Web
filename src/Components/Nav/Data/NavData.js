@@ -45,18 +45,17 @@ const NavData = {
         },
         {
             type: 'link',
-            isCollapsed: false,
+            isCollapsed: true,
             title: '모니터링',
-            path: '/Monitoring',
             icon: <IoIcons.IoAnalytics className='navIcon' />,
             children: [
                 {
-                    title: 'Main',
+                    title: '대시보드',
                     path: '/Monitoring/Main',
                     cName: 'nav-collapse-item',
                 },
                 {
-                    title: 'Settings',
+                    title: '모니터링 설정',
                     path: '/Monitoring/Settings',
                     cName: 'nav-collapse-item',
                 },
@@ -64,23 +63,22 @@ const NavData = {
         },
         {
             type: 'link',
-            isCollapsed: false,
+            isCollapsed: true,
             title: '정책',
-            path: '/Solutions',
             icon: <IoIcons.IoShieldCheckmarkOutline className='navIcon' />,
             children: [
                 {
-                    title: 'Main',
+                    title: '대시보드',
                     path: '/Solutions/Main',
                     cName: 'nav-collapse-item',
                 },
                 {
-                    title: 'Settings',
+                    title: '정책 설정',
                     path: '/Solutions/Settings',
                     cName: 'nav-collapse-item',
                 },
                 {
-                    title: 'Inspection',
+                    title: '정책 점검',
                     path: '/Solutions/Inspection',
                     cName: 'nav-collapse-item',
                 },
