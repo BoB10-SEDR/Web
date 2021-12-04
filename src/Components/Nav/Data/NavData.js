@@ -38,7 +38,7 @@ const NavData = {
                 },
                 {
                     title: '즐겨찾기',
-                    path: '/Resources/Favorites',
+                    path: '/Resources/Bookmarks',
                     cName: 'nav-collapse-item',
                 },
             ],
@@ -51,7 +51,7 @@ const NavData = {
             children: [
                 {
                     title: '대시보드',
-                    path: '/Monitoring/Main',
+                    path: '/Monitoring',
                     cName: 'nav-collapse-item',
                 },
                 {
@@ -69,7 +69,7 @@ const NavData = {
             children: [
                 {
                     title: '대시보드',
-                    path: '/Solutions/Main',
+                    path: '/Solutions',
                     cName: 'nav-collapse-item',
                 },
                 {

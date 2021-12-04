@@ -3,13 +3,11 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // Components
 import Nav from '@Components/Nav';
 import Dashboard from '@Pages/Dashboard';
-import Details from '@Pages/Logs/Details';
-import Devices from '@Pages/Logs/Devices';
-import DeviceDetails from '@Pages/Logs/Devices/DeviceDetails';
-import Networks from '@Pages/Logs/Networks';
-import Monitoring from '@Pages/Logs/Monitoring';
+import Devices from '@Pages/Resources/Environments';
+import Tabs from '@Pages/Resources/Environments/Tabs';
+import Monitoring from '@Pages/Monitoring';
 import Solutions from '@Pages/Solutions';
-import Inspection from '@Pages/Inspection';
+import Inspection from '@Pages/Solutions/Inspection';
 import Debug from '@Pages/Debug';
 
 // Datas
@@ -30,13 +28,14 @@ const Routes = () => {
                         <Switch>
                             <Route path='/' exact component={Dashboard} />
                             <Route path='/Dashboard' component={Dashboard} />
-                            <Route path='/Resources/Devices' exact component={Devices} />
-                            <Route path='/Resources/Devices/Details' component={DeviceDetails} />
-                            <Route path='/Resources/Networks' component={Networks} />
-                            <Route path='/Solutions' component={Solutions} />
-                            <Route path='/Inspection' component={Inspection} />
-                            <Route path='/Resources/Details' component={Details} />
+                            <Route path='/Resources/Environments' exact component={Devices} />
+                            {/* <Route path='/Resources/Bookmarks' exact component={} /> */}
+                            <Route path='/Resources/Devices/Tabs' component={Tabs} />
+                            {/* <Route path='/Solutions' component={} /> */}
+                            <Route path='/Solutions/Settings' component={Solutions} />
+                            <Route path='/Solutions/Inspection' component={Inspection} />
                             <Route path='/Monitoring' component={Monitoring} />
+                            {/* <Route path='/Monitoring/Settings' component={Monitoring} /> */}
                             <Route path='/Debug' component={Debug} />
                         </Switch>
                         <Footer />

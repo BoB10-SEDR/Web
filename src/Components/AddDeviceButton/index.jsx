@@ -1,6 +1,6 @@
 import Button from '@Components/UI/Button';
 import store from '@Stores/addDeviceModal';
-import AddDeviceModal from '@Pages/Logs/Devices/AddDeviceModal';
+import AddDeviceModal from '@Pages/Resources/Environments/AddDeviceModal';
 
 const AddDeviceButton = () => {
     const handleClick = () => {
