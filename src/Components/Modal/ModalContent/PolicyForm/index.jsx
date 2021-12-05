@@ -11,7 +11,7 @@ const PolicyForm = props => {
     const { data: devicesData = { active: [], recommend: [] } } = useSWR(`policies/${idx}/devices`, url =>
         fetcher(url)
     );
-    const { data: fetchPolicyData } = useSWR(`policies/${idx}`, url => fetcher(url));
+    const { data: fetchPolicyData } = useSWR(`/policies/${idx}`, url => fetcher(url));
 
     const {
         register,
