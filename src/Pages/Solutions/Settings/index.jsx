@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
+import { observer } from 'mobx-react';
 import axios from 'axios';
 import Modal from '@Components/Modal';
 import ManageTable from '@Components/ManageTable';
@@ -58,4 +59,4 @@ const Settings = () => {
     );
 };
 
-export default Settings;
+export default observer(Settings);
