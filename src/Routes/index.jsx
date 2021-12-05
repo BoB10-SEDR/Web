@@ -32,13 +32,13 @@ const Routes = () => {
                             <Route path='/' exact component={Dashboard} />
                             <Route path='/Dashboard' exact component={Dashboard} />
                             <Route path='/Resources' exact component={Devices} />
-                            <Route path='/Resources/Bookmarks' exact component={Bookmarks} />
+                            <Route path='/Resources/Bookmarks' component={Bookmarks} />
                             <Route path='/Resources/Devices/Tabs' component={Tabs} />
                             <Route path='/Solutions' exact component={Solutions} />
-                            <Route path='/Solutions/Settings' exact component={SolutionsSettings} />
-                            <Route path='/Solutions/Inspection' exact component={Inspection} />
+                            <Route path='/Solutions/Settings' component={SolutionsSettings} />
+                            <Route path='/Solutions/Inspection' component={Inspection} />
                             <Route path='/Monitoring' exact component={Monitoring} />
-                            <Route path='/Monitoring/Settings' exact component={MonitoringSettings} />
+                            <Route path='/Monitoring/Settings' component={MonitoringSettings} />
                             <Route path='/Debug' exact component={Debug} />
                         </Switch>
                         <Footer />
