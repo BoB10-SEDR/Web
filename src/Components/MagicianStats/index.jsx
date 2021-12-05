@@ -22,7 +22,7 @@ const MagicianStats = () => {
         { refreshInterval: 60000 }
     );
 
-    const { info, fail, device } = statData ? statData[0] : d;
+    const { info = 0, fail = 0, device = 0 } = statData ? statData[0] : d;
 
     return (
         <>
