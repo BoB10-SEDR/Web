@@ -33,7 +33,7 @@ const NavData = {
             children: [
                 {
                     title: '환경',
-                    path: '/Resources/Environments',
+                    path: '/Resources',
                     cName: 'nav-collapse-item',
                 },
                 {

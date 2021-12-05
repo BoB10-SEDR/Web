@@ -4,8 +4,6 @@ import { observer } from 'mobx-react';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import TableHeading from '@Components/Table/TableHeading';
-import Magician from './Magician';
-import { getPolicies } from '@Api/policies';
 import store from '@Stores/policyMagician';
 import dummySolutions from '@Dummy/solutions';
 import Modal from '@Components/Modal';
