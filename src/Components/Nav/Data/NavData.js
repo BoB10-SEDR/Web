@@ -14,7 +14,7 @@ const NavData = {
         {
             type: 'link',
             isCollapsed: false,
-            title: 'Dashboard',
+            title: '대시보드',
             path: '/Dashboard',
             icon: <AiIcons.AiFillDashboard className='navIcon' />,
         },
@@ -28,41 +28,61 @@ const NavData = {
         {
             type: 'link',
             isCollapsed: true,
-            title: 'Resources',
+            title: '자원',
             icon: <AiIcons.AiOutlineDatabase className='navIcon' />,
             children: [
                 {
-                    title: 'Devices',
-                    path: '/Resources/Devices',
+                    title: '환경',
+                    path: '/Resources',
                     cName: 'nav-collapse-item',
                 },
                 {
-                    title: 'Networks',
-                    path: '/Resources/Networks',
+                    title: '즐겨찾기',
+                    path: '/Resources/Bookmarks',
                     cName: 'nav-collapse-item',
                 },
             ],
         },
         {
             type: 'link',
-            isCollapsed: false,
-            title: 'Monitoring',
-            path: '/Monitoring',
+            isCollapsed: true,
+            title: '모니터링',
             icon: <IoIcons.IoAnalytics className='navIcon' />,
+            children: [
+                {
+                    title: '대시보드',
+                    path: '/Monitoring',
+                    cName: 'nav-collapse-item',
+                },
+                {
+                    title: '모니터링 설정',
+                    path: '/Monitoring/Settings',
+                    cName: 'nav-collapse-item',
+                },
+            ],
         },
         {
             type: 'link',
-            isCollapsed: false,
-            title: 'Solutions',
-            path: '/Solutions',
+            isCollapsed: true,
+            title: '정책',
             icon: <IoIcons.IoShieldCheckmarkOutline className='navIcon' />,
-        },
-        {
-            type: 'link',
-            isCollapsed: false,
-            title: 'Inspection',
-            path: '/Inspection',
-            icon: <AiIcons.AiFillFire className='navIcon' />,
+            children: [
+                {
+                    title: '대시보드',
+                    path: '/Solutions',
+                    cName: 'nav-collapse-item',
+                },
+                {
+                    title: '정책 설정',
+                    path: '/Solutions/Settings',
+                    cName: 'nav-collapse-item',
+                },
+                {
+                    title: '정책 점검',
+                    path: '/Solutions/Inspection',
+                    cName: 'nav-collapse-item',
+                },
+            ],
         },
         {
             type: 'divider',

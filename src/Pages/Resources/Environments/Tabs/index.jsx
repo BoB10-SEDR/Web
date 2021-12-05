@@ -1,7 +1,7 @@
 import '@Styles/deviceTabs.css';
 import { Row, Col } from '@Components/Grid';
 import DeviceNav from '@Components/DeviceNav';
-import DeviceTabs from './DeviceTabs';
+import TabContent from '@Components/TabContent';
 
 const DeviceDetails = () => {
     return (
@@ -11,7 +11,7 @@ const DeviceDetails = () => {
                     <DeviceNav />
                 </Col>
                 <Col xl={11} md={11}>
-                    <DeviceTabs />
+                    <TabContent />
                 </Col>
             </Row>
         </div>
