@@ -10,7 +10,8 @@ import { fetcher } from '@Hooks/';
 const Settings = () => {
     const { mutate } = useSWRConfig();
     const [page, setPage] = useState(1);
-    const { data: monitoringData = [], error } = useSWR(`/monitoring?page=${page}`, url => fetcher(url));
+    const [limit, setLimit] = useState(12);
+    const { data: monitoringData = [], error } = useSWR(`/monitoring?page=${page}&limit=${limit}`, url => fetcher(url));
 
     const onToggleActivate = async ({ row }) => {
         const { device_idx: deviceIdx, idx: policyIdx } = row;
