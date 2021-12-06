@@ -1,31 +1,30 @@
-import '@Styles/addPolicy.css';
+import '@Styles/policyMagician.css';
 import { observer } from 'mobx-react';
 import policyData from './data/new';
 import Section from '@Components/Section';
 import store from '@Stores/policyMagician';
-import Modal from '@Components/Modal';
 import PolicyFormatter from '@Components/Modal/ModalContent/PolicyFormatter';
+import Magician from '@Components/Magician';
 
-const AddPolicy = () => {
+const PolicyMagician = () => {
+    const title = '정책 추가하기';
+    const description = '원하는 정책을 고르고, 설정 후 추가';
+
+    const handleClick = () => {
+        store.setSelectedList([]);
+        store.setIsSubmitted(true);
+    };
+
     return (
-        <div id='addPolicy'>
-            <Header />
-            <Body />
+        <div id='policyMagician'>
+            <Magician title={title} description={description} onClick={handleClick} Formatter={PolicyFormatter}>
+                <Selector />
+            </Magician>
         </div>
     );
 };
 
-const Header = () => {
-    return (
-        <div id='headerWrapper'>
-            <h3 className='addPolicyHeader'>정책 추가하기</h3>
-            <span>원하는 정책을 고르고, 설정후 추가</span>
-            <SubmitButton />
-        </div>
-    );
-};
-
-const Body = observer(() => {
+const Selector = observer(() => {
     const [imain, imid, isub] = store.sectionIndexList;
 
     const main = policyData;
@@ -38,12 +37,12 @@ const Body = observer(() => {
     };
 
     const handleSubmit = data => {
-        store.setSelectedPolicies([...data]);
+        store.setSelectedList([...data]);
         store.setIsSubmitted(false);
     };
 
     return (
-        <div id='bodyWrapper'>
+        <div className='selector'>
             <Section
                 title='대분류'
                 grid={3}
@@ -78,19 +77,4 @@ const Body = observer(() => {
     );
 });
 
-const SubmitButton = () => {
-    const handleClick = () => {
-        store.setSelectedPolicies([]);
-        store.setIsSubmitted(true);
-    };
-
-    return (
-        <div className='submitButton'>
-            <Modal hasButton isStacked buttonContent='Apply' buttonClassName='submitButton' onClick={handleClick}>
-                <PolicyFormatter />
-            </Modal>
-        </div>
-    );
-};
-
-export default AddPolicy;
+export default PolicyMagician;

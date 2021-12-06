@@ -1,4 +1,4 @@
-import '@Styles/magician.css';
+import '@Styles/magicianForm.css';
 import useSWR from 'swr';
 import { useForm } from 'react-hook-form';
 import Button from '@Components/UI/Button';

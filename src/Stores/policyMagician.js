@@ -2,7 +2,7 @@ import { observable } from 'mobx';
 
 const magician = {
     isOpen: false,
-    selectedPolicies: [],
+    selectedList: [],
     activeTab: 0,
     sectionIndexList: [false, false, false, false],
     isSubmitted: false,
@@ -12,8 +12,8 @@ const magician = {
     setIsOpen(value) {
         this.isOpen = value;
     },
-    setSelectedPolicies(value = []) {
-        this.selectedPolicies = value;
+    setSelectedList(value = []) {
+        this.selectedList = value;
     },
     setSectionIndexList(index, value) {
         this.sectionIndexList[index] = value;

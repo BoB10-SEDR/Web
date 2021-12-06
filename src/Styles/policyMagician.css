@@ -1,0 +1,77 @@
+#policyMagician .selector .largeCat {
+    flex: 3;
+}
+
+#policyMagician .selector .mediumCat {
+    flex: 4;
+}
+
+#policyMagician .selector .smallCat {
+    flex: 5;
+}
+
+#policyMagician .selector div:last-child {
+    border-right: none;
+    flex: 8;
+}
+
+#policyMagician .selector .section {
+    border-right: 1px solid #707070;
+}
+
+#policyMagician .selector .section .notYet {
+    text-align: center;
+    font-size: 20px;
+
+    line-height: 300px;
+}
+
+#policyMagician .selector .section .sectionHeader {
+    font-size: 18px;
+    font-weight: 700;
+
+    text-align: center;
+    margin: 0px;
+    padding: 25px 0px;
+
+    border-bottom: 1px solid #707070;
+}
+
+#policyMagician .selector .section .bodyList {
+    position: relative;
+    font-size: 18px;
+    font-weight: 400;
+
+    padding-top: 14px;
+    min-height: 300px;
+}
+
+#policyMagician .selector .section .bodyList .bodyListItem {
+    position: relative;
+    height: 40px;
+    padding-left: 17px;
+    cursor: pointer;
+
+    line-height: 38px;
+}
+
+#policyMagician .selector .section .bodyList .bodyListItem[isSelected='1'] {
+    background-color: #6c6e70;
+}
+
+#policyMagician .selector .section .bodyList .bodyListItem[isBlocked='1'] {
+    opacity: 0.2;
+    cursor: default;
+}
+
+#policyMagician .selector .section input[type='checkbox'] {
+    display: none;
+}
+
+#policyMagician .selector .section input[type='checkbox'] + label {
+    display: block;
+}
+
+#policyMagician .selector .section .bodyList .bodyListItem.checked {
+    background-color: #6c6e70;
+}

@@ -1,11 +1,36 @@
 import { observable } from 'mobx';
-import { GiTrojanHorse } from 'react-icons/gi';
 
 const logMagician = {
     deviceList: [],
     fdList: [],
     isSubmitted: false,
     activeTab: 0,
+    isOpen: false,
+    selectedList: [],
+    activeTab: 0,
+    sectionIndexList: [false, false, false],
+    isSubmitted: false,
+    setActiveTab(value) {
+        this.activeTab = value;
+    },
+    setIsOpen(value) {
+        this.isOpen = value;
+    },
+    setSelectedList(value = []) {
+        this.selectedList = value;
+    },
+    setSectionIndexList(index, value) {
+        this.sectionIndexList[index] = value;
+        const nextIndex = index + 1;
+        if (this.sectionIndexList.length <= nextIndex) return;
+
+        for (let i = nextIndex; i < this.sectionIndexList.length; i++) {
+            this.sectionIndexList[i] = false;
+        }
+    },
+    setIsSubmitted(value) {
+        this.isSubmitted = value;
+    },
     setDeviceList(value) {
         this.deviceList = value;
     },

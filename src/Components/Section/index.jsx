@@ -1,3 +1,4 @@
+import '@Styles/section.css';
 import LastBody from './LastBody';
 
 const Section = props => {

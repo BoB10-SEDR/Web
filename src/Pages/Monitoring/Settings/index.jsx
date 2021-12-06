@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 import axios from 'axios';
 import Modal from '@Components/Modal';
+import LogMagician from '@Components/Modal/ModalContent/LogMagician';
 import SelectLogFile from '@Components/Modal/ModalContent/SelectLogFile';
 import ManageTable from '@Components/ManageTable';
 import { fetcher } from '@Hooks/';
@@ -43,7 +44,7 @@ const Settings = () => {
                 onToggleInactivate={onToggleInactivate}
             >
                 <Modal hasButton buttonContent='파일 추가'>
-                    <SelectLogFile />
+                    <LogMagician />
                 </Modal>
             </ManageTable>
         </div>
