@@ -10,6 +10,8 @@ const logMagician = {
     activeTab: 0,
     sectionIndexList: [false, false, false],
     isSubmitted: false,
+    selectedDeviceIndex: null,
+    selectedProcessIndex: null,
     setActiveTab(value) {
         this.activeTab = value;
     },
@@ -52,6 +54,12 @@ const logMagician = {
     },
     isLastTab() {
         return this.activeTab === this.fdList.length - 1;
+    },
+    setSelectedDeviceIndex(value) {
+        this.selectedDeviceIndex = value;
+    },
+    setSelectedProcessIndex(value) {
+        this.selectedProcessIndex = value;
     },
 };
 
