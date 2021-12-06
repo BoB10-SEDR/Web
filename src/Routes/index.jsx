@@ -9,7 +9,6 @@ import Bookmarks from '@Pages/Resources/Bookmarks';
 import Monitoring from '@Pages/Monitoring';
 import MonitoringSettings from '@Pages/Monitoring/Settings';
 import Solutions from '@Pages/Solutions';
-import SolutionsSettings from '@Pages/Solutions/Settings';
 import Inspection from '@Pages/Solutions/Inspection';
 import Debug from '@Pages/Debug';
 
@@ -35,7 +34,6 @@ const Routes = () => {
                             <Route path='/Resources/Bookmarks' component={Bookmarks} />
                             <Route path='/Resources/Devices/Tabs' component={Tabs} />
                             <Route path='/Solutions' exact component={Solutions} />
-                            <Route path='/Solutions/Settings' component={SolutionsSettings} />
                             <Route path='/Solutions/Inspection' component={Inspection} />
                             <Route path='/Monitoring' exact component={Monitoring} />
                             <Route path='/Monitoring/Settings' component={MonitoringSettings} />

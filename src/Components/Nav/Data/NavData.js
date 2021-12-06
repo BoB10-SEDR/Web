@@ -14,7 +14,7 @@ const NavData = {
         {
             type: 'link',
             isCollapsed: false,
-            title: '대시보드',
+            title: '메인 대시보드',
             path: '/Dashboard',
             icon: <AiIcons.AiFillDashboard className='navIcon' />,
         },
@@ -37,7 +37,7 @@ const NavData = {
                     cName: 'nav-collapse-item',
                 },
                 {
-                    title: '즐겨찾기',
+                    title: '주요자원',
                     path: '/Resources/Bookmarks',
                     cName: 'nav-collapse-item',
                 },
@@ -70,11 +70,6 @@ const NavData = {
                 {
                     title: '대시보드',
                     path: '/Solutions',
-                    cName: 'nav-collapse-item',
-                },
-                {
-                    title: '정책 설정',
-                    path: '/Solutions/Settings',
                     cName: 'nav-collapse-item',
                 },
                 {
