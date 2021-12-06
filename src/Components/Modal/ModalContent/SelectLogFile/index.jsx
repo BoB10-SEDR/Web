@@ -7,7 +7,6 @@ import '@Styles/modalContent.css';
 import Table from '@Components/Table';
 import { fetcher } from '@Hooks/';
 import store from '@Stores/logMagician';
-import Button from '@Components/UI/Button';
 import Status from '@Components/UI/Status';
 import LogFormatter from '@Components/Modal/ModalContent/LogFormatter';
 
@@ -80,11 +79,15 @@ const DeviceTable = () => {
 
 const ProcessTable = props => {
     const { deviceIdx } = props;
-    const { data = [], error } = useSWR(`/monitoring/${deviceIdx}/process`, url => fetcher(url));
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(1000);
+    const { data = [], error } = useSWR(`/monitoring/${deviceIdx}/process?limit=${limit}&page=${page}`, url =>
+        fetcher(url)
+    );
 
     const renderRowSubComponent = ({ row }) => {
-        const { pid } = row.values;
-        return <FileTable deviceIdx={deviceIdx} pid={pid} />;
+        const { pid, name } = row.values;
+        return <FileTable deviceIdx={deviceIdx} pid={pid} processName={name} />;
     };
 
     if (!data) return <div>loading...</div>;
@@ -104,19 +107,24 @@ const ProcessTable = props => {
 };
 
 const FileTable = observer(props => {
-    const { deviceIdx, pid } = props;
+    const { deviceIdx, pid, processName } = props;
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(1000);
     const {
         data = [],
         error,
         isValidating,
-    } = useSWR(`/monitoring/${deviceIdx}/process/${pid}/filedescriptor`, url => fetcher(url));
+    } = useSWR(`/monitoring/${deviceIdx}/process/${pid}/filedescriptor?limit=${limit}&page=${page}`, url =>
+        fetcher(url)
+    );
     const [formattedData, setFormattedData] = useState([]);
 
     useEffect(() => {
         const formattedData = data.map(item => {
             return {
                 ...item,
-                device_idx: deviceIdx,
+                processName: processName,
+                deviceIdx: deviceIdx,
             };
         });
         setFormattedData(formattedData);

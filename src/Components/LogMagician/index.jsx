@@ -31,7 +31,7 @@ const ManageTable = () => {
     const onToggleActivate = async ({ row }) => {
         const { device_idx: deviceIdx, idx: policyIdx } = row;
         try {
-            const response = await axios.post(`/monitoring/${deviceIdx}/activate`);
+            const response = await axios.post(`/monitoring/${deviceIdx}/state`);
             mutate(`/monitoring`);
         } catch (error) {
             console.log(error);
@@ -41,7 +41,7 @@ const ManageTable = () => {
     const onToggleInactivate = async ({ row }) => {
         const { device_idx: deviceIdx, idx: policyIdx } = row;
         try {
-            const response = await axios.post(`/monitoring/${deviceIdx}/inactivate`);
+            const response = await axios.post(`/monitoring/${deviceIdx}/state`);
             mutate(`/monitoring`);
         } catch (error) {
             console.log(error);

@@ -22,7 +22,24 @@ const MagicianStats = () => {
         { refreshInterval: 60000 }
     );
 
-    const { info = 0, fail = 0, device = 0 } = statData ? statData[0] : d;
+    const { data = [] } = statData ? statData[0] : d;
+    let fail = 0;
+    let info = 0;
+    let threat = 0;
+
+    data.map(item => {
+        const { status, count } = item;
+        switch (status) {
+            case 'FAIL':
+                fail = count;
+            case 'INFO':
+                info = count;
+            case 'THREAT':
+                threat = count;
+        }
+    });
+
+    console.log({ fail, info, threat, data, statData });
 
     return (
         <>
@@ -38,7 +55,7 @@ const MagicianStats = () => {
             </Col>
             <Col md={4} xl={4} mb>
                 <Card>
-                    <CardBodyForm titleFontColor={green} title='연관 장치 수' content={device.toLocaleString()} />
+                    <CardBodyForm titleFontColor={green} title='위협 로그 수' content={threat.toLocaleString()} />
                 </Card>
             </Col>
         </>

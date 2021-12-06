@@ -24,13 +24,13 @@ const TimeLine = () => {
     if (fetchData) {
         fetchData.map((item, index) => {
             if (index > 10) return;
-            const { date, info = 0 } = item;
+            const { date, total = 0 } = item;
             const timestamp = new Date(date);
             const hours = ('0' + timestamp.getHours()).slice(-2),
                 minutes = ('0' + timestamp.getMinutes()).slice(-2);
 
             labels.push(`${hours}:${minutes}`);
-            data.push(info);
+            data.push(total);
         });
     }
 
