@@ -14,6 +14,7 @@ const Settings = () => {
     const { data: monitoringData = [], error } = useSWR(`/monitoring?page=${page}&limit=${limit}`, url => fetcher(url));
 
     const onToggleActivate = async ({ row }, isActive) => {
+        console.log(row.values);
         const { device_idx, process_name, log_path: path, log_regex: regex } = row.values;
         const body = {
             device_idx,

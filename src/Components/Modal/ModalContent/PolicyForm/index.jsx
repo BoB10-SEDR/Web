@@ -4,12 +4,15 @@ import { useForm } from 'react-hook-form';
 import Button from '@Components/UI/Button';
 import { getPolicy, postPolicyActivate, getPolicyDevices, getPolicies } from '@Api/policies';
 import { fetcher } from '@Hooks/';
+import axios from 'axios';
 
 const PolicyForm = props => {
     const { policy, idx } = props;
     const { name, description } = policy;
-    const { data: devicesData = { active: [], recommend: [] } } = useSWR(`policies/${idx}/devices`, url =>
-        fetcher(url)
+    const { data: devicesData = { active: [], recommend: [] } } = useSWR(
+        `policies/${idx}/devices`,
+        url => fetcher(url),
+        { refreshInterval: 60000 }
     );
     const { data: fetchPolicyData } = useSWR(`/policies/${idx}`, url => fetcher(url));
 
@@ -19,32 +22,37 @@ const PolicyForm = props => {
         formState: { error },
     } = useForm();
 
+    if (!devicesData) return <div>loading...</div>;
+    if (!fetchPolicyData) return <div>loading...</div>;
+
+    const { main, sub, classify, argument } = fetchPolicyData[0];
+
     const onSubmit = data => {
         const { deviceIdx, ...args } = data;
         const arg = [];
         const payload = {
-            ARGUMENT: arg,
+            main,
+            sub,
+            classify,
+            argument: arg,
         };
 
         Object.entries(args).forEach(([key, value]) => {
-            arg.push({ NAME: key, VALUE: value });
+            arg.push({ name: key, value: value });
         });
 
         const activatePolicy = async () => {
             try {
-                const data = await postPolicyActivate(idx, deviceIdx, payload);
+                const data = await axios.put(`/policies/${idx}`, payload);
+                alert('success');
             } catch (error) {
+                alert('error');
                 console.log(error);
             }
         };
 
         activatePolicy();
     };
-
-    if (!devicesData) return <div>loading...</div>;
-    if (!fetchPolicyData) return <div>loading...</div>;
-
-    const policyData = fetchPolicyData[0].argument;
 
     return (
         <div className='form'>
@@ -58,8 +66,8 @@ const PolicyForm = props => {
                     <label htmlFor='selectDevice'>
                         <div className='title'>장비 선택</div>
                         <select id='selectDevice' {...register('deviceIdx')}>
-                            {devicesData.recommend &&
-                                devicesData.recommend.map((device, index) => {
+                            {devicesData.recommand &&
+                                devicesData.recommand.map((device, index) => {
                                     const { idx, name } = device;
                                     return (
                                         <option key={idx} value={idx}>
@@ -70,7 +78,7 @@ const PolicyForm = props => {
                         </select>
                     </label>
                 </div>
-                {policyData.map((parameter, index) => {
+                {argument.map((parameter, index) => {
                     const { name, description, value } = parameter;
                     return (
                         <div key={index} className='inputBox'>

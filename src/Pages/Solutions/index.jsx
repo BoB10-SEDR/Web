@@ -18,20 +18,17 @@ const Settings = () => {
         fetcher(`/policies/custom?page=${page}`)
     );
 
-    const onToggleActivate = async ({ row }) => {
-        const { device_idx: deviceIdx, idx: policyIdx } = row;
+    const onToggleActivate = async ({ row }, activate) => {
+        const { device_idx, idx: policy_idx, security_category_idx = 0 } = row.values;
+        const body = {
+            device_idx,
+            policy_idx,
+            security_category_idx,
+            activate,
+            data: null,
+        };
         try {
-            const response = await axios.post(`/policies/${policyIdx}/activate/${deviceIdx}`);
-            mutate(`/policies/custom`);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const onToggleInactivate = async ({ row }) => {
-        const { device_idx: deviceIdx, idx: policyIdx } = row;
-        try {
-            const response = await axios.post(`/policies/${policyIdx}/inactivate/${deviceIdx}`);
+            const response = await axios.post(`/policies/custom`, body);
             mutate(`/policies/custom`);
         } catch (error) {
             console.log(error);
@@ -48,8 +45,8 @@ const Settings = () => {
                 browseData={solutions}
                 isSubmitted={store.isOpen}
                 onSubmit={data => store.setSelectedPolicies(data)}
-                onToggleActivate={onToggleActivate}
-                onToggleInactivate={onToggleInactivate}
+                onToggleActivate={({ row }) => onToggleActivate({ row }, true)}
+                onToggleInactivate={({ row }) => onToggleActivate({ row }, false)}
             >
                 <Modal hasButton buttonContent='추가하기'>
                     <PolicyMagician />
