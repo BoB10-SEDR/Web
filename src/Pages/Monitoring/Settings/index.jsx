@@ -13,20 +13,18 @@ const Settings = () => {
     const [limit, setLimit] = useState(12);
     const { data: monitoringData = [], error } = useSWR(`/monitoring?page=${page}&limit=${limit}`, url => fetcher(url));
 
-    const onToggleActivate = async ({ row }) => {
-        const { device_idx: deviceIdx, idx: policyIdx } = row;
-        try {
-            const response = await axios.post(`/monitoring/${deviceIdx}/activate`);
-            mutate(`/monitoring`);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    const onToggleActivate = async ({ row }, isActive) => {
+        const { device_idx, process_name, log_path: path, log_regex: regex } = row.values;
+        const body = {
+            device_idx,
+            process_name,
+            path,
+            regex,
+            isActive,
+        };
 
-    const onToggleInactivate = async ({ row }) => {
-        const { device_idx: deviceIdx, idx: policyIdx } = row;
         try {
-            const response = await axios.post(`/monitoring/${deviceIdx}/inactivate`);
+            const response = await axios.post(`/monitoring`, body);
             mutate(`/monitoring`);
         } catch (error) {
             console.log(error);
@@ -41,8 +39,8 @@ const Settings = () => {
                 toggleValueField='activate'
                 schema='monitoring'
                 browseData={monitoringData}
-                onToggleActivate={onToggleActivate}
-                onToggleInactivate={onToggleInactivate}
+                onToggleActivate={({ row }) => onToggleActivate({ row }, true)}
+                onToggleInactivate={({ row }) => onToggleActivate({ row }, false)}
             >
                 <Modal hasButton buttonContent='파일 추가'>
                     <LogMagician />
