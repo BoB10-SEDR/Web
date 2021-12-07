@@ -57,9 +57,11 @@ export const simpleDeviceSchema = [
 
 export const monitoringTableSchema = [
     { Header: '식별번호', accessor: 'idx', align: 'center', isAbleToSort: true },
-    { Header: '파일 이름', accessor: 'file_descriptor_name', align: 'center', width: '100', isAbleToSort: true },
-    { Header: '파일 경로', accessor: 'file_descriptor_path', align: 'center', width: '100', isAbleToSort: true },
-    { Header: '갱신 시간', accessor: 'file_descriptor_update_time', align: 'center', width: '100', isAbleToSort: true },
+    { Header: '장비', accessor: 'device_idx', align: 'center', isAbleToSort: true },
+    { Header: '장비 명', accessor: 'device_name', align: 'center', isAbleToSort: true },
+    { Header: '프로세스 명', accessor: 'process_name', align: 'center', isAbleToSort: true },
+    { Header: '파일 경로', accessor: 'log_path', align: 'center', width: '100', isAbleToSort: true },
+    { Header: '갱신 시간', accessor: 'update_time', align: 'center', width: '200', isAbleToSort: true },
 ];
 
 export const logMagicianSchema = [

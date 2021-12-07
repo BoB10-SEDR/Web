@@ -4,7 +4,6 @@ import Line from '@Components/Charts/Line';
 import { fetcher } from '@Hooks/';
 import { format } from 'date-fns';
 import { useInterval } from 'react-use';
-import dummyTimeLine from '@Dummy/timeLine';
 
 const TimeLine = () => {
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
