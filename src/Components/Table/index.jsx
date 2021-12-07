@@ -105,6 +105,11 @@ const Table = props => {
             data: browseData,
             defaultColumn,
             filterTypes,
+            initialState: {
+                hiddenColumns: schemaData.map(column => {
+                    if (column.show === false) return column.accessor || column.id;
+                }),
+            },
         },
         useFlexLayout,
         useGlobalFilter,

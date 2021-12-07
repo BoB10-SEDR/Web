@@ -62,7 +62,7 @@ export const monitoringTableSchema = [
     { Header: '프로세스 명', accessor: 'process_name', align: 'center', isAbleToSort: true },
     { Header: '파일 경로', accessor: 'log_path', align: 'center', width: '100', isAbleToSort: true },
     { Header: '갱신 시간', accessor: 'update_time', align: 'center', width: '200', isAbleToSort: true },
-    { Header: '정규식', accessor: 'log_regex', align: 'center', isAbleToSort: true },
+    { Header: '정규식', accessor: 'log_regex', align: 'center', isAbleToSort: true, show: false },
 ];
 
 export const logMagicianSchema = [
