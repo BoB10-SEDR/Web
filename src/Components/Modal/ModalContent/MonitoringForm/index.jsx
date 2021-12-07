@@ -21,16 +21,17 @@ const MonitoringForm = props => {
     const { mutate } = useSWRConfig();
 
     const onSubmit = data => {
-        const body = {
-            path: path,
-            process_name: processName,
-            isActive: true,
-            regex: regExp,
-        };
-
         const activateMonitoringFile = async () => {
+            const body = {
+                device_idx: deviceIdx,
+                path: path,
+                process_name: processName,
+                isActive: true,
+            };
+
             try {
-                const response = axios.post(`/monitoring/${deviceIdx}/state`, body);
+                const response = axios.post(`/monitoring`, body);
+                mutate('/monitoring');
                 alert('success');
             } catch (error) {
                 alert('error');
@@ -38,23 +39,7 @@ const MonitoringForm = props => {
             }
         };
 
-        const addMonitoringFile = async () => {
-            const body = {
-                device_idx: deviceIdx,
-                process_idx: pid,
-                file_descriptor_idx: idx,
-            };
-
-            try {
-                const response = axios.post(`/monitoring`, body);
-                mutate('/monitoring');
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
         activateMonitoringFile();
-        addMonitoringFile();
         store.setNextTab();
     };
 
