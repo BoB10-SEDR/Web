@@ -17,23 +17,26 @@ const TimeLine = () => {
         setStart(format(Date.now(), 'yyyy-MM-dd'));
     }, 60000);
 
-    const labels = [],
-        data = [];
+    const labels = [];
+    const datasets = [];
 
     if (fetchData) {
         fetchData.map((item, index) => {
             if (index > 10) return;
+            const dataset = {};
             const { date, total = 0 } = item;
             const timestamp = new Date(date);
             const hours = ('0' + timestamp.getHours()).slice(-2),
                 minutes = ('0' + timestamp.getMinutes()).slice(-2);
 
             labels.push(`${hours}:${minutes}`);
-            data.push(total);
+            dataset.label = index;
+            dataset.data = total;
+            datasets.push(dataset);
         });
     }
 
-    return <Line labels={labels} data={data} />;
+    return <Line labels={labels} datasets={datasets} />;
 };
 
 export default TimeLine;
