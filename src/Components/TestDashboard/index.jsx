@@ -4,11 +4,9 @@ import '@Styles/testDashboard.css';
 import '@Styles/card.css';
 import TaskItem from './TaskItem';
 import { useState } from 'react';
-import { observer } from 'mobx-react';
 import { DummyCircle } from '@Dummy/DummyComponents';
 import ProgressBar from '@Components/ProgressBar';
 import TaskInformation from './TaskInformation';
-import store from '@Stores/inspection';
 
 import { dummyTasks } from '@Dummy/dummyTask.js';
 
@@ -36,7 +34,7 @@ const TestDashboard = () => {
     );
 };
 
-export default observer(TestDashboard);
+export default TestDashboard;
 
 const Header = props => {
     const { title = '테스트 이름', timestamp = 'YYYY년 MM월 DD일 오전 HH:MM:SS' } = props;
