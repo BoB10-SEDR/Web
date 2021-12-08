@@ -1,5 +1,6 @@
 import '@Styles/addDeviceModal.css';
 import useSWR, { useSWRConfig } from 'swr';
+import { useState } from 'react';
 import Button from '@Components/UI/Button';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -16,11 +17,11 @@ const AddDevice = props => {
     let { data: networkCategoryList, error: networkCategoryListError } = useSWR(`/networks/categories`, url =>
         fetcher(url)
     );
-    let { data: environmentCategoryList = [], error: environmentCategoryListError } = useSWR(
-        `/devices/environments`,
-        url => fetcher(url)
+    let { data: environmentCategoryList, error: environmentCategoryListError } = useSWR(`/devices/environments`, url =>
+        fetcher(url)
     );
     const { mutate } = useSWRConfig();
+    const [nameError, setNameError] = useState(false);
 
     const {
         register,
@@ -29,6 +30,7 @@ const AddDevice = props => {
     } = useForm();
 
     const onSubmit = async data => {
+        const { name, model_name } = data;
         try {
             const response = await axios.post(`/devices`, data);
             mutate(`/devices/page`);
@@ -52,6 +54,7 @@ const AddDevice = props => {
 
     if (!deviceCategoryList) deviceCategoryList = dummy.deviceCategoryList;
     if (!networkCategoryList) networkCategoryList = dummy.networkCategoryList;
+    if (!environmentCategoryList) environmentCategoryList = dummy.environmentCategoryList;
 
     return (
         <div id='addDeviceModal'>
