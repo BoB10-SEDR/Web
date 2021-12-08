@@ -114,3 +114,7 @@
     font-size: 0.9rem;
     margin-top: 5px;
 }
+
+#magician .inputBox .description.example {
+    cursor: pointer;
+}

@@ -10,8 +10,9 @@ const MonitoringForm = props => {
     const { file, idx, description } = props;
     const { path, deviceIdx, pid, processName } = file;
     const [sampleLog, setSampleLog] = useState('');
-    const [regExp, setRegExp] = useState(new RegExp(exampleReg));
+    const [regExp, setRegExp] = useState(new RegExp(null));
     const [regError, setRegError] = useState('');
+    const [isExampleClicked, setIsExampleClicked] = useState(false);
     const {
         register,
         handleSubmit,
@@ -27,6 +28,7 @@ const MonitoringForm = props => {
                 path: path,
                 process_name: processName,
                 isActive: true,
+                regex: regExp.source,
             };
 
             try {
@@ -77,6 +79,10 @@ const MonitoringForm = props => {
         store.setNextTab();
     };
 
+    const handleExampleClick = () => {
+        setIsExampleClicked(!isExampleClicked);
+    };
+
     return (
         <div className='form'>
             <div className='header'>
@@ -96,7 +102,11 @@ const MonitoringForm = props => {
                     <label htmlFor='regFormat'>
                         <div className='title'>정규식</div>
                         <div className='description'>그룹화 패턴을 사용해 필드를 지정해주세요</div>
-                        <input id='regFormat' value={regExp} onChange={handleRegFormatChange} />
+                        <span className='description example' onClick={handleExampleClick}>
+                            예시 보기
+                        </span>
+                        {isExampleClicked ? <div className='description'>{exampleReg}</div> : null}
+                        <input id='regFormat' value={regExp.source} onChange={handleRegFormatChange} />
                         <div className='error'>{regError}</div>
                     </label>
                 </div>
