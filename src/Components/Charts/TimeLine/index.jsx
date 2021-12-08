@@ -5,7 +5,8 @@ import { fetcher } from '@Hooks/';
 import { format } from 'date-fns';
 import { useInterval } from 'react-use';
 
-const TimeLine = () => {
+const TimeLine = props => {
+    const { idx } = props;
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
     const [time, setTime] = useState(5);
 

@@ -1,6 +1,7 @@
 import Button from '@Components/UI/Button';
 import store from '@Stores/addDeviceModal';
-import AddDeviceModal from '@Pages/Resources/Environments/AddDeviceModal';
+import Modal from '@Components/Modal';
+import AddDeviceModal from '@Components/Modal/ModalContent/AddDevice';
 
 const AddDeviceButton = () => {
     const handleClick = () => {
@@ -9,10 +10,9 @@ const AddDeviceButton = () => {
 
     return (
         <div className='AddDeviceButton'>
-            <Button onClick={handleClick}>
-                <span>장비 추가하기</span>
-            </Button>
-            <AddDeviceModal />
+            <Modal hasButton buttonContent='장비 추가하기' onClick={handleClick}>
+                <AddDeviceModal />
+            </Modal>
         </div>
     );
 };
