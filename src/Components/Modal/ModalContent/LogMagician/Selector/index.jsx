@@ -62,7 +62,7 @@ const Selector = () => {
 const DeviceSection = props => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(50);
-    const { data = [], error } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url), {
+    const { data = [], error } = useSWR(`/monitoring/devices?page=${page}&limit=${limit}`, url => fetcher(url), {
         refreshInterval: 60000,
     });
 

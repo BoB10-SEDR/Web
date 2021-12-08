@@ -44,13 +44,13 @@ const EventViewer = props => {
 const LogDetail = props => {
     const { row } = props;
     // detail 데이터 불러오는 코드 필요
-    const { parsedLog, original_log, description, ...detail } = row.values;
+    const { original_log, description, log_regex, ...detail } = row.values;
 
     return (
         <div className='logDetail'>
             <div className='logDetailContent'>
                 <Header />
-                <Body parsedLog={parsedLog} description={description} />
+                <Body originalLog={original_log} description={description} logRegex={log_regex} detail={detail} />
             </div>
         </div>
     );
@@ -66,18 +66,25 @@ const Header = () => {
 };
 
 const Body = props => {
-    const { parsedLog, description } = props;
+    const { originalLog, description, logRegex, detail } = props;
+    const reg = new RegExp(logRegex);
+    const result = reg.exec(originalLog);
+    const groups = result.groups;
+
     return (
         <div className='detailBody'>
-            {/* {Object.entries(parsedLog).map((entrie, key) => {
-                return (
-                    <div key={key} className='detailBox'>
-                        <div className='head'>{entrie[0]}</div>
-                        <div className='data'>{entrie[1]}</div>
-                    </div>
-                );
-            })} */}
-            {parsedLog}
+            {groups
+                ? Object.entries(groups).map((entrie, key) => {
+                      return (
+                          <div key={key} className='detailBox'>
+                              <div className='head'>{entrie[0]}</div>
+                              <div className='data'>{entrie[1]}</div>
+                          </div>
+                      );
+                  })
+                : null}
+            {}
+            {originalLog}
             <hr />
             <Description description={description} />
         </div>

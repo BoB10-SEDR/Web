@@ -83,6 +83,7 @@ export const logMagicianSchema = [
     { Header: '로그 발생지', accessor: 'log_path', align: 'center', isAbleToSort: true },
     { Header: '이벤트 ID', accessor: 'event_code', align: 'center', isAbleToSort: true },
     { Header: '상세 설명', accessor: 'description', align: 'left', isAbleToSort: false },
+    { Header: 'raw', accessor: 'original_log', align: 'left', isAbleToSort: false, show: false },
     { Header: '세부 정보', accessor: 'parsedLog', align: 'left', isAbleToSort: false, show: false },
 ];
 
@@ -114,13 +115,14 @@ export const recommandedPolicyListSchema = [
 
 // TODO_P :: 간격 배정
 export const inspectionTableSchema = [
-    { Header: '테스트 ID', accessor: 'testID', align: 'center', isAbleToSort: false },
+    { Header: '테스트 ID', accessor: 'idx', align: 'center', isAbleToSort: false },
     { Header: '대분류', accessor: 'main', align: 'center', isAbleToSort: false },
-    { Header: '중분류', accessor: 'classify', align: 'center', isAbleToSort: false },
-    { Header: '소분류', accessor: 'sub', align: 'center', isAbleToSort: false },
-    { Header: '테스트 이름', accessor: 'testName', align: 'left', width: '200', isAbleToSort: false },
-    { Header: '대상 OS', accessor: 'target', align: 'center', isAbleToSort: false },
-    { Header: '테스트 설명', accessor: 'description', align: 'left', isAbleToSort: false },
+    { Header: '중분류', accessor: 'sub', align: 'center', isAbleToSort: false },
+    { Header: '소분류', accessor: 'classify', align: 'center', isAbleToSort: false },
+    { Header: '테스트 이름', accessor: 'name', align: 'left', width: '200', isAbleToSort: false },
+    { Header: '대상 기기', accessor: 'target', align: 'center', isAbleToSort: false, show: false },
+    { Header: '설정값', accessor: 'configs', align: 'center', isAbleToSort: false, show: false },
+    { Header: '파일명', accessor: 'related_file', align: 'left', isAbleToSort: false },
 ];
 
 export const processTableSchema = [

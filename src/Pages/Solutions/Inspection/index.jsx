@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react';
 import { Row, Col } from '@Components/Grid';
 import '@Styles/inspection.css';
 import { DummyMockTest } from '@Dummy/DummyImgs.jsx';
