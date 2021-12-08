@@ -244,10 +244,9 @@ const Table = props => {
         },
     ];
 
-    const handleClick = ({ row }) => {
-        const id = row.values.id;
+    const handleClick = (i, { row }) => {
         onRowClick({ row });
-        setClickedIndex(id);
+        setClickedIndex(i);
     };
 
     // const onSearchKeywordChange = useAsyncDebounce(value => {
@@ -317,7 +316,7 @@ const Table = props => {
                                     <tr
                                         className={`tableRow ${clickedIndex === i ? ' clicked' : ''}`}
                                         {...row.getRowProps(rowProps)}
-                                        onClick={() => handleClick({ row })}
+                                        onClick={() => handleClick(i, { row })}
                                     >
                                         {row.cells.map(cell => {
                                             return (

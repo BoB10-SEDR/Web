@@ -16,8 +16,8 @@ const ModalContent = props => {
     let { data: networkCategoryList, error: networkCategoryListError } = useSWR(`/networks/categories`, url =>
         fetcher(url)
     );
-    let { data: environmentCategoryList, error: environmentCategoryListError } = useSWR(
-        `/environments/categories`,
+    let { data: environmentCategoryList = [], error: environmentCategoryListError } = useSWR(
+        `/devices/environments`,
         url => fetcher(url)
     );
     const { mutate } = useSWRConfig();
@@ -52,7 +52,6 @@ const ModalContent = props => {
 
     if (!deviceCategoryList) deviceCategoryList = dummy.deviceCategoryList;
     if (!networkCategoryList) networkCategoryList = dummy.networkCategoryList;
-    if (!environmentCategoryList) environmentCategoryList = dummy.environmentCategoryList;
 
     return (
         <div id='addDeviceModal'>
@@ -77,19 +76,12 @@ const ModalContent = props => {
                 <select id='category' {...register(`category`)}>
                     {createSelector(deviceCategoryList)}
                 </select>
-                <Modal hasButton buttonContent='추가'>
-                    {/* <AddPolicy /> */}
-                </Modal>
-
                 <label for='network'>
                     <div className='title'>네트워크 카테고리</div>
                 </label>
                 <select id='network' {...register(`network`)}>
                     {createSelector(networkCategoryList)}
                 </select>
-                <Modal hasButton buttonContent='추가'>
-                    {/* <AddPolicy /> */}
-                </Modal>
 
                 <label for='environment'>
                     <div className='title'>장비 설치환경</div>
@@ -97,9 +89,6 @@ const ModalContent = props => {
                 <select id='environment' {...register(`environment`)}>
                     {createSelector(environmentCategoryList)}
                 </select>
-                <Modal hasButton buttonContent='추가'>
-                    {/* <AddPolicy /> */}
-                </Modal>
 
                 <Button type='submit' className='block'>
                     Add

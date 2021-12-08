@@ -9,7 +9,7 @@ const TimeLine = () => {
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
     const [time, setTime] = useState(5);
 
-    const { data: fetchData = [], error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url => fetcher(url), {
+    const { data: fetchData = [], error } = useSWR(`/monitoring/log/count?time=${time}`, url => fetcher(url), {
         refreshInterval: 60000,
     });
 

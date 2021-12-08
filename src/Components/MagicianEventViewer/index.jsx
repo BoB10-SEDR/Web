@@ -6,7 +6,7 @@ import dummyLogs from '@Dummy/logMagician';
 
 const MagicianEventViewer = () => {
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(20);
+    const [limit, setLimit] = useState(7000);
     const { data = [], error } = useSWR(`/monitoring/log?page=${page}&limit=${limit}`, url => fetcher(url), {
         refreshInterval: 60000,
     });
