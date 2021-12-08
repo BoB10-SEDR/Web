@@ -28,7 +28,7 @@ const MonitoringForm = props => {
                 path: path,
                 process_name: processName,
                 isActive: true,
-                regex: regExp.source,
+                regex: regExp.source ?? null,
             };
 
             try {
