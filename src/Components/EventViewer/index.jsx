@@ -45,7 +45,6 @@ const LogDetail = props => {
     const { row } = props;
     // detail 데이터 불러오는 코드 필요
     const { original_log, description, log_regex, ...detail } = row.values;
-    console.log(row.values);
 
     return (
         <div className='logDetail'>
@@ -71,8 +70,6 @@ const Body = props => {
     const reg = new RegExp(logRegex);
     const result = reg.exec(originalLog);
     const groups = result.groups;
-
-    console.log({ logRegex, reg, result, groups });
 
     return (
         <div className='detailBody'>
