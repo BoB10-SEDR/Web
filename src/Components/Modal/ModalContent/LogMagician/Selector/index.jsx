@@ -61,8 +61,8 @@ const Selector = () => {
 
 const DeviceSection = props => {
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(12);
-    const { data = [], error } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url), {
+    const [limit, setLimit] = useState(50);
+    const { data = [], error } = useSWR(`/monitoring/devices?page=${page}&limit=${limit}`, url => fetcher(url), {
         refreshInterval: 60000,
     });
 
@@ -74,7 +74,7 @@ const DeviceSection = props => {
 const ProcessSection = props => {
     const { deviceIndex, ...rest } = props;
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(12);
+    const [limit, setLimit] = useState(50);
 
     const { data = [], error } = useSWR(
         deviceIndex ? `/monitoring/${deviceIndex}/process?page=${page}&limit=${limit}` : null,
@@ -90,7 +90,7 @@ const ProcessSection = props => {
 const FileSection = props => {
     const { deviceIndex, pid, processName, ...rest } = props;
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(12);
+    const [limit, setLimit] = useState(50);
     const { data = [], error } = useSWR(
         deviceIndex && pid
             ? `/monitoring/${deviceIndex}/process/${pid}/filedescriptor?page=${page}&limit=${limit}`

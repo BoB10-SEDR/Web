@@ -1,37 +1,28 @@
+import useSWR from 'swr';
+import { observer } from 'mobx-react';
 import { Status } from '@Components/UI';
+import { fetcher } from '@Hooks/';
+import store from '@Stores/inspection';
 
 const TaskItem = props => {
-    const {
-        taskTitle = '작업 명',
-        taskDescription = 'task 상세설명 혹은 시간',
-        selectedIndex,
-        index,
-        setIndex,
-        status,
-    } = props;
+    const { index, name, timestamp, onClick = () => {} } = props;
 
-    const isSelected = selectedIndex === index ? 1 : 0;
-
-    const handleClick = e => {
-        e.preventDefault();
-
-        setIndex(index);
-    };
+    const isSelected = store.selectedTaskIndex === index ? 1 : 0;
 
     // TODO_P :: Status 붙이고 Style 수정
 
     return (
-        <li className='taskItem' mode={isSelected} onClick={handleClick}>
+        <li className='taskItem' mode={isSelected} onClick={onClick}>
             <div className='taskInfo'>
-                <span className='taskName'>{taskTitle}</span>
-                <span className='taskDescription'>{taskDescription}</span>
+                <span className='taskName'>{name}</span>
+                <span className='taskDescription'>{timestamp}</span>
             </div>
 
             <div className='status'>
-                <Status status={status} />
+                <Status status={'pending'} />
             </div>
         </li>
     );
 };
 
-export default TaskItem;
+export default observer(TaskItem);

@@ -1,5 +1,4 @@
 import { observable } from 'mobx';
-import { GiTrojanHorse } from 'react-icons/gi';
 
 const logMagician = {
     deviceList: [],

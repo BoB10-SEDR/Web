@@ -11,15 +11,17 @@ const Settings = () => {
     const { mutate } = useSWRConfig();
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(12);
-    const { data: monitoringData = [], error } = useSWR(`/monitoring?page=${page}&limit=${limit}`, url => fetcher(url));
+    const { data: monitoringData = [], error } = useSWR(`/monitoring`, () =>
+        fetcher(`/monitoring?page=${page}&limit=${limit}`)
+    );
 
     const onToggleActivate = async ({ row }, isActive) => {
         const { device_idx, process_name, log_path: path, log_regex: regex } = row.values;
         const body = {
             device_idx,
             process_name,
-            log_path: path,
-            regex,
+            path,
+            regex: regex ?? '',
             isActive,
         };
 
@@ -34,6 +36,7 @@ const Settings = () => {
     return (
         <div id='monitoringSettings' className='page'>
             <ManageTable
+                hasToggle
                 title='모니터링 설정'
                 toggleId='idx'
                 toggleValueField='activate'

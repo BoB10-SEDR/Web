@@ -1,19 +1,16 @@
-import Card from '@Components/Card';
+import { observer } from 'mobx-react';
 import { Row, Col } from '@Components/Grid';
 import '@Styles/inspection.css';
 import { DummyMockTest } from '@Dummy/DummyImgs.jsx';
 import TestDashboard from '@Components/TestDashboard';
-import { Status } from '@Components/UI';
+import InspectionTable from '@Components/InspectionTable';
 
 const Inspection = () => {
     return (
         <div id='inspection'>
             <Row>
                 <Col lg={12}>
-                    <Card title='점검 항목 리스트'>
-                        {/* TODO_P :: MockTest 관련 Table */}
-                        <DummyMockTest />
-                    </Card>
+                    <InspectionTable />
                 </Col>
             </Row>
 

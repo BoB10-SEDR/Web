@@ -14,14 +14,14 @@ export const simpleSolutionsSchema = [
 ];
 
 export const solutionsSchema = [
-    { Header: '정책 ID', accessor: 'policy_idx', align: 'center', width: 80, isAbleToSort: true },
-    { Header: '대분류', accessor: 'main', align: 'center', width: 100, isAbleToSort: false },
+    { Header: '정책 ID', accessor: 'policy_idx', align: 'center', isAbleToSort: true },
+    { Header: '대분류', accessor: 'main', align: 'center', isAbleToSort: false },
     { Header: '중분류', accessor: 'classify', align: 'center', width: 150, isAbleToSort: false },
-    { Header: '소분류', accessor: 'sub', align: 'center', width: 100, isAbleToSort: false },
-    { Header: '정책 이름', accessor: 'name', align: 'center', width: 150, isAbleToSort: true },
+    { Header: '소분류', accessor: 'sub', align: 'center', width: 150, isAbleToSort: false },
+    { Header: '정책 이름', accessor: 'name', align: 'center', width: 250, isAbleToSort: true },
     { Header: '적용 장비 번호', accessor: 'device_idx', align: 'center', width: 150, isAbleToSort: true },
     { Header: '적용 장비 명', accessor: 'target', align: 'center', width: 150, isAbleToSort: true },
-    { Header: '대응 정책 설명', accessor: 'description', align: 'left', width: 200, isAbleToSort: true },
+    { Header: '대응 정책 설명', accessor: 'description', align: 'left', width: 200, isAbleToSort: true, show: false },
     {
         Header: '보안항목',
         accessor: 'security_category_idx',
@@ -65,10 +65,10 @@ export const simpleDeviceSchema = [
 
 export const monitoringTableSchema = [
     { Header: '식별번호', accessor: 'idx', align: 'center', isAbleToSort: true },
-    { Header: '장비', accessor: 'device_idx', align: 'center', isAbleToSort: true },
-    { Header: '장비 명', accessor: 'name', align: 'center', isAbleToSort: true },
+    { Header: '장비', accessor: 'device_idx', align: 'center', isAbleToSort: true, show: false },
+    { Header: '장비 명', accessor: 'name', align: 'center', width: '150', isAbleToSort: true },
     { Header: '프로세스 명', accessor: 'process_name', align: 'center', isAbleToSort: true },
-    { Header: '파일 경로', accessor: 'log_path', align: 'center', width: '100', isAbleToSort: true },
+    { Header: '파일 경로', accessor: 'log_path', align: 'center', width: '200', isAbleToSort: true },
     { Header: '갱신 시간', accessor: 'update_time', align: 'center', width: '200', isAbleToSort: true },
     { Header: '정규식', accessor: 'log_regex', align: 'center', isAbleToSort: true, show: false },
 ];
@@ -77,12 +77,15 @@ export const logMagicianSchema = [
     { Header: '식별번호', accessor: 'idx', align: 'center', isAbleToSort: true },
     { Header: '타임스탬프', accessor: 'create_time', align: 'center', isAbleToSort: true },
     { Header: '보안 항목명', accessor: 'security_category_idx', align: 'center', isAbleToSort: true },
+    { Header: '장비 번호', accessor: 'device_idx', align: 'center', isAbleToSort: true },
     { Header: '레이어', accessor: 'layer', align: 'center', isAbleToSort: true },
     { Header: '소속 환경', accessor: 'environment', align: 'center', isAbleToSort: true },
     { Header: '로그 발생지', accessor: 'log_path', align: 'center', isAbleToSort: true },
     { Header: '이벤트 ID', accessor: 'event_code', align: 'center', isAbleToSort: true },
     { Header: '상세 설명', accessor: 'description', align: 'left', isAbleToSort: false },
+    { Header: 'raw', accessor: 'original_log', align: 'left', isAbleToSort: false, show: false },
     { Header: '세부 정보', accessor: 'parsedLog', align: 'left', isAbleToSort: false, show: false },
+    { Header: '정규식', accessor: 'log_regex', align: 'center', isAbleToSort: true, show: false },
 ];
 
 // TODO_P :: 간격 배정
@@ -113,12 +116,14 @@ export const recommandedPolicyListSchema = [
 
 // TODO_P :: 간격 배정
 export const inspectionTableSchema = [
-    { Header: '선택', accessor: 'check', align: 'center', isAbleToSort: false },
-    { Header: '테스트 ID', accessor: 'testID', align: 'left', isAbleToSort: false },
-    { Header: '테스트 이름', accessor: 'testName', align: 'left', isAbleToSort: false },
-    { Header: '테스트 대상 유형', accessor: 'target', align: 'left', isAbleToSort: false },
-    { Header: '대상 OS', accessor: 'target', align: 'left', isAbleToSort: false },
-    { Header: '테스트 설명', accessor: 'description', align: 'left', isAbleToSort: false },
+    { Header: '테스트 ID', accessor: 'idx', align: 'center', isAbleToSort: false },
+    { Header: '대분류', accessor: 'main', align: 'center', isAbleToSort: false },
+    { Header: '중분류', accessor: 'sub', align: 'center', isAbleToSort: false },
+    { Header: '소분류', accessor: 'classify', align: 'center', isAbleToSort: false },
+    { Header: '테스트 이름', accessor: 'name', align: 'left', width: '200', isAbleToSort: false },
+    { Header: '대상 기기', accessor: 'target', align: 'center', isAbleToSort: false, show: false },
+    { Header: '설정값', accessor: 'configs', align: 'center', isAbleToSort: false, show: false },
+    { Header: '파일명', accessor: 'related_file', align: 'left', isAbleToSort: false },
 ];
 
 export const processTableSchema = [
