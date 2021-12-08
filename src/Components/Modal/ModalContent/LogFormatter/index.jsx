@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 import { useEffect } from 'react';
-=======
->>>>>>> 9159662850746881eca5b491a460d67aa4187409
 import { observer } from 'mobx-react';
 import { Tabs } from 'react-tabs';
 import { CustomTabList, CustomTab, CustomTabPanel } from '@Components/CustomTabs';
