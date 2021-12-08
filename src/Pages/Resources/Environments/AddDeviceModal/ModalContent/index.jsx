@@ -29,7 +29,6 @@ const ModalContent = props => {
     } = useForm();
 
     const onSubmit = async data => {
-        console.log(data);
         try {
             const response = await axios.post(`/devices`, data);
             mutate(`/devices/page`);

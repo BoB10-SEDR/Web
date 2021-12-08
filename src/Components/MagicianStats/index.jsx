@@ -39,8 +39,6 @@ const MagicianStats = () => {
         }
     });
 
-    console.log({ fail, info, threat, data, statData });
-
     return (
         <>
             <Col md={4} xl={4} mb>

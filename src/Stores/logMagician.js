@@ -41,7 +41,6 @@ const logMagician = {
     },
     addFdList(value) {
         this.fdList.push(...value);
-        console.log(value);
     },
     setIsSubmitted(value) {
         this.isSubmitted = value;
