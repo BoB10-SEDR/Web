@@ -65,10 +65,10 @@ export const simpleDeviceSchema = [
 
 export const monitoringTableSchema = [
     { Header: '식별번호', accessor: 'idx', align: 'center', isAbleToSort: true },
-    { Header: '장비', accessor: 'device_idx', align: 'center', isAbleToSort: true },
-    { Header: '장비 명', accessor: 'name', align: 'center', isAbleToSort: true },
+    { Header: '장비', accessor: 'device_idx', align: 'center', isAbleToSort: true, show: false },
+    { Header: '장비 명', accessor: 'name', align: 'center', width: '150', isAbleToSort: true },
     { Header: '프로세스 명', accessor: 'process_name', align: 'center', isAbleToSort: true },
-    { Header: '파일 경로', accessor: 'log_path', align: 'center', width: '100', isAbleToSort: true },
+    { Header: '파일 경로', accessor: 'log_path', align: 'center', width: '200', isAbleToSort: true },
     { Header: '갱신 시간', accessor: 'update_time', align: 'center', width: '200', isAbleToSort: true },
     { Header: '정규식', accessor: 'log_regex', align: 'center', isAbleToSort: true, show: false },
 ];
