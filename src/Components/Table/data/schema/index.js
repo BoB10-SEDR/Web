@@ -65,7 +65,6 @@ export const monitoringTableSchema = [
 export const logMagicianSchema = [
     { Header: '타임스탬프', accessor: 'create_time', align: 'center', width: '100', isAbleToSort: true },
     { Header: '기기', accessor: 'device_name', align: 'center', width: '100', isAbleToSort: true },
-    { Header: '상태', accessor: 'status', align: 'center', width: '50', isAbleToSort: true },
     { Header: '에이전트 여부', accessor: 'environment', align: 'center', width: '50', isAbleToSort: true },
     { Header: '레이어', accessor: 'layer', align: 'center', width: '50', isAbleToSort: true },
     { Header: '이벤트 ID', accessor: 'event_code', align: 'center', width: '50', isAbleToSort: true },

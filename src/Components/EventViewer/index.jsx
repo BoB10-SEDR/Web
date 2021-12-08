@@ -8,10 +8,10 @@ import 'react-splitter-layout/lib/index.css';
 
 const EventViewer = props => {
     const { schema = 'eventViewer', data = [], defaultPadding = '1.25rem' } = props;
-    const [rowId, setRowId] = useState(0);
+    const [row, setRow] = useState({ values: { id: 0 } });
 
-    const handleRowClick = id => {
-        setRowId(id);
+    const handleRowClick = ({ row }) => {
+        setRow(row);
     };
 
     const customStyle = {
@@ -30,12 +30,12 @@ const EventViewer = props => {
                             defaultRowHeight='45'
                             schema={schema}
                             onRowClick={handleRowClick}
-                            nowSelected={rowId}
+                            nowSelected={row.values.id}
                             browseData={data}
                         />
                     </div>
                     <div>
-                        <LogDetail id={rowId} />
+                        <LogDetail row={row} />
                     </div>
                 </SplitterLayout>
             </div>
@@ -44,15 +44,15 @@ const EventViewer = props => {
 };
 
 const LogDetail = props => {
-    const { id } = props;
+    const { row } = props;
     // detail 데이터 불러오는 코드 필요
-    const { detail, description } = logDummy[id];
+    const { regex, original_log, description, ...detail } = row.values;
 
     return (
         <div className='logDetail'>
             <div className='logDetailContent'>
                 <Header />
-                <Body detail={detail} description={description} />
+                <Body regex={regex} log={original_log} description={description} />
             </div>
         </div>
     );
@@ -68,17 +68,28 @@ const Header = () => {
 };
 
 const Body = props => {
-    const { detail, description } = props;
+    const { regex, log, description } = props;
+    const regexObj = new RegExp(regex);
+    const { groups = [] } = regexObj.exec(log);
+
     return (
         <div className='detailBody'>
-            {Object.entries(detail).map((entrie, key) => {
+            {Object.entries(groups).map((group, index) => {
+                return (
+                    <div key={index} className='detailBox'>
+                        <div className='head'>{group[0]}</div>
+                        <div className='data'>{group[1]}</div>
+                    </div>
+                );
+            })}
+            {/* {Object.entries(detail).map((entrie, key) => {
                 return (
                     <div key={key} className='detailBox'>
                         <div className='head'>{entrie[0]}</div>
                         <div className='data'>{entrie[1]}</div>
                     </div>
                 );
-            })}
+            })} */}
             <hr />
             <Description description={description} />
         </div>

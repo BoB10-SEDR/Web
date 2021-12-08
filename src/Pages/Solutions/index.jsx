@@ -14,9 +14,7 @@ const Settings = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
 
-    let { data: solutions = dummySolutions, error } = useSWR(`/policies/custom`, () =>
-        fetcher(`/policies/custom?page=${page}`)
-    );
+    let { data: solutions = [], error } = useSWR(`/policies/custom`, () => fetcher(`/policies/custom?page=${page}`));
 
     const onToggleActivate = async ({ row }) => {
         const { device_idx: deviceIdx, idx: policyIdx } = row;
