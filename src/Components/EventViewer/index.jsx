@@ -34,9 +34,7 @@ const EventViewer = props => {
                             browseData={data}
                         />
                     </div>
-                    <div>
-                        <LogDetail row={row} />
-                    </div>
+                    <LogDetail row={row} />
                 </SplitterLayout>
             </div>
         </div>
@@ -46,13 +44,13 @@ const EventViewer = props => {
 const LogDetail = props => {
     const { row } = props;
     // detail 데이터 불러오는 코드 필요
-    const { regex, original_log, description, ...detail } = row.values;
+    const { parsedLog, original_log, description, ...detail } = row.values;
 
     return (
         <div className='logDetail'>
             <div className='logDetailContent'>
                 <Header />
-                <Body regex={regex} log={original_log} description={description} />
+                <Body parsedLog={parsedLog} description={description} />
             </div>
         </div>
     );
@@ -68,21 +66,10 @@ const Header = () => {
 };
 
 const Body = props => {
-    const { regex, log, description } = props;
-    const regexObj = new RegExp(regex);
-    const { groups = [] } = regexObj.exec(log);
-
+    const { parsedLog, description } = props;
     return (
         <div className='detailBody'>
-            {Object.entries(groups).map((group, index) => {
-                return (
-                    <div key={index} className='detailBox'>
-                        <div className='head'>{group[0]}</div>
-                        <div className='data'>{group[1]}</div>
-                    </div>
-                );
-            })}
-            {/* {Object.entries(detail).map((entrie, key) => {
+            {/* {Object.entries(parsedLog).map((entrie, key) => {
                 return (
                     <div key={key} className='detailBox'>
                         <div className='head'>{entrie[0]}</div>
@@ -90,6 +77,7 @@ const Body = props => {
                     </div>
                 );
             })} */}
+            {parsedLog}
             <hr />
             <Description description={description} />
         </div>
