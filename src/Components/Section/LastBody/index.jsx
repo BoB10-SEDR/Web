@@ -5,15 +5,20 @@ const LastBody = props => {
     const [selectedItems, setSelectedItems] = useState(new Set());
 
     useEffect(() => {
-        onSubmit(selectedItems);
+        const param = [];
+        selectedItems.forEach(item => {
+            param.push(JSON.parse(item));
+        });
+        onSubmit(param);
     }, [isSubmitted]);
 
     const handleSelectedItem = (item, isSelected) => {
+        const element = JSON.stringify(item);
         if (isSelected) {
-            selectedItems.add(item);
+            selectedItems.add(element);
             setSelectedItems(selectedItems);
-        } else if (!isSelected && selectedItems.has(item)) {
-            selectedItems.delete(item);
+        } else if (!isSelected && selectedItems.has(element)) {
+            selectedItems.delete(element);
             setSelectedItems(selectedItems);
         }
     };

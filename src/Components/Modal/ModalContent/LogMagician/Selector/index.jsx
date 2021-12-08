@@ -23,7 +23,7 @@ const Selector = () => {
     };
 
     const setSelectedProcess = item => {
-        store.setSelectedProcessIndex(item.idx);
+        store.setSelectedProcessIndex(item.pid);
     };
 
     return (
@@ -59,7 +59,9 @@ const Selector = () => {
 const DeviceSection = props => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(12);
-    const { data = [], error } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url));
+    const { data = [], error } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url), {
+        refreshInterval: 60000,
+    });
 
     if (!data) return <div>loading...</div>;
 
@@ -73,28 +75,32 @@ const ProcessSection = props => {
 
     const { data = [], error } = useSWR(
         deviceIndex ? `/monitoring/${deviceIndex}/process?page=${page}&limit=${limit}` : null,
-        url => fetcher(url)
+        url => fetcher(url),
+        { refreshInterval: 60000 }
     );
 
     if (!data) return <div>loading...</div>;
-
-    console.log(data);
 
     return <Section data={data} {...rest} />;
 };
 
 const FileSection = props => {
     const { deviceIndex, pid, ...rest } = props;
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(12);
     const { data = [], error } = useSWR(
-        deviceIndex && pid ? `/monitoring/${deviceIndex}/process/${pid}/filedescriptor` : null,
-        url => fetcher(url)
+        deviceIndex && pid
+            ? `/monitoring/${deviceIndex}/process/${pid}/filedescriptor?page=${page}&limit=${limit}`
+            : null,
+        url => fetcher(url),
+        { refreshInterval: 60000 }
     );
 
     if (!data) return <div>loading...</div>;
 
     const filePathList = data.map(item => {
-        const { idx, name } = item;
-        return { idx, name };
+        const { idx, path: name, path } = item;
+        return { idx, name, path };
     });
 
     return <Section data={filePathList} {...rest} />;
