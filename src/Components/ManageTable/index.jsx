@@ -13,7 +13,7 @@ const ManageTable = props => {
                     <span>{title}</span>
                     {children}
                 </TableHeading>
-                <Table hasConfig hasToggle {...rest} />
+                <Table hasConfig {...rest} />
             </Card>
         </div>
     );

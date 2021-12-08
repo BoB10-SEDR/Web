@@ -41,6 +41,7 @@ const Settings = () => {
     return (
         <div id='monitoringSettings' className='page'>
             <ManageTable
+                hasToggle
                 title='정책 설정'
                 toggleId='idx'
                 toggleValueField='activate'

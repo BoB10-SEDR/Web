@@ -10,6 +10,7 @@ import {
     processTableSchema,
     filesSchema,
     monitoringTableSchema,
+    inspectionTableSchema,
 } from './schema';
 
 const getSchemaData = (type = '') => {
@@ -38,6 +39,8 @@ const getSchemaData = (type = '') => {
             return filesSchema;
         case 'monitoring':
             return monitoringTableSchema;
+        case 'inspection':
+            return inspectionTableSchema;
         default:
             return exampleSchema;
     }

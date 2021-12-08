@@ -113,11 +113,12 @@ export const recommandedPolicyListSchema = [
 
 // TODO_P :: 간격 배정
 export const inspectionTableSchema = [
-    { Header: '선택', accessor: 'check', align: 'center', isAbleToSort: false },
-    { Header: '테스트 ID', accessor: 'testID', align: 'left', isAbleToSort: false },
-    { Header: '테스트 이름', accessor: 'testName', align: 'left', isAbleToSort: false },
-    { Header: '테스트 대상 유형', accessor: 'target', align: 'left', isAbleToSort: false },
-    { Header: '대상 OS', accessor: 'target', align: 'left', isAbleToSort: false },
+    { Header: '테스트 ID', accessor: 'testID', align: 'center', isAbleToSort: false },
+    { Header: '대분류', accessor: 'main', align: 'center', isAbleToSort: false },
+    { Header: '중분류', accessor: 'classify', align: 'center', isAbleToSort: false },
+    { Header: '소분류', accessor: 'sub', align: 'center', isAbleToSort: false },
+    { Header: '테스트 이름', accessor: 'testName', align: 'left', width: '200', isAbleToSort: false },
+    { Header: '대상 OS', accessor: 'target', align: 'center', isAbleToSort: false },
     { Header: '테스트 설명', accessor: 'description', align: 'left', isAbleToSort: false },
 ];
 
