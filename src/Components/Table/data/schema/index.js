@@ -14,14 +14,14 @@ export const simpleSolutionsSchema = [
 ];
 
 export const solutionsSchema = [
-    { Header: '정책 ID', accessor: 'policy_idx', align: 'center', width: 80, isAbleToSort: true },
-    { Header: '대분류', accessor: 'main', align: 'center', width: 100, isAbleToSort: false },
+    { Header: '정책 ID', accessor: 'policy_idx', align: 'center', isAbleToSort: true },
+    { Header: '대분류', accessor: 'main', align: 'center', isAbleToSort: false },
     { Header: '중분류', accessor: 'classify', align: 'center', width: 150, isAbleToSort: false },
-    { Header: '소분류', accessor: 'sub', align: 'center', width: 100, isAbleToSort: false },
-    { Header: '정책 이름', accessor: 'name', align: 'center', width: 150, isAbleToSort: true },
+    { Header: '소분류', accessor: 'sub', align: 'center', width: 150, isAbleToSort: false },
+    { Header: '정책 이름', accessor: 'name', align: 'center', width: 250, isAbleToSort: true },
     { Header: '적용 장비 번호', accessor: 'device_idx', align: 'center', width: 150, isAbleToSort: true },
     { Header: '적용 장비 명', accessor: 'target', align: 'center', width: 150, isAbleToSort: true },
-    { Header: '대응 정책 설명', accessor: 'description', align: 'left', width: 200, isAbleToSort: true },
+    { Header: '대응 정책 설명', accessor: 'description', align: 'left', width: 200, isAbleToSort: true, show: false },
     {
         Header: '보안항목',
         accessor: 'security_category_idx',
