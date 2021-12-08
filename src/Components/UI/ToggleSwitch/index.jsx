@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const ToggleSwitch = props => {
-    const { id = 'switch', onToggle = () => {}, isToggled } = props;
+    const { id = 'switch', onActivate = () => {}, onInactivate = () => {}, isToggled } = props;
     const [toggle, setToggle] = useState(isToggled);
+    const ref = useRef(null);
 
     const handleChange = () => {
         setToggle(!toggle);
-        onToggle();
+        if (ref.current.checked) {
+            onActivate();
+        } else {
+            onInactivate();
+        }
     };
 
     return (
         <div className='toggleSwitch'>
-            <input type='checkbox' id={id} onChange={handleChange} checked={toggle} />
+            <input ref={ref} type='checkbox' id={id} onChange={handleChange} checked={toggle} />
             <label for={id}></label>
         </div>
     );

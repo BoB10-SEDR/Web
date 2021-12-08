@@ -18,7 +18,8 @@ const getColor = (status = '') => {
     switch (status.toLocaleLowerCase()) {
         case '불안정':
         case '오류':
-            return '#F66C6C';
+        case 'disconnect':
+            return '#595959';
         case '약함':
         case '경고':
         case 'pending':
@@ -30,6 +31,7 @@ const getColor = (status = '') => {
             return '#61CA68';
         case '정보':
             return '#727CF5';
+
         default:
             return '#6ECE6A';
     }

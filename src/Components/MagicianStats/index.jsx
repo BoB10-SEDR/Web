@@ -5,6 +5,7 @@ import Card from '@Components/Card';
 import d from '@Dummy/magician';
 import CardBodyForm from '@Components/Card/Form';
 import { fetcher } from '@Hooks/';
+import { format } from 'date-fns';
 
 const red = '#F02632';
 const blue = '#727CF5';
@@ -12,16 +13,16 @@ const pink = '#F66C6C';
 const green = '#61CA68';
 
 const MagicianStats = () => {
-    const [start, setStart] = useState('2020-01-01');
-    const [time, setTime] = useState(14400);
+    const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
+    const [time, setTime] = useState(5);
 
     const { data: statData, error: statDataError } = useSWR(
         `/dashboard/statistics?start=${start}&time=${time}`,
         url => fetcher(url),
-        { refreshInterval: 300000 }
+        { refreshInterval: 60000 }
     );
 
-    const { info, fail, device } = statData ? statData[0] : d;
+    const { info = 0, fail = 0, device = 0 } = statData ? statData[0] : d;
 
     return (
         <>

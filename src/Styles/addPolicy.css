@@ -39,6 +39,18 @@
     flex: 5;
 }
 
+#bodyWrapper .grid-3 {
+    flex: 3;
+}
+
+#bodyWrapper .grid-4 {
+    flex: 4;
+}
+
+#bodyWrapper .grid-5 {
+    flex: 5;
+}
+
 #bodyWrapper div:last-child {
     border-right: none;
     flex: 8;
@@ -76,6 +88,7 @@
 }
 
 #bodyWrapper .section .bodyList .bodyListItem {
+    position: relative;
     height: 40px;
     padding-left: 17px;
     cursor: pointer;
@@ -90,4 +103,23 @@
 #bodyWrapper .section .bodyList .bodyListItem[isBlocked='1'] {
     opacity: 0.2;
     cursor: default;
+}
+
+#bodyWrapper .section input[type='checkbox'] {
+    display: none;
+}
+
+#bodyWrapper .section input[type='checkbox'] + label {
+    display: block;
+}
+
+#bodyWrapper .section .bodyList .bodyListItem.checked {
+    background-color: #6c6e70;
+}
+
+#addPolicy .submitButton {
+    position: absolute;
+    top: 35px;
+    right: 30px;
+    z-index: 3;
 }

@@ -1,34 +1,29 @@
-import useSWR from 'swr';
 import { Row, Col } from '@Components/Grid';
+import { useEffect, useState } from 'react';
 import Card from '@Components/Card';
-import Bar from '@Components/Charts/Bar';
 import Pie from '@Components/Charts/Pie';
 import Table from '@Components/Table';
 import DeviceTable from '@Components/DeviceTable';
+import useSWR from 'swr';
 import DummyCardEx from '@Dummy/DummyCardEx';
-import BarDummy from '@Dummy/barChartDummy';
 import PieDummy from '@Dummy/pieChartDummy';
-import { dummyColumns, dummyData } from '@Dummy/solutionTableDummy';
 import '@Styles/dashboard.css';
 import CardBodyForm from '@Components/Card/Form';
-import Line from '@Components/Charts/Line';
-import Radar from '@Components/Charts/Radar';
 import SparkLines from '@Components/Charts/Sparklines';
+import TimeLine from '@Components/Charts/TimeLine';
+import ThreatRadar from '@Components/Charts/ThreatRadar';
 import d from '@Dummy/dashboardNumbers';
+import dummySolutions from '@Dummy/solutions';
 import { fetcher } from '@Hooks/';
+import { format } from 'date-fns';
 
 const Dashboard = () => {
-    const [start, time] = ['2020-01-01', 14400];
-    const requestConfig = { params: { start: start, time: time } };
-    const { data: statData, error: fetchStatDataError } = useSWR(
-        `dashboard/statistics?start=${start}&time=${time}`,
-        url => fetcher(url, requestConfig)
-    );
-    const { data: lineData, error: fetchLineDataError } = useSWR(`dashboard/logs?start=${start}&time=${time}`, url =>
-        fetcher(url, requestConfig)
-    );
+    const [page, limit] = [1, 10];
+    let { data: solutions = dummySolutions } = useSWR(`policies?page=${page}&limit=${limit}`, url => fetcher(url));
+    const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
+    const [time, setTime] = useState(5);
+    const { data: statData } = useSWR(`/dashboard/statistics?start=${start}&time=${time}`, url => fetcher(url));
 
-    const { barId, barData, barOptions } = BarDummy;
     const { pieId, pieData, pieOptions } = PieDummy;
 
     const red = '#F02632';
@@ -80,8 +75,7 @@ const Dashboard = () => {
                 <Col lg={6}>
                     <Card title='시간별 전체 로그 수'>
                         <DummyCardEx height='277px'>
-                            {/* <Slider /> */}
-                            <Line start={start} time={time} url={`dashboard/logs`} />
+                            <TimeLine />
                         </DummyCardEx>
                     </Card>
                 </Col>
@@ -89,7 +83,7 @@ const Dashboard = () => {
                 <Col lg={3}>
                     <Card title='보안항목 유형별 로그비율'>
                         <DummyCardEx height='277px'>
-                            <Radar />
+                            <ThreatRadar />
                         </DummyCardEx>
                     </Card>
                 </Col>
@@ -114,7 +108,7 @@ const Dashboard = () => {
                 <Col lg={6}>
                     <Card title='대응정책 적용/해제'>
                         <DummyCardEx height='314px'>
-                            <Table browseData={dummyData} />
+                            <Table schema='simpleSolutions' hasToggle toggleId='idx' browseData={solutions} />
                         </DummyCardEx>
                     </Card>
                 </Col>

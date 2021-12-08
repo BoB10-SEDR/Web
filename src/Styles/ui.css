@@ -49,7 +49,7 @@
 }
 
 .toggleSwitch input:checked + label {
-    background: #db7470;
+    background: red;
 }
 
 .toggleSwitch input:checked + label:after {
@@ -121,6 +121,10 @@
 
 .button.circle {
     border-radius: 50%;
+}
+
+.button.absolute {
+    position: absolute;
 }
 
 .button:not(:disabled):not(.disabled) {

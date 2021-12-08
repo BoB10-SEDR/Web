@@ -1,6 +1,6 @@
 import React from 'react';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { useAsyncDebounce, useFlexLayout, useGlobalFilter, useSortBy, useTable, useRowSelect } from 'react-table';
+import { useEffect, useMemo, useState } from 'react';
+import { useExpanded, useFlexLayout, useGlobalFilter, useSortBy, useTable, useRowSelect } from 'react-table';
 import getSchemaData from './data';
 import genData from './data/generator';
 import '@Styles/table.css';
@@ -8,10 +8,14 @@ import CheckBox from '@Components/UI/CheckBox';
 import Hr from '@Components/UI/Border';
 import matchSorter from 'match-sorter';
 import NoData from '@Components/UI/NoData';
+import ToggleSwitch from '@Components/UI/ToggleSwitch';
+import ConfigButtons from '@Components/UI/ConfigButtons';
+import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
 const Table = props => {
     const {
         id = 'table',
+        className = '',
         schema = 'example',
         defaultRowHeight = '60',
         defaultRowWidth = '50',
@@ -24,7 +28,15 @@ const Table = props => {
         nowSelected = 0,
         onRowClick = () => {},
         isSubmitted,
+        hasToggle,
+        toggleId,
+        toggleValueField,
+        onToggleActivate = () => {},
+        onToggleInactivate = () => {},
+        hasConfig,
+        isExpandable,
         onSubmit = () => {},
+        renderRowSubComponent = () => {},
     } = props;
     const [clickedIndex, setClickedIndex] = useState(nowSelected);
 
@@ -75,7 +87,8 @@ const Table = props => {
         prepareRow,
         setGlobalFilter,
         selectedFlatRows,
-        state: { selectedRowIds },
+        visibleColumns,
+        state: { selectedRowIds, expanded },
     } = useTable(
         {
             columns: schemaData,
@@ -86,17 +99,75 @@ const Table = props => {
         useFlexLayout,
         useGlobalFilter,
         useSortBy,
+        useExpanded,
         useRowSelect,
         hooks => {
-            if (!isCheckable) return;
-            hooks.visibleColumns.push(columns => [
-                {
-                    id: 'selection',
-                    Header: ({ getToggleAllRowsSelectedProps }) => <CheckBox {...getToggleAllRowsSelectedProps()} />,
-                    Cell: ({ row }) => <CheckBox {...row.getToggleRowSelectedProps()} />,
-                },
-                ...columns,
-            ]);
+            if (isCheckable) {
+                hooks.visibleColumns.push(columns => [
+                    {
+                        id: 'selection',
+                        Header: ({ getToggleAllRowsSelectedProps }) => (
+                            <CheckBox {...getToggleAllRowsSelectedProps()} />
+                        ),
+                        Cell: ({ row }) => <CheckBox {...row.getToggleRowSelectedProps()} />,
+                    },
+                    ...columns,
+                ]);
+            }
+            if (isExpandable) {
+                hooks.visibleColumns.push(columns => [
+                    {
+                        // Make an expander cell
+                        Header: () => null, // No header
+                        id: 'expander', // It needs an ID
+                        Cell: ({ row }) => (
+                            // Use Cell to render an expander for each row.
+                            // We can use the getToggleRowExpandedProps prop-getter
+                            // to build the expander.
+                            <span {...row.getToggleRowExpandedProps()}>
+                                {row.isExpanded ? <IoIosArrowDown /> : <IoIosArrowForward />}
+                            </span>
+                        ),
+                    },
+                    ...columns,
+                ]);
+            }
+            if (hasToggle) {
+                hooks.visibleColumns.push(columns => [
+                    ...columns,
+                    {
+                        id: 'toggle',
+                        Header: '상태',
+                        Cell: ({ row }) => {
+                            const original = row.original;
+                            return (
+                                <ToggleSwitch
+                                    id={original[toggleId]}
+                                    isToggled={original[toggleValueField]}
+                                    onActivate={() => onToggleActivate({ row })}
+                                    onInactivate={() => onToggleInactivate({ row })}
+                                />
+                            );
+                        },
+                        align: 'center',
+                        width: 100,
+                    },
+                ]);
+            }
+            if (hasConfig) {
+                hooks.visibleColumns.push(columns => [
+                    ...columns,
+                    {
+                        id: 'config',
+                        Header: '설정',
+                        Cell: ({ row }) => {
+                            return <ConfigButtons />;
+                        },
+                        align: 'center',
+                        width: 100,
+                    },
+                ]);
+            }
         }
     );
 
@@ -185,12 +256,12 @@ const Table = props => {
 
     useEffect(() => {
         if (!isSubmitted) return;
-        onSubmit(selectedFlatRows.map(d => d.original));
+        return onSubmit(selectedFlatRows.map(d => d.original));
     }, [isSubmitted]);
 
     // 아래는 스타일 적용을 위해 Tag이름 구분지어야함
     return (
-        <div id={id} className='table' style={{ height: tableHeight ?? null }}>
+        <div id={id} className={`table ${className}`} style={{ height: tableHeight ?? null }}>
             <div {...getTableProps()} className='tableWrapper'>
                 <div className='tableHeader'>
                     {headerGroups.map(headerGroup => (
@@ -240,6 +311,7 @@ const Table = props => {
                                             );
                                         })}
                                     </tr>
+                                    {row.isExpanded ? renderRowSubComponent({ row }) : null}
                                     {!isLast && <Hr />}
                                 </>
                             );

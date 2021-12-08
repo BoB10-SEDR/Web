@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
-import Chart from 'chart.js';
+import Chart from '@Components/Charts/Chart';
 
 const Pie = props => {
     const { id, data, options } = props;
-    const chartRef = React.createRef();
 
     const config = {
         type: 'doughnut',
@@ -11,16 +9,7 @@ const Pie = props => {
         options: options,
     };
 
-    useEffect(() => {
-        const myChartRef = chartRef.current.getContext('2d');
-        new Chart(myChartRef, config);
-    }, []);
-
-    return (
-        <div id='pieChartArea'>
-            <canvas id={id} ref={chartRef} />
-        </div>
-    );
+    return <Chart id='pieChartArea' config={config} />;
 };
 
 export default Pie;

@@ -2,10 +2,14 @@ import {
     exampleSchema,
     sparklineSchema,
     solutionsSchema,
+    simpleSolutionsSchema,
     deviceTableSchema,
     simpleDeviceSchema,
     eventViewerSchema,
     logMagicianSchema,
+    processTableSchema,
+    filesSchema,
+    monitoringTableSchema,
 } from './schema';
 
 const getSchemaData = (type = '') => {
@@ -18,6 +22,8 @@ const getSchemaData = (type = '') => {
             return sparklineSchema;
         case 'solutions':
             return solutionsSchema;
+        case 'simplesolutions':
+            return simpleSolutionsSchema;
         case 'devicetable':
             return deviceTableSchema;
         case 'simpledevice':
@@ -26,6 +32,12 @@ const getSchemaData = (type = '') => {
             return eventViewerSchema;
         case 'logmagician':
             return logMagicianSchema;
+        case 'process':
+            return processTableSchema;
+        case 'files':
+            return filesSchema;
+        case 'monitoring':
+            return monitoringTableSchema;
         default:
             return exampleSchema;
     }

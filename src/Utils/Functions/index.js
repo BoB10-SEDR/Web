@@ -1,3 +1,5 @@
+import ToggleSwitch from '@Components/UI/ToggleSwitch';
+
 export const randomRangeInteger = (range = [0, 100], isLeftIncluded = true, isRightIncluded = true) => {
     if (range.length !== 2) return -1;
 
