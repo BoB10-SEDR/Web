@@ -317,7 +317,7 @@ const Table = props => {
                                     <tr
                                         className={`tableRow ${clickedIndex === i ? ' clicked' : ''}`}
                                         {...row.getRowProps(rowProps)}
-                                        onClick={({ row }) => handleClick({ row })}
+                                        onClick={() => handleClick({ row })}
                                     >
                                         {row.cells.map(cell => {
                                             return (

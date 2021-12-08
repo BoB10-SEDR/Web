@@ -118,3 +118,11 @@
 #magician .inputBox .description.example {
     cursor: pointer;
 }
+
+#magician .buttons {
+    display: flex;
+}
+
+#magician .applyButton {
+    margin-right: 10px;
+}

@@ -17,7 +17,7 @@ const MagicianStats = () => {
     const [time, setTime] = useState(5);
 
     const { data: statData, error: statDataError } = useSWR(
-        `/dashboard/statistics?start=${start}&time=${time}`,
+        `/monitoring/statistics?start=${start}&time=${time}`,
         url => fetcher(url),
         { refreshInterval: 60000 }
     );

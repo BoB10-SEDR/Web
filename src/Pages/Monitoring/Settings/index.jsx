@@ -18,7 +18,7 @@ const Settings = () => {
         const body = {
             device_idx,
             process_name,
-            path,
+            log_path: path,
             regex,
             isActive,
         };

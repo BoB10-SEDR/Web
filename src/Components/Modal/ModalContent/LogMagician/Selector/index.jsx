@@ -23,7 +23,9 @@ const Selector = () => {
     };
 
     const setSelectedProcess = item => {
-        store.setSelectedProcessIndex(item.pid);
+        const { pid, name } = item;
+        store.setSelectedProcessIndex(pid);
+        store.setSelectedProcessName(name);
     };
 
     return (
@@ -51,6 +53,7 @@ const Selector = () => {
                 onSubmit={handleSubmit}
                 deviceIndex={store.selectedDeviceIndex}
                 pid={store.selectedProcessIndex}
+                processName={store.selectedProcessName}
             />
         </div>
     );
@@ -85,7 +88,7 @@ const ProcessSection = props => {
 };
 
 const FileSection = props => {
-    const { deviceIndex, pid, ...rest } = props;
+    const { deviceIndex, pid, processName, ...rest } = props;
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(12);
     const { data = [], error } = useSWR(
@@ -99,10 +102,12 @@ const FileSection = props => {
     if (!data) return <div>loading...</div>;
 
     const filePathList = data.map(item => {
-        const { idx, path: name, path } = item;
-        return { idx, name, path };
+        const { idx, path, name, ...rest } = item;
+        return { deviceIndex, idx, name: path, path, processName, ...rest };
     });
 
+    console.log(data);
+    console.log(filePathList);
     return <Section data={filePathList} {...rest} />;
 };
 

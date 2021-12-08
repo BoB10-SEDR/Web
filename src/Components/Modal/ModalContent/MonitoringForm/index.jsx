@@ -1,3 +1,4 @@
+import '@Styles/magicianForm.css';
 import { useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
@@ -8,7 +9,7 @@ import store from '@Stores/logMagician';
 const MonitoringForm = props => {
     const exampleReg = String.raw`(?<ip>.*?) (?<remote_log_name>.*?) (?<userid>.*?) \[(?<date>.*?)(?= ) (?<timezone>.*?)\] "(?<request_method>.*?) (?<path>.*?)(?<request_version> HTTP\/.*)?" (?<status>.*?) (?<length>.*?) "(?<referrer>.*?)" "(?<user_agent>.*?)" (?<session_id>.*?) (?<generation_time_micro>.*?) (?<virtual_host>.*)`;
     const { file, idx, description } = props;
-    const { path, deviceIdx, pid, processName } = file;
+    const { path, deviceIndex, pid, processName } = file;
     const [sampleLog, setSampleLog] = useState('');
     const [regExp, setRegExp] = useState(new RegExp(null));
     const [regError, setRegError] = useState('');
@@ -19,12 +20,14 @@ const MonitoringForm = props => {
         formState: { error },
     } = useForm();
 
+    console.log({ ...file });
+
     const { mutate } = useSWRConfig();
 
     const onSubmit = data => {
         const activateMonitoringFile = async () => {
             const body = {
-                device_idx: deviceIdx,
+                device_idx: deviceIndex,
                 path: path,
                 process_name: processName,
                 isActive: true,
@@ -118,7 +121,7 @@ const MonitoringForm = props => {
                 </div>
 
                 <div className='buttons'>
-                    <Button type='submit' className='submitButton'>
+                    <Button type='submit' className='applyButton'>
                         Apply
                     </Button>
                     {store.isLastTab() ? '' : <Button onClick={handleClick}>건너뛰기</Button>}

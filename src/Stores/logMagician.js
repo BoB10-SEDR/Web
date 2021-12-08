@@ -12,6 +12,7 @@ const logMagician = {
     isSubmitted: false,
     selectedDeviceIndex: null,
     selectedProcessIndex: null,
+    selectedProcessName: null,
     setActiveTab(value) {
         this.activeTab = value;
     },
@@ -59,6 +60,9 @@ const logMagician = {
     },
     setSelectedProcessIndex(value) {
         this.selectedProcessIndex = value;
+    },
+    setSelectedProcessName(value) {
+        this.selectedProcessName = value;
     },
 };
 
