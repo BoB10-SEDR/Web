@@ -8,10 +8,10 @@ import 'react-splitter-layout/lib/index.css';
 
 const EventViewer = props => {
     const { schema = 'eventViewer', data = [], defaultPadding = '1.25rem' } = props;
-    const [rowId, setRowId] = useState(0);
+    const [row, setRow] = useState({ values: { id: 0 } });
 
-    const handleRowClick = id => {
-        setRowId(id);
+    const handleRowClick = ({ row }) => {
+        setRow(row);
     };
 
     const customStyle = {
@@ -30,13 +30,11 @@ const EventViewer = props => {
                             defaultRowHeight='45'
                             schema={schema}
                             onRowClick={handleRowClick}
-                            nowSelected={rowId}
+                            nowSelected={row.values.id}
                             browseData={data}
                         />
                     </div>
-                    <div>
-                        <LogDetail id={rowId} />
-                    </div>
+                    <LogDetail row={row} />
                 </SplitterLayout>
             </div>
         </div>
@@ -44,15 +42,15 @@ const EventViewer = props => {
 };
 
 const LogDetail = props => {
-    const { id } = props;
+    const { row } = props;
     // detail 데이터 불러오는 코드 필요
-    const { detail, description } = logDummy[id];
+    const { parsedLog, original_log, description, ...detail } = row.values;
 
     return (
         <div className='logDetail'>
             <div className='logDetailContent'>
                 <Header />
-                <Body detail={detail} description={description} />
+                <Body parsedLog={parsedLog} description={description} />
             </div>
         </div>
     );
@@ -68,17 +66,18 @@ const Header = () => {
 };
 
 const Body = props => {
-    const { detail, description } = props;
+    const { parsedLog, description } = props;
     return (
         <div className='detailBody'>
-            {Object.entries(detail).map((entrie, key) => {
+            {/* {Object.entries(parsedLog).map((entrie, key) => {
                 return (
                     <div key={key} className='detailBox'>
                         <div className='head'>{entrie[0]}</div>
                         <div className='data'>{entrie[1]}</div>
                     </div>
                 );
-            })}
+            })} */}
+            {parsedLog}
             <hr />
             <Description description={description} />
         </div>

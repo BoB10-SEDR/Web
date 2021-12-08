@@ -1,3 +1,4 @@
+import '@Styles/magicianForm.css';
 import { useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
@@ -8,22 +9,34 @@ import store from '@Stores/logMagician';
 const MonitoringForm = props => {
     const exampleReg = String.raw`(?<ip>.*?) (?<remote_log_name>.*?) (?<userid>.*?) \[(?<date>.*?)(?= ) (?<timezone>.*?)\] "(?<request_method>.*?) (?<path>.*?)(?<request_version> HTTP\/.*)?" (?<status>.*?) (?<length>.*?) "(?<referrer>.*?)" "(?<user_agent>.*?)" (?<session_id>.*?) (?<generation_time_micro>.*?) (?<virtual_host>.*)`;
     const { file, idx, description } = props;
-    const { path, device_idx, pid } = file;
+    const { path, deviceIndex, pid, processName } = file;
     const [sampleLog, setSampleLog] = useState('');
-    const [regExp, setRegExp] = useState(new RegExp(exampleReg));
+    const [regExp, setRegExp] = useState(new RegExp(null));
     const [regError, setRegError] = useState('');
+    const [isExampleClicked, setIsExampleClicked] = useState(false);
     const {
         register,
         handleSubmit,
         formState: { error },
     } = useForm();
 
+    console.log({ ...file });
+
     const { mutate } = useSWRConfig();
 
     const onSubmit = data => {
         const activateMonitoringFile = async () => {
+            const body = {
+                device_idx: deviceIndex,
+                path: path,
+                process_name: processName,
+                isActive: true,
+                regex: regExp ?? null,
+            };
+
             try {
-                const response = axios.post(`/monitoring/${idx}/activate`);
+                const response = axios.post(`/monitoring`, body);
+                mutate('/monitoring');
                 alert('success');
             } catch (error) {
                 alert('error');
@@ -31,23 +44,7 @@ const MonitoringForm = props => {
             }
         };
 
-        const addMonitoringFile = async () => {
-            const body = {
-                device_idx: device_idx,
-                process_idx: pid,
-                file_descriptor_idx: idx,
-            };
-
-            try {
-                const response = axios.post(`/monitoring`, body);
-                mutate('/monitoring');
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
         activateMonitoringFile();
-        addMonitoringFile();
         store.setNextTab();
     };
 
@@ -85,6 +82,10 @@ const MonitoringForm = props => {
         store.setNextTab();
     };
 
+    const handleExampleClick = () => {
+        setIsExampleClicked(!isExampleClicked);
+    };
+
     return (
         <div className='form'>
             <div className='header'>
@@ -104,7 +105,11 @@ const MonitoringForm = props => {
                     <label htmlFor='regFormat'>
                         <div className='title'>정규식</div>
                         <div className='description'>그룹화 패턴을 사용해 필드를 지정해주세요</div>
-                        <input id='regFormat' value={regExp} onChange={handleRegFormatChange} />
+                        <span className='description example' onClick={handleExampleClick}>
+                            예시 보기
+                        </span>
+                        {isExampleClicked ? <div className='description'>{exampleReg}</div> : null}
+                        <input id='regFormat' value={regExp.source} onChange={handleRegFormatChange} />
                         <div className='error'>{regError}</div>
                     </label>
                 </div>
@@ -116,7 +121,7 @@ const MonitoringForm = props => {
                 </div>
 
                 <div className='buttons'>
-                    <Button type='submit' className='submitButton'>
+                    <Button type='submit' className='applyButton'>
                         Apply
                     </Button>
                     {store.isLastTab() ? '' : <Button onClick={handleClick}>건너뛰기</Button>}

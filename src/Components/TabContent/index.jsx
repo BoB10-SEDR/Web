@@ -1,7 +1,7 @@
 import '@Styles/deviceTabs.css';
 import { observer } from 'mobx-react';
 import { Tabs } from 'react-tabs';
-import Details from '@Pages/Logs/Details';
+import Details from '@Pages/Resources/Details';
 import { CustomTabList, CustomTab, CustomTabPanel, TabContent } from '@Components/CustomTabs';
 import TabPanelHeader from '@Components/UI/TabPanelHeader';
 import Card from '@Components/Card';

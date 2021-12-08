@@ -1,4 +1,4 @@
-import '@Styles/magician.css';
+import '@Styles/magicianForm.css';
 import { observer } from 'mobx-react';
 import { Tabs } from 'react-tabs';
 import { CustomTabList, CustomTab, CustomTabPanel } from '@Components/CustomTabs';
@@ -21,7 +21,7 @@ const PolicyFormatter = () => {
                 <div className='leftTab'>
                     <div className='header'>정책 마법사</div>
                     <CustomTabList>
-                        {store.selectedPolicies.map((policy, index) => {
+                        {store.selectedList.map((policy, index) => {
                             return (
                                 <CustomTab key={policy.idx} tabIndex={index}>
                                     <TabContent tabIndex={index} policy={policy} />
@@ -31,7 +31,7 @@ const PolicyFormatter = () => {
                     </CustomTabList>
                 </div>
                 <div className='tabForm'>
-                    {store.selectedPolicies.map((policy, index) => {
+                    {store.selectedList.map((policy, index) => {
                         return (
                             <CustomTabPanel key={index}>
                                 <PolicyForm idx={policy.idx} policy={policy} />

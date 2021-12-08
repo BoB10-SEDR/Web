@@ -4,13 +4,13 @@ import Line from '@Components/Charts/Line';
 import { fetcher } from '@Hooks/';
 import { format } from 'date-fns';
 import { useInterval } from 'react-use';
-import dummyTimeLine from '@Dummy/timeLine';
 
-const TimeLine = () => {
+const TimeLine = props => {
+    const { idx } = props;
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
     const [time, setTime] = useState(5);
 
-    const { data: fetchData = [], error } = useSWR(`/dashboard/logs?start=${start}&time=${time}`, url => fetcher(url), {
+    const { data: fetchData = [], error } = useSWR(`/monitoring/log/count?time=${time}`, url => fetcher(url), {
         refreshInterval: 60000,
     });
 
@@ -24,17 +24,19 @@ const TimeLine = () => {
     if (fetchData) {
         fetchData.map((item, index) => {
             if (index > 10) return;
-            const { date, info = 0 } = item;
+            const { date, total = 0 } = item;
             const timestamp = new Date(date);
             const hours = ('0' + timestamp.getHours()).slice(-2),
                 minutes = ('0' + timestamp.getMinutes()).slice(-2);
 
             labels.push(`${hours}:${minutes}`);
-            data.push(info);
+            data.push(total);
         });
     }
 
-    return <Line labels={labels} data={data} />;
+    const datasets = [{ data }];
+
+    return <Line labels={labels} datasets={datasets} />;
 };
 
 export default TimeLine;

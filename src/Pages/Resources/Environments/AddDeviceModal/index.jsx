@@ -1,8 +1,8 @@
 import '@Stores/addDeviceModal';
 import { observer } from 'mobx-react';
-import Modal from 'react-modal';
+import Modal from '@Components/Modal';
 import store from '@Stores/addDeviceModal';
-import ModalContent from './ModalContent';
+import ModalContent from '../../../../Components/Modal/ModalContent/AddDevice';
 
 const AddDeviceModal = () => {
     const customStyles = {

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { Tabs } from 'react-tabs';
 import { CustomTabList, CustomTab, CustomTabPanel } from '@Components/CustomTabs';
@@ -32,7 +33,7 @@ const LogFormatter = () => {
                 </div>
                 <div className='tabForm'>
                     {store.fdList.map((file, index) => {
-                        const { idx, name } = file;
+                        const { idx, path, name } = file;
                         return (
                             <CustomTabPanel key={index}>
                                 <MonitoringForm idx={file.idx} file={file} description={`${idx} / ${name}`} />

@@ -26,12 +26,13 @@ const LogMagician = () => {
 const ManageTable = () => {
     const { mutate } = useSWRConfig();
     const [page, setPage] = useState(1);
-    const { data: monitoringData = [], error } = useSWR(`/monitoring?page=${page}`, url => fetcher(url));
+    const [limit, setLimit] = useState(12);
+    const { data: monitoringData = [], error } = useSWR(`/monitoring?page=${page}&limit=${limit}`, url => fetcher(url));
 
     const onToggleActivate = async ({ row }) => {
         const { device_idx: deviceIdx, idx: policyIdx } = row;
         try {
-            const response = await axios.post(`/monitoring/${deviceIdx}/activate`);
+            const response = await axios.post(`/monitoring/${deviceIdx}/state`);
             mutate(`/monitoring`);
         } catch (error) {
             console.log(error);
@@ -41,7 +42,7 @@ const ManageTable = () => {
     const onToggleInactivate = async ({ row }) => {
         const { device_idx: deviceIdx, idx: policyIdx } = row;
         try {
-            const response = await axios.post(`/monitoring/${deviceIdx}/inactivate`);
+            const response = await axios.post(`/monitoring/${deviceIdx}/state`);
             mutate(`/monitoring`);
         } catch (error) {
             console.log(error);

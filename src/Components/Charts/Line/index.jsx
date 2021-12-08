@@ -8,17 +8,18 @@ const LineArea = props => {
     // TODO_P :: props 제거
     const {
         labels: dummyLabels = [],
-        data: dummyData = [],
-        labelName = '',
+        dataList: dummyData = [],
         unitCallback,
         labelCallback,
         chartID = 'lineChart',
     } = lineChartDummy;
-    const { labels = dummyLabels, data = dummyData } = props;
+    const { labels = dummyLabels, datasets = [] } = props;
 
     const chartData = {
         labels: labels,
-        datasets: [{ ...fixedChartData, label: labelName, data: data }],
+        datasets: datasets.map(item => {
+            return { ...fixedChartData, ...item };
+        }),
     };
 
     const chartOptions = getChartOptions(unitCallback, labelCallback);

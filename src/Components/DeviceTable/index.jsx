@@ -14,7 +14,7 @@ const DeviceTable = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(100);
     const {
-        data: devicesData = dummyDevices,
+        data: devicesData = [],
         error,
         isValidating,
     } = useSWR(`/devices?page`, () => fetcher(`/devices?page=${page}&limit=${limit}`), { refreshInterval: 10000 });

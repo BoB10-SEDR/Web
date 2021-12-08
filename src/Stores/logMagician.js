@@ -6,6 +6,35 @@ const logMagician = {
     fdList: [],
     isSubmitted: false,
     activeTab: 0,
+    isOpen: false,
+    selectedList: [],
+    activeTab: 0,
+    sectionIndexList: [false, false, false],
+    isSubmitted: false,
+    selectedDeviceIndex: null,
+    selectedProcessIndex: null,
+    selectedProcessName: null,
+    setActiveTab(value) {
+        this.activeTab = value;
+    },
+    setIsOpen(value) {
+        this.isOpen = value;
+    },
+    setSelectedList(value = []) {
+        this.selectedList = value;
+    },
+    setSectionIndexList(index, value) {
+        this.sectionIndexList[index] = value;
+        const nextIndex = index + 1;
+        if (this.sectionIndexList.length <= nextIndex) return;
+
+        for (let i = nextIndex; i < this.sectionIndexList.length; i++) {
+            this.sectionIndexList[i] = false;
+        }
+    },
+    setIsSubmitted(value) {
+        this.isSubmitted = value;
+    },
     setDeviceList(value) {
         this.deviceList = value;
     },
@@ -14,7 +43,6 @@ const logMagician = {
     },
     addFdList(value) {
         this.fdList.push(...value);
-        console.log(value);
     },
     setIsSubmitted(value) {
         this.isSubmitted = value;
@@ -27,6 +55,15 @@ const logMagician = {
     },
     isLastTab() {
         return this.activeTab === this.fdList.length - 1;
+    },
+    setSelectedDeviceIndex(value) {
+        this.selectedDeviceIndex = value;
+    },
+    setSelectedProcessIndex(value) {
+        this.selectedProcessIndex = value;
+    },
+    setSelectedProcessName(value) {
+        this.selectedProcessName = value;
     },
 };
 

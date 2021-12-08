@@ -1,3 +1,4 @@
+import '@Styles/section.css';
 import LastBody from './LastBody';
 
 const Section = props => {
@@ -5,7 +6,7 @@ const Section = props => {
         title,
         data = [],
         grid = 3,
-        onSelect = () => {},
+        onSelect = (index, item) => {},
         selectedIndex = false,
         isLast,
         isSubmitted,
@@ -31,8 +32,8 @@ const Header = ({ children }) => {
 const Body = props => {
     const { data, onSelect, selectedIndex } = props;
 
-    const handleClick = index => {
-        onSelect(index);
+    const handleClick = (index, item) => {
+        onSelect(index, item);
     };
 
     return (
@@ -41,7 +42,7 @@ const Body = props => {
                 return (
                     <Item
                         key={index}
-                        onClick={() => handleClick(index)}
+                        onClick={() => handleClick(index, item)}
                         isSelected={index === selectedIndex ? '1' : ''}
                     >
                         {item.name}

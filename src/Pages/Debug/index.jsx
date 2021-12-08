@@ -2,7 +2,7 @@ import Card from '@Components/Card';
 import SparkLines from '@Components/Charts/Sparklines';
 import { Row, Col } from '@Components/Grid';
 import Modal from '@Components/Modal';
-import AddPolicy from '@Pages/Solutions/Magician/ModalContent';
+import SelectLogFile from '@Components/Modal/ModalContent/SelectLogFile';
 import Table from '@Components/Table';
 import { randomRangeIntegerArray } from '@Functions/';
 import '@Styles/debug.css';
@@ -30,7 +30,7 @@ const Debug = () => {
     return (
         <div id='debug' className='page'>
             <Modal hasButton buttonContent='추가하기'>
-                <AddPolicy />
+                <SelectLogFile />
             </Modal>
         </div>
     );

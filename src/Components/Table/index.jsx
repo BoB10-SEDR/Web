@@ -37,6 +37,8 @@ const Table = props => {
         isExpandable,
         onSubmit = () => {},
         renderRowSubComponent = () => {},
+        onEdit = () => {},
+        onDelete = () => {},
     } = props;
     const [clickedIndex, setClickedIndex] = useState(nowSelected);
 
@@ -78,6 +80,14 @@ const Table = props => {
         []
     );
 
+    const handleEdit = () => {
+        onEdit();
+    };
+
+    const handleDelete = () => {
+        onDelete();
+    };
+
     // 불러오는 값들을 기능에 따라 잘 정의해야함.
     const {
         getTableProps,
@@ -95,6 +105,11 @@ const Table = props => {
             data: browseData,
             defaultColumn,
             filterTypes,
+            initialState: {
+                hiddenColumns: schemaData.map(column => {
+                    if (column.show === false) return column.accessor || column.id;
+                }),
+            },
         },
         useFlexLayout,
         useGlobalFilter,
@@ -161,7 +176,7 @@ const Table = props => {
                         id: 'config',
                         Header: '설정',
                         Cell: ({ row }) => {
-                            return <ConfigButtons />;
+                            return <ConfigButtons onEdit={handleEdit} onDelete={handleDelete} />;
                         },
                         align: 'center',
                         width: 100,
@@ -229,9 +244,9 @@ const Table = props => {
         },
     ];
 
-    const handleClick = index => {
-        onRowClick(index);
-        setClickedIndex(index);
+    const handleClick = (i, { row }) => {
+        onRowClick({ row });
+        setClickedIndex(i);
     };
 
     // const onSearchKeywordChange = useAsyncDebounce(value => {
@@ -301,7 +316,7 @@ const Table = props => {
                                     <tr
                                         className={`tableRow ${clickedIndex === i ? ' clicked' : ''}`}
                                         {...row.getRowProps(rowProps)}
-                                        onClick={() => handleClick(i)}
+                                        onClick={() => handleClick(i, { row })}
                                     >
                                         {row.cells.map(cell => {
                                             return (

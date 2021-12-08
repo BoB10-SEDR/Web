@@ -11,7 +11,7 @@ const CollapseLinks = props => {
                 <div className='collapseInner'>
                     {items.map((item, index) => {
                         return (
-                            <NavLink key={index} className='collapseItem' to={item.path}>
+                            <NavLink exact key={index} className='collapseItem' to={item.path}>
                                 {item.title}
                             </NavLink>
                         );
