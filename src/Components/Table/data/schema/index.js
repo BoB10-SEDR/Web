@@ -85,6 +85,7 @@ export const logMagicianSchema = [
     { Header: '상세 설명', accessor: 'description', align: 'left', isAbleToSort: false },
     { Header: 'raw', accessor: 'original_log', align: 'left', isAbleToSort: false, show: false },
     { Header: '세부 정보', accessor: 'parsedLog', align: 'left', isAbleToSort: false, show: false },
+    { Header: '정규식', accessor: 'log_regex', align: 'center', isAbleToSort: true, show: false },
 ];
 
 // TODO_P :: 간격 배정
