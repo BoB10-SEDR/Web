@@ -65,12 +65,8 @@
 }
 
 #testDashboard .taskDetail {
-    flex: 0 0 66.6666%;
-
+    width: 100%;
     padding: 30px;
-
-    display: flex;
-    flex-direction: column;
 }
 
 #testDashboard .taskDetail .taskDetailHeader {
@@ -102,4 +98,9 @@
 #testDashboard .taskDetail .taskDetailHeader .functions {
     display: flex;
     flex-direction: row;
+}
+
+#testDashboard .tabs {
+    display: flex;
+    width: 100%;
 }

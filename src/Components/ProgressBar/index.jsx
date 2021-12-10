@@ -6,7 +6,7 @@ const ProgressBar = props => {
     // Zero-based
     const [selectedIdx, setSelectedIdx] = useState(0);
 
-    const { steps } = props;
+    const { steps = [] } = props;
 
     useEffect(() => {
         setSelectedIdx(0);
@@ -18,6 +18,7 @@ const ProgressBar = props => {
         <div id='checkout-progress' className={wrapperClassName}>
             <div className='progress-bar'>
                 {steps.map((label, idx) => {
+                    const { level_name: levelName, status } = label;
                     const nowIdx = idx + 1;
                     const isActive = idx === selectedIdx;
                     const isValid = idx < selectedIdx;
@@ -43,7 +44,7 @@ const ProgressBar = props => {
                                 <Circle />
                             )}
                             <div className={`fa fa-${isFailed ? 'times' : 'check'} ${!isValid ? 'opaque' : ''}`}></div>
-                            <div className='step-label'> {label}</div>
+                            <div className='step-label'> {levelName}</div>
                         </div>
                     );
                 })}

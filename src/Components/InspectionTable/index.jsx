@@ -4,13 +4,18 @@ import axios from 'axios';
 import { fetcher } from '@Hooks/';
 import ManageTable from '@Components/ManageTable';
 import Button from '@Components/UI/Button';
-import dummy from '@Dummy/inspection';
+import dummy from '@Dummy/inspectionTable';
 import store from '@Stores/inspection';
 
 const InspectionTable = () => {
-    const { data = dummy, error } = useSWR(`/inspection`, url => fetcher(url));
+    const { data = dummy, error } = useSWR(`/inspections`, url => fetcher(url));
 
     const handleSubmit = data => {
+        if (!data.length) {
+            alert('점검 항목을 선택해주세요');
+            return;
+        }
+
         store.setSelectedInspections(data);
         store.setIsSubmitted(false);
 
@@ -20,10 +25,11 @@ const InspectionTable = () => {
             };
 
             try {
-                const response = await axios.get(`/inspection/task`, body);
-                store.setTicketList(response.data.outputs[0].ticket_list);
+                const response = await axios.post(`/inspection/task`, body);
+                store.setTicketList(response.data.outputs.ticket_list);
             } catch (error) {
                 alert('error');
+                console.log(error);
             } finally {
                 store.setSelectedInspections([]);
             }
