@@ -1,15 +1,23 @@
 #testDashboard {
     flex-direction: row;
-
+    height: 500px;
     font-family: 'NanumSquare';
 }
 
 #testDashboard .taskListWrapper {
+    display: flex;
+    flex-direction: column;
     flex: 0 0 33.3333%;
-
-    padding: 25px 20px 0;
-
+    padding-left: 20px;
+    padding-top: 25px;
     background-color: #35383d;
+}
+
+#testDashboard .taskListWrapper .header {
+    position: sticky;
+    top: 0;
+    background-color: #35383d;
+    height: 60px;
 }
 
 #testDashboard .taskListWrapper h6 {
@@ -27,6 +35,11 @@
     margin: 10px 0 0;
 
     background-color: #9aa1ab25;
+}
+
+#testDashboard .taskListWrapper .body {
+    padding-right: 20px;
+    overflow: auto;
 }
 
 #testDashboard .taskListWrapper ul.taskList .taskItem {
@@ -65,12 +78,8 @@
 }
 
 #testDashboard .taskDetail {
-    flex: 0 0 66.6666%;
-
+    width: 100%;
     padding: 30px;
-
-    display: flex;
-    flex-direction: column;
 }
 
 #testDashboard .taskDetail .taskDetailHeader {
@@ -102,4 +111,9 @@
 #testDashboard .taskDetail .taskDetailHeader .functions {
     display: flex;
     flex-direction: row;
+}
+
+#testDashboard .tabs {
+    display: flex;
+    width: 100%;
 }

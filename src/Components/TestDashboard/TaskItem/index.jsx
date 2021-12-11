@@ -1,25 +1,38 @@
-import useSWR from 'swr';
+import { useMemo } from 'react';
 import { observer } from 'mobx-react';
 import { Status } from '@Components/UI';
-import { fetcher } from '@Hooks/';
-import store from '@Stores/inspection';
 
+// TODO_P :: Status 붙이고 Style 수정
 const TaskItem = props => {
-    const { index, name, timestamp, onClick = () => {} } = props;
+    const { item = {} } = props;
+    const {
+        name,
+        timestamp,
+        total_level: totalLevel = 0,
+        now_level: nowLevel = 0,
+        process_info: processInfo = [],
+    } = item;
 
-    const isSelected = store.selectedTaskIndex === index ? 1 : 0;
+    const updateStatus = () => {
+        if (totalLevel === nowLevel) return processInfo[totalLevel - 1].status;
 
-    // TODO_P :: Status 붙이고 Style 수정
+        for (let i = 0; i < processInfo.length; i++) {
+            if (processInfo[i].status === 'FAIL') return 'FAIL';
+        }
+        return processInfo[0].status === 'IN PROGRESS' ? 'IN PROGRESS' : 'PENDING';
+    };
+
+    const status = useMemo(() => updateStatus(), [processInfo]);
 
     return (
-        <li className='taskItem' mode={isSelected} onClick={onClick}>
+        <li className='taskItem'>
             <div className='taskInfo'>
                 <span className='taskName'>{name}</span>
                 <span className='taskDescription'>{timestamp}</span>
             </div>
 
             <div className='status'>
-                <Status status={'pending'} />
+                <Status status={status} />
             </div>
         </li>
     );

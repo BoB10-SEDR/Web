@@ -118,8 +118,8 @@ export const recommandedPolicyListSchema = [
 export const inspectionTableSchema = [
     { Header: '테스트 ID', accessor: 'idx', align: 'center', isAbleToSort: false },
     { Header: '대분류', accessor: 'main', align: 'center', isAbleToSort: false },
-    { Header: '중분류', accessor: 'sub', align: 'center', isAbleToSort: false },
-    { Header: '소분류', accessor: 'classify', align: 'center', isAbleToSort: false },
+    { Header: '중분류', accessor: 'sub', align: 'center', width: '100', isAbleToSort: false },
+    { Header: '소분류', accessor: 'classify', align: 'center', width: '100', isAbleToSort: false },
     { Header: '테스트 이름', accessor: 'name', align: 'left', width: '200', isAbleToSort: false },
     { Header: '대상 기기', accessor: 'target', align: 'center', isAbleToSort: false, show: false },
     { Header: '설정값', accessor: 'configs', align: 'center', isAbleToSort: false, show: false },

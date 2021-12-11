@@ -1,40 +1,40 @@
-import DotsLoader from '@Components/UI/DotsLoader';
 import '@Styles/progressBar.css';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import DotsLoader from '@Components/UI/DotsLoader';
 
 const ProgressBar = props => {
     // Zero-based
-    const [selectedIdx, setSelectedIdx] = useState(0);
-
-    const { steps } = props;
+    const { steps = [] } = props;
+    const [currentLevel, setCurrentLevel] = useState(0);
 
     useEffect(() => {
-        setSelectedIdx(0);
+        for (let i = 0; i < steps.length; i++) {
+            const { status } = steps[i];
+            if (status === 'IN PROGRESS') {
+                setCurrentLevel(i);
+                return;
+            }
+        }
     }, [steps]);
 
-    const wrapperClassName = `step-${selectedIdx + 1}-of-${steps.length}`;
+    const wrapperClassName = `step-${currentLevel + 1}-of-${steps.length}`;
 
     return (
         <div id='checkout-progress' className={wrapperClassName}>
             <div className='progress-bar'>
                 {steps.map((label, idx) => {
+                    const { level_name: levelName, status } = label;
                     const nowIdx = idx + 1;
-                    const isActive = idx === selectedIdx;
-                    const isValid = idx < selectedIdx;
+                    const isActive = status === 'IN PROGRESS';
+                    const isValid = status === 'FIN';
 
                     // TODO_P :: fail 그리고 Success 로직
                     const isFailed = false;
 
                     const elementClassName = `step step-${nowIdx} ${isActive ? 'active' : isValid ? 'valid' : ''}`;
 
-                    const handleClick = e => {
-                        e.preventDefault();
-
-                        setSelectedIdx(idx);
-                    };
-
                     return (
-                        <div className={elementClassName} onClick={handleClick}>
+                        <div className={elementClassName}>
                             {isActive ? (
                                 <DotsLoader />
                             ) : isValid ? (
@@ -43,7 +43,7 @@ const ProgressBar = props => {
                                 <Circle />
                             )}
                             <div className={`fa fa-${isFailed ? 'times' : 'check'} ${!isValid ? 'opaque' : ''}`}></div>
-                            <div className='step-label'> {label}</div>
+                            <div className='step-label'> {levelName}</div>
                         </div>
                     );
                 })}

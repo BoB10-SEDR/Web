@@ -5,6 +5,7 @@ const inspection = {
     selectedInspections: [],
     ticketList: [],
     selectedTaskIndex: 0,
+    activeTab: 0,
     setIsSubmitted(value) {
         this.isSubmitted = value;
     },
@@ -16,6 +17,9 @@ const inspection = {
     },
     setTicketList(value) {
         this.ticketList = value;
+    },
+    setActiveTab(index) {
+        this.activeTab = index;
     },
 };
 
