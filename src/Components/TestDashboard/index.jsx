@@ -19,7 +19,7 @@ import { dummyTasks } from '@Dummy/dummyTask.js';
 const TestDashboard = () => {
     const tasks = store.ticketList;
     const requestConfig = { params: { task_queue: tasks } };
-    const { data = dummy } = useSWR(tasks ? `/inspeciton/task` : null, url =>
+    const { data = dummy } = useSWR(tasks.length ? `/inspection/task` : null, url =>
         fetcher(url, requestConfig, { refreshInterval: 5000 })
     );
 
