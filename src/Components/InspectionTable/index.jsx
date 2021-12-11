@@ -8,7 +8,7 @@ import dummy from '@Dummy/inspectionTable';
 import store from '@Stores/inspection';
 
 const InspectionTable = () => {
-    const { data = dummy, error } = useSWR(`/inspections`, url => fetcher(url));
+    const { data = dummy, error } = useSWR(`/inspection`, url => fetcher(url));
 
     const handleSubmit = data => {
         if (!data.length) {
