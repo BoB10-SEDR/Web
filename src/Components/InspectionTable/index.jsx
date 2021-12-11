@@ -21,7 +21,7 @@ const InspectionTable = () => {
 
         const postInspections = async () => {
             const body = {
-                apply_list: store.selectedInspections.map(item => item.idx),
+                apply_list: store.selectedInspections,
             };
 
             try {
