@@ -1,4 +1,4 @@
-import ToggleSwitch from '@Components/UI/ToggleSwitch';
+import { format } from 'date-fns';
 
 export const randomRangeInteger = (range = [0, 100], isLeftIncluded = true, isRightIncluded = true) => {
     if (range.length !== 2) return -1;
@@ -47,4 +47,9 @@ export const randomBoundInteger = (bound = 100000) => {
 
 export const randomPercent = () => {
     return `${Number(Math.round(Math.random() * 100 + 1))}%`;
+};
+
+export const formatTimestamp = timestamp => {
+    const date = new Date(timestamp);
+    return format(date, 'yyyy-MM-dd HH:mm:ss');
 };

@@ -1,13 +1,14 @@
 import { useMemo } from 'react';
 import { observer } from 'mobx-react';
 import { Status } from '@Components/UI';
+import { formatTimestamp } from '@Functions/';
 
 // TODO_P :: Status 붙이고 Style 수정
 const TaskItem = props => {
     const { item = {} } = props;
     const {
         name,
-        timestamp,
+        timestamp: rawTimestamp,
         total_level: totalLevel = 0,
         now_level: nowLevel = 0,
         process_info: processInfo = [],
@@ -23,6 +24,7 @@ const TaskItem = props => {
     };
 
     const status = useMemo(() => updateStatus(), [processInfo]);
+    const timestamp = useMemo(() => formatTimestamp(rawTimestamp), [rawTimestamp]);
 
     return (
         <li className='taskItem'>

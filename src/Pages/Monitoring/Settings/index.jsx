@@ -44,6 +44,8 @@ const Settings = () => {
                 browseData={monitoringData}
                 onToggleActivate={({ row }) => onToggleActivate({ row }, true)}
                 onToggleInactivate={({ row }) => onToggleActivate({ row }, false)}
+                isTimestampFormattable
+                timestampHeader='update_time'
             >
                 <Modal hasButton buttonContent='파일 추가'>
                     <LogMagician />
