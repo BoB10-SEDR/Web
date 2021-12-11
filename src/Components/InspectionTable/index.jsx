@@ -26,10 +26,9 @@ const InspectionTable = () => {
 
             try {
                 const response = await axios.post(`/inspection/task`, body);
-                store.setTicketList(response.data.outputs.ticket_list);
+                alert('success');
             } catch (error) {
                 alert('error');
-                console.log(error);
             } finally {
                 store.setSelectedInspections([]);
             }

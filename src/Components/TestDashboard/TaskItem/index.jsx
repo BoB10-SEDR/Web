@@ -5,13 +5,24 @@ import { Status } from '@Components/UI';
 // TODO_P :: Status 붙이고 Style 수정
 const TaskItem = props => {
     const { item = {} } = props;
-    const { name, timestamp, total_level: totalLevel = 0, now_level: nowLevel = 0 } = item;
+    const {
+        name,
+        timestamp,
+        total_level: totalLevel = 0,
+        now_level: nowLevel = 0,
+        process_info: processInfo = [],
+    } = item;
 
-    const updateStatus = (totalLevel, nowLevel) => {
-        return nowLevel < totalLevel ? 'pending' : '양호';
+    const updateStatus = () => {
+        if (totalLevel === nowLevel) return processInfo[totalLevel - 1].status;
+
+        for (let i = 0; i < processInfo.length; i++) {
+            if (processInfo[i].status === 'FAIL') return 'FAIL';
+        }
+        return processInfo[0].status === 'IN PROGRESS' ? 'IN PROGRESS' : 'PENDING';
     };
 
-    const status = useMemo(() => updateStatus(totalLevel, nowLevel), [totalLevel, nowLevel]);
+    const status = useMemo(() => updateStatus(), [processInfo]);
 
     return (
         <li className='taskItem'>

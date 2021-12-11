@@ -17,11 +17,7 @@ import dummy from '@Dummy/testDashboard';
 import { dummyTasks } from '@Dummy/dummyTask.js';
 
 const TestDashboard = () => {
-    const tasks = store.ticketList;
-    const requestConfig = { params: { task_queue: tasks } };
-    const { data = dummy } = useSWR(tasks.length ? `/inspection/task` : null, url =>
-        fetcher(url, requestConfig, { refreshInterval: 5000 })
-    );
+    const { data = dummy } = useSWR(`/inspection/task`, url => fetcher(url, { refreshInterval: 5000 }));
 
     const taskInfo = data.task_info ?? [];
 
@@ -38,20 +34,24 @@ const TestDashboard = () => {
                 onSelect={handleSelect}
             >
                 <div className='taskListWrapper'>
-                    <h6>Test Dashboard</h6>
-                    <div className='hr' />
-                    <ul className='taskList'>
-                        <CustomTabList>
-                            {taskInfo.map((item, index) => {
-                                const { ticket_idx: ticketIndex = index } = item;
-                                return (
-                                    <CustomTab key={ticketIndex} tabIndex={index}>
-                                        <TaskItem tabIndex={index} item={item} />
-                                    </CustomTab>
-                                );
-                            })}
-                        </CustomTabList>
-                    </ul>
+                    <div className='header'>
+                        <h6>Test Dashboard</h6>
+                        <div className='hr' />
+                    </div>
+                    <div className='body'>
+                        <ul className='taskList'>
+                            <CustomTabList>
+                                {taskInfo.map((item, index) => {
+                                    const { ticket_idx: ticketIndex = index } = item;
+                                    return (
+                                        <CustomTab key={ticketIndex} tabIndex={index}>
+                                            <TaskItem tabIndex={index} item={item} />
+                                        </CustomTab>
+                                    );
+                                })}
+                            </CustomTabList>
+                        </ul>
+                    </div>
                 </div>
                 <div className='taskDetail'>
                     {taskInfo.map((item, index) => {

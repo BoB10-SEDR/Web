@@ -10,7 +10,7 @@ const ProgressBar = props => {
     useEffect(() => {
         for (let i = 0; i < steps.length; i++) {
             const { status } = steps[i];
-            if (status === 'PENDING') {
+            if (status === 'IN PROGRESS') {
                 setCurrentLevel(i);
                 return;
             }
@@ -25,7 +25,7 @@ const ProgressBar = props => {
                 {steps.map((label, idx) => {
                     const { level_name: levelName, status } = label;
                     const nowIdx = idx + 1;
-                    const isActive = status === 'PENDING';
+                    const isActive = status === 'IN PROGRESS';
                     const isValid = status === 'FIN';
 
                     // TODO_P :: fail 그리고 Success 로직
