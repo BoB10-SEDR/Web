@@ -69,7 +69,7 @@ const Body = props => {
     const { originalLog, description, logRegex, detail } = props;
     const reg = new RegExp(logRegex);
     const result = reg.exec(originalLog);
-    const groups = result.groups;
+    const groups = result && result.groups;
 
     return (
         <div className='detailBody'>
