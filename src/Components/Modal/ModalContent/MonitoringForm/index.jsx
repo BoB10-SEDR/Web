@@ -8,7 +8,7 @@ import store from '@Stores/logMagician';
 
 const MonitoringForm = ({ file }) => {
     const exampleReg = String.raw`(?<ip>.*?) (?<remote_log_name>.*?) (?<userid>.*?) \[(?<date>.*?)(?= ) (?<timezone>.*?)\] "(?<request_method>.*?) (?<path>.*?)(?<request_version> HTTP\/.*)?" (?<status>.*?) (?<length>.*?) "(?<referrer>.*?)" "(?<user_agent>.*?)" (?<session_id>.*?) (?<generation_time_micro>.*?) (?<virtual_host>.*)`;
-    const { idx, description, path, deviceIndex, pid, processName } = file;
+    const { idx, name, description, path, deviceIndex, pid, processName, log_path } = file;
     const [sampleLog, setSampleLog] = useState('');
     const [regExp, setRegExp] = useState(new RegExp(null));
     const [regError, setRegError] = useState('');
@@ -18,8 +18,6 @@ const MonitoringForm = ({ file }) => {
         handleSubmit,
         formState: { error },
     } = useForm();
-
-    console.log({ ...file });
 
     const { mutate } = useSWRConfig();
 
@@ -88,7 +86,7 @@ const MonitoringForm = ({ file }) => {
     return (
         <div className='form'>
             <div className='header'>
-                <div className='name'>{path}</div>
+                <div className='name'>{path ?? log_path}</div>
                 <div className='description'>{description}</div>
             </div>
 
