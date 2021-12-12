@@ -71,7 +71,7 @@
     font-weight: 400;
     padding-top: 14px;
     min-height: 300px;
-    overflow: scroll;
+    overflow: auto;
 }
 
 #magician .body .section .bodyList .bodyListItem {
