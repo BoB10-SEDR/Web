@@ -32,11 +32,10 @@ const LogFormatter = () => {
                     </CustomTabList>
                 </div>
                 <div className='tabForm'>
-                    {store.fdList.map((file, index) => {
-                        const { idx, path, name } = file;
+                    {store.fdList.map(file => {
                         return (
-                            <CustomTabPanel key={index}>
-                                <MonitoringForm idx={file.idx} file={file} description={`${idx} / ${name}`} />
+                            <CustomTabPanel key={file.idx}>
+                                <MonitoringForm file={file} />
                             </CustomTabPanel>
                         );
                     })}

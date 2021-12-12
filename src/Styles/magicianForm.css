@@ -56,7 +56,7 @@
     color: #999999;
 }
 
-#magician .result {
+.form .result {
     min-height: 200px;
     background-color: #1a1a1a;
     border-radius: 10px;
@@ -64,11 +64,11 @@
     padding: 10px;
 }
 
-#magician .submitButton {
+.form .submitButton {
     margin-right: 10px;
 }
 
-#magician select {
+.form select {
     width: 300px;
     height: 40px;
     outline: 0 none;
@@ -82,7 +82,7 @@
     margin-top: 5px;
 }
 
-#magician input {
+.form input {
     width: 100%;
     height: 50px;
     padding-left: 10px;
@@ -95,34 +95,34 @@
     margin-top: 5px;
 }
 
-#magician .inputBox {
+.form .inputBox {
     margin-bottom: 30px;
 }
 
-#magician .inputBox .title {
+.form .inputBox .title {
     font-size: 1.2rem;
 }
 
-#magician .inputBox .description {
+.form .inputBox .description {
     font-size: 0.9rem;
     color: #999999;
 }
 
-#magician .error {
+.form .error {
     color: red;
     height: 0.9rem;
     font-size: 0.9rem;
     margin-top: 5px;
 }
 
-#magician .inputBox .description.example {
+.form .inputBox .description.example {
     cursor: pointer;
 }
 
-#magician .buttons {
+.form .buttons {
     display: flex;
 }
 
-#magician .applyButton {
+.form .applyButton {
     margin-right: 10px;
 }

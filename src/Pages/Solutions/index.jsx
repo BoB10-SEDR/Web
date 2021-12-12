@@ -7,6 +7,8 @@ import ManageTable from '@Components/ManageTable';
 import { fetcher } from '@Hooks/';
 import PolicyMagician from '@Components/Modal/ModalContent/PolicyMagician';
 import store from '@Stores/policyMagician';
+import PolicyForm from '@Components/Modal/ModalContent/PolicyForm';
+import ConfigButtons from '@Components/UI/ConfigButtons';
 import dummySolutions from '@Dummy/solutions';
 
 const Settings = () => {
@@ -17,16 +19,9 @@ const Settings = () => {
     let { data: solutions = [], error } = useSWR(`/policies/custom`, () => fetcher(`/policies/custom?page=${page}`));
 
     const onToggleActivate = async ({ row }, activate) => {
-        const { device_idx, idx: policy_idx, security_category_idx = 0 } = row.values;
-        const body = {
-            device_idx,
-            policy_idx,
-            security_category_idx,
-            activate,
-            data: null,
-        };
+        const { idx } = row.values;
         try {
-            const response = await axios.post(`/policies/custom`, body);
+            const response = await axios.post(`/policies/${idx}/state`);
             mutate(`/policies/custom`);
         } catch (error) {
             console.log(error);
@@ -46,6 +41,7 @@ const Settings = () => {
                 onSubmit={data => store.setSelectedPolicies(data)}
                 onToggleActivate={({ row }) => onToggleActivate({ row }, true)}
                 onToggleInactivate={({ row }) => onToggleActivate({ row }, false)}
+                ConfigButtons={Configs}
             >
                 <Modal hasButton buttonContent='추가하기'>
                     <PolicyMagician />
@@ -53,6 +49,15 @@ const Settings = () => {
             </ManageTable>
         </div>
     );
+};
+
+const Configs = ({ rowValues }) => {
+    const EditModal = () => {
+        return <PolicyForm policy={rowValues} />;
+    };
+
+    console.log(rowValues);
+    return <ConfigButtons EditModal={EditModal} />;
 };
 
 export default observer(Settings);

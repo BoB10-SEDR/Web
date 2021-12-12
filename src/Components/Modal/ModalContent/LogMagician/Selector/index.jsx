@@ -106,8 +106,6 @@ const FileSection = props => {
         return { deviceIndex, idx, name: path, path, processName, ...rest };
     });
 
-    console.log(data);
-    console.log(filePathList);
     return <Section data={filePathList} {...rest} />;
 };
 

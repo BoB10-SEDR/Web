@@ -2,13 +2,11 @@ import '@Styles/magicianForm.css';
 import useSWR from 'swr';
 import { useForm } from 'react-hook-form';
 import Button from '@Components/UI/Button';
-import { getPolicy, postPolicyActivate, getPolicyDevices, getPolicies } from '@Api/policies';
 import { fetcher } from '@Hooks/';
 import axios from 'axios';
 
-const PolicyForm = props => {
-    const { policy, idx } = props;
-    const { name, description } = policy;
+const PolicyForm = ({ policy }) => {
+    const { idx, name, description } = policy;
     const { data: devicesData = { active: [], recommend: [] } } = useSWR(
         `policies/${idx}/devices`,
         url => fetcher(url),

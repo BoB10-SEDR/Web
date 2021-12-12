@@ -1,13 +1,20 @@
-import EditButton from '@Components/UI/EditButton';
+import { FiEdit } from 'react-icons/fi';
+import Modal from '@Components/Modal';
 import DeleteButton from '@Components/UI/DeleteButton';
 
 const ConfigButtons = props => {
-    const { onEdit = () => {}, onDelete = () => {} } = props;
+    const { EditModal, onDelete = () => {} } = props;
+
+    const EditButton = <FiEdit size='24' />;
+
+    const buttonStyle = { backgroundColor: 'transparent', borderColor: 'transparent' };
 
     return (
         <div className='configButtons'>
-            <EditButton onClick={onEdit} />
-            <DeleteButton onClick={onDelete} />
+            <Modal hasButton buttonClassName='editButton' buttonStyle={buttonStyle} buttonContent={EditButton}>
+                {EditModal && <EditModal />}
+            </Modal>
+            <DeleteButton onDelete={onDelete} />
         </div>
     );
 };

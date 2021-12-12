@@ -6,10 +6,9 @@ import { useForm } from 'react-hook-form';
 import Button from '@Components/UI/Button';
 import store from '@Stores/logMagician';
 
-const MonitoringForm = props => {
+const MonitoringForm = ({ file }) => {
     const exampleReg = String.raw`(?<ip>.*?) (?<remote_log_name>.*?) (?<userid>.*?) \[(?<date>.*?)(?= ) (?<timezone>.*?)\] "(?<request_method>.*?) (?<path>.*?)(?<request_version> HTTP\/.*)?" (?<status>.*?) (?<length>.*?) "(?<referrer>.*?)" "(?<user_agent>.*?)" (?<session_id>.*?) (?<generation_time_micro>.*?) (?<virtual_host>.*)`;
-    const { file, idx, description } = props;
-    const { path, deviceIndex, pid, processName } = file;
+    const { idx, name, description, path, deviceIndex, pid, processName, log_path } = file;
     const [sampleLog, setSampleLog] = useState('');
     const [regExp, setRegExp] = useState(new RegExp(null));
     const [regError, setRegError] = useState('');
@@ -19,8 +18,6 @@ const MonitoringForm = props => {
         handleSubmit,
         formState: { error },
     } = useForm();
-
-    console.log({ ...file });
 
     const { mutate } = useSWRConfig();
 
@@ -89,7 +86,7 @@ const MonitoringForm = props => {
     return (
         <div className='form'>
             <div className='header'>
-                <div className='name'>{path}</div>
+                <div className='name'>{path ?? log_path}</div>
                 <div className='description'>{description}</div>
             </div>
 

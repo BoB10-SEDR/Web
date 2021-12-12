@@ -1,5 +1,5 @@
 #deviceTable .tableContent {
-    overflow: scroll;
+    overflow: auto;
 }
 
 #deviceTable .tableUtils {
