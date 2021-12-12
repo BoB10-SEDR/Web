@@ -11,6 +11,7 @@ import NoData from '@Components/UI/NoData';
 import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import ConfigButtons from '@Components/UI/ConfigButtons';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
+import { formatTimestamp } from '@Functions/';
 
 const Table = props => {
     const {
@@ -39,6 +40,8 @@ const Table = props => {
         renderRowSubComponent = () => {},
         onEdit = () => {},
         onDelete = () => {},
+        isTimestampFormattable,
+        timestampHeader,
     } = props;
     const [clickedIndex, setClickedIndex] = useState(nowSelected);
 
@@ -310,6 +313,10 @@ const Table = props => {
                     <div {...getTableBodyProps()}>
                         {rows.map((row, i) => {
                             const isLast = i === rows.length - 1;
+                            if (isTimestampFormattable) {
+                                const rawTimestamp = row.values[timestampHeader];
+                                row.values[timestampHeader] = formatTimestamp(rawTimestamp);
+                            }
                             prepareRow(row);
                             return (
                                 <>

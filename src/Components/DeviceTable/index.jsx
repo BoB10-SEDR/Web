@@ -55,6 +55,8 @@ const DeviceTable = () => {
                             defaultFontSize='14'
                             schema='simpleDevice'
                             browseData={filteredData}
+                            isTimestampFormattable
+                            timestampHeader='update_time'
                         />
                     </DummyCardEx>
                 </div>
