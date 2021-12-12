@@ -100,6 +100,12 @@ const AddDevice = props => {
                         {createSelector(environmentCategoryList)}
                     </select>
                 </div>
+                <div className='inputBox'>
+                    <label for='ip'>
+                        <div className='title'>IP</div>
+                    </label>
+                    <input id='ip' {...register(`ip`)} />
+                </div>
 
                 <Button type='submit' className='block'>
                     Add

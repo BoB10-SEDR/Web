@@ -14,11 +14,11 @@ const TaskDetail = props => {
             const { timestamp, status, detail = [] } = step;
             return (
                 <div className='item'>
-                    <div className=''>
+                    <div>
                         {timestamp} {status}
                     </div>
                     {detail.map(item => {
-                        return <div className=''>{item}</div>;
+                        return <div>{item}</div>;
                     })}
                 </div>
             );

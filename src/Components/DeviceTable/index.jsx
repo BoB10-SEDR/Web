@@ -9,6 +9,7 @@ import DummyCardEx from '@Dummy/DummyCardEx';
 import dummyDevices from '@Dummy/deviceTableDummy';
 import { fetcher } from '@Hooks/';
 import Status from '@Components/UI/Status';
+import ConfigButtons from '@Components/UI/ConfigButtons';
 
 const DeviceTable = () => {
     const [page, setPage] = useState(1);
@@ -57,12 +58,18 @@ const DeviceTable = () => {
                             browseData={filteredData}
                             isTimestampFormattable
                             timestampHeader='update_time'
+                            hasConfig
+                            ConfigButtons={Configs}
                         />
                     </DummyCardEx>
                 </div>
             </Card>
         </div>
     );
+};
+
+const Configs = ({ rowValues }) => {
+    return <ConfigButtons />;
 };
 
 export default DeviceTable;

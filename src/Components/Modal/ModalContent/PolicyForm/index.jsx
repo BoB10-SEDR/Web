@@ -6,8 +6,9 @@ import { fetcher } from '@Hooks/';
 import axios from 'axios';
 import ArgumentForm from './ArgumentForm';
 
-const PolicyForm = ({ policy }) => {
-    const { idx, name, description } = policy;
+const PolicyForm = props => {
+    const { isEdit, policy } = props;
+    const { idx, policy_idx, name, description } = policy;
     const { data: devicesData = { active: [], recommend: [] } } = useSWR(
         `policies/${idx}/devices`,
         url => fetcher(url),
@@ -25,23 +26,39 @@ const PolicyForm = ({ policy }) => {
     if (!devicesData) return <div>loading...</div>;
     if (!fetchPolicyData) return <div>loading...</div>;
 
-    const { argument } = fetchPolicyData[0];
+    const { security_category_idx = 0, argument } = fetchPolicyData[0];
 
     const onSubmit = data => {
         const { deviceIdx, ...args } = data;
         const argsData = {};
 
-        args.map(arg => {
-            const { name, ...rest } = arg;
-            argsData.name = data[name];
+        Object.entries(args).map(([key, value]) => {
+            argsData[key] = value;
         });
 
-        const body = {
-            custom_policy_idx: idx,
-            data: argsData,
+        const addPolicy = async () => {
+            const body = {
+                device_idx: deviceIdx,
+                policy_idx: policy_idx ?? idx,
+                security_category_idx,
+                activate: true,
+                data: argsData,
+            };
+            try {
+                const data = await axios.post(`/policies/custom`, body);
+                alert('success');
+            } catch (error) {
+                alert('error');
+                console.log(error);
+            }
         };
 
-        const activatePolicy = async () => {
+        const editPolicy = async () => {
+            const body = {
+                custom_policy_idx: idx,
+                data: argsData,
+            };
+
             try {
                 const data = await axios.put(`/policies/custom`, body);
                 alert('success');
@@ -51,7 +68,11 @@ const PolicyForm = ({ policy }) => {
             }
         };
 
-        activatePolicy();
+        if (isEdit) {
+            editPolicy();
+        } else {
+            addPolicy();
+        }
     };
 
     return (
