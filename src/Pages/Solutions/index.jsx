@@ -7,6 +7,8 @@ import ManageTable from '@Components/ManageTable';
 import { fetcher } from '@Hooks/';
 import PolicyMagician from '@Components/Modal/ModalContent/PolicyMagician';
 import store from '@Stores/policyMagician';
+import PolicyForm from '@Components/Modal/ModalContent/PolicyForm';
+import ConfigButtons from '@Components/UI/ConfigButtons';
 import dummySolutions from '@Dummy/solutions';
 
 const Settings = () => {
@@ -46,6 +48,7 @@ const Settings = () => {
                 onSubmit={data => store.setSelectedPolicies(data)}
                 onToggleActivate={({ row }) => onToggleActivate({ row }, true)}
                 onToggleInactivate={({ row }) => onToggleActivate({ row }, false)}
+                ConfigButtons={Configs}
             >
                 <Modal hasButton buttonContent='추가하기'>
                     <PolicyMagician />
@@ -53,6 +56,15 @@ const Settings = () => {
             </ManageTable>
         </div>
     );
+};
+
+const Configs = ({ rowValues }) => {
+    const EditModal = () => {
+        return <PolicyForm policy={rowValues} />;
+    };
+
+    console.log(rowValues);
+    return <ConfigButtons EditModal={EditModal} />;
 };
 
 export default observer(Settings);

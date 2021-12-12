@@ -9,7 +9,6 @@ import Hr from '@Components/UI/Border';
 import matchSorter from 'match-sorter';
 import NoData from '@Components/UI/NoData';
 import ToggleSwitch from '@Components/UI/ToggleSwitch';
-import ConfigButtons from '@Components/UI/ConfigButtons';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 import { formatTimestamp } from '@Functions/';
 
@@ -35,11 +34,10 @@ const Table = props => {
         onToggleActivate = () => {},
         onToggleInactivate = () => {},
         hasConfig,
+        ConfigButtons,
         isExpandable,
         onSubmit = () => {},
         renderRowSubComponent = () => {},
-        onEdit = () => {},
-        onDelete = () => {},
         isTimestampFormattable,
         timestampHeader,
     } = props;
@@ -82,14 +80,6 @@ const Table = props => {
         }),
         []
     );
-
-    const handleEdit = () => {
-        onEdit();
-    };
-
-    const handleDelete = () => {
-        onDelete();
-    };
 
     // 불러오는 값들을 기능에 따라 잘 정의해야함.
     const {
@@ -173,13 +163,14 @@ const Table = props => {
                 ]);
             }
             if (hasConfig) {
+                if (!ConfigButtons) return;
                 hooks.visibleColumns.push(columns => [
                     ...columns,
                     {
                         id: 'config',
                         Header: '설정',
                         Cell: ({ row }) => {
-                            return <ConfigButtons onEdit={handleEdit} onDelete={handleDelete} />;
+                            return <ConfigButtons rowValues={row.values} />;
                         },
                         align: 'center',
                         width: 100,

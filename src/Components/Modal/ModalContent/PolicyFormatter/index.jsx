@@ -31,10 +31,10 @@ const PolicyFormatter = () => {
                     </CustomTabList>
                 </div>
                 <div className='tabForm'>
-                    {store.selectedList.map((policy, index) => {
+                    {store.selectedList.map(policy => {
                         return (
-                            <CustomTabPanel key={index}>
-                                <PolicyForm idx={policy.idx} policy={policy} />
+                            <CustomTabPanel key={policy.idx}>
+                                <PolicyForm policy={policy} />
                             </CustomTabPanel>
                         );
                     })}

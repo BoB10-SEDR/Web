@@ -14,6 +14,7 @@ export const simpleSolutionsSchema = [
 ];
 
 export const solutionsSchema = [
+    { Header: '관리 ID', accessor: 'idx', align: 'center', isAbleToSort: true, show: false },
     { Header: '정책 ID', accessor: 'policy_idx', align: 'center', isAbleToSort: true },
     { Header: '대분류', accessor: 'main', align: 'center', isAbleToSort: false },
     { Header: '중분류', accessor: 'classify', align: 'center', width: 150, isAbleToSort: false },

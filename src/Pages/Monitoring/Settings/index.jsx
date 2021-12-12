@@ -3,8 +3,9 @@ import useSWR, { useSWRConfig } from 'swr';
 import axios from 'axios';
 import Modal from '@Components/Modal';
 import LogMagician from '@Components/Modal/ModalContent/LogMagician';
-import SelectLogFile from '@Components/Modal/ModalContent/SelectLogFile';
+import ConfigButtons from '@Components/UI/ConfigButtons';
 import ManageTable from '@Components/ManageTable';
+import MonitoringForm from '@Components/Modal/ModalContent/MonitoringForm';
 import { fetcher } from '@Hooks/';
 
 const Settings = () => {
@@ -46,6 +47,7 @@ const Settings = () => {
                 onToggleInactivate={({ row }) => onToggleActivate({ row }, false)}
                 isTimestampFormattable
                 timestampHeader='update_time'
+                ConfigButtons={Configs}
             >
                 <Modal hasButton buttonContent='파일 추가'>
                     <LogMagician />
@@ -53,6 +55,13 @@ const Settings = () => {
             </ManageTable>
         </div>
     );
+};
+
+const Configs = ({ rowValues }) => {
+    const EditModal = () => {
+        return <MonitoringForm file={rowValues} />;
+    };
+    return <ConfigButtons EditModal={EditModal} />;
 };
 
 export default Settings;
