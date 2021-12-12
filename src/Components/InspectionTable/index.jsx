@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import axios from 'axios';
 import { fetcher } from '@Hooks/';
 import ManageTable from '@Components/ManageTable';
@@ -9,6 +9,7 @@ import store from '@Stores/inspection';
 
 const InspectionTable = () => {
     const { data = dummy, error } = useSWR(`/inspection`, url => fetcher(url));
+    const { mutate } = useSWRConfig();
 
     const handleSubmit = data => {
         if (!data.length) {
@@ -26,6 +27,7 @@ const InspectionTable = () => {
 
             try {
                 const response = await axios.post(`/inspection/task`, body);
+                mutate(`/inspection/task`);
                 alert('success');
             } catch (error) {
                 alert('error');
