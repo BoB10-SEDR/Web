@@ -4,20 +4,9 @@ import DotsLoader from '@Components/UI/DotsLoader';
 
 const ProgressBar = props => {
     // Zero-based
-    const { steps = [] } = props;
-    const [currentLevel, setCurrentLevel] = useState(0);
+    const { steps = [], level } = props;
 
-    useEffect(() => {
-        for (let i = 0; i < steps.length; i++) {
-            const { status } = steps[i];
-            if (status === 'IN PROGRESS') {
-                setCurrentLevel(i);
-                return;
-            }
-        }
-    }, [steps]);
-
-    const wrapperClassName = `step-${currentLevel + 1}-of-${steps.length}`;
+    const wrapperClassName = `step-${level + 1}-of-${steps.length}`;
 
     return (
         <div id='checkout-progress' className={wrapperClassName}>
