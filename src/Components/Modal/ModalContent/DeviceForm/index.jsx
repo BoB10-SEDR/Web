@@ -2,6 +2,7 @@ import '@Styles/addDeviceModal.css';
 import useSWR, { useSWRConfig } from 'swr';
 import useSWRImmutable from 'swr/immutable';
 import { useMemo, useEffect } from 'react';
+import isIp from 'is-ip';
 import Button from '@Components/UI/Button';
 import { useForm, FormProvider, useFormContext } from 'react-hook-form';
 import axios from 'axios';
@@ -68,6 +69,7 @@ const DeviceForm = ({ deviceIdx }) => {
     const title = deviceIdx ? '장비 정보 수정하기' : '장비 추가하기';
     const description = deviceIdx ? '수정할 장비 정보를 입력해주세요' : '추가할 장비 정보를 입력해주세요';
     const requiredMessage = '필수 작성 목록입니다.';
+    const ipValidateMessage = '올바른 IP 형식을 입력해주세요. (IPv4 혹은 IPv6)';
 
     return (
         <div id='addDeviceModal'>
@@ -120,7 +122,13 @@ const DeviceForm = ({ deviceIdx }) => {
                         <label for='init_ip'>
                             <div className='title'>IP</div>
                         </label>
-                        <input id='init_ip' {...register(`init_ip`, { required: requiredMessage })} />
+                        <input
+                            id='init_ip'
+                            {...register(`init_ip`, {
+                                required: requiredMessage,
+                                validate: value => isIp(value) || ipValidateMessage,
+                            })}
+                        />
                         <FormErrorMessage errors={errors} name='init_ip' />
                     </div>
 
