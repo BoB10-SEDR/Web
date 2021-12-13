@@ -4,7 +4,7 @@ import useSWRImmutable from 'swr/immutable';
 import { useMemo, useEffect } from 'react';
 import isIp from 'is-ip';
 import Button from '@Components/UI/Button';
-import { useForm, FormProvider, useFormContext } from 'react-hook-form';
+import { useForm, FormProvider, useFormContext, Controller } from 'react-hook-form';
 import axios from 'axios';
 import { fetcher } from '@Hooks/';
 import ModalHeader from '@Components/Modal/ModalHeader';
@@ -143,7 +143,7 @@ const DeviceForm = ({ deviceIdx }) => {
 };
 
 const AgentToggle = () => {
-    const { register } = useFormContext();
+    const { register, control } = useFormContext();
     const isActivate = false;
 
     const handleActivate = activate => {
@@ -153,11 +153,18 @@ const AgentToggle = () => {
     return (
         <div className='inputBox agentToggle'>
             <span className='title'>에이전트 실행</span>
-            <ToggleSwitch
-                {...register('agent')}
-                isToggled={isActivate}
-                onActivate={() => handleActivate(true)}
-                onInactivate={() => handleActivate(false)}
+            <Controller
+                control={control}
+                name='agent'
+                render={({ field }) => (
+                    <ToggleSwitch
+                        {...field}
+                        isToggled={isActivate}
+                        onActivate={() => handleActivate(true)}
+                        onInactivate={() => handleActivate(false)}
+                        onChange={event => field.onChange(event.target.checked)}
+                    />
+                )}
             />
         </div>
     );
