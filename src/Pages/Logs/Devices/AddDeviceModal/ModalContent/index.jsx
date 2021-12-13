@@ -32,7 +32,7 @@ const ModalContent = props => {
         console.log(data);
         try {
             const response = await axios.post(`/devices`, data);
-            mutate(`/devices/page`);
+            mutate(`/devices`);
             alert('success');
         } catch (error) {
             console.log(error);

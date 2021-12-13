@@ -11,8 +11,14 @@
 #taskInformation .process {
     width: 100%;
     height: 200px;
+    padding: 10px;
 
     background-color: rgba(154, 161, 171, 0.2);
 
     border-radius: 6px;
+    overflow: auto;
+}
+
+#taskInformation .process .item {
+    margin-bottom: 20px;
 }

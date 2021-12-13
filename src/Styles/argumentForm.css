@@ -1,0 +1,31 @@
+#argumentForm .itemsRow {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: black;
+}
+
+#argumentForm .itemsRow .inputBox {
+    display: flex;
+    margin-right: 10px;
+}
+
+#argumentForm .itemsRow .inputBox .button {
+    align-self: center;
+    margin-right: 10px;
+}
+
+#argumentForm .itemsRow .inputBox .button.addButton {
+    background-color: green !important;
+    border-color: green !important;
+}
+
+#argumentForm .itemsRow select {
+    background: #262626 no-repeat;
+}
+
+#argumentForm .itemsRow input {
+    background-color: #262626;
+}

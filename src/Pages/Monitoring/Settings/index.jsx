@@ -12,8 +12,10 @@ const Settings = () => {
     const { mutate } = useSWRConfig();
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(12);
-    const { data: monitoringData = [], error } = useSWR(`/monitoring`, () =>
-        fetcher(`/monitoring?page=${page}&limit=${limit}`)
+    const { data: monitoringData = [], error } = useSWR(
+        `/monitoring`,
+        () => fetcher(`/monitoring?page=${page}&limit=${limit}`),
+        { revalidateOnFocus: false }
     );
 
     const onToggleActivate = async ({ row }, isActive) => {

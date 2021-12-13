@@ -31,10 +31,12 @@ const getColor = (status = '') => {
             return '#61CA68';
         case '정보':
             return '#727CF5';
-        case 'completed':
-            return '#61CA68';
+        case 'fin':
+            return '#009933';
         case 'in progress':
             return '#61CA68';
+        case 'fail':
+            return 'red';
         default:
             return '#6ECE6A';
     }

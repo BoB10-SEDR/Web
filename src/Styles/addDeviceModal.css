@@ -121,6 +121,10 @@
     color: #999999;
 }
 
+#addDeviceModal .inputBox.agentToggle .title {
+    margin-right: 30px;
+}
+
 #addDeviceModal .error {
     color: red;
     height: 0.9rem;

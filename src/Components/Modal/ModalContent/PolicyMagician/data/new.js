@@ -150,6 +150,10 @@ const solutions = [
                                 idx: 3,
                                 name: 'SNMP 커뮤니티 권한 설정',
                             },
+                            {
+                                idx: 196,
+                                name: '접속 IP 및 포트 제한',
+                            },
                         ],
                     },
                     {

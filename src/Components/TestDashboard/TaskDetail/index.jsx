@@ -7,9 +7,26 @@ import { formatTimestamp } from '@Functions/';
 const TaskDetail = props => {
     const { item = {} } = props;
     const [currentLevel, setCurrentLevel] = useState(0);
-    const { name: title, timestamp: rawTimestamp, process_info: steps = [], detail = [] } = item;
+    const { name: title, timestamp: rawTimestamp, process_info: steps = [], description } = item;
+
+    const updateInformation = () => {
+        return steps.map(step => {
+            const { timestamp, status, detail = [] } = step;
+            return (
+                <div className='item'>
+                    <div>
+                        {timestamp} {status}
+                    </div>
+                    {detail.map(item => {
+                        return <div>{item}</div>;
+                    })}
+                </div>
+            );
+        });
+    };
 
     const timestamp = useMemo(() => formatTimestamp(rawTimestamp), [rawTimestamp]);
+    const information = useMemo(() => updateInformation(), [steps]);
 
     useEffect(() => {
         for (let i = 0; i < steps.length; i++) {
@@ -25,7 +42,7 @@ const TaskDetail = props => {
         <>
             <Header title={title} timestamp={timestamp} />
             <ProgressBar steps={steps} level={currentLevel} />
-            <TaskInformation detail={detail[currentLevel]} />
+            <TaskInformation detail={information} description={description} />
             {/* 적용 가능한 정책 list => 새로운 form */}
         </>
     );

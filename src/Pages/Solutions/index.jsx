@@ -53,7 +53,7 @@ const Settings = () => {
 
 const Configs = ({ rowValues }) => {
     const EditModal = () => {
-        return <PolicyForm policy={rowValues} />;
+        return <PolicyForm isEdit policy={rowValues} />;
     };
 
     console.log(rowValues);
