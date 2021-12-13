@@ -19,7 +19,10 @@ const DeviceTable = () => {
         data: devicesData = [],
         error,
         isValidating,
-    } = useSWR(`/devices`, () => fetcher(`/devices?page=${page}&limit=${limit}`), { refreshInterval: 60000 });
+    } = useSWR(`/devices`, () => fetcher(`/devices?page=${page}&limit=${limit}`), {
+        refreshInterval: 60000,
+        revalidateOnFocus: false,
+    });
     const [filteredData, setFilteredData] = useState([]);
 
     const handleSearch = input => {

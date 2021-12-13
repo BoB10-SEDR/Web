@@ -1,13 +1,13 @@
-import { useState, useRef } from 'react';
+import { useState, forwardRef } from 'react';
 
-const ToggleSwitch = props => {
+const ToggleSwitch = forwardRef((props, ref) => {
     const { id = 'switch', onActivate = () => {}, onInactivate = () => {}, isToggled } = props;
     const [toggle, setToggle] = useState(isToggled);
-    const ref = useRef(null);
 
-    const handleChange = () => {
-        setToggle(!toggle);
-        if (ref.current.checked) {
+    const handleChange = event => {
+        const checked = event.target.checked;
+        setToggle(checked);
+        if (checked) {
             onActivate();
         } else {
             onInactivate();
@@ -20,6 +20,6 @@ const ToggleSwitch = props => {
             <label for={id}></label>
         </div>
     );
-};
+});
 
 export default ToggleSwitch;

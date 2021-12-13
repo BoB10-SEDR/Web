@@ -29,6 +29,7 @@ const PolicyForm = props => {
     const { security_category_idx = 0, argument } = fetchPolicyData[0];
 
     const onSubmit = data => {
+        console.log(data);
         const { deviceIdx, ...args } = data;
         const argsData = {};
 
@@ -44,6 +45,8 @@ const PolicyForm = props => {
                 activate: true,
                 data: argsData,
             };
+
+            console.log(body);
             try {
                 const data = await axios.post(`/policies/custom`, body);
                 alert('success');
@@ -68,11 +71,7 @@ const PolicyForm = props => {
             }
         };
 
-        if (isEdit) {
-            editPolicy();
-        } else {
-            addPolicy();
-        }
+        isEdit ? editPolicy() : addPolicy();
     };
 
     return (

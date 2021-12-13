@@ -3,11 +3,12 @@ import useSWR, { useSWRConfig } from 'swr';
 import useSWRImmutable from 'swr/immutable';
 import { useMemo, useEffect } from 'react';
 import Button from '@Components/UI/Button';
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider, useFormContext } from 'react-hook-form';
 import axios from 'axios';
 import { fetcher } from '@Hooks/';
 import ModalHeader from '@Components/Modal/ModalHeader';
 import FormErrorMessage from '@Components/UI/FormErrorMessage';
+import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import * as dummy from '@Dummy/addDeviceDummy';
 
 //추후 리팩토링 필요
@@ -29,23 +30,26 @@ const DeviceForm = ({ deviceIdx }) => {
 
     const defaultValues = useMemo(() => values.length && values[0], [values]);
 
+    const methods = useForm({
+        defaultValues: defaultValues,
+    });
+
     const {
         register,
         reset,
         handleSubmit,
         formState: { errors },
-    } = useForm({
-        defaultValues: defaultValues,
-    });
+    } = methods;
 
     useEffect(() => {
         reset(values[0]);
     }, [isValidating]);
 
     const onSubmit = async data => {
+        console.log(data);
         try {
             if (deviceIdx) {
-                const response = await axios.put(`/devices`, data);
+                const response = await axios.put(`/devices/${deviceIdx}`, data);
             } else {
                 const response = await axios.post(`/devices`, data);
             }
@@ -70,59 +74,83 @@ const DeviceForm = ({ deviceIdx }) => {
             <div className='header'>
                 <ModalHeader title={title} description={description} />
             </div>
-            <form id='addDeviceForm' onSubmit={handleSubmit(onSubmit)} autocomplete='off'>
-                <div className='inputBox'>
-                    <label for='name'>
-                        <div className='title'>장비 명</div>
-                    </label>
-                    <input id='name' {...register(`name`, { required: requiredMessage })} />
-                    <FormErrorMessage errors={errors} name='name' />
-                </div>
+            <FormProvider {...methods}>
+                <form id='addDeviceForm' onSubmit={handleSubmit(onSubmit)} autocomplete='off'>
+                    <div className='inputBox'>
+                        <label for='name'>
+                            <div className='title'>장비 명</div>
+                        </label>
+                        <input id='name' {...register(`name`, { required: requiredMessage })} />
+                        <FormErrorMessage errors={errors} name='name' />
+                    </div>
 
-                <div className='inputBox'>
-                    <label for='model_name'>
-                        <div className='title'>모델 명</div>
-                    </label>
-                    <input id='model_name' {...register(`model_name`, { required: requiredMessage })} />
-                    <FormErrorMessage errors={errors} name='model_name' />
-                </div>
+                    <div className='inputBox'>
+                        <label for='model_name'>
+                            <div className='title'>모델 명</div>
+                        </label>
+                        <input id='model_name' {...register(`model_name`, { required: requiredMessage })} />
+                        <FormErrorMessage errors={errors} name='model_name' />
+                    </div>
 
-                <div className='inputBox'>
-                    <label for='category'>
-                        <div className='title'>장비 카테고리</div>
-                    </label>
-                    <select id='category' {...register(`category`, { required: true })}>
-                        <Selector items={deviceCategoryList} />
-                    </select>
-                </div>
-                <div className='inputBox'>
-                    <label for='network'>
-                        <div className='title'>네트워크 카테고리</div>
-                    </label>
-                    <select id='network' {...register(`network`, { required: true })}>
-                        <Selector items={networkCategoryList} />
-                    </select>
-                </div>
-                <div className='inputBox'>
-                    <label for='environment'>
-                        <div className='title'>장비 설치환경</div>
-                    </label>
-                    <select id='environment' {...register(`environment`, { required: true })}>
-                        <Selector items={environmentCategoryList} />
-                    </select>
-                </div>
-                <div className='inputBox'>
-                    <label for='ip'>
-                        <div className='title'>IP</div>
-                    </label>
-                    <input id='ip' {...register(`ip`, { required: requiredMessage })} />
-                    <FormErrorMessage errors={errors} name='ip' />
-                </div>
+                    <div className='inputBox'>
+                        <label for='category'>
+                            <div className='title'>장비 카테고리</div>
+                        </label>
+                        <select id='category' {...register(`category`, { required: true })}>
+                            <Selector items={deviceCategoryList} />
+                        </select>
+                    </div>
+                    <div className='inputBox'>
+                        <label for='network'>
+                            <div className='title'>네트워크 카테고리</div>
+                        </label>
+                        <select id='network' {...register(`network`, { required: true })}>
+                            <Selector items={networkCategoryList} />
+                        </select>
+                    </div>
+                    <div className='inputBox'>
+                        <label for='environment'>
+                            <div className='title'>장비 설치환경</div>
+                        </label>
+                        <select id='environment' {...register(`environment`, { required: true })}>
+                            <Selector items={environmentCategoryList} />
+                        </select>
+                    </div>
+                    <div className='inputBox'>
+                        <label for='init_ip'>
+                            <div className='title'>IP</div>
+                        </label>
+                        <input id='init_ip' {...register(`init_ip`, { required: requiredMessage })} />
+                        <FormErrorMessage errors={errors} name='init_ip' />
+                    </div>
 
-                <Button type='submit' className='block'>
-                    Add
-                </Button>
-            </form>
+                    <AgentToggle />
+                    <Button type='submit' className='block'>
+                        Add
+                    </Button>
+                </form>
+            </FormProvider>
+        </div>
+    );
+};
+
+const AgentToggle = () => {
+    const { register } = useFormContext();
+    const isActivate = false;
+
+    const handleActivate = activate => {
+        return null;
+    };
+
+    return (
+        <div className='inputBox agentToggle'>
+            <span className='title'>에이전트 실행</span>
+            <ToggleSwitch
+                {...register('agent')}
+                isToggled={isActivate}
+                onActivate={() => handleActivate(true)}
+                onInactivate={() => handleActivate(false)}
+            />
         </div>
     );
 };
