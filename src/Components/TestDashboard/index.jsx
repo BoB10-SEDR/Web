@@ -13,7 +13,7 @@ import { fetcher } from '@Hooks/';
 import dummy from '@Dummy/testDashboard';
 
 const TestDashboard = () => {
-    const { data = dummy } = useSWR(`/inspection/task`, url => fetcher(url), { refreshInterval: 5000 });
+    const { data = [] } = useSWR(`/inspection/task`, url => fetcher(url), { refreshInterval: 5000 });
 
     const taskInfo = data.task_info ?? [];
 
