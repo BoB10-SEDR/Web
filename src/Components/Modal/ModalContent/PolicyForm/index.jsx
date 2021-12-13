@@ -106,7 +106,7 @@ const DeviceInput = ({ devicesData = [] }) => {
         <div className='inputBox'>
             <label htmlFor='selectDevice'>
                 <div className='title'>장비 선택</div>
-                <select id='selectDevice' {...register('deviceIdx')}>
+                <select id='selectDevice' {...register('deviceIdx', { required: true })}>
                     {devicesData.recommand &&
                         devicesData.recommand.map((device, index) => {
                             const { idx, name } = device;

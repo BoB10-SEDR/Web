@@ -1,4 +1,4 @@
-import '@Styles/argumentForm.css'
+import '@Styles/argumentForm.css';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Button from '@Components/UI/Button';
@@ -52,7 +52,7 @@ const Items = props => {
         <div className='items'>
             {type === 'select' ? (
                 <label htmlFor='selectDevice'>
-                    <select id={id} {...register(name)}>
+                    <select id={id} {...register(name, { required: true })}>
                         {options.map((option, index) => {
                             return (
                                 <option key={index} value={option}>
@@ -67,7 +67,7 @@ const Items = props => {
                     <label htmlFor={id}>
                         <div className='title'>{name}</div>
                         <div className='description'>{description}</div>
-                        <input type={type} id={id} defaultValue={value} {...register(name)} />
+                        <input type={type} id={id} defaultValue={value} {...register(name, { required: true })} />
                     </label>
                 </div>
             )}

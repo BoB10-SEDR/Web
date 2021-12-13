@@ -10,6 +10,7 @@ import dummyDevices from '@Dummy/deviceTableDummy';
 import { fetcher } from '@Hooks/';
 import Status from '@Components/UI/Status';
 import ConfigButtons from '@Components/UI/ConfigButtons';
+import DeviceForm from '@Components/Modal/ModalContent/DeviceForm';
 
 const DeviceTable = () => {
     const [page, setPage] = useState(1);
@@ -18,7 +19,7 @@ const DeviceTable = () => {
         data: devicesData = [],
         error,
         isValidating,
-    } = useSWR(`/devices?page`, () => fetcher(`/devices?page=${page}&limit=${limit}`), { refreshInterval: 10000 });
+    } = useSWR(`/devices`, () => fetcher(`/devices?page=${page}&limit=${limit}`), { refreshInterval: 60000 });
     const [filteredData, setFilteredData] = useState([]);
 
     const handleSearch = input => {
@@ -48,28 +49,37 @@ const DeviceTable = () => {
                 <SearchBar onClick={handleSearch} />
                 <AddDeviceButton />
             </div>
-            <Card>
-                <div className='tableContent'>
-                    <DummyCardEx height='500px'>
-                        <Table
-                            defaultRowHeight='30'
-                            defaultFontSize='14'
-                            schema='simpleDevice'
-                            browseData={filteredData}
-                            isTimestampFormattable
-                            timestampHeader='update_time'
-                            hasConfig
-                            ConfigButtons={Configs}
-                        />
-                    </DummyCardEx>
-                </div>
-            </Card>
+            <Body data={filteredData} />
         </div>
     );
 };
 
+const Body = ({ data = [] }) => {
+    return (
+        <Card>
+            <div className='tableContent'>
+                <DummyCardEx height='500px'>
+                    <Table
+                        defaultRowHeight='30'
+                        defaultFontSize='14'
+                        schema='simpleDevice'
+                        browseData={data}
+                        isTimestampFormattable
+                        timestampHeader='update_time'
+                        hasConfig
+                        ConfigButtons={Configs}
+                    />
+                </DummyCardEx>
+            </div>
+        </Card>
+    );
+};
+
 const Configs = ({ rowValues }) => {
-    return <ConfigButtons />;
+    const EditModal = () => {
+        return <DeviceForm deviceIdx={rowValues.idx} />;
+    };
+    return <ConfigButtons EditModal={EditModal} />;
 };
 
 export default DeviceTable;
