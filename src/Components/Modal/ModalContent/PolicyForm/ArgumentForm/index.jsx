@@ -65,7 +65,7 @@ const Items = props => {
     const { id, item, isRowItem, rowId } = props;
     const { name, type = 'text', options, description, value } = item;
 
-    const fieldName = isRowItem ? `rows.${rowId}.${name}` : name;
+    const fieldName = isRowItem ? `rows.${rowId}.${name}` : `general.${name}`;
 
     return (
         <div className='inputBox'>

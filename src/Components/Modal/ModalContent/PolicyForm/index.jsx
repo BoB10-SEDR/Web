@@ -29,13 +29,11 @@ const PolicyForm = props => {
     const { security_category_idx = 0, argument } = fetchPolicyData[0];
 
     const onSubmit = data => {
-        console.log(data);
-        const { deviceIdx, ...args } = data;
-        const argsData = {};
+        const { deviceIdx, general, rows, ...args } = data;
+        const argsData = [];
 
-        Object.entries(args).map(([key, value]) => {
-            argsData[key] = value;
-        });
+        general && argsData.push(general);
+        rows && argsData.push(...rows);
 
         const addPolicy = async () => {
             const body = {
@@ -46,7 +44,6 @@ const PolicyForm = props => {
                 data: argsData,
             };
 
-            console.log(body);
             try {
                 const data = await axios.post(`/policies/custom`, body);
                 alert('success');
