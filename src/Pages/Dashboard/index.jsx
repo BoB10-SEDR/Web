@@ -1,5 +1,6 @@
 import { Row, Col } from '@Components/Grid';
 import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
 import Card from '@Components/Card';
 import Pie from '@Components/Charts/Pie';
 import Table from '@Components/Table';
@@ -16,13 +17,16 @@ import d from '@Dummy/dashboardNumbers';
 import dummySolutions from '@Dummy/solutions';
 import { fetcher } from '@Hooks/';
 import { format } from 'date-fns';
+import store from '@Stores/dashboard';
 
 const Dashboard = () => {
     const [page, limit] = [1, 10];
-    let { data: solutions = dummySolutions } = useSWR(`policies?page=${page}&limit=${limit}`, url => fetcher(url));
+    let { data: solutions = dummySolutions } = useSWR(`policies?page=${page}&limit=${limit}`, url => fetcher(url), {
+        refreshInterval: 60000,
+    });
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
     const [time, setTime] = useState(5);
-    const { data: statData } = useSWR(`/dashboard/statistics?start=${start}&time=${time}`, url => fetcher(url));
+    const { data: statData = [], isValidating } = useSWR(`/dashboard/statistics?time=${time}`, url => fetcher(url));
 
     const { pieId, pieData, pieOptions } = PieDummy;
 
@@ -36,7 +40,54 @@ const Dashboard = () => {
         padding: '25px 20px',
     };
 
-    const { total, attack_type, attack, device, module } = statData ? statData[0] : d;
+    const { totalLogs, threatType, threatLogs, devices, modules } = store;
+
+    const setTotal = data => {
+        let totalCount = 0;
+        data.map(item => {
+            const count = item.count ?? 0;
+            totalCount += count;
+        });
+        store.setTotalLogs(totalCount);
+    };
+
+    const setThreat = data => {
+        const { type, total_attack } = data[0] ?? 0;
+        store.setThreatType(type);
+        store.setThreatLogs(total_attack);
+    };
+
+    const setDevice = data => {
+        const devices = data[0].devices ?? 0;
+        store.setDevices(devices);
+    };
+
+    const setModule = data => {
+        const modules = data[0].devices ?? 0;
+        store.setModules(modules);
+    };
+
+    useEffect(() => {
+        statData.map(item => {
+            const { description, data } = item;
+            switch (description) {
+                case 'total':
+                    setTotal(data);
+                    break;
+                case 'threat':
+                    setThreat(data);
+                    break;
+                case 'device':
+                    setDevice(data);
+                    break;
+                case 'module':
+                    setModule(data);
+                    break;
+                default:
+                    break;
+            }
+        });
+    }, [isValidating]);
 
     return (
         <div id='dashboard'>
@@ -48,7 +99,7 @@ const Dashboard = () => {
                 </Col>
                 <Col xl={3} md={6}>
                     <Card border={`1px solid ${blue}`} {...cardDefaultConfig}>
-                        <CardBodyForm titleFontColor={blue} title='전체 로그 개수' content={`${total} 개`} />
+                        <CardBodyForm titleFontColor={blue} title='전체 로그 개수' content={`${totalLogs} 개`} />
                     </Card>
                 </Col>
                 <Col xl={3} md={6}>
@@ -56,7 +107,7 @@ const Dashboard = () => {
                         <CardBodyForm
                             titleFontColor={pink}
                             title='탐지 보안항목 로그 유형/개수'
-                            content={`${attack_type}/${attack} 개`}
+                            content={`${threatType}/${threatLogs} 개`}
                         />
                     </Card>
                 </Col>
@@ -65,7 +116,7 @@ const Dashboard = () => {
                         <CardBodyForm
                             titleFontColor={green}
                             title='등록된 장치/센서 수'
-                            content={`${device}/${module} 개`}
+                            content={`${devices}/${modules} 개`}
                         />
                     </Card>
                 </Col>
@@ -74,7 +125,7 @@ const Dashboard = () => {
             <Row>
                 <Col lg={6}>
                     <Card title='시간별 전체 로그 수'>
-                        <DummyCardEx height='277px'>
+                        <DummyCardEx height='300px'>
                             <TimeLine />
                         </DummyCardEx>
                     </Card>
@@ -82,7 +133,7 @@ const Dashboard = () => {
 
                 <Col lg={3}>
                     <Card title='보안항목 유형별 로그비율'>
-                        <DummyCardEx height='277px'>
+                        <DummyCardEx height='300px'>
                             <ThreatRadar />
                         </DummyCardEx>
                     </Card>
@@ -90,7 +141,9 @@ const Dashboard = () => {
 
                 <Col lg={3}>
                     <Card title='구성별 로그비율'>
-                        <Pie id={pieId} data={pieData} options={pieOptions} />
+                        <DummyCardEx height='300px'>
+                            <Pie id={pieId} data={pieData} options={pieOptions} />
+                        </DummyCardEx>
                     </Card>
                 </Col>
             </Row>
@@ -123,4 +176,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default observer(Dashboard);
