@@ -54,13 +54,13 @@ export const deviceTableSchema = [
 
 export const simpleDeviceSchema = [
     { Header: '식별번호', accessor: 'idx', align: 'center', isAbleToSort: true },
-    { Header: '종류', accessor: 'category', align: 'center', width: '100', isAbleToSort: false },
+    { Header: '종류', accessor: 'category', align: 'center', isAbleToSort: false },
     { Header: '이름', accessor: 'name', align: 'center', width: '150', isAbleToSort: true },
     { Header: '모델', accessor: 'model_name', align: 'center', width: '150', isAbleToSort: true },
-    { Header: '소속 구성', accessor: 'environment', align: 'center', width: '150', isAbleToSort: true },
-    { Header: '연결 상태', accessor: 'live', align: 'center', isAbleToSort: true },
+    { Header: '소속 구성', accessor: 'environment', align: 'center', isAbleToSort: true },
     { Header: '시리얼 번호', accessor: 'serial_number', align: 'center', width: '150', isAbleToSort: true },
-    { Header: '갱신 시간', accessor: 'update_time', align: 'center', width: '100', isAbleToSort: true },
+    { Header: '갱신 시간', accessor: 'update_time', align: 'center', width: '150', isAbleToSort: true },
+    { Header: '에이전트 상태', accessor: 'live', align: 'center', width: '100', isAbleToSort: true },
     // { Header: '상세 정보', accessor: 'description', align: 'center', isAbleToSort: false },
 ];
 

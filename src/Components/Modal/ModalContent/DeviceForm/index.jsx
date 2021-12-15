@@ -47,7 +47,6 @@ const DeviceForm = ({ deviceIdx }) => {
     }, [isValidating]);
 
     const onSubmit = async data => {
-        console.log(data);
         try {
             if (deviceIdx) {
                 const response = await axios.put(`/devices/${deviceIdx}`, data);
@@ -152,10 +151,10 @@ const AgentToggle = () => {
 
     return (
         <div className='inputBox agentToggle'>
-            <span className='title'>에이전트 실행</span>
+            <span className='title'>추가 후 에이전트 실행</span>
             <Controller
                 control={control}
-                name='agent'
+                name='activate'
                 render={({ field }) => (
                     <ToggleSwitch
                         {...field}

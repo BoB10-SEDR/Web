@@ -10,6 +10,7 @@ import store from '@Stores/policyMagician';
 import PolicyForm from '@Components/Modal/ModalContent/PolicyForm';
 import ConfigButtons from '@Components/UI/ConfigButtons';
 import dummySolutions from '@Dummy/solutions';
+import { remover } from '@Hooks/';
 
 const Settings = () => {
     const { mutate } = useSWRConfig();
@@ -52,12 +53,21 @@ const Settings = () => {
 };
 
 const Configs = ({ rowValues }) => {
+    const { mutate } = useSWRConfig();
+
     const EditModal = () => {
         return <PolicyForm isEdit policy={rowValues} />;
     };
 
-    console.log(rowValues);
-    return <ConfigButtons EditModal={EditModal} />;
+    const handleDelete = () => {
+        const customIdx = rowValues.idx;
+        const body = { idx: customIdx };
+        const callback = () => {
+            mutate(`/policies/custom`);
+        };
+        remover(`/policies/custom`, body, callback);
+    };
+    return <ConfigButtons EditModal={EditModal} onDelete={handleDelete} />;
 };
 
 export default observer(Settings);

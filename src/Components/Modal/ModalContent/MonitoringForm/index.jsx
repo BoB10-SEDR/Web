@@ -1,13 +1,15 @@
 import '@Styles/magicianForm.css';
 import { useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
-import { useSWRConfig } from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import { useForm } from 'react-hook-form';
 import Button from '@Components/UI/Button';
 import store from '@Stores/logMagician';
+import { fetcher } from '@Hooks/';
 
-const MonitoringForm = ({ file }) => {
-    const exampleReg = String.raw`(?<ip>.*?) (?<remote_log_name>.*?) (?<userid>.*?) \[(?<date>.*?)(?= ) (?<timezone>.*?)\] "(?<request_method>.*?) (?<path>.*?)(?<request_version> HTTP\/.*)?" (?<status>.*?) (?<length>.*?) "(?<referrer>.*?)" "(?<user_agent>.*?)" (?<session_id>.*?) (?<generation_time_micro>.*?) (?<virtual_host>.*)`;
+const MonitoringForm = props => {
+    const { file, isEdit } = props;
+    const exampleReg = String.raw`(?<timestamp>^\w*\s*\d+\s+\d*:\d*:\d*) (?<device_name>\S*) (?<info>.*)`;
     const { idx, name, description, path, deviceIndex, pid, processName, log_path } = file;
     const [sampleLog, setSampleLog] = useState('');
     const [regExp, setRegExp] = useState(new RegExp(null));
@@ -18,6 +20,7 @@ const MonitoringForm = ({ file }) => {
         handleSubmit,
         formState: { error },
     } = useForm();
+    const { data = [] } = useSWR(isEdit && `/monitoring/${idx}`, url => fetcher(url));
 
     const { mutate } = useSWRConfig();
 
