@@ -71,8 +71,6 @@ const Body = props => {
     const result = reg.exec(originalLog);
     const groups = result && result.groups;
 
-    console.log({ reg, result, groups });
-
     return (
         <div className='detailBody'>
             {groups

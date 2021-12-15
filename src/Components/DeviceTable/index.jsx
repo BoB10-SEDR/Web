@@ -64,6 +64,10 @@ const Body = ({ data = [] }) => {
             <div className='tableContent'>
                 <DummyCardEx height='500px'>
                     <Table
+                        hasToggle
+                        toggleId='idx'
+                        toggleValueField='activate'
+                        toggleHeader='에이전트 연결'
                         defaultRowHeight='30'
                         defaultFontSize='14'
                         schema='simpleDevice'

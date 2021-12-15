@@ -31,6 +31,7 @@ const Table = props => {
         hasToggle,
         toggleId,
         toggleValueField,
+        toggleHeader,
         onToggleActivate = () => {},
         onToggleInactivate = () => {},
         hasConfig,
@@ -145,7 +146,7 @@ const Table = props => {
                     ...columns,
                     {
                         id: 'toggle',
-                        Header: '상태',
+                        Header: toggleHeader ?? '상태',
                         Cell: ({ row }) => {
                             const original = row.original;
                             return (
