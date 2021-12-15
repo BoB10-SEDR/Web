@@ -61,7 +61,7 @@ const Settings = () => {
 
 const Configs = ({ rowValues }) => {
     const EditModal = () => {
-        return <MonitoringForm file={rowValues} />;
+        return <MonitoringForm isEdit file={rowValues} />;
     };
     return <ConfigButtons EditModal={EditModal} />;
 };
