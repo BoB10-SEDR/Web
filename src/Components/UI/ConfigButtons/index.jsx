@@ -14,7 +14,7 @@ const ConfigButtons = props => {
             <Modal hasButton buttonClassName='editButton' buttonStyle={buttonStyle} buttonContent={EditButton}>
                 {EditModal && <EditModal />}
             </Modal>
-            <DeleteButton onDelete={onDelete} />
+            <DeleteButton onClick={onDelete} />
         </div>
     );
 };
