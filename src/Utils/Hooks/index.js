@@ -7,10 +7,11 @@ export const fetcher = async (url, ...args) => {
     return outputs;
 };
 
-export const remover = (url, ...args) => {
+export const remover = (url, args, callback = () => {}) => {
     const deleteSomething = async () => {
         try {
             const reponse = await axios.delete(url, args);
+            callback();
         } catch (error) {
             alert('error');
         }

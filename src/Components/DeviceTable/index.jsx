@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import { useState, useEffect } from 'react';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
@@ -80,6 +80,7 @@ const Body = ({ data = [] }) => {
 };
 
 const Configs = ({ rowValues }) => {
+    const { mutate } = useSWRConfig();
     const deviceIdx = rowValues.idx;
 
     const EditModal = () => {
@@ -87,7 +88,10 @@ const Configs = ({ rowValues }) => {
     };
 
     const handleDelete = () => {
-        remover(`/devices/${deviceIdx}`);
+        const callback = () => {
+            mutate(`/devices`);
+        };
+        remover(`/devices/${deviceIdx}`, null, callback);
     };
 
     return <ConfigButtons EditModal={EditModal} onDelete={handleDelete} />;

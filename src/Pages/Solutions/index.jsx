@@ -53,6 +53,8 @@ const Settings = () => {
 };
 
 const Configs = ({ rowValues }) => {
+    const { mutate } = useSWRConfig();
+
     const EditModal = () => {
         return <PolicyForm isEdit policy={rowValues} />;
     };
@@ -60,7 +62,10 @@ const Configs = ({ rowValues }) => {
     const handleDelete = () => {
         const customIdx = rowValues.idx;
         const body = { idx: customIdx };
-        remover(`/policies/custom`, body);
+        const callback = () => {
+            mutate(`/policies/custom`);
+        };
+        remover(`/policies/custom`, body, callback);
     };
     return <ConfigButtons EditModal={EditModal} onDelete={handleDelete} />;
 };
