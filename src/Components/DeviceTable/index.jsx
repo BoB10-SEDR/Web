@@ -1,5 +1,6 @@
 import useSWR, { useSWRConfig } from 'swr';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import FilterButton from '@Components/FilterButton';
@@ -53,12 +54,36 @@ const DeviceTable = () => {
                 <SearchBar onClick={handleSearch} />
                 <AddDeviceButton />
             </div>
-            <Body data={filteredData} />
+            <Body tableData={filteredData} />
         </div>
     );
 };
 
-const Body = ({ data = [] }) => {
+const Body = props => {
+    const { tableData = [] } = props;
+    const { mutate } = useSWRConfig();
+
+    const handleToggleActivate = async ({ row }, isActive) => {
+        const deviceIdx = row.values.idx;
+
+        const lazyMutate = () => {
+            setTimeout(() => {
+                mutate(`/devices`);
+            }, 500);
+        };
+        const changeState = async () => {
+            const body = { status: isActive };
+            try {
+                const response = await axios.post(`/devices/${deviceIdx}/status`, body);
+                lazyMutate();
+            } catch (error) {
+                alert('error');
+            }
+        };
+
+        changeState();
+    };
+
     return (
         <Card>
             <div className='tableContent'>
@@ -68,10 +93,12 @@ const Body = ({ data = [] }) => {
                         toggleId='idx'
                         toggleValueField='activate'
                         toggleHeader='에이전트 연결'
+                        onToggleActivate={({ row }) => handleToggleActivate({ row }, true)}
+                        onToggleInactivate={({ row }) => handleToggleActivate({ row }, false)}
                         defaultRowHeight='30'
                         defaultFontSize='14'
                         schema='simpleDevice'
-                        browseData={data}
+                        browseData={tableData}
                         isTimestampFormattable
                         timestampHeader='update_time'
                         hasConfig
