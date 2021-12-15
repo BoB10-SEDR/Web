@@ -38,9 +38,11 @@ const DeviceTable = () => {
 
     useEffect(() => {
         const formattedData = devicesData.map(e => {
+            const isLive = e['live'];
             return {
                 ...e,
-                live: <Status status={e['live'] ? 'CONNECT' : 'DISCONNECT'} />,
+                live: <Status status={isLive ? 'CONNECT' : 'DISCONNECT'} />,
+                activate: isLive,
             };
         });
 
