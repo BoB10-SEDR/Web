@@ -11,6 +11,7 @@ import { fetcher } from '@Hooks/';
 import Status from '@Components/UI/Status';
 import ConfigButtons from '@Components/UI/ConfigButtons';
 import DeviceForm from '@Components/Modal/ModalContent/DeviceForm';
+import { remover } from '@Hooks/';
 
 const DeviceTable = () => {
     const [page, setPage] = useState(1);
@@ -79,10 +80,17 @@ const Body = ({ data = [] }) => {
 };
 
 const Configs = ({ rowValues }) => {
+    const deviceIdx = rowValues.idx;
+
     const EditModal = () => {
-        return <DeviceForm deviceIdx={rowValues.idx} />;
+        return <DeviceForm deviceIdx={deviceIdx} />;
     };
-    return <ConfigButtons EditModal={EditModal} />;
+
+    const handleDelete = () => {
+        remover(`/devices/${deviceIdx}`);
+    };
+
+    return <ConfigButtons EditModal={EditModal} onDelete={handleDelete} />;
 };
 
 export default DeviceTable;
