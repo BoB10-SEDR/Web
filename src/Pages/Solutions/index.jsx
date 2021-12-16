@@ -17,7 +17,11 @@ const Settings = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
 
-    let { data: solutions = [], error } = useSWR(`/policies/custom`, () => fetcher(`/policies/custom?page=${page}`));
+    const { data: solutionsData = {}, error } = useSWR(`/policies/custom`, () =>
+        fetcher(`/policies/custom?page=${page}&limit=${limit}`)
+    );
+
+    const { count, data = [] } = solutionsData;
 
     const onToggleActivate = async ({ row }, activate) => {
         const { idx } = row.values;
@@ -37,7 +41,7 @@ const Settings = () => {
                 toggleId='idx'
                 toggleValueField='activate'
                 schema='solutions'
-                browseData={solutions}
+                browseData={data}
                 isSubmitted={store.isOpen}
                 onSubmit={data => store.setSelectedPolicies(data)}
                 onToggleActivate={({ row }) => onToggleActivate({ row }, true)}

@@ -76,13 +76,15 @@ const ProcessSection = props => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(50);
 
-    const { data = [], error } = useSWR(
+    const { data: processData = [], error } = useSWR(
         deviceIndex ? `/monitoring/${deviceIndex}/process?page=${page}&limit=${limit}` : null,
         url => fetcher(url),
         { refreshInterval: 60000 }
     );
 
-    if (!data) return <div>loading...</div>;
+    if (!processData) return <div>loading...</div>;
+
+    const { count, data = [] } = processData;
 
     return <Section data={data} {...rest} />;
 };
@@ -91,7 +93,7 @@ const FileSection = props => {
     const { deviceIndex, pid, processName, ...rest } = props;
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(50);
-    const { data = [], error } = useSWR(
+    const { data: fileData = {}, error } = useSWR(
         deviceIndex && pid
             ? `/monitoring/${deviceIndex}/process/${pid}/filedescriptor?page=${page}&limit=${limit}`
             : null,
@@ -99,7 +101,9 @@ const FileSection = props => {
         { refreshInterval: 60000 }
     );
 
-    if (!data) return <div>loading...</div>;
+    if (!fileData) return <div>loading...</div>;
+
+    const { count, data = [] } = fileData;
 
     const filePathList = data.map(item => {
         const { idx, path, name, ...rest } = item;
