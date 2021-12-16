@@ -103,7 +103,7 @@ const FileSection = props => {
 
     const filePathList = data.map(item => {
         const { idx, path, name, ...rest } = item;
-        return { deviceIndex, idx, name: path, path, processName, ...rest };
+        return { device_idx: deviceIndex, idx, name: path, path, process_name: processName, ...rest };
     });
 
     return <Section data={filePathList} {...rest} />;
