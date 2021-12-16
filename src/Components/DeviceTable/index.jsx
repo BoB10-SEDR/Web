@@ -100,29 +100,31 @@ const Body = observer(props => {
     };
 
     return (
-        <Card>
-            <div className='tableContent'>
-                <DummyCardEx height='730px'>
-                    <Table
-                        hasToggle
-                        toggleId='idx'
-                        toggleValueField='activate'
-                        toggleHeader='에이전트 연결'
-                        onToggleActivate={({ row }) => handleToggleActivate({ row }, false)}
-                        onToggleInactivate={({ row }) => handleToggleActivate({ row }, true)}
-                        defaultRowHeight='30'
-                        defaultFontSize='14'
-                        schema='simpleDevice'
-                        browseData={tableData}
-                        isTimestampFormattable
-                        timestampHeader='update_time'
-                        hasConfig
-                        ConfigButtons={Configs}
-                    />
-                    <Pagination total={total} pageSize={store.limit} current={store.page} onChange={handlePageChange} />
-                </DummyCardEx>
-            </div>
-        </Card>
+        <>
+            <Card>
+                <div className='tableContent'>
+                    <DummyCardEx height='670px'>
+                        <Table
+                            hasToggle
+                            toggleId='idx'
+                            toggleValueField='activate'
+                            toggleHeader='에이전트 연결'
+                            onToggleActivate={({ row }) => handleToggleActivate({ row }, false)}
+                            onToggleInactivate={({ row }) => handleToggleActivate({ row }, true)}
+                            defaultRowHeight='30'
+                            defaultFontSize='14'
+                            schema='simpleDevice'
+                            browseData={tableData}
+                            isTimestampFormattable
+                            timestampHeader='update_time'
+                            hasConfig
+                            ConfigButtons={Configs}
+                        />
+                    </DummyCardEx>
+                </div>
+            </Card>
+            <Pagination total={total} pageSize={store.limit} current={store.page} onChange={handlePageChange} />
+        </>
     );
 });
 
