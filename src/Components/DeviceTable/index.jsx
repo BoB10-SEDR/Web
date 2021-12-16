@@ -1,6 +1,7 @@
 import useSWR, { useSWRConfig } from 'swr';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Pagination from 'rc-pagination';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import FilterButton from '@Components/FilterButton';
@@ -103,8 +104,8 @@ const Body = props => {
                         toggleId='idx'
                         toggleValueField='activate'
                         toggleHeader='에이전트 연결'
-                        onToggleActivate={({ row }) => handleToggleActivate({ row }, true)}
-                        onToggleInactivate={({ row }) => handleToggleActivate({ row }, false)}
+                        onToggleActivate={({ row }) => handleToggleActivate({ row }, false)}
+                        onToggleInactivate={({ row }) => handleToggleActivate({ row }, true)}
                         defaultRowHeight='30'
                         defaultFontSize='14'
                         schema='simpleDevice'
