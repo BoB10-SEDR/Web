@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import useSWR, { useSWRConfig } from 'swr';
+import useSWR from 'swr';
 import axios from 'axios';
+import Pagination from 'rc-pagination';
 import Modal from '@Components/Modal';
 import LogMagician from '@Components/Modal/ModalContent/LogMagician';
 import ConfigButtons from '@Components/UI/ConfigButtons';
@@ -9,12 +10,11 @@ import MonitoringForm from '@Components/Modal/ModalContent/MonitoringForm';
 import { fetcher } from '@Hooks/';
 
 const Settings = () => {
-    const { mutate } = useSWRConfig();
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(12);
-    const { data: monitoringData = {}, error } = useSWR(
-        `/monitoring`,
-        () => fetcher(`/monitoring?page=${page}&limit=${limit}`),
+    const { data: monitoringData = {}, mutate } = useSWR(
+        `/monitoring?page=${page}&limit=${limit}`,
+        url => fetcher(url),
         { revalidateOnFocus: false }
     );
 
@@ -32,10 +32,14 @@ const Settings = () => {
 
         try {
             const response = await axios.post(`/monitoring`, body);
-            mutate(`/monitoring`);
+            mutate();
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const handlePageChange = (current, pageSize) => {
+        setPage(current);
     };
 
     return (
@@ -57,6 +61,7 @@ const Settings = () => {
                     <LogMagician />
                 </Modal>
             </ManageTable>
+            <Pagination total={count} pageSize={limit} current={page} onChange={handlePageChange} />
         </div>
     );
 };

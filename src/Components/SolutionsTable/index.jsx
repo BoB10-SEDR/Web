@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 import { useState } from 'react';
+import Pagination from 'rc-pagination';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import DummyCardEx from '@Dummy/DummyCardEx';
@@ -15,10 +16,15 @@ const SolutionsTable = () => {
 
     const { count, data = [] } = solutionsData;
 
+    const handlePageChange = (current, pageSize) => {
+        setPage(current);
+    };
+
     return (
         <Card title='대응정책 적용/해제'>
             <DummyCardEx height='314px'>
                 <Table schema='simpleSolutions' hasToggle toggleId='idx' browseData={data} />
+                <Pagination total={count} pageSize={limit} current={page} onChange={handlePageChange} />
             </DummyCardEx>
         </Card>
     );

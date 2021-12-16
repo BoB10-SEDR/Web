@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useSWR from 'swr';
+import Pagination from 'rc-pagination';
 import EventViewer from '@Components/EventViewer';
 import { fetcher } from '@Hooks/';
 import dummyLogs from '@Dummy/logMagician';
@@ -18,10 +19,19 @@ const MagicianEventViewer = () => {
         }
     );
 
+    const handlePageChange = (current, pageSize) => {
+        setPage(current);
+    };
+
     if (!monitoringData) return <div>loading...</div>;
     const { count, data = [] } = monitoringData;
 
-    return <EventViewer defaultPadding='0 1.25rem 1.25rem 1.25rem' schema='logMagician' data={data} />;
+    return (
+        <>
+            <EventViewer defaultPadding='0 1.25rem 1.25rem 1.25rem' schema='logMagician' data={data} />
+            <Pagination total={count} pageSize={limit} current={page} onChange={handlePageChange} />
+        </>
+    );
 };
 
 export default MagicianEventViewer;

@@ -2,6 +2,7 @@ import { observer } from 'mobx-react';
 import useSWR, { useSWRConfig } from 'swr';
 import { useState } from 'react';
 import axios from 'axios';
+import Pagination from 'rc-pagination';
 import { fetcher } from '@Hooks/';
 import ManageTable from '@Components/ManageTable';
 import Button from '@Components/UI/Button';
@@ -15,6 +16,10 @@ const InspectionTable = () => {
     const { mutate } = useSWRConfig();
 
     const { count, data = [] } = inspectionData;
+
+    const handlePageChange = (current, pageSize) => {
+        setPage(current);
+    };
 
     const handleSubmit = data => {
         if (!data.length) {
@@ -49,16 +54,19 @@ const InspectionTable = () => {
     };
 
     return (
-        <ManageTable
-            title='점검 항목 리스트'
-            isCheckable
-            schema='inspection'
-            browseData={data}
-            onSubmit={handleSubmit}
-            isSubmitted={store.isSubmitted}
-        >
-            <Button onClick={handleClick}>점검하기</Button>
-        </ManageTable>
+        <>
+            <ManageTable
+                title='점검 항목 리스트'
+                isCheckable
+                schema='inspection'
+                browseData={data}
+                onSubmit={handleSubmit}
+                isSubmitted={store.isSubmitted}
+            >
+                <Button onClick={handleClick}>점검하기</Button>
+            </ManageTable>
+            <Pagination total={count} pageSize={limit} current={page} onChange={handlePageChange} />
+        </>
     );
 };
 

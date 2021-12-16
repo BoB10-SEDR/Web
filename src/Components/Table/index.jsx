@@ -36,6 +36,7 @@ const Table = props => {
         onToggleInactivate = () => {},
         hasConfig,
         ConfigButtons,
+        mutateAfterConfig = () => {},
         isExpandable,
         onSubmit = () => {},
         renderRowSubComponent = () => {},
@@ -171,7 +172,7 @@ const Table = props => {
                         id: 'config',
                         Header: '설정',
                         Cell: ({ row }) => {
-                            return <ConfigButtons rowValues={row.values} />;
+                            return <ConfigButtons rowValues={row.values} mutate={mutateAfterConfig} />;
                         },
                         align: 'center',
                         width: 100,

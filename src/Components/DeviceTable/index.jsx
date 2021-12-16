@@ -1,5 +1,6 @@
 import useSWR, { useSWRConfig } from 'swr';
 import { useState, useEffect } from 'react';
+import { observer } from 'mobx-react';
 import axios from 'axios';
 import Pagination from 'rc-pagination';
 import Card from '@Components/Card';
@@ -14,22 +15,22 @@ import Status from '@Components/UI/Status';
 import ConfigButtons from '@Components/UI/ConfigButtons';
 import DeviceForm from '@Components/Modal/ModalContent/DeviceForm';
 import { remover } from '@Hooks/';
+import store from '@Stores/deviceTable';
 
 const DeviceTable = () => {
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(100);
+    const { page, limit, visibleData } = store;
     const {
         data: devicesData = {},
+        mutate,
         error,
         isValidating,
-    } = useSWR(`/devices`, () => fetcher(`/devices?page=${page}&limit=${limit}`), {
+    } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url), {
         refreshInterval: 60000,
         revalidateOnFocus: false,
         compare: (a, b) => {
             return JSON.stringify(a?.data) === JSON.stringify(b?.data);
         },
     });
-    const [filteredData, setFilteredData] = useState([]);
 
     const { count, data = [] } = devicesData;
     const stringData = JSON.stringify(data);
@@ -40,7 +41,7 @@ const DeviceTable = () => {
                 return String(device[key]).toLowerCase().includes(input.toLowerCase());
             });
         });
-        setFilteredData(filtered);
+        store.setVisibleData(filtered);
     };
 
     useEffect(() => {
@@ -53,7 +54,7 @@ const DeviceTable = () => {
             };
         });
 
-        setFilteredData(formattedData);
+        store.setVisibleData(formattedData);
     }, [stringData]);
 
     if (!devicesData) return <div>loading...</div>;
@@ -65,21 +66,24 @@ const DeviceTable = () => {
                 <SearchBar onClick={handleSearch} />
                 <AddDeviceButton />
             </div>
-            <Body tableData={filteredData} />
+            <Body tableData={visibleData} total={count} />
         </div>
     );
 };
 
-const Body = props => {
-    const { tableData = [] } = props;
-    const { mutate } = useSWRConfig();
+const Body = observer(props => {
+    const { tableData = [], total, mutate = () => {} } = props;
+
+    const handlePageChange = (current, pageSize) => {
+        store.setPage(current);
+    };
 
     const handleToggleActivate = async ({ row }, isActive) => {
         const deviceIdx = row.values.idx;
 
         const lazyMutate = () => {
             setTimeout(() => {
-                mutate(`/devices`);
+                mutate();
             }, 500);
         };
         const changeState = async () => {
@@ -115,11 +119,12 @@ const Body = props => {
                         hasConfig
                         ConfigButtons={Configs}
                     />
+                    <Pagination total={total} pageSize={store.limit} current={store.page} onChange={handlePageChange} />
                 </DummyCardEx>
             </div>
         </Card>
     );
-};
+});
 
 const Configs = ({ rowValues }) => {
     const { mutate } = useSWRConfig();
@@ -139,4 +144,4 @@ const Configs = ({ rowValues }) => {
     return <ConfigButtons EditModal={EditModal} onDelete={handleDelete} />;
 };
 
-export default DeviceTable;
+export default observer(DeviceTable);
