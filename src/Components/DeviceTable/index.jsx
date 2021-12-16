@@ -66,7 +66,7 @@ const DeviceTable = () => {
                 <SearchBar onClick={handleSearch} />
                 <AddDeviceButton />
             </div>
-            <Body tableData={visibleData} total={count} />
+            <Body tableData={visibleData} total={count} mutate={mutate} />
         </div>
     );
 };
