@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { useState } from 'react';
-import Pagination from 'rc-pagination';
+import Pagination from '@Components/Pagination';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import DummyCardEx from '@Dummy/DummyCardEx';

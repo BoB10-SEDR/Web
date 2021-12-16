@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import useSWR from 'swr';
-import Pagination from 'rc-pagination';
+import Pagination from '@Components/Pagination';
 import EventViewer from '@Components/EventViewer';
 import { fetcher } from '@Hooks/';
 import dummyLogs from '@Dummy/logMagician';

@@ -2,7 +2,7 @@ import { observable } from 'mobx';
 
 const deviceTable = {
     page: 1,
-    limit: 10,
+    limit: 20,
     visibleData: [],
     setPage(value) {
         this.page = value;

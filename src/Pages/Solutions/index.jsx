@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useSWR from 'swr';
 import { observer } from 'mobx-react';
 import axios from 'axios';
-import Pagination from 'rc-pagination';
+import Pagination from '@Components/Pagination';
 import Modal from '@Components/Modal';
 import ManageTable from '@Components/ManageTable';
 import { fetcher } from '@Hooks/';

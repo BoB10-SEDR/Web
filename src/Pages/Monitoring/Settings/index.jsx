@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
-import Pagination from 'rc-pagination';
+import Pagination from '@Components/Pagination';
 import Modal from '@Components/Modal';
 import LogMagician from '@Components/Modal/ModalContent/LogMagician';
 import ConfigButtons from '@Components/UI/ConfigButtons';

@@ -1,8 +1,8 @@
 import useSWR, { useSWRConfig } from 'swr';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import axios from 'axios';
-import Pagination from 'rc-pagination';
+import Pagination from '@Components/Pagination';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import FilterButton from '@Components/FilterButton';
@@ -102,7 +102,7 @@ const Body = observer(props => {
     return (
         <Card>
             <div className='tableContent'>
-                <DummyCardEx height='500px'>
+                <DummyCardEx height='730px'>
                     <Table
                         hasToggle
                         toggleId='idx'

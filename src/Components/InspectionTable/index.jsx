@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import useSWR, { useSWRConfig } from 'swr';
 import { useState } from 'react';
 import axios from 'axios';
-import Pagination from 'rc-pagination';
+import Pagination from '@Components/Pagination';
 import { fetcher } from '@Hooks/';
 import ManageTable from '@Components/ManageTable';
 import Button from '@Components/UI/Button';
