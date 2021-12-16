@@ -12,11 +12,13 @@ const Settings = () => {
     const { mutate } = useSWRConfig();
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(12);
-    const { data: monitoringData = [], error } = useSWR(
+    const { data: monitoringData = {}, error } = useSWR(
         `/monitoring`,
         () => fetcher(`/monitoring?page=${page}&limit=${limit}`),
         { revalidateOnFocus: false }
     );
+
+    const { count, data = [] } = monitoringData;
 
     const onToggleActivate = async ({ row }, isActive) => {
         const { device_idx, process_name, log_path: path, log_regex: regex } = row.values;
@@ -44,7 +46,7 @@ const Settings = () => {
                 toggleId='idx'
                 toggleValueField='activate'
                 schema='monitoring'
-                browseData={monitoringData}
+                browseData={data}
                 onToggleActivate={({ row }) => onToggleActivate({ row }, true)}
                 onToggleInactivate={({ row }) => onToggleActivate({ row }, false)}
                 isTimestampFormattable
