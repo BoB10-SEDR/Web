@@ -18,14 +18,20 @@ const DeviceTable = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(100);
     const {
-        data: devicesData = [],
+        data: devicesData = {},
         error,
         isValidating,
     } = useSWR(`/devices`, () => fetcher(`/devices?page=${page}&limit=${limit}`), {
         refreshInterval: 60000,
         revalidateOnFocus: false,
+        compare: (a, b) => {
+            return JSON.stringify(a?.data) === JSON.stringify(b?.data);
+        },
     });
     const [filteredData, setFilteredData] = useState([]);
+
+    const { count, data = [] } = devicesData;
+    const stringData = JSON.stringify(data);
 
     const handleSearch = input => {
         const filtered = devicesData.filter(device => {
@@ -37,7 +43,7 @@ const DeviceTable = () => {
     };
 
     useEffect(() => {
-        const formattedData = devicesData.map(e => {
+        const formattedData = data.map(e => {
             const isLive = e['live'];
             return {
                 ...e,
@@ -47,7 +53,9 @@ const DeviceTable = () => {
         });
 
         setFilteredData(formattedData);
-    }, [isValidating]);
+    }, [stringData]);
+
+    if (!devicesData) return <div>loading...</div>;
 
     return (
         <div id='deviceTable'>
