@@ -21,7 +21,7 @@ const DeviceForm = ({ deviceIdx }) => {
     let { data: networkCategoryList, error: networkCategoryListError } = useSWRImmutable(`/networks/categories`, url =>
         fetcher(url)
     );
-    let { data: environmentCategoryList, error: environmentCategoryListError } = useSWRImmutable(
+    let { data: environmentCategoryList = [], error: environmentCategoryListError } = useSWR(
         `/devices/environments`,
         url => fetcher(url)
     );
@@ -31,7 +31,6 @@ const DeviceForm = ({ deviceIdx }) => {
 
     const defaultValues = {
         category: '센서',
-        environment: '출입구',
         network: 'LAN',
         activate: false,
     };
@@ -72,7 +71,6 @@ const DeviceForm = ({ deviceIdx }) => {
 
     if (!deviceCategoryList) deviceCategoryList = dummy.deviceCategoryList;
     if (!networkCategoryList) networkCategoryList = dummy.networkCategoryList;
-    if (!environmentCategoryList) environmentCategoryList = dummy.environmentCategoryList;
 
     const title = deviceIdx ? '장비 정보 수정하기' : '장비 추가하기';
     const description = deviceIdx ? '수정할 장비 정보를 입력해주세요' : '추가할 장비 정보를 입력해주세요';
@@ -151,12 +149,8 @@ const DeviceForm = ({ deviceIdx }) => {
 };
 
 const AgentToggle = () => {
-    const { register, control } = useFormContext();
+    const { control } = useFormContext();
     const isActivate = false;
-
-    const handleActivate = activate => {
-        return null;
-    };
 
     return (
         <div className='inputBox agentToggle'>
@@ -168,8 +162,6 @@ const AgentToggle = () => {
                     <ToggleSwitch
                         {...field}
                         isToggled={isActivate}
-                        onActivate={() => handleActivate(true)}
-                        onInactivate={() => handleActivate(false)}
                         onChange={event => field.onChange(event.target.checked)}
                     />
                 )}
