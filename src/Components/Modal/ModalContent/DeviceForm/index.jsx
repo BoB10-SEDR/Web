@@ -29,10 +29,17 @@ const DeviceForm = ({ deviceIdx }) => {
         fetcher(url)
     );
 
-    const defaultValues = useMemo(() => values.length && values[0], [values]);
+    const defaultValues = {
+        category: '센서',
+        environment: '출입구',
+        network: 'LAN',
+        activate: false,
+    };
+
+    const fetchedValues = useMemo(() => values.length && values[0], [values]);
 
     const methods = useForm({
-        defaultValues: defaultValues,
+        defaultValues: deviceIdx ? fetchedValues : defaultValues,
     });
 
     const {
@@ -47,6 +54,8 @@ const DeviceForm = ({ deviceIdx }) => {
     }, [isValidating]);
 
     const onSubmit = async data => {
+        if (data.activate === undefined) data.activate = false;
+
         try {
             if (deviceIdx) {
                 const response = await axios.put(`/devices/${deviceIdx}`, data);

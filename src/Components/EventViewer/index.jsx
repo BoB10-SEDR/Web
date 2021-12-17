@@ -83,8 +83,7 @@ const Body = props => {
                       );
                   })
                 : null}
-            {}
-            {originalLog}
+            <div className='originalLog'>{originalLog}</div>
             <hr />
             <Description description={description} />
         </div>

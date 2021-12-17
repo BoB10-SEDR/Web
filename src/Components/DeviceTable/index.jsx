@@ -109,8 +109,8 @@ const Body = observer(props => {
                             toggleId='idx'
                             toggleValueField='activate'
                             toggleHeader='에이전트 연결'
-                            onToggleActivate={({ row }) => handleToggleActivate({ row }, false)}
-                            onToggleInactivate={({ row }) => handleToggleActivate({ row }, true)}
+                            onToggleActivate={({ row }) => handleToggleActivate({ row }, true)}
+                            onToggleInactivate={({ row }) => handleToggleActivate({ row }, false)}
                             defaultRowHeight='30'
                             defaultFontSize='14'
                             schema='simpleDevice'
