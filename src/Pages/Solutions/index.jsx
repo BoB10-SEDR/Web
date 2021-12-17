@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import { observer } from 'mobx-react';
 import axios from 'axios';
 import Pagination from '@Components/Pagination';
@@ -12,11 +12,10 @@ import PolicyForm from '@Components/Modal/ModalContent/PolicyForm';
 import ConfigButtons from '@Components/UI/ConfigButtons';
 import dummySolutions from '@Dummy/solutions';
 import { remover } from '@Hooks/';
+import solutionsStore from '@Stores/solutions';
 
 const Settings = () => {
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(10);
-
+    const { page, limit } = solutionsStore;
     const { data: solutionsData = {}, mutate } = useSWR(`/policies/custom?page=${page}&limit=${limit}`, url =>
         fetcher(url)
     );
@@ -34,7 +33,7 @@ const Settings = () => {
     };
 
     const handlePageChange = (current, pageSize) => {
-        setPage(current);
+        solutionsStore.setPage(current);
     };
 
     return (
@@ -51,7 +50,6 @@ const Settings = () => {
                 onToggleActivate={({ row }) => onToggleActivate({ row })}
                 onToggleInactivate={({ row }) => onToggleActivate({ row })}
                 ConfigButtons={Configs}
-                mutateAfterConfig={mutate}
             >
                 <Modal hasButton buttonContent='추가하기'>
                     <PolicyMagician />
@@ -62,7 +60,8 @@ const Settings = () => {
     );
 };
 
-const Configs = ({ rowValues }, mutate = () => {}) => {
+const Configs = observer(({ rowValues }) => {
+    const { mutate } = useSWRConfig();
     const EditModal = () => {
         return <PolicyForm isEdit policy={rowValues} />;
     };
@@ -70,12 +69,13 @@ const Configs = ({ rowValues }, mutate = () => {}) => {
     const handleDelete = () => {
         const customIdx = rowValues.idx;
         const body = { idx: customIdx };
+        const { page, limit } = solutionsStore;
         const callback = () => {
-            mutate();
+            mutate(`/policies/custom?page=${page}&limit=${limit}`);
         };
         remover(`/policies/custom`, body, callback);
     };
     return <ConfigButtons EditModal={EditModal} onDelete={handleDelete} />;
-};
+});
 
 export default observer(Settings);

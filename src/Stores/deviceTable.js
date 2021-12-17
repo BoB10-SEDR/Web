@@ -13,6 +13,9 @@ const deviceTable = {
     setVisibleData(value) {
         this.visibleData = value;
     },
+    clear() {
+        this.page = 1;
+    },
 };
 
 export default observable(deviceTable);

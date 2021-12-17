@@ -209,6 +209,7 @@ const Table = props => {
                 justifyContent: align === 'center' ? 'center' : align === 'right' ? 'flex-end' : 'flex-start',
                 alignItems: 'flex-start',
                 display: 'flex',
+                wordBreak: 'break-all',
             },
         },
     ];

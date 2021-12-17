@@ -1,13 +1,14 @@
 import { useState } from 'react';
+import { observer } from 'mobx-react';
 import useSWR from 'swr';
 import Pagination from '@Components/Pagination';
 import EventViewer from '@Components/EventViewer';
 import { fetcher } from '@Hooks/';
 import dummyLogs from '@Dummy/logMagician';
+import store from '@Stores/eventViewer';
 
 const MagicianEventViewer = () => {
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(7000);
+    const { page, limit } = store;
     const { data: monitoringData = {}, error } = useSWR(
         `/monitoring/log?page=${page}&limit=${limit}`,
         url => fetcher(url),
@@ -20,7 +21,7 @@ const MagicianEventViewer = () => {
     );
 
     const handlePageChange = (current, pageSize) => {
-        setPage(current);
+        store.setPage(current);
     };
 
     if (!monitoringData) return <div>loading...</div>;
@@ -34,4 +35,4 @@ const MagicianEventViewer = () => {
     );
 };
 
-export default MagicianEventViewer;
+export default observer(MagicianEventViewer);

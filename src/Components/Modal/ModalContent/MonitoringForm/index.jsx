@@ -1,10 +1,12 @@
 import '@Styles/magicianForm.css';
 import { useState, useCallback, useMemo } from 'react';
+import { observer } from 'mobx-react';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
 import { useForm } from 'react-hook-form';
 import Button from '@Components/UI/Button';
 import store from '@Stores/logMagician';
+import eventViewerStore from '@Stores/eventViewer';
 
 const MonitoringForm = props => {
     const { file, isEdit } = props;
@@ -32,11 +34,11 @@ const MonitoringForm = props => {
                 regex: regExp ?? '',
             };
 
-            console.log(body, file);
+            const { page, limit } = eventViewerStore;
 
             try {
                 const response = axios.post(`/monitoring`, body);
-                mutate('/monitoring');
+                mutate(`/monitoring?page=${page}&limit=${limit}`);
                 alert('success');
             } catch (error) {
                 alert('error');
@@ -130,4 +132,4 @@ const MonitoringForm = props => {
     );
 };
 
-export default MonitoringForm;
+export default observer(MonitoringForm);

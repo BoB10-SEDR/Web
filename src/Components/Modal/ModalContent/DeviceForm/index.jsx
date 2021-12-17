@@ -1,4 +1,5 @@
 import '@Styles/addDeviceModal.css';
+import { observer } from 'mobx-react';
 import useSWR, { useSWRConfig } from 'swr';
 import useSWRImmutable from 'swr/immutable';
 import { useMemo, useEffect } from 'react';
@@ -11,6 +12,7 @@ import ModalHeader from '@Components/Modal/ModalHeader';
 import FormErrorMessage from '@Components/UI/FormErrorMessage';
 import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import * as dummy from '@Dummy/addDeviceDummy';
+import store from '@Stores/deviceTable';
 
 //추후 리팩토링 필요
 const DeviceForm = ({ deviceIdx }) => {
@@ -54,6 +56,7 @@ const DeviceForm = ({ deviceIdx }) => {
 
     const onSubmit = async data => {
         if (data.activate === undefined) data.activate = false;
+        const { page, limit } = store;
 
         try {
             if (deviceIdx) {
@@ -61,7 +64,7 @@ const DeviceForm = ({ deviceIdx }) => {
             } else {
                 const response = await axios.post(`/devices`, data);
             }
-            mutate(`/devices`);
+            mutate(`/devices?page=${page}&limit=${limit}`);
             alert('success');
         } catch (error) {
             console.log(error);
@@ -181,4 +184,4 @@ const Selector = ({ items = [] }) => {
     });
 };
 
-export default DeviceForm;
+export default observer(DeviceForm);

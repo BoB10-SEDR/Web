@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import axios from 'axios';
+import { observer } from 'mobx-react';
 import Pagination from '@Components/Pagination';
 import Modal from '@Components/Modal';
 import LogMagician from '@Components/Modal/ModalContent/LogMagician';
@@ -8,10 +8,11 @@ import ConfigButtons from '@Components/UI/ConfigButtons';
 import ManageTable from '@Components/ManageTable';
 import MonitoringForm from '@Components/Modal/ModalContent/MonitoringForm';
 import { fetcher } from '@Hooks/';
+import { remover } from '@Hooks/';
+import store from '@Stores/monitoringSettings';
 
 const Settings = () => {
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(12);
+    const { page, limit } = store;
     const { data: monitoringData = {}, mutate } = useSWR(
         `/monitoring?page=${page}&limit=${limit}`,
         url => fetcher(url),
@@ -39,7 +40,7 @@ const Settings = () => {
     };
 
     const handlePageChange = (current, pageSize) => {
-        setPage(current);
+        store.setPage(current);
     };
 
     return (
@@ -66,11 +67,24 @@ const Settings = () => {
     );
 };
 
-const Configs = ({ rowValues }) => {
+const Configs = observer(({ rowValues }) => {
+    const idx = rowValues.idx;
+    const { mutate } = useSWRConfig();
+
     const EditModal = () => {
         return <MonitoringForm isEdit file={rowValues} />;
     };
-    return <ConfigButtons EditModal={EditModal} />;
-};
 
-export default Settings;
+    const handleDelete = () => {
+        const { page, limit } = store;
+
+        const callback = () => {
+            mutate(`/monitoring?page=${page}&limit=${limit}`);
+        };
+        remover(`/monitoring/${idx}`, null, callback);
+    };
+
+    return <ConfigButtons EditModal={EditModal} onDelete={handleDelete} />;
+});
+
+export default observer(Settings);

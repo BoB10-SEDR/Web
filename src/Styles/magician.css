@@ -75,12 +75,31 @@
 }
 
 #magician .body .section .bodyList .bodyListItem {
+    display: flex;
+    align-items: center;
     position: relative;
-    height: 40px;
+    min-height: 40px;
+    min-width: 200px;
     padding-left: 17px;
+    padding-right: 17px;
     cursor: pointer;
-
     line-height: 38px;
+}
+
+#magician .body .section .bodyList .bodyListItem .index {
+    flex: none;
+}
+
+#magician .body .section .bodyList .bodyListItem .indexMarker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    margin-right: 10px;
+    font-size: 0.9rem;
 }
 
 #magician .body .section .bodyList .bodyListItem[isSelected='1'] {

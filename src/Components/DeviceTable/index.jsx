@@ -25,7 +25,6 @@ const DeviceTable = () => {
         error,
         isValidating,
     } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url), {
-        refreshInterval: 60000,
         revalidateOnFocus: false,
         compare: (a, b) => {
             return JSON.stringify(a?.data) === JSON.stringify(b?.data);
@@ -66,13 +65,14 @@ const DeviceTable = () => {
                 <SearchBar onClick={handleSearch} />
                 <AddDeviceButton />
             </div>
-            <Body tableData={visibleData} total={count} mutate={mutate} />
+            <Body tableData={visibleData} total={count} />
         </div>
     );
 };
 
 const Body = observer(props => {
-    const { tableData = [], total, mutate = () => {} } = props;
+    const { tableData = [], total } = props;
+    const { mutate } = useSWRConfig();
 
     const handlePageChange = (current, pageSize) => {
         store.setPage(current);
@@ -82,8 +82,9 @@ const Body = observer(props => {
         const deviceIdx = row.values.idx;
 
         const lazyMutate = () => {
+            const { page, limit } = store;
             setTimeout(() => {
-                mutate();
+                mutate(`/devices?page=${page}&limit=${limit}`);
             }, 500);
         };
         const changeState = async () => {
@@ -128,9 +129,10 @@ const Body = observer(props => {
     );
 });
 
-const Configs = ({ rowValues }) => {
+const Configs = observer(({ rowValues }) => {
     const { mutate } = useSWRConfig();
     const deviceIdx = rowValues.idx;
+    const { page, limit } = store;
 
     const EditModal = () => {
         return <DeviceForm deviceIdx={deviceIdx} />;
@@ -138,12 +140,12 @@ const Configs = ({ rowValues }) => {
 
     const handleDelete = () => {
         const callback = () => {
-            mutate(`/devices`);
+            mutate(`/devices?page=${page}&limit=${limit}`);
         };
         remover(`/devices/${deviceIdx}`, null, callback);
     };
 
     return <ConfigButtons EditModal={EditModal} onDelete={handleDelete} />;
-};
+});
 
 export default observer(DeviceTable);
