@@ -84,6 +84,8 @@
     padding-right: 17px;
     cursor: pointer;
     line-height: 38px;
+    word-break: break-all;
+    border-bottom: 1px solid #262626;
 }
 
 #magician .body .section .bodyList .bodyListItem .index {
@@ -104,6 +106,14 @@
 
 #magician .body .section .bodyList .bodyListItem[isSelected='1'] {
     background-color: #6c6e70;
+}
+
+#magician .body .section .bodyList .bodyListItem[isSelected='1'] .indexMarker {
+    background-color: #cc0000;
+}
+
+#magician .body .section .bodyList .bodyListItem.checked .indexMarker {
+    background-color: #cc0000;
 }
 
 #magician .body .section .bodyList .bodyListItem[isBlocked='1'] {
