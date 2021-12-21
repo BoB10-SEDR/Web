@@ -97,7 +97,12 @@ const solutions = [
                 sub: [
                     {
                         name: '패스워드',
-                        last: [],
+                        last: [
+                            {
+                                idx: 135,
+                                name: '패스워드 복잡성 설정',
+                            },
+                        ],
                     },
                     {
                         name: '초기 인증정보',

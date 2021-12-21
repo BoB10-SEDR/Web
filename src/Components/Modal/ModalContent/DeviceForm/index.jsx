@@ -1,4 +1,5 @@
 import '@Styles/addDeviceModal.css';
+import { observer } from 'mobx-react';
 import useSWR, { useSWRConfig } from 'swr';
 import useSWRImmutable from 'swr/immutable';
 import { useMemo, useEffect } from 'react';
@@ -11,6 +12,7 @@ import ModalHeader from '@Components/Modal/ModalHeader';
 import FormErrorMessage from '@Components/UI/FormErrorMessage';
 import ToggleSwitch from '@Components/UI/ToggleSwitch';
 import * as dummy from '@Dummy/addDeviceDummy';
+import store from '@Stores/deviceTable';
 
 //추후 리팩토링 필요
 const DeviceForm = ({ deviceIdx }) => {
@@ -21,7 +23,7 @@ const DeviceForm = ({ deviceIdx }) => {
     let { data: networkCategoryList, error: networkCategoryListError } = useSWRImmutable(`/networks/categories`, url =>
         fetcher(url)
     );
-    let { data: environmentCategoryList, error: environmentCategoryListError } = useSWRImmutable(
+    let { data: environmentCategoryList = [], error: environmentCategoryListError } = useSWR(
         `/devices/environments`,
         url => fetcher(url)
     );
@@ -29,10 +31,16 @@ const DeviceForm = ({ deviceIdx }) => {
         fetcher(url)
     );
 
-    const defaultValues = useMemo(() => values.length && values[0], [values]);
+    const defaultValues = {
+        category: '센서',
+        network: 'LAN',
+        activate: false,
+    };
+
+    const fetchedValues = useMemo(() => values.length && values[0], [values]);
 
     const methods = useForm({
-        defaultValues: defaultValues,
+        defaultValues: deviceIdx ? fetchedValues : defaultValues,
     });
 
     const {
@@ -47,13 +55,16 @@ const DeviceForm = ({ deviceIdx }) => {
     }, [isValidating]);
 
     const onSubmit = async data => {
+        if (data.activate === undefined) data.activate = false;
+        const { page, limit } = store;
+
         try {
             if (deviceIdx) {
                 const response = await axios.put(`/devices/${deviceIdx}`, data);
             } else {
                 const response = await axios.post(`/devices`, data);
             }
-            mutate(`/devices`);
+            mutate(`/devices?page=${page}&limit=${limit}`);
             alert('success');
         } catch (error) {
             console.log(error);
@@ -63,7 +74,6 @@ const DeviceForm = ({ deviceIdx }) => {
 
     if (!deviceCategoryList) deviceCategoryList = dummy.deviceCategoryList;
     if (!networkCategoryList) networkCategoryList = dummy.networkCategoryList;
-    if (!environmentCategoryList) environmentCategoryList = dummy.environmentCategoryList;
 
     const title = deviceIdx ? '장비 정보 수정하기' : '장비 추가하기';
     const description = deviceIdx ? '수정할 장비 정보를 입력해주세요' : '추가할 장비 정보를 입력해주세요';
@@ -142,12 +152,8 @@ const DeviceForm = ({ deviceIdx }) => {
 };
 
 const AgentToggle = () => {
-    const { register, control } = useFormContext();
+    const { control } = useFormContext();
     const isActivate = false;
-
-    const handleActivate = activate => {
-        return null;
-    };
 
     return (
         <div className='inputBox agentToggle'>
@@ -159,8 +165,6 @@ const AgentToggle = () => {
                     <ToggleSwitch
                         {...field}
                         isToggled={isActivate}
-                        onActivate={() => handleActivate(true)}
-                        onInactivate={() => handleActivate(false)}
                         onChange={event => field.onChange(event.target.checked)}
                     />
                 )}
@@ -180,4 +184,4 @@ const Selector = ({ items = [] }) => {
     });
 };
 
-export default DeviceForm;
+export default observer(DeviceForm);

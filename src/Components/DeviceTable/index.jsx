@@ -1,6 +1,8 @@
 import useSWR, { useSWRConfig } from 'swr';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { observer } from 'mobx-react';
 import axios from 'axios';
+import Pagination from '@Components/Pagination';
 import Card from '@Components/Card';
 import Table from '@Components/Table';
 import FilterButton from '@Components/FilterButton';
@@ -13,19 +15,24 @@ import Status from '@Components/UI/Status';
 import ConfigButtons from '@Components/UI/ConfigButtons';
 import DeviceForm from '@Components/Modal/ModalContent/DeviceForm';
 import { remover } from '@Hooks/';
+import store from '@Stores/deviceTable';
 
 const DeviceTable = () => {
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(100);
+    const { page, limit, visibleData } = store;
     const {
-        data: devicesData = [],
+        data: devicesData = {},
+        mutate,
         error,
         isValidating,
-    } = useSWR(`/devices`, () => fetcher(`/devices?page=${page}&limit=${limit}`), {
-        refreshInterval: 60000,
+    } = useSWR(`/devices?page=${page}&limit=${limit}`, url => fetcher(url), {
         revalidateOnFocus: false,
+        compare: (a, b) => {
+            return JSON.stringify(a?.data) === JSON.stringify(b?.data);
+        },
     });
-    const [filteredData, setFilteredData] = useState([]);
+
+    const { count, data = [] } = devicesData;
+    const stringData = JSON.stringify(data);
 
     const handleSearch = input => {
         const filtered = devicesData.filter(device => {
@@ -33,11 +40,11 @@ const DeviceTable = () => {
                 return String(device[key]).toLowerCase().includes(input.toLowerCase());
             });
         });
-        setFilteredData(filtered);
+        store.setVisibleData(filtered);
     };
 
     useEffect(() => {
-        const formattedData = devicesData.map(e => {
+        const formattedData = data.map(e => {
             const isLive = e['live'];
             return {
                 ...e,
@@ -46,8 +53,10 @@ const DeviceTable = () => {
             };
         });
 
-        setFilteredData(formattedData);
-    }, [isValidating]);
+        store.setVisibleData(formattedData);
+    }, [stringData]);
+
+    if (!devicesData) return <div>loading...</div>;
 
     return (
         <div id='deviceTable'>
@@ -56,21 +65,26 @@ const DeviceTable = () => {
                 <SearchBar onClick={handleSearch} />
                 <AddDeviceButton />
             </div>
-            <Body tableData={filteredData} />
+            <Body tableData={visibleData} total={count} />
         </div>
     );
 };
 
-const Body = props => {
-    const { tableData = [] } = props;
+const Body = observer(props => {
+    const { tableData = [], total } = props;
     const { mutate } = useSWRConfig();
+
+    const handlePageChange = (current, pageSize) => {
+        store.setPage(current);
+    };
 
     const handleToggleActivate = async ({ row }, isActive) => {
         const deviceIdx = row.values.idx;
 
         const lazyMutate = () => {
+            const { page, limit } = store;
             setTimeout(() => {
-                mutate(`/devices`);
+                mutate(`/devices?page=${page}&limit=${limit}`);
             }, 500);
         };
         const changeState = async () => {
@@ -87,34 +101,38 @@ const Body = props => {
     };
 
     return (
-        <Card>
-            <div className='tableContent'>
-                <DummyCardEx height='500px'>
-                    <Table
-                        hasToggle
-                        toggleId='idx'
-                        toggleValueField='activate'
-                        toggleHeader='에이전트 연결'
-                        onToggleActivate={({ row }) => handleToggleActivate({ row }, true)}
-                        onToggleInactivate={({ row }) => handleToggleActivate({ row }, false)}
-                        defaultRowHeight='30'
-                        defaultFontSize='14'
-                        schema='simpleDevice'
-                        browseData={tableData}
-                        isTimestampFormattable
-                        timestampHeader='update_time'
-                        hasConfig
-                        ConfigButtons={Configs}
-                    />
-                </DummyCardEx>
-            </div>
-        </Card>
+        <>
+            <Card>
+                <div className='tableContent'>
+                    <DummyCardEx height='670px'>
+                        <Table
+                            hasToggle
+                            toggleId='idx'
+                            toggleValueField='activate'
+                            toggleHeader='에이전트 연결'
+                            onToggleActivate={({ row }) => handleToggleActivate({ row }, true)}
+                            onToggleInactivate={({ row }) => handleToggleActivate({ row }, false)}
+                            defaultRowHeight='30'
+                            defaultFontSize='14'
+                            schema='simpleDevice'
+                            browseData={tableData}
+                            isTimestampFormattable
+                            timestampHeader='update_time'
+                            hasConfig
+                            ConfigButtons={Configs}
+                        />
+                    </DummyCardEx>
+                </div>
+            </Card>
+            <Pagination total={total} pageSize={store.limit} current={store.page} onChange={handlePageChange} />
+        </>
     );
-};
+});
 
-const Configs = ({ rowValues }) => {
+const Configs = observer(({ rowValues }) => {
     const { mutate } = useSWRConfig();
     const deviceIdx = rowValues.idx;
+    const { page, limit } = store;
 
     const EditModal = () => {
         return <DeviceForm deviceIdx={deviceIdx} />;
@@ -122,12 +140,12 @@ const Configs = ({ rowValues }) => {
 
     const handleDelete = () => {
         const callback = () => {
-            mutate(`/devices`);
+            mutate(`/devices?page=${page}&limit=${limit}`);
         };
         remover(`/devices/${deviceIdx}`, null, callback);
     };
 
     return <ConfigButtons EditModal={EditModal} onDelete={handleDelete} />;
-};
+});
 
-export default DeviceTable;
+export default observer(DeviceTable);

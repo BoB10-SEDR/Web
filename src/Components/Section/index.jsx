@@ -42,6 +42,7 @@ const Body = props => {
                 return (
                     <Item
                         key={index}
+                        index={index + 1}
                         onClick={() => handleClick(index, item)}
                         isSelected={index === selectedIndex ? '1' : ''}
                     >
@@ -54,10 +55,13 @@ const Body = props => {
 };
 
 const Item = props => {
-    const { children, isSelected, onClick } = props;
+    const { children, isSelected, onClick, index } = props;
 
     return (
         <li className='bodyListItem' isSelected={isSelected} onClick={onClick}>
+            <div className='index'>
+                <div className='indexMarker'>{index}</div>
+            </div>
             {children}
         </li>
     );

@@ -16,6 +16,7 @@ const ProgressBar = props => {
                     const nowIdx = idx + 1;
                     const isActive = status === 'IN PROGRESS';
                     const isValid = status === 'FIN';
+                    const isFail = status === 'FAIL';
 
                     // TODO_P :: fail 그리고 Success 로직
                     const isFailed = false;
@@ -24,7 +25,7 @@ const ProgressBar = props => {
 
                     return (
                         <div className={elementClassName}>
-                            {isActive ? (
+                            {!isFail ? (
                                 <DotsLoader />
                             ) : isValid ? (
                                 <span className='opaque'> {nowIdx}</span>

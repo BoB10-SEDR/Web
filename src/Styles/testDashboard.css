@@ -2,6 +2,7 @@
     flex-direction: row;
     height: 500px;
     font-family: 'NanumSquare';
+    margin-top: 50px;
 }
 
 #testDashboard .taskListWrapper {

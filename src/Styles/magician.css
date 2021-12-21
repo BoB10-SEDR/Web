@@ -75,16 +75,45 @@
 }
 
 #magician .body .section .bodyList .bodyListItem {
+    display: flex;
+    align-items: center;
     position: relative;
-    height: 40px;
+    min-height: 40px;
+    min-width: 200px;
     padding-left: 17px;
+    padding-right: 17px;
     cursor: pointer;
-
     line-height: 38px;
+    word-break: break-all;
+    border-bottom: 1px solid #262626;
+}
+
+#magician .body .section .bodyList .bodyListItem .index {
+    flex: none;
+}
+
+#magician .body .section .bodyList .bodyListItem .indexMarker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    margin-right: 10px;
+    font-size: 0.9rem;
 }
 
 #magician .body .section .bodyList .bodyListItem[isSelected='1'] {
     background-color: #6c6e70;
+}
+
+#magician .body .section .bodyList .bodyListItem[isSelected='1'] .indexMarker {
+    background-color: #cc0000;
+}
+
+#magician .body .section .bodyList .bodyListItem.checked .indexMarker {
+    background-color: #cc0000;
 }
 
 #magician .body .section .bodyList .bodyListItem[isBlocked='1'] {

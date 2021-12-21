@@ -1,10 +1,12 @@
 import '@Styles/magicianForm.css';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
+import { observer } from 'mobx-react';
 import { useForm, FormProvider, useFormContext } from 'react-hook-form';
 import Button from '@Components/UI/Button';
 import { fetcher } from '@Hooks/';
 import axios from 'axios';
 import ArgumentForm from './ArgumentForm';
+import store from '@Stores/solutions';
 
 const PolicyForm = props => {
     const { isEdit, policy } = props;
@@ -15,6 +17,7 @@ const PolicyForm = props => {
         { refreshInterval: 60000 }
     );
     const { data: fetchPolicyData } = useSWR(`/policies/${idx}`, url => fetcher(url));
+    const { mutate } = useSWRConfig();
 
     const methods = useForm();
     const {
@@ -26,7 +29,7 @@ const PolicyForm = props => {
     if (!devicesData) return <div>loading...</div>;
     if (!fetchPolicyData) return <div>loading...</div>;
 
-    const { security_category_idx = 0, argument } = fetchPolicyData[0];
+    const { security_category_idx = 0, argument = [] } = fetchPolicyData[0];
 
     const onSubmit = data => {
         const { deviceIdx, general, rows, ...args } = data;
@@ -34,6 +37,8 @@ const PolicyForm = props => {
 
         general && argsData.push(general);
         rows && argsData.push(...rows);
+
+        const { page, limit } = store;
 
         const addPolicy = async () => {
             const body = {
@@ -46,6 +51,7 @@ const PolicyForm = props => {
 
             try {
                 const data = await axios.post(`/policies/custom`, body);
+                mutate(`/policies/custom?page=${page}&limit=${limit}`);
                 alert('success');
             } catch (error) {
                 alert('error');
@@ -61,6 +67,7 @@ const PolicyForm = props => {
 
             try {
                 const data = await axios.put(`/policies/custom`, body);
+                mutate(`/policies/custom?page=${page}&limit=${limit}`);
                 alert('success');
             } catch (error) {
                 alert('error');
@@ -118,4 +125,4 @@ const DeviceInput = ({ devicesData = [] }) => {
     );
 };
 
-export default PolicyForm;
+export default observer(PolicyForm);

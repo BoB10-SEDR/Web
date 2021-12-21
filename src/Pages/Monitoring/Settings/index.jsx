@@ -1,22 +1,25 @@
-import { useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 import axios from 'axios';
+import { observer } from 'mobx-react';
+import Pagination from '@Components/Pagination';
 import Modal from '@Components/Modal';
 import LogMagician from '@Components/Modal/ModalContent/LogMagician';
 import ConfigButtons from '@Components/UI/ConfigButtons';
 import ManageTable from '@Components/ManageTable';
 import MonitoringForm from '@Components/Modal/ModalContent/MonitoringForm';
 import { fetcher } from '@Hooks/';
+import { remover } from '@Hooks/';
+import store from '@Stores/monitoringSettings';
 
 const Settings = () => {
-    const { mutate } = useSWRConfig();
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(12);
-    const { data: monitoringData = [], error } = useSWR(
-        `/monitoring`,
-        () => fetcher(`/monitoring?page=${page}&limit=${limit}`),
+    const { page, limit } = store;
+    const { data: monitoringData = {}, mutate } = useSWR(
+        `/monitoring?page=${page}&limit=${limit}`,
+        url => fetcher(url),
         { revalidateOnFocus: false }
     );
+
+    const { count, data = [] } = monitoringData;
 
     const onToggleActivate = async ({ row }, isActive) => {
         const { device_idx, process_name, log_path: path, log_regex: regex } = row.values;
@@ -30,10 +33,14 @@ const Settings = () => {
 
         try {
             const response = await axios.post(`/monitoring`, body);
-            mutate(`/monitoring`);
+            mutate();
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const handlePageChange = (current, pageSize) => {
+        store.setPage(current);
     };
 
     return (
@@ -44,7 +51,7 @@ const Settings = () => {
                 toggleId='idx'
                 toggleValueField='activate'
                 schema='monitoring'
-                browseData={monitoringData}
+                browseData={data}
                 onToggleActivate={({ row }) => onToggleActivate({ row }, true)}
                 onToggleInactivate={({ row }) => onToggleActivate({ row }, false)}
                 isTimestampFormattable
@@ -55,15 +62,29 @@ const Settings = () => {
                     <LogMagician />
                 </Modal>
             </ManageTable>
+            <Pagination total={count} pageSize={limit} current={page} onChange={handlePageChange} />
         </div>
     );
 };
 
-const Configs = ({ rowValues }) => {
+const Configs = observer(({ rowValues }) => {
+    const idx = rowValues.idx;
+    const { mutate } = useSWRConfig();
+
     const EditModal = () => {
         return <MonitoringForm isEdit file={rowValues} />;
     };
-    return <ConfigButtons EditModal={EditModal} />;
-};
 
-export default Settings;
+    const handleDelete = () => {
+        const { page, limit } = store;
+
+        const callback = () => {
+            mutate(`/monitoring?page=${page}&limit=${limit}`);
+        };
+        remover(`/monitoring/${idx}`, null, callback);
+    };
+
+    return <ConfigButtons EditModal={EditModal} onDelete={handleDelete} />;
+});
+
+export default observer(Settings);

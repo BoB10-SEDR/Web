@@ -1,18 +1,21 @@
 import '@Styles/magicianForm.css';
 import { useState, useCallback, useMemo } from 'react';
+import { observer } from 'mobx-react';
 import axios from 'axios';
-import useSWR, { useSWRConfig } from 'swr';
+import { useSWRConfig } from 'swr';
 import { useForm } from 'react-hook-form';
 import Button from '@Components/UI/Button';
 import store from '@Stores/logMagician';
-import { fetcher } from '@Hooks/';
+import eventViewerStore from '@Stores/eventViewer';
 
 const MonitoringForm = props => {
     const { file, isEdit } = props;
     const exampleReg = String.raw`(?<timestamp>^\w*\s*\d+\s+\d*:\d*:\d*) (?<device_name>\S*) (?<info>.*)`;
-    const { idx, name, description, path, deviceIndex, pid, processName, log_path } = file;
-    const [sampleLog, setSampleLog] = useState('');
-    const [regExp, setRegExp] = useState(new RegExp(null));
+    const { idx, name, description, path, device_idx, pid, process_name, log_path, log_regex } = file;
+    const [sampleLog, setSampleLog] = useState(
+        'Dec  8 13:17:28 raspberrypi sudo: pam_unix(sudo:session): session closed for user pi'
+    );
+    const [regExp, setRegExp] = useState(log_regex);
     const [regError, setRegError] = useState('');
     const [isExampleClicked, setIsExampleClicked] = useState(false);
     const {
@@ -20,27 +23,27 @@ const MonitoringForm = props => {
         handleSubmit,
         formState: { error },
     } = useForm();
-    const { data = [] } = useSWR(isEdit && `/monitoring/${idx}`, url => fetcher(url));
 
     const { mutate } = useSWRConfig();
 
     const onSubmit = data => {
         const activateMonitoringFile = async () => {
             const body = {
-                device_idx: deviceIndex,
-                path: path,
-                process_name: processName,
+                device_idx,
+                path: path ?? log_path,
+                process_name,
                 isActive: true,
                 regex: regExp ?? '',
             };
 
+            const { page, limit } = eventViewerStore;
+
             try {
                 const response = axios.post(`/monitoring`, body);
-                mutate('/monitoring');
+                mutate(`/monitoring?page=${page}&limit=${limit}`);
                 alert('success');
             } catch (error) {
                 alert('error');
-                console.log(error);
             }
         };
 
@@ -109,7 +112,7 @@ const MonitoringForm = props => {
                             예시 보기
                         </span>
                         {isExampleClicked ? <div className='description'>{exampleReg}</div> : null}
-                        <input id='regFormat' value={regExp.source} onChange={handleRegFormatChange} />
+                        <input id='regFormat' value={regExp} onChange={handleRegFormatChange} />
                         <div className='error'>{regError}</div>
                     </label>
                 </div>
@@ -131,4 +134,4 @@ const MonitoringForm = props => {
     );
 };
 
-export default MonitoringForm;
+export default observer(MonitoringForm);

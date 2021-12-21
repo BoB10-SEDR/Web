@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react';
 import useSWR, { useSWRConfig } from 'swr';
+import { useState } from 'react';
 import axios from 'axios';
+import Pagination from '@Components/Pagination';
 import { fetcher } from '@Hooks/';
 import ManageTable from '@Components/ManageTable';
 import Button from '@Components/UI/Button';
@@ -8,8 +10,16 @@ import dummy from '@Dummy/inspectionTable';
 import store from '@Stores/inspection';
 
 const InspectionTable = () => {
-    const { data = [], error } = useSWR(`/inspection`, url => fetcher(url));
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(10);
+    const { data: inspectionData = {}, error } = useSWR(`/inspection?page=${page}&limit=${limit}`, url => fetcher(url));
     const { mutate } = useSWRConfig();
+
+    const { count, data = [] } = inspectionData;
+
+    const handlePageChange = (current, pageSize) => {
+        setPage(current);
+    };
 
     const handleSubmit = data => {
         if (!data.length) {
@@ -44,16 +54,19 @@ const InspectionTable = () => {
     };
 
     return (
-        <ManageTable
-            title='점검 항목 리스트'
-            isCheckable
-            schema='inspection'
-            browseData={data}
-            onSubmit={handleSubmit}
-            isSubmitted={store.isSubmitted}
-        >
-            <Button onClick={handleClick}>점검하기</Button>
-        </ManageTable>
+        <>
+            <ManageTable
+                title='점검 항목 리스트'
+                isCheckable
+                schema='inspection'
+                browseData={data}
+                onSubmit={handleSubmit}
+                isSubmitted={store.isSubmitted}
+            >
+                <Button onClick={handleClick}>점검하기</Button>
+            </ManageTable>
+            <Pagination total={count} pageSize={limit} current={page} onChange={handlePageChange} />
+        </>
     );
 };
 

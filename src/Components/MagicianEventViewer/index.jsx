@@ -1,17 +1,38 @@
 import { useState } from 'react';
+import { observer } from 'mobx-react';
 import useSWR from 'swr';
+import Pagination from '@Components/Pagination';
 import EventViewer from '@Components/EventViewer';
 import { fetcher } from '@Hooks/';
 import dummyLogs from '@Dummy/logMagician';
+import store from '@Stores/eventViewer';
 
 const MagicianEventViewer = () => {
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(7000);
-    const { data = [], error } = useSWR(`/monitoring/log?page=${page}&limit=${limit}`, url => fetcher(url), {
-        refreshInterval: 60000,
-    });
+    const { page, limit } = store;
+    const { data: monitoringData = {}, error } = useSWR(
+        `/monitoring/log?page=${page}&limit=${limit}`,
+        url => fetcher(url),
+        {
+            refreshInterval: 60000,
+            compare: (a, b) => {
+                return JSON.stringify(a?.data) === JSON.stringify(b?.data);
+            },
+        }
+    );
 
-    return <EventViewer defaultPadding='0 1.25rem 1.25rem 1.25rem' schema='logMagician' data={data} />;
+    const handlePageChange = (current, pageSize) => {
+        store.setPage(current);
+    };
+
+    if (!monitoringData) return <div>loading...</div>;
+    const { count, data = [] } = monitoringData;
+
+    return (
+        <>
+            <EventViewer defaultPadding='0 1.25rem 1.25rem 1.25rem' schema='logMagician' data={data} />
+            <Pagination total={count} pageSize={limit} current={page} onChange={handlePageChange} />
+        </>
+    );
 };
 
-export default MagicianEventViewer;
+export default observer(MagicianEventViewer);

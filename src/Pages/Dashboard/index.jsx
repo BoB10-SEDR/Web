@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import Card from '@Components/Card';
 import Pie from '@Components/Charts/Pie';
-import Table from '@Components/Table';
 import DeviceTable from '@Components/DeviceTable';
 import useSWR from 'swr';
 import DummyCardEx from '@Dummy/DummyCardEx';
@@ -13,6 +12,7 @@ import CardBodyForm from '@Components/Card/Form';
 import SparkLines from '@Components/Charts/Sparklines';
 import TimeLine from '@Components/Charts/TimeLine';
 import ThreatRadar from '@Components/Charts/ThreatRadar';
+import SolutionsTable from '@Components/SolutionsTable';
 import d from '@Dummy/dashboardNumbers';
 import dummySolutions from '@Dummy/solutions';
 import { fetcher } from '@Hooks/';
@@ -21,9 +21,6 @@ import store from '@Stores/dashboard';
 
 const Dashboard = () => {
     const [page, limit] = [1, 10];
-    let { data: solutions = dummySolutions } = useSWR(`policies?page=${page}&limit=${limit}`, url => fetcher(url), {
-        refreshInterval: 60000,
-    });
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
     const [time, setTime] = useState(5);
     const { data: statData = [], isValidating } = useSWR(`/dashboard/statistics?time=${time}`, url => fetcher(url));
@@ -40,7 +37,7 @@ const Dashboard = () => {
         padding: '25px 20px',
     };
 
-    const { totalLogs, threatType, threatLogs, devices, modules } = store;
+    const { totalLogs = 0, threatType = 0, threatLogs = 0, devices = 0, modules = 0 } = store;
 
     const setTotal = data => {
         let totalCount = 0;
@@ -107,7 +104,7 @@ const Dashboard = () => {
                         <CardBodyForm
                             titleFontColor={pink}
                             title='탐지 보안항목 로그 유형/개수'
-                            content={`${threatType}/${threatLogs} 개`}
+                            content={`${threatType}/${threatLogs ?? 0} 개`}
                         />
                     </Card>
                 </Col>
@@ -159,11 +156,7 @@ const Dashboard = () => {
                     </Card>
                 </Col>
                 <Col lg={6}>
-                    <Card title='대응정책 적용/해제'>
-                        <DummyCardEx height='314px'>
-                            <Table schema='simpleSolutions' hasToggle toggleId='idx' browseData={solutions} />
-                        </DummyCardEx>
-                    </Card>
+                    <SolutionsTable />
                 </Col>
             </Row>
 
