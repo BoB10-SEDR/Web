@@ -210,6 +210,7 @@ const Table = props => {
                 alignItems: 'flex-start',
                 display: 'flex',
                 wordBreak: 'break-all',
+                textOverflow: 'ellipsis',
             },
         },
     ];

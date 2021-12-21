@@ -12,7 +12,9 @@ const MonitoringForm = props => {
     const { file, isEdit } = props;
     const exampleReg = String.raw`(?<timestamp>^\w*\s*\d+\s+\d*:\d*:\d*) (?<device_name>\S*) (?<info>.*)`;
     const { idx, name, description, path, device_idx, pid, process_name, log_path, log_regex } = file;
-    const [sampleLog, setSampleLog] = useState('');
+    const [sampleLog, setSampleLog] = useState(
+        'Dec  8 13:17:28 raspberrypi sudo: pam_unix(sudo:session): session closed for user pi'
+    );
     const [regExp, setRegExp] = useState(log_regex);
     const [regError, setRegError] = useState('');
     const [isExampleClicked, setIsExampleClicked] = useState(false);

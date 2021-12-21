@@ -16,26 +16,28 @@ const MagicianStats = () => {
     const [start, setStart] = useState(format(Date.now(), 'yyyy-MM-dd'));
     const [time, setTime] = useState(5);
 
-    const { data: statData, error: statDataError } = useSWR(
+    const { data: statData = [], error: statDataError } = useSWR(
         `/monitoring/statistics?time=${time}`,
         url => fetcher(url),
         { refreshInterval: 60000 }
     );
 
-    const { data = [] } = statData ? statData[0] : d;
     let fail = 0;
     let info = 0;
     let threat = 0;
 
-    data.map(item => {
-        const { status, count } = item;
-        switch (status) {
+    statData.map(item => {
+        const { description, data = [] } = item;
+
+        if (!data.length) return;
+        const { total_count: count = 0, total_attack: attack = 0 } = data[0];
+        switch (description) {
             case 'FAIL':
                 fail = count;
-            case 'INFO':
+            case 'total':
                 info = count;
-            case 'THREAT':
-                threat = count;
+            case 'threat':
+                threat = attack;
         }
     });
 

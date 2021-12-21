@@ -4,6 +4,8 @@ import { useFormContext } from 'react-hook-form';
 import Button from '@Components/UI/Button';
 
 const ArgumentForm = ({ argument = [] }) => {
+    if (!argument) argument = [];
+
     return (
         <div id='argumentForm'>
             {argument.map((item, index) => {

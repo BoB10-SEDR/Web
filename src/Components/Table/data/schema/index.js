@@ -77,8 +77,9 @@ export const monitoringTableSchema = [
 export const logMagicianSchema = [
     { Header: '식별번호', accessor: 'idx', align: 'center', isAbleToSort: true },
     { Header: '타임스탬프', accessor: 'create_time', align: 'center', width: '100', isAbleToSort: true },
-    { Header: '보안 항목명', accessor: 'security_category_idx', align: 'center', isAbleToSort: true },
-    { Header: '장비 번호', accessor: 'device_idx', align: 'center', isAbleToSort: true },
+    { Header: '보안 항목명', accessor: 'security_category_idx', align: 'center', isAbleToSort: true, show: false },
+    { Header: '장비 번호', accessor: 'device_idx', align: 'center', isAbleToSort: true, show: false },
+    { Header: '장비 명', accessor: 'name', align: 'center', isAbleToSort: true },
     { Header: '레이어', accessor: 'layer', align: 'center', isAbleToSort: true },
     { Header: '소속 환경', accessor: 'environment', align: 'center', isAbleToSort: true },
     { Header: '로그 발생지', accessor: 'log_path', align: 'center', width: '300', isAbleToSort: true },

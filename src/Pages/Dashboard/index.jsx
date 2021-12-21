@@ -37,7 +37,7 @@ const Dashboard = () => {
         padding: '25px 20px',
     };
 
-    const { totalLogs, threatType, threatLogs, devices, modules } = store;
+    const { totalLogs = 0, threatType = 0, threatLogs = 0, devices = 0, modules = 0 } = store;
 
     const setTotal = data => {
         let totalCount = 0;
@@ -104,7 +104,7 @@ const Dashboard = () => {
                         <CardBodyForm
                             titleFontColor={pink}
                             title='탐지 보안항목 로그 유형/개수'
-                            content={`${threatType}/${threatLogs} 개`}
+                            content={`${threatType}/${threatLogs ?? 0} 개`}
                         />
                     </Card>
                 </Col>
